@@ -1,13 +1,13 @@
   *{
     margin: 0;
     padding: 0;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'HK Grotesk Regular Legacy'
   }
 
   @font-face {
     font-family: 'HK Grotesk Regular Legacy';
-    src: url('../public/fonts/HKGrotesk-RegularLegacy.woff2') format('woff2'),
-    url('../public/fonts/HKGrotesk-RegularLegacy.woff') format('woff');
+    src: url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff2') format('woff2'),
+    url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff') format('woff');
 font-weight: normal;
 font-style: normal;
   }
@@ -54,6 +54,7 @@ font-style: normal;
 
 .botaoEntrar{
   background-color: #AC7B39;
+  color: white;
   border-radius: 1vh 1vh;
   padding: 1vh 10vh;
   width:39vh;
