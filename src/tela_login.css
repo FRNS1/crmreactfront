@@ -4,6 +4,14 @@
     font-family: 'Times New Roman', Times, serif;
   }
 
+  @font-face {
+    font-family: 'HK Grotesk Regular Legacy';
+    src: url('../public/fonts/HKGrotesk-RegularLegacy.woff2') format('woff2'),
+    url('../public/fonts/HKGrotesk-RegularLegacy.woff') format('woff');
+font-weight: normal;
+font-style: normal;
+  }
+
   .container {
     height: 100vh;
     display: flex;
@@ -24,10 +32,6 @@
     color: white; /*define a cor da string*/
     font-size: 2vh;
     font-family: 'HK Grotesk Regular Legacy';
-    src: url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff2') format('woff2'),
-       url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
   }
 
   .containerInput {
@@ -40,10 +44,6 @@
     text-align: start;
     font-size: 2vh;
     font-family: 'HK Grotesk Regular Legacy';
-  src: url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff2') format('woff2'),
-       url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
   }
 
   .deltaimg{
@@ -61,20 +61,12 @@
   text-align: center;
   font-size: 2vh;
   font-family: 'HK Grotesk Regular Legacy';
-  src: url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff2') format('woff2'),
-       url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff') format('woff');
-  font-weight: 2vh;
-  font-style: normal;
 }
 
 .stringEntrar{
   text-align: center;
   font-size: 2vh;
   font-family: 'HK Grotesk Regular Legacy';
-  src: url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff2') format('woff2'),
-       url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff') format('woff');
-  font-weight: 2vh;
-  font-style: normal;
   color: #FFFFFF;
 }
 
@@ -84,8 +76,4 @@
   color: white; /*define a cor da string*/
   font-size: 2vh;
   font-family: 'HK Grotesk Regular Legacy';
-  src: url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff2') format('woff2'),
-       url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
 }
