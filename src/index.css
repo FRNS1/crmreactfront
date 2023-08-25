@@ -1,13 +1,91 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  *{
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  .container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #081535;
+  }
+
+  .title {
+    color: white;
+    font-size: 85px;
+  }
+
+  .stringInput {
+    height: 2.5vh;
+    width: 38vh; /*define a posição na horizontal da string*/
+    color: white; /*define a cor da string*/
+    font-size: 2vh;
+    font-family: 'HK Grotesk Regular Legacy';
+    src: url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff2') format('woff2'),
+       url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  .containerInput {
+    background-color: white;
+    border-radius: 1vh 1vh; /* Define o raio da borda */
+    padding: 1vh 10vh; /* Opcional: ajusta o preenchimento interno */
+    /* border: 0.2vh solid #ccc; Opcional: adiciona uma borda */
+    width:37vh;
+    padding: 5px 10px;
+    text-align: start;
+    font-size: 2vh;
+    font-family: 'HK Grotesk Regular Legacy';
+  src: url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff2') format('woff2'),
+       url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  .deltaimg{
+    padding-bottom: 2vh;
+    width: 55vh;
+    height: 25vh;
+  }
+
+.botaoEntrar{
+  background-color: #AC7B39;
+  border-radius: 1vh 1vh;
+  padding: 1vh 10vh;
+  width:39vh;
+  padding: 5px 10px;
+  text-align: center;
+  font-size: 2vh;
+  font-family: 'HK Grotesk Regular Legacy';
+  src: url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff2') format('woff2'),
+       url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff') format('woff');
+  font-weight: 2vh;
+  font-style: normal;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.stringEntrar{
+  text-align: center;
+  font-size: 2vh;
+  font-family: 'HK Grotesk Regular Legacy';
+  src: url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff2') format('woff2'),
+       url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff') format('woff');
+  font-weight: 2vh;
+  font-style: normal;
+  color: #FFFFFF;
+}
+
+.esqueceuSenha{
+  height: 2.5vh;
+  width: 38vh; /*define a posição na horizontal da string*/
+  color: white; /*define a cor da string*/
+  font-size: 2vh;
+  font-family: 'HK Grotesk Regular Legacy';
+  src: url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff2') format('woff2'),
+       url('C:\Users\matheus.fernandes\Documents\front_boracred\public\fonts\HKGrotesk-RegularLegacy.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
