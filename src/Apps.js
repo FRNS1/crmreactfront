@@ -1,14 +1,28 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import {NavLateral} from './js/navlateral';
 
-// Defina o componente ButtonPage fora do componente App
 const ButtonPage = () => {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    // Navegar para a página desejada
     navigate('/navlateral');
   };
+
+  const handleEnterKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      handleButtonClick();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleEnterKeyPress);
+
+    return () => {
+      window.removeEventListener('keydown', handleEnterKeyPress);
+    };
+  }, []);
 
   return (
     <div className="container">
@@ -33,7 +47,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<ButtonPage />} />
-        {/* Defina outras rotas aqui */}
+        <Route path='/navlateral' component = {<NavLateral />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,20 +1,20 @@
 .navLateral {
-    width: 250px;
+    width: 5vh;
     background-color: #333;
     color: purple;
-    height: 100vh;
+    height: 5vh;
   }
   
   .navHeader {
-    padding: 1rem;
-    font-size: 1.5rem;
+    padding: 1vh;
+    font-size: 5vh;
     background-color: #222;
   }
   
   .navMenu {
     list-style: none;
-    padding: 0;
-    margin: 0;
+    padding: 1vh;
+    margin: 5vh;
   }
   
   .navMenu li {
@@ -24,4 +24,10 @@
   
   .navMenu li:last-child {
     border-bottom: none;
+  }
+
+  .quadrado{
+    height: 10000px;
+    width: 10000px;
+    background-color: red;
   }
