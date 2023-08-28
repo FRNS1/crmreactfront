@@ -13,17 +13,17 @@ function NavLateral() {
       <div className="sidebar">
         <img className="deltalogoazul" src={require('../imgs/deltalogoazul.png')} alt="Logo" />
         <ul className="sidebar-menu">
-          <li>
+          <li className="sidebar-item">
             <FontAwesomeIcon className="icone" icon={faChartLine} />
             Dashboard
           </li>
           <hr className='line'></hr>
-          <li>
+          <li className="sidebar-item">
             <FontAwesomeIcon className="icone" icon={faIdBadge} />
             Clientes
           </li>
           <hr className='line'></hr>
-          <li>
+          <li className="sidebar-item">
             <FontAwesomeIcon className="icone" icon={faHandshake} />
             Propostas
           </li>

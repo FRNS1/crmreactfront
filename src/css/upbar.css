@@ -19,10 +19,22 @@
     background-color: white;
     color: white;
     padding: 2vh;
+    width: 86%;
     height: 4vh;
     margin: 0 auto;
     box-shadow: 2vh 0vh 2vh rgba(122, 58, 206, 0.2);
     font-family: 'HK Grotesk Regular Legacy';
+    position: absolute;
+      right: 0;
+    }
+    
+    .username {
+      position: absolute;
+      right: 4vh;
+    }
+    
+    .usernameText {
+      margin-right: 2vh;
   }
 
   .nav-links {
