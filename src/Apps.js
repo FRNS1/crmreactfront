@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
-import {NavLateral} from './js/navlateral';
 
 const ButtonPage = () => {
   const navigate = useNavigate();
@@ -22,7 +21,7 @@ const ButtonPage = () => {
     return () => {
       window.removeEventListener('keydown', handleEnterKeyPress);
     };
-  }, []);
+  }, [handleEnterKeyPress]);
 
   return (
     <div className="container">
@@ -47,7 +46,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<ButtonPage />} />
-        <Route path='/navlateral' component = {<NavLateral />} />
       </Routes>
     </BrowserRouter>
   );
