@@ -31,16 +31,24 @@ font-style: normal;
   list-style: none;
   padding: 0;
   margin: 0;
-  border-bottom: 0.1vh solid black;
 }
 
 .sidebar-menu li {
   padding: 1vh 2vh;
-  border-bottom: 0.1vh solid black;
   line-height: 4vh; /* Aumente este valor para adicionar espaçamento vertical */
   color: black;
 }
 
 .sidebar-menu li:last-child {
   border-bottom: none;
+}
+
+.line {
+  opacity: 0.5;
+  width: 21vh;
+  margin: 0 auto;
+}
+
+.icone{
+  padding-right: 1vh;
 }
