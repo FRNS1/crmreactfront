@@ -78,3 +78,7 @@ font-style: normal;
   font-size: 2vh;
   font-family: 'HK Grotesk Regular Legacy';
 }
+.erro {
+  padding: 1vh;
+  color: white;
+}
