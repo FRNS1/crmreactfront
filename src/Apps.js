@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import {NavLateral} from './js/navlateral';
 
 const ButtonPage = () => {
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<ButtonPage />} />
+        <Route path="/navlateral" element={<NavLateral />} />
       </Routes>
     </BrowserRouter>
   );

@@ -18,4 +18,4 @@ function NavLateral() {
       );
     };
     
-    export default NavLateral;
+    export {NavLateral};
