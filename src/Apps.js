@@ -26,7 +26,7 @@ const ButtonPage = () => {
 
   return (
     <div className="container">
-      <img className="deltaimg" src={require('./imgs/deltalogologin.png')} alt="Logo" />
+      <img className="deltaimg" src={require('./imgs/deltalogologin.png')} />
       <br />
       <label className="stringInput"> Usuário </label>
       <input className="containerInput" type="text" />
