@@ -2,16 +2,23 @@ import React from 'react';
 import '../css/tela_pessoas.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 
 function Telapessoas() {
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate('/cadastrocli');
+  };
+
 return (
     <div>
     <NavSuperior />
     <NavLateral />
       <div className='caixatabela'>
         <div className='botaoCadastrar'>
-          <button className="textoCadastrar"> 
-            <text> Cadastrar Cliente </text> 
+          <button className="textoCadastrar" onClick={handleButtonClick}> 
+            <span className='stringCadastrar'> Cadastrar Cliente </span>
           </button>
         </div>
         <div className='titulo'>

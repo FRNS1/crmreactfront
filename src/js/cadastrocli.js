@@ -15,12 +15,12 @@ function Cadastrocli() {
             <table className='tabela'>
               <thead>
                 <tr className='textoclasses'>
-                  <td> Nome </td>
-                  <td> Tipo-Cliente </td>
-                  <td> Identidade </td>
-                  <td> Email </td>
-                  <td> Telefone </td>
-                  <td> Ver </td>
+                  <td> FORMS </td>
+                  <td> FORMS </td>
+                  <td> FORMS </td>
+                  <td> FORMS </td>
+                  <td> FORMS </td>
+                  <td> FORMS </td>
                 </tr>
               </thead>
               <tbody>
@@ -39,4 +39,4 @@ function Cadastrocli() {
       );
     };
     
-    export {Cadastrocli};
+export {Cadastrocli};

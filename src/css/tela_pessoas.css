@@ -71,6 +71,7 @@
     border-radius: 1vh 1vh;
     font-size: 2vh;
     text-align: center;
+    cursor: pointer;
   }
 
   .botaoCadastrar {
