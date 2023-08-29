@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
-import {NavLateral} from './js/navlateral';
 import axios from 'axios';
+import { Telapessoas } from './js/pessoas';
 
 const ButtonPage = () => {
   const navigate = useNavigate();
@@ -61,7 +61,7 @@ const ButtonPage = () => {
       handleTokenChange(result.token);
       handleEmailChange(result.email);
       handleUserFullNameChange(result.nome);
-      navigate('/navlateral');
+      navigate('/pessoas');
     } catch (error) {
       handleErroChange("Usuário ou senha incorretos.")
     }
@@ -112,7 +112,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<ButtonPage />} />
-        <Route path="/navlateral" element={<NavLateral />} />
+        <Route path="/pessoas" element={<Telapessoas />} />
       </Routes>
     </BrowserRouter>
   );

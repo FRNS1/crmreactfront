@@ -28,32 +28,31 @@
       right: 0;
     }
     
-    .username {
-      position: absolute;
-      right: 4vh;
-    }
+.username {
+  position: absolute;
+  right: 4vh;
+}
     
-    .usernameText {
-      margin-right: 2vh;
-  }
+.usernameText {
+  margin-right: 2vh;
+}
 
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 5vh;
-    color: black;
-  }
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 5vh;
+  color: black;
+}
   
   .nav-links li {
-    cursor: pointer;
-  }
+  cursor: pointer;
+}
   
-  /* Alterações para estilização de hover ou ativo */
   .nav-links li:hover {
-    text-decoration: underline;
-  }
+  text-decoration: underline;
+}
   
   .nav-links li.active {
-    font-weight: bold;
-  }
+  font-weight: bold;
+}
   

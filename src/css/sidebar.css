@@ -16,7 +16,6 @@ font-style: normal;
   display: block;
   width: 25vh;
   background-color: white;
-  color: white;
   height: 100vh;
   box-shadow: 2vh 0vh 2vh rgba(122, 58, 206, 0.2);
   font-family: 'HK Grotesk Regular Legacy';
@@ -53,6 +52,7 @@ font-style: normal;
 .icone{
   padding-right: 1vh;
 }
+
 .sidebar-item {
   display: flex;
   align-items: center;
