@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/upbar.css';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function NavSuperior() {
@@ -9,9 +9,8 @@ function NavSuperior() {
         <ul className="nav-links">
           <li className='username'>
             <text className='usernameText'>João Fernandes</text>
-            <FontAwesomeIcon icon={faBars} />
+            <FontAwesomeIcon icon={faRightFromBracket} />
           </li>
-          
         </ul>
       </div>
     );
