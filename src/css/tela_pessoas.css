@@ -61,3 +61,26 @@
     font-family: 'HK Grotesk Regular Legacy';
     text-align: left;
   }
+
+  .textoCadastrar {
+    position: absolute;
+    background-color: #081535;
+    color: white;
+    height: 4vh;
+    width: 16.5vh;
+    border-radius: 1vh 1vh;
+    font-size: 2vh;
+    text-align: center;
+  }
+
+  .botaoCadastrar {
+    position: absolute;
+    left: 152.5vh;
+  }
+
+  .stringCadastrar{
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    font-family: 'HK Grotesk Regular Legacy';
+  }

@@ -1,9 +1,7 @@
 import React from 'react';
 import '../css/tela_pessoas.css';
-import { NavSuperior } from '../js/navsuperior'; // Importe NavSuperior
-import { NavLateral } from '../js/navlateral'; // Importe NavSuperior
-
-// nome / tipo-cliente / identidade / email / telefone / ver --> colunas a fazer
+import { NavSuperior } from '../js/navsuperior';
+import { NavLateral } from '../js/navlateral';
 
 function Telapessoas() {
 return (
@@ -11,6 +9,11 @@ return (
     <NavSuperior />
     <NavLateral />
       <div className='caixatabela'>
+        <div className='botaoCadastrar'>
+          <button className="textoCadastrar"> 
+            <text> Cadastrar Cliente </text> 
+          </button>
+        </div>
         <div className='titulo'>
           <h2> Clientes </h2>
         </div>

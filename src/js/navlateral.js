@@ -5,8 +5,6 @@ import { faIdBadge } from '@fortawesome/free-solid-svg-icons';
 import { faHandshake } from '@fortawesome/free-solid-svg-icons';
 import '../css/sidebar.css';
 
-
-
 function NavLateral() {
   return (
         <div className="sidebar">
