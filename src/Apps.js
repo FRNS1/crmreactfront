@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Telapessoas } from './js/pessoas';
 import { Cadastrocli } from './js/cadastrocli';
+import Cookies from 'js-cookie';
 
 const ButtonPage = () => {
   const navigate = useNavigate();
@@ -58,10 +59,12 @@ const ButtonPage = () => {
     try {
       const response = await axios.post(apiUrl, requestData, { headers });
       const result = response.data;
-      handleLoggedChange();
-      handleTokenChange(result.token);
-      handleEmailChange(result.email);
-      handleUserFullNameChange(result.nome);
+      Cookies.set('token', result.token);
+      Cookies.set('email', result.email);
+      Cookies.set('nome', result.nome);
+      Cookies.set('logged', true);
+      Cookies.set('userid', result.userid);
+      Cookies.set('usergroup', result.usergroup);
       navigate('/pessoas');
     } catch (error) {
       handleErroChange("Usuário ou senha incorretos.")

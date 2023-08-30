@@ -5,64 +5,55 @@
   }
   
 @font-face {
-    font-family: 'HK Grotesk Regular Legacy';
+  font-family: 'HK Grotesk Regular Legacy';
     src: url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff2') format('woff2'),
-    url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff') format('woff');
+      url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-    }
+}
 
-    .titulo {
+.titulo {
     padding-bottom: 1vh;
     font-size: 2vh;
-    }
+}
 
-    .caixatabela {
+.caixatabela {
     position: absolute;
-    right: 163vh;
+    right: 160vh;
     top: 9vh;
     font-family: 'HK Grotesk Regular Legacy';
-    }
+}
 
-    .tabela {
-    height: 84vh;
-    width: 169vh;
+.tabela {
+  height: 80vh;
+    width: 170vh;
     position: absolute;
     padding-top: 1.5vh;
     padding-bottom: 1.5vh;
-    padding-left: 2vh;
+  padding-left: 1vh;
     padding-right: 2vh;
     align-items: center;
     justify-content: center;
     border-collapse: collapse;
     font-family: 'HK Grotesk Regular Legacy';
-  }
+}
   
-  .tabela td {
-    border: 0.1vh solid black;
+.tabela td {
+  border: 0.1vh solid rgba(0, 0, 0, 0.2);
     padding: 0.5vh 1vh;
-    height: 1vh;
-    width: 50vh;
-  }
-
-    .textoclasses {
-    border: 0.1vh solid black;
-    text-align: left;
-    font-size: 2vh;
-    color: black;
-    font-weight: bold;
-    font-family: 'HK Grotesk Regular Legacy';
+  height: 4vh;
+    width: 10vh;
+    align-self: center;
 }
 
-  .textodados {
-    border: 0.1vh solid black;
-    font-size: 2vh;
+.textodados {
+  font-size: 2vh;
     color: black;
     font-family: 'HK Grotesk Regular Legacy';
     text-align: left;
   }
 
-  .textoCadastrar {
+.textoCadastrar {
     position: absolute;
     background-color: #081535;
     color: white;
@@ -72,16 +63,35 @@
     font-size: 2vh;
     text-align: center;
     cursor: pointer;
-  }
+    align-self: center;
+}
 
-  .botaoCadastrar {
-    position: absolute;
-    left: 152.5vh;
-  }
+.botaoCadastrar {
+  position: absolute;
+  left: 152.5vh;
+}
 
-  .stringCadastrar{
-    display: inline-block;
-    vertical-align: middle;
-    line-height: normal;
-    font-family: 'HK Grotesk Regular Legacy';
-  }
+.stringCadastrar {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+  font-family: 'HK Grotesk Regular Legacy';
+}
+.stringVer {
+  font-size: 2vh;
+  font-family: 'HK Grotesk Regular Legacy';
+}
+
+.botaoVer {
+  width: 10vh;
+  height: 5vh;
+  border-radius: 1vh;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.colunaVer {
+  justify-content: center;
+  align-items: center;
+}
