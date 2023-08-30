@@ -21,7 +21,7 @@ return (
             <span className='stringCadastrar'> Cadastrar Cliente </span>
           </button>
         </div>
-        <div className='titulo'>
+        <div className='tituloCli'>
           <h2> Clientes </h2>
         </div>
         <table className='tabela'>
