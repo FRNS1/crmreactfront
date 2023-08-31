@@ -18,8 +18,6 @@ function Telapessoas() {
     const token = Cookies.get('token');
     const grupo = Cookies.get('usergroup');
     const userid = Cookies.get('userid');
-    console.log(grupo);
-    console.log(userid);
     const url = 'http://127.0.0.1:8080/api/v1/customers/getall';
     try {
       const response = await axios.post(
