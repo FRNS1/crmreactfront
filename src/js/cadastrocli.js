@@ -177,7 +177,7 @@ function Cadastrocli() {
 
   function FormPF() {
     return (
-        <>
+        <form onSubmit={registerCustomer}>
           <br />
           <div className='fields'>
             <label className='classesForm'> Dados Pessoais </label>
@@ -256,16 +256,16 @@ function Cadastrocli() {
               </div>
             </div>
           </div>
-          <button className='botaoEnviar' type="submit" onClick={registerCustomer}>
-            <span className='stringEnviar'> Enviar </span>
+          <button className='botaoEnviar' type="submit">
+            Enviar
           </button>
-        </>
+        </form>
         );
       }
 
       function FormPJ() {
         return (
-          <>
+          <form onSubmit={registerCustomer}>
           <br />
           <div className='fields'>
             <label className='classesForm'> Dados da Empresa </label>
@@ -344,10 +344,10 @@ function Cadastrocli() {
               </div>
             </div>
           </div>
-          <button className='botaoEnviar' type="submit" onClick={registerCustomer}>
-            <span className='stringEnviar'> Enviar </span>
+          <button className='botaoEnviar' type="submit">
+            Enviar
           </button>
-        </>
+          </form>
         );
       }
 
