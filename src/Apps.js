@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Telapessoas } from './js/pessoas';
 import { Cadastrocli } from './js/cadastrocli';
+import { Visucli } from './js/visucli';
 import Cookies from 'js-cookie';
 
 const ButtonPage = () => {
@@ -118,6 +119,7 @@ function App() {
         <Route path="/" element={<ButtonPage />} />
         <Route path="/pessoas" element={<Telapessoas />} />
         <Route path="/cadastrocli" element={<Cadastrocli />} />
+        <Route path="/visucli" element={<Visucli />} />
       </Routes>
     </BrowserRouter>
   );
