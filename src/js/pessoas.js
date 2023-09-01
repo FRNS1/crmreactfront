@@ -48,18 +48,20 @@ function Telapessoas() {
     console.log(customersList);
   }, []);
 
-return (
-    <div>
-    <NavSuperior />
-    <NavLateral />
-      <div className='caixatabela'>
+  return (
+    <div className='containerPrincipal'>
+      <div>
+        <NavSuperior />
+        <NavLateral />
+      </div>
+      <div className='containerGeral'>
         <div className='botaoCadastrar'>
-          <button className="textoCadastrar" onClick={handleButtonClick}> 
+          <button className="textoCadastrar" onClick={handleButtonClick}>
             <span className='stringCadastrar'> Cadastrar Cliente </span>
           </button>
         </div>
         <div className='tituloCli'>
-          <h2> Clientes </h2>
+            <h2> Clientes </h2>
         </div>
         <table className='tabela'>
           <thead>
@@ -73,25 +75,25 @@ return (
             </tr>
           </thead>
           <tbody>
-          {customersList.map((customer) => (
-            <tr className='textodados' key={customer.customerId}>
-              <td>{customer.cpf == null ? customer.razaoSocial : customer.nome}</td>
-              <td>{customer.cpf == null ? 'PJ' : 'PF'}</td>
-              <td>{customer.cpf == null ? customer.cnpj : customer.cpf}</td>
-              <td>{customer.email}</td>
-              <td>{customer.telefone}</td>
-              <td className='colunaVer'>
-                <button className="botaoVer" style={{backgroundColor: '#081535'}}>
-                  <span className='stringVer' style={{color: 'white'}}>visualizar</span>
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
+            {customersList.map((customer) => (
+              <tr className='textodados' key={customer.customerId}>
+                <td>{customer.cpf == null ? customer.razaoSocial : customer.nome}</td>
+                <td>{customer.cpf == null ? 'PJ' : 'PF'}</td>
+                <td>{customer.cpf == null ? customer.cnpj : customer.cpf}</td>
+                <td>{customer.email}</td>
+                <td>{customer.telefone}</td>
+                <td className='colunaVer'>
+                  <button className="botaoVer" style={{ backgroundColor: '#081535' }}>
+                    <span className='stringVer' style={{ color: 'white' }}>visualizar</span>
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     </div>
   );
 };
 
-export {Telapessoas};
+export { Telapessoas };

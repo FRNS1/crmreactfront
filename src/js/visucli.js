@@ -191,6 +191,11 @@ function Tabprop() {
     return (
         <div className='caixaTabelaPropostas'>
             <br />
+            <div className='divbotaoCadastrarNovoCliente'>
+                <button className='botaoCadastrarNovoCliente'>
+                    <span className='stringCadastrarNovoCliente'> Cadastrar Nova Proposta </span>
+                </button>
+            </div>
             <table className='tabelaPropostas'>
                 <tr className='linhasTabelaPropostas'>
                     <th className='colunasTabelaPropostas'> Indicador </th>
