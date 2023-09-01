@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartLine } from '@fortawesome/free-solid-svg-icons';
 import { faIdBadge } from '@fortawesome/free-solid-svg-icons';
 import { faHandshake } from '@fortawesome/free-solid-svg-icons';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import '../css/sidebar.css';
 
 function NavLateral() {
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    navigate('/pessoas');
+  };
+
   return (
         <div className="sidebar">
           <img className="deltalogoazul" src={require('../imgs/deltalogoazul.png')} alt="Logo" />
@@ -15,7 +21,7 @@ function NavLateral() {
               <text className='item-text'>Dashboard</text>
             </li>
             <hr className='line'></hr>
-            <li className="sidebar-item">
+            <li className="sidebar-item" onClick={handleButtonClick}>
               <FontAwesomeIcon className="icone" icon={faIdBadge} />
               <text className='item-text'>Clientes</text>
             </li>

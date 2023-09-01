@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'HK Grotesk Regular Legacy';
+    src: url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff2') format('woff2'),
+    url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+    }
+
+.divbotaoEnviarDados{
+    margin-top: 2vh;
+    display: flex;
+    justify-content: start;
+    margin-left: 3.5vh;
+    font-family: 'HK Grotesk Regular Legacy';
+  }
+  
+  .botaoEnviarDados{
+    background-color: #081535;
+    border-radius: 1vh 1vh;
+    width: 49vh;
+    height: 5vh;
+    text-align: center;
+    font-size: 2vh;
+    font-family: 'HK Grotesk Regular Legacy';
+  }
+
+  .stringEnviarDados{
+    font-size: 2vh;
+    color: white;
+    font-family: 'HK Grotesk Regular Legacy';
+  }
+  
+  .stringObservaçãoCliente{
+    display: flex;
+    justify-content:left;
+    margin-left: 2vh;
+    font-size: 2vh;
+    font-weight: bold;
+    font-family: 'HK Grotesk Regular Legacy';
+  }
+
+  .divtextArea{
+    display: flex;
+    justify-content:left;
+    margin-left: 2vh;
+  }
+
+  .textArea{
+    width: 108vh;
+    height: 60vh;
+    text-align: justify;
+    font-size: 2vh;
+    font-family: 'HK Grotesk Regular Legacy';
+  }

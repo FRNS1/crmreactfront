@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'HK Grotesk Regular Legacy';
+    src: url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff2') format('woff2'),
+    url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+    }
+
+.stringTitulos{
+    align-items: center;
+    font-size: 3vh;
+    font-weight: bold;
+    font-family: 'HK Grotesk Regular Legacy';
+}

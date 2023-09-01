@@ -12,6 +12,10 @@
     font-size: 2vh;
 }
 
+.tituloCli{
+  margin-bottom: 1vh;
+}
+
 .caixatabela {
     position: absolute;
     right: 160vh;
@@ -20,8 +24,7 @@
 }
 
 .tabela {
-    height: 80vh;
-    width: 160vh;
+    width: 100%;
     position: absolute;
     padding-top: 1.5vh;
     padding-bottom: 1.5vh;
@@ -54,7 +57,6 @@
 }
 
 .textoCadastrar {
-    position: absolute;
     background-color: #081535;
     color: white;
     height: 4vh;
@@ -63,18 +65,17 @@
     font-size: 2vh;
     text-align: center;
     cursor: pointer;
-    align-self: center;
 }
 
 .botaoCadastrar {
-  position: absolute;
-  left: 152.5vh;
+  display: flex; 
+  align-items: end;
+  justify-content: end;
+  margin-bottom: 1vh;
 }
 
 .stringCadastrar {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
+  font-size: 2vh;
   font-family: 'HK Grotesk Regular Legacy';
 }
 .stringVer {
