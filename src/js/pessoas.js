@@ -75,7 +75,7 @@ return (
           <tbody>
           {customersList.map((customer) => (
             <tr className='textodados' key={customer.customerId}>
-              <td>{customer.nome}</td>
+              <td>{customer.cpf == null ? customer.razaoSocial : customer.nome}</td>
               <td>{customer.cpf == null ? 'PJ' : 'PF'}</td>
               <td>{customer.cpf == null ? customer.cnpj : customer.cpf}</td>
               <td>{customer.email}</td>
