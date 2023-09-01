@@ -5,6 +5,7 @@ import { Telapessoas } from './js/pessoas';
 import { Cadastrocli } from './js/cadastrocli';
 import { Visucli } from './js/visucli';
 import { VisualizacaoPropostas } from './js/visualizacaopropostas';
+import { CadastroPropostas } from './js/cadastropropostas';
 import Cookies from 'js-cookie';
 
 const ButtonPage = () => {
@@ -122,6 +123,7 @@ function App() {
         <Route path="/cadastrocli" element={<Cadastrocli />} />
         <Route path="/visucli" element={<Visucli />} />
         <Route path='/visualizacaopropostas' element={<VisualizacaoPropostas />} />
+        <Route path='/cadastropropostas' element={<CadastroPropostas />} />
       </Routes>
     </BrowserRouter>
   );

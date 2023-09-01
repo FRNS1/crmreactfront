@@ -13,7 +13,7 @@ function VisualizacaoPropostas() {
             </div>
             <div className='containerGeral'>
                 <div className='textoPropostas'>
-                    <text className='stringPropostas'> Propostas </text>
+                    <text className='stringTitulos'> Propostas </text>
                 </div>
                 <br />
                 <table className='tabelaPropostas'>
