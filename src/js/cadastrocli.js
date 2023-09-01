@@ -241,10 +241,6 @@ function Cadastrocli() {
               </div>
             </div>
             <div className='divrow'>
-            <div className='divfield'>
-                <label className="stringDados"> Bairro </label>
-                <input className="inputCad" type="text" value={bairro} onChange={handleBairroChange} required />
-              </div>
               <div className='divfield'>
                 <label className="stringDados"> Cidade </label>
                 <input className="inputCad" type="text" onChange={handleCidadeChange} required />
@@ -330,10 +326,6 @@ function Cadastrocli() {
               </div>
             </div>
             <div className='divrow'>
-            <div className='divfield'>
-                <label className="stringDados"> Bairro </label>
-                <input className="inputCad" type="text" value={bairro} onChange={handleBairroChange} required />
-              </div>
               <div className='divfield'>
                 <label className="stringDados"> Cidade </label>
                 <input className="inputCad" type="text" onChange={handleCidadeChange} required />

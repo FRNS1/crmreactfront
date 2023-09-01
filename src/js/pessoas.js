@@ -43,6 +43,11 @@ function Telapessoas() {
     navigate('/cadastrocli');
   };
 
+  const visualizacaoCliente = (cliente) => {
+    Cookies.set('clienteSelecionado', cliente);
+    navigate('/visucli');
+  }
+
   useEffect(() => {
     getData();
     console.log(customersList);
@@ -82,7 +87,7 @@ return (
               <td>{customer.telefone}</td>
               <td className='colunaVer'>
                 <button className="botaoVer" style={{backgroundColor: '#081535'}}>
-                  <span className='stringVer' style={{color: 'white'}}>visualizar</span>
+                  <span className='stringVer' style={{color: 'white'}} onClick={() => visualizacaoCliente(customer.customerId)}>visualizar</span>
                 </button>
               </td>
             </tr>
