@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/cadastro_cli.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
@@ -8,103 +8,106 @@ import axios from 'axios';
 
 function Cadastrocli() {
   const navigate = useNavigate();
-  const [selectedOption, setSelectedOption] = useState('form1');
+  const [selectedOption, setSelectedOption] = useState('formpf');
   // Campos PF
-  const [nomeCompleto, setNomeCompleto] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [dataNascimento, setDataNascimento] = useState('');
-  const [escolaridade, setEscolaridade] = useState('');
-  const [genero, setGenero] = useState('');
-  const [ocupacao, setOcupacao] = useState('');
+  let nomeCompleto = ('');
+  let cpf = ('');
+  let dataNascimento = ('');
+  let escolaridade = ('Fundamental Incompleto');
+  let genero = ('Masculino');
+  let ocupacao = ('');
   // Campos PJ
-  const [nomeFantasia, setNomeFantasia] = useState('');
-  const [razaoSocial, setRazaoSocial] = useState('');
-  const [cnpj, setCnpj] = useState('');
-  const [segmento, setSegmento] = useState('');
-  const [dataAbertura, setDataAbertura] = useState('');
+  let nomeFantasia = ('');
+  let razaoSocial = ('');
+  let cnpj = ('');
+  let segmento = ('');
+  let dataAbertura = ('');
   // Campos endereço
-  const [cep, setCep] = useState('');
-  const [logradouro, setLogradouro] = useState('');
-  const [bairro, setBairro] = useState('');
-  const [cidade, setCidade] = useState('');
-  const [estado, setEstado] = useState('');
-  const [pais, setPais] = useState('');
+  let cep = ('');
+  let logradouro = ('');
+  let bairro = ('');
+  let cidade = ('');
+  let estado = ('');
+  let pais = ('');
   // Campos Contato
-  const [email, setEmail] = useState('');
-  const [telefone, setTelefone] = useState('');
+  let email = ('');
+  let telefone = ('');
 
   // Handles campos PF
   const handleNomeCompletoChange = (event) => {
-    setNomeCompleto(event.target.value);
+    nomeCompleto = event.target.value;
   }
   const handleCpfChange = (event) => {
-    setCpf(event.target.value);
+    cpf = event.target.value;
   }
   const handleDataNascimentoChange = (event) => {
-    setDataNascimento(event.target.value);
+    dataNascimento = event.target.value;
   }
   const handleEscolaridadeChange = (event) => {
-    setEscolaridade(event.target.value);
+    escolaridade = event.target.value;
   }
   const handleGeneroChange = (event) => {
-    setGenero(event.target.value);
+    genero = event.target.value;
   }
   const handleOcupacaoChange = (event) => {
-    setOcupacao(event.target.value);
+    ocupacao = event.target.value;
   }
   // Handles campos PJ
   const handleNomeFantasiaChange = (event) => {
-    setNomeFantasia(event.target.value);
+    nomeFantasia = event.target.value;
   }
   const handleRazaoSocialChange = (event) => {
-    setRazaoSocial(event.target.value);
+    razaoSocial = event.target.value;
   }
   const handleCnpjChange = (event) => {
-    setCnpj(event.target.value);
+    cnpj = event.target.value;
   }
   const handleSegmentoChange = (event) => {
-    setSegmento(event.target.value);
+    segmento = event.target.value;
   }
   const handleDataAberturaChange = (event) => {
-    setDataAbertura(event.target.value);
+    dataAbertura = event.target.value;
   }
   // Handles campos Endereço
   const handleCepChange = (event) => {
-    setCep(event.target.value);
+    cep = event.target.value;
   }
   const handleLogradouroChange = (event) => {
-    setLogradouro(event.target.value);
+    logradouro = event.target.value;
   }
   const handleBairroChange = (event) => {
-    setBairro(event.target.value);
+    bairro = event.target.value;
   }
   const handleCidadeChange = (event) => {
-    setCidade(event.target.value);
+    cidade = event.target.value;
   }
   const handleEstadoChange = (event) => {
-    setEstado(event.target.value);
+    estado = event.target.value;
   }
   const handlePaisChange = (event) => {
-    setPais(event.target.value);
+    pais = event.target.value;
   }
   // Handles campos Contatos
   const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+    email = event.target.value;
   }
   const handleTelefoneChange = (event) => {
-    setTelefone(event.target.value);
+    telefone = event.target.value;
   }
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
 
+
   async function registerCustomer(){
     const token = Cookies.get('token');
     const grupo = Cookies.get('usergroup');
     const userid = Cookies.get('userid');
     const url = 'http://127.0.0.1:8080/api/v1/customers/register'
+    alert(selectedOption);
     if (selectedOption === 'formpj'){
+      alert("TA ERRADO");
       try{
         const response = await axios.post(url, {
           is_cnpj: true,
@@ -138,6 +141,7 @@ function Cadastrocli() {
         console.log('error', error)
       }
     }else {
+      alert("TA CERTO");
       try{
         const response = await axios.post(url, {
           is_cnpj: false,
@@ -177,36 +181,47 @@ function Cadastrocli() {
 
   function FormPF() {
     return (
-        <>
+        <form onSubmit={registerCustomer}>
           <br />
           <div className='fields'>
             <label className='classesForm'> Dados Pessoais </label>
             <div className='divrow'>
               <div className='divfield'>
                 <label className="stringDados"> Nome Completo </label>
-                <input className="inputCad" type="text" value={nomeCompleto} onChange={handleNomeCompletoChange} required />
+                <input className="inputCad" type="text" onChange={handleNomeCompletoChange} required />
               </div>
               <div className='divfield'>
                 <label className="stringDados"> CPF </label>
-                <input className="inputCad" type="text" value={cpf} onChange={handleCpfChange} required />
+                <input className="inputCad" type="text" onChange={handleCpfChange} required />
               </div>
               <div className='divfield'>
                 <label className="stringDados"> Data de Nascimento </label>
-                <input className="inputCad" type="date" value={dataNascimento} onChange={handleDataNascimentoChange} required />
+                <input className="inputCad" type="date" onChange={handleDataNascimentoChange} required />
               </div>
             </div>
             <div className='divrow'>
               <div className='divfield'>
                 <label className="stringDados"> Genêro </label>
-                <input className="inputCad" type="text" value={genero} onChange={handleGeneroChange} required />
+                <select className="inputCad" type="text" onChange={handleGeneroChange} required >
+                  <option value="Masculino" className='stringOption'>Masculino</option>
+                  <option value="Feminino" className='stringOption'>Feminino</option>
+                  <option value="pnd" className='stringOption'>Prefiro não dizer</option>
+                </select>
               </div>
               <div className='divfield'>
                 <label className="stringDados"> Escolaridade </label>
-                <input className="inputCad" type="text" value={escolaridade} onChange={handleEscolaridadeChange} required />
+                <select className="inputCad" type="text" onChange={handleEscolaridadeChange} required >
+                  <option value="Fundamental Incompleto" className='stringOption'>Fundamental Incompleto</option>
+                  <option value="Fundamental Completo" className='stringOption'>Fundamental Completo</option>
+                  <option value="Ensino Médio Incompleto" className='stringOption'>Ensino Médio Incompleto</option>
+                  <option value="Ensino Médio Completo" className='stringOption'>Ensino Médio Completo</option>
+                  <option value="Superior Incompleto" className='stringOption'>Superior Incompleto</option>
+                  <option value="Superior Completo" className='stringOption'>Superior Completo</option>
+                </select>
               </div>
               <div className='divfield'>
                 <label className="stringDados"> Ocupação </label>
-                <input className="inputCad" type="text" value={ocupacao} onChange={handleOcupacaoChange} required />
+                <input className="inputCad" type="text" onChange={handleOcupacaoChange} required />
               </div>
             </div>
             <br />
@@ -214,15 +229,15 @@ function Cadastrocli() {
             <div className='divrow'>
               <div className='divfield'>
                 <label className="stringDados"> CEP </label>
-                <input className="inputCad" type="text" value={cep} onChange={handleCepChange} required />
+                <input className="inputCad" type="text" onChange={handleCepChange} required />
               </div>
               <div className='divfield'>
                 <label className="stringDados"> Logradouro </label>
-                <input className="inputCad" type="text" value={logradouro} onChange={handleLogradouroChange} required />
+                <input className="inputCad" type="text" onChange={handleLogradouroChange} required />
               </div>
               <div className='divfield'>
-                <label className="stringDados"> Complemento </label>
-                <input className="inputCad" type="text" value={bairro} onChange={handleBairroChange} />
+                <label className="stringDados"> Bairro </label>
+                <input className="inputCad" type="text" onChange={handleBairroChange} required />
               </div>
             </div>
             <div className='divrow'>
@@ -232,11 +247,15 @@ function Cadastrocli() {
               </div>
               <div className='divfield'>
                 <label className="stringDados"> Cidade </label>
-                <input className="inputCad" type="text" value={cidade} onChange={handleCidadeChange} required />
+                <input className="inputCad" type="text" onChange={handleCidadeChange} required />
+              </div>
+              <div className='divfield'>
+                <label className="stringDados"> Estado </label>
+                <input className="inputCad" type="text" onChange={handleEstadoChange}/>
               </div>
               <div className='divfield'>
                 <label className="stringDados"> País </label>
-                <input className="inputCad" type="text" value={pais} onChange={handlePaisChange} required />
+                <input className="inputCad" type="text" onChange={handlePaisChange} required />
               </div>
             </div>
             <br />
@@ -244,11 +263,11 @@ function Cadastrocli() {
             <div className='divrow'>
               <div className='divfield'>
                 <label className="stringDados"> Telefone </label>
-                <input className="inputCad" type="text" value={telefone} onChange={handleTelefoneChange} required />
+                <input className="inputCad" type="text" onChange={handleTelefoneChange} required />
               </div>
               <div className='divfield'>
                 <label className="stringDados"> Email </label>
-                <input className="inputCad" type="text" value={email} onChange={handleEmailChange} required />
+                <input className="inputCad" type="text" onChange={handleEmailChange} required />
               </div>
               <div className='divfield' style={{opacity: 0}} id="none">
                 <label className="stringDados"> Hided </label>
@@ -256,41 +275,38 @@ function Cadastrocli() {
               </div>
             </div>
           </div>
-          <button className='botaoEnviar' type="submit" onClick={registerCustomer}>
-            <span className='stringEnviar'> Enviar </span>
-          </button>
-        </>
+        </form>
         );
       }
 
       function FormPJ() {
         return (
-          <>
+          <form onSubmit={registerCustomer}>
           <br />
           <div className='fields'>
             <label className='classesForm'> Dados da Empresa </label>
             <div className='divrow'>
               <div className='divfield'>
                 <label className="stringDados"> CNPJ </label>
-                <input className="inputCad" type="text" value={cnpj} onChange={handleCnpjChange} required />
+                <input className="inputCad" type="text" onChange={handleCnpjChange} required />
               </div>
               <div className='divfield'>
                 <label className="stringDados"> Nome Fanstasia </label>
-                <input className="inputCad" type="text" value={nomeFantasia} onChange={handleNomeFantasiaChange} required />
+                <input className="inputCad" type="text" onChange={handleNomeFantasiaChange} required />
               </div>
               <div className='divfield'>
                 <label className="stringDados"> Razão Social </label>
-                <input className="inputCad" type="text" value={razaoSocial} onChange={handleRazaoSocialChange} required />
+                <input className="inputCad" type="text" onChange={handleRazaoSocialChange} required />
               </div>
             </div>
             <div className='divrow'>
               <div className='divfield'>
                 <label className="stringDados"> Segmento </label>
-                <input className="inputCad" type="text" value={segmento} onChange={handleSegmentoChange} required />
+                <input className="inputCad" type="text" onChange={handleSegmentoChange} required />
               </div>
               <div className='divfield'>
                 <label className="stringDados"> Data de Abertura </label>
-                <input className="inputCad" type="date" value={dataAbertura} onChange={handleDataAberturaChange} required />
+                <input className="inputCad" type="date" onChange={handleDataAberturaChange} required />
               </div>
               <div className='divfield' style={{opacity: 0}} id="none">
                 <label className="stringDados"> Email </label>
@@ -302,15 +318,15 @@ function Cadastrocli() {
             <div className='divrow'>
               <div className='divfield'>
                 <label className="stringDados"> CEP </label>
-                <input className="inputCad" type="text" value={cep} onChange={handleCepChange} required />
+                <input className="inputCad" type="text" onChange={handleCepChange} required />
               </div>
               <div className='divfield'>
                 <label className="stringDados"> Logradouro </label>
-                <input className="inputCad" type="text" value={logradouro} onChange={handleLogradouroChange} required />
+                <input className="inputCad" type="text" onChange={handleLogradouroChange} required />
               </div>
               <div className='divfield'>
-                <label className="stringDados"> Complemento </label>
-                <input className="inputCad" type="text" value={bairro} onChange={handleBairroChange} />
+                <label className="stringDados"> Bairro </label>
+                <input className="inputCad" type="text" onChange={handleBairroChange} required />
               </div>
             </div>
             <div className='divrow'>
@@ -320,11 +336,15 @@ function Cadastrocli() {
               </div>
               <div className='divfield'>
                 <label className="stringDados"> Cidade </label>
-                <input className="inputCad" type="text" value={cidade} onChange={handleCidadeChange} required />
+                <input className="inputCad" type="text" onChange={handleCidadeChange} required />
+              </div>
+              <div className='divfield'>
+                <label className="stringDados"> Estado </label>
+                <input className="inputCad" type="text" onChange={handleEstadoChange}/>
               </div>
               <div className='divfield'>
                 <label className="stringDados"> País </label>
-                <input className="inputCad" type="text" value={pais} onChange={handlePaisChange} required />
+                <input className="inputCad" type="text" onChange={handlePaisChange} required />
               </div>
             </div>
             <br />
@@ -332,11 +352,11 @@ function Cadastrocli() {
             <div className='divrow'>
               <div className='divfield'>
                 <label className="stringDados"> Telefone </label>
-                <input className="inputCad" type="text" value={telefone} onChange={handleTelefoneChange} required />
+                <input className="inputCad" type="text" onChange={handleTelefoneChange} required />
               </div>
               <div className='divfield'>
                 <label className="stringDados"> Email </label>
-                <input className="inputCad" type="text" value={email} onChange={handleEmailChange} required />
+                <input className="inputCad" type="text" onChange={handleEmailChange} required />
               </div>
               <div className='divfield' style={{opacity: 0}} id="none">
                 <label className="stringDados"> hided </label>
@@ -344,10 +364,7 @@ function Cadastrocli() {
               </div>
             </div>
           </div>
-          <button className='botaoEnviar' type="submit" onClick={registerCustomer}>
-            <span className='stringEnviar'> Enviar </span>
-          </button>
-        </>
+          </form>
         );
       }
 
@@ -360,15 +377,18 @@ function Cadastrocli() {
       <div className='containerGeral'>
         <label className='stringSelect'> Escolha o tipo de pessoa: </label>
           <select className='caixaOption' value={selectedOption} onChange={handleOptionChange}>
-            <option value="formpf" className='stringOption'> Pessoa Jurídica </option>
-            <option value="formpj" className='stringOption'> Pessoa Fisíca </option>
+            <option value="formpf" className='stringOption'> Pessoa Fisíca </option>
+            <option value="formpj" className='stringOption'> Pessoa Jurídica </option>
           </select>
           <div>
-            {selectedOption === 'formpj' ? (
+            {selectedOption === 'formpf' ? (
               <FormPF />
             ) : (
               <FormPJ />
             )}
+          <button className='botaoEnviar' onClick={registerCustomer}>
+            <span className='stringEnviar'> Enviar </span>
+          </button>
           </div>  
       </div>
     </div>
