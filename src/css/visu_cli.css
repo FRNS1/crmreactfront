@@ -52,6 +52,7 @@
 }
 
 .tabelaPropostas {
+    width: 100%;
     font-size: 2vh;
     border-collapse: collapse;
     align-items: center;
@@ -70,7 +71,6 @@
 .colunasTabelaPropostas{
     padding: 0.5vh 1vh;
     height: 4vh;
-    width: 30vh;
     align-self: center;
     border: 0.1vh solid rgb(0, 0, 0);
 }
@@ -81,13 +81,13 @@
     color: white;
     border-radius: 1vh 1vh;
     width: 8vh;
-    height: 2h;
+    height: 4vh;
     text-align: center;
     font-family: 'HK Grotesk Regular Legacy';
 }
 
 .stringVer{
-    font-size: vh;
+    font-size: 2vh;
     font-family: 'HK Grotesk Regular Legacy';
 }
 

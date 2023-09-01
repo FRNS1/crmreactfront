@@ -55,13 +55,13 @@ function Telapessoas() {
         <NavLateral />
       </div>
       <div className='containerGeral'>
+        <div className='tituloCli'>
+            <h2> Clientes </h2>
+        </div>
         <div className='botaoCadastrar'>
           <button className="textoCadastrar" onClick={handleButtonClick}>
             <span className='stringCadastrar'> Cadastrar Cliente </span>
           </button>
-        </div>
-        <div className='tituloCli'>
-            <h2> Clientes </h2>
         </div>
         <table className='tabela'>
           <thead>
