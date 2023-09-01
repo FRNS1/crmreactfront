@@ -20,12 +20,12 @@
 }
 
 .tabela {
-  height: 80vh;
-    width: 170vh;
+    height: 80vh;
+    width: 160vh;
     position: absolute;
     padding-top: 1.5vh;
     padding-bottom: 1.5vh;
-  padding-left: 1vh;
+    padding-left: 1vh;
     padding-right: 2vh;
     align-items: center;
     justify-content: center;
@@ -35,18 +35,23 @@
   
 .tabela td {
   border: 0.1vh solid rgba(0, 0, 0, 0.2);
-    padding: 0.5vh 1vh;
+  padding: 0.5vh 1vh;
   height: 4vh;
-    width: 10vh;
-    align-self: center;
+  width: 10vh;
+  align-self: center;
 }
 
 .textodados {
-  font-size: 2vh;
+    font-size: 2vh;
     color: black;
     font-family: 'HK Grotesk Regular Legacy';
     text-align: left;
   }
+
+.textoClasses{
+  font-size: 2vh;
+  font-weight: bold;
+}
 
 .textoCadastrar {
     position: absolute;

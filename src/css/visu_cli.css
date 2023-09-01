@@ -50,3 +50,43 @@
     font-size: 2vh;
     font-family: 'HK Grotesk Regular Legacy';
 }
+
+.tabelaPropostas {
+    font-size: 2vh;
+    border-collapse: collapse;
+    align-items: center;
+    justify-content: center;
+    font-family: 'HK Grotesk Regular Legacy';
+}
+
+.linhasTabelaPropostas{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: 0.1vh solid rgba(0, 0, 0);
+}
+
+.colunasTabelaPropostas{
+    padding: 0.5vh 1vh;
+    height: 4vh;
+    width: 30vh;
+    align-self: center;
+    border: 0.1vh solid rgb(0, 0, 0);
+}
+
+.botaoVer{
+    cursor: pointer;
+    background-color:#081535;
+    color: white;
+    border-radius: 1vh 1vh;
+    width: 8vh;
+    height: 2h;
+    text-align: center;
+    font-family: 'HK Grotesk Regular Legacy';
+}
+
+.stringVer{
+    font-size: vh;
+    font-family: 'HK Grotesk Regular Legacy';
+}

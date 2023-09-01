@@ -221,11 +221,15 @@ function Cadastrocli() {
                 <input className="inputCad" type="text" value={logradouro} onChange={handleLogradouroChange} required />
               </div>
               <div className='divfield'>
-                <label className="stringDados"> Bairro </label>
-                <input className="inputCad" type="text" value={bairro} onChange={handleBairroChange} required />
+                <label className="stringDados"> Complemento </label>
+                <input className="inputCad" type="text" value={bairro} onChange={handleBairroChange} />
               </div>
             </div>
             <div className='divrow'>
+            <div className='divfield'>
+                <label className="stringDados"> Bairro </label>
+                <input className="inputCad" type="text" value={bairro} onChange={handleBairroChange} required />
+              </div>
               <div className='divfield'>
                 <label className="stringDados"> Cidade </label>
                 <input className="inputCad" type="text" value={cidade} onChange={handleCidadeChange} required />
@@ -233,10 +237,6 @@ function Cadastrocli() {
               <div className='divfield'>
                 <label className="stringDados"> País </label>
                 <input className="inputCad" type="text" value={pais} onChange={handlePaisChange} required />
-              </div>
-              <div className='divfield' style={{opacity: 0}} id="none">
-                <label className="stringDados"> Hided </label>
-                <input className="inputCad" type="text" disabled />
               </div>
             </div>
             <br />
@@ -290,7 +290,7 @@ function Cadastrocli() {
               </div>
               <div className='divfield'>
                 <label className="stringDados"> Data de Abertura </label>
-                <input className="inputCad" type="text" value={dataAbertura} onChange={handleDataAberturaChange} required />
+                <input className="inputCad" type="date" value={dataAbertura} onChange={handleDataAberturaChange} required />
               </div>
               <div className='divfield' style={{opacity: 0}} id="none">
                 <label className="stringDados"> Email </label>
@@ -309,11 +309,15 @@ function Cadastrocli() {
                 <input className="inputCad" type="text" value={logradouro} onChange={handleLogradouroChange} required />
               </div>
               <div className='divfield'>
-                <label className="stringDados"> Bairro </label>
-                <input className="inputCad" type="text" value={bairro} onChange={handleBairroChange} required />
+                <label className="stringDados"> Complemento </label>
+                <input className="inputCad" type="text" value={bairro} onChange={handleBairroChange} />
               </div>
             </div>
             <div className='divrow'>
+            <div className='divfield'>
+                <label className="stringDados"> Bairro </label>
+                <input className="inputCad" type="text" value={bairro} onChange={handleBairroChange} required />
+              </div>
               <div className='divfield'>
                 <label className="stringDados"> Cidade </label>
                 <input className="inputCad" type="text" value={cidade} onChange={handleCidadeChange} required />
@@ -321,10 +325,6 @@ function Cadastrocli() {
               <div className='divfield'>
                 <label className="stringDados"> País </label>
                 <input className="inputCad" type="text" value={pais} onChange={handlePaisChange} required />
-              </div>
-              <div className='divfield' style={{opacity: 0}} id="none">
-                <label className="stringDados"> hided </label>
-                <input className="inputCad" type="text" disabled />
               </div>
             </div>
             <br />

@@ -63,7 +63,7 @@ return (
         </div>
         <table className='tabela'>
           <thead>
-            <tr className='textoclasses'>
+            <tr className='textoClasses'>
               <td>Nome</td>
               <td>Tipo-Cliente</td>
               <td>Identidade</td>

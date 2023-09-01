@@ -59,6 +59,7 @@ function Forminf() {
         <form className='formularios'>
             <br />
             <div className='fields'>
+                <h2> PF </h2>
                 <div className='divrow'>
                     <div className='divfield'>
                         <label className="stringDados"> Nome Completo </label>
@@ -88,6 +89,8 @@ function Forminf() {
                     </div>
                 </div>
                 <div className='DADOSPJ'>
+                    <br />
+                    <h2> PJ </h2>
                     <div className='divrow'>
                         <div className='divfield'>
                             <label className="stringDados"> CNPJ </label>
@@ -111,7 +114,7 @@ function Forminf() {
                             <label className="stringDados"> Data de abertura </label>
                             <input className="inputDados" type="text" disabled />
                         </div>
-                        <div className='divfield' style={{opacity: 0}} id="none">
+                        <div className='divfield' style={{ opacity: 0 }} id="none">
                             <label className="stringDados"> Ocupação </label>
                             <input className="inputDados" type="text" disabled />
                         </div>
@@ -150,7 +153,7 @@ function Formend() {
                         <label className="stringDados"> País </label>
                         <input className="inputDados" type="text" disabled />
                     </div>
-                    <div className='divfield' style={{opacity: 0}} id="none">
+                    <div className='divfield' style={{ opacity: 0 }} id="none">
                         <label className="stringDados"> Ocupação </label>
                         <input className="inputDados" type="text" disabled />
                     </div>
@@ -163,30 +166,56 @@ function Formend() {
 function Formcontat() {
     return (
         <form className='formularios'>
-        <br />
-        <div className='fields'>
-            <div className='divrow'>
-                <div className='divfield'>
-                    <label className="stringDados"> Telefone </label>
-                    <input className="inputDados" type="text" disabled />
-                </div>
-                <div className='divfield'>
-                    <label className="stringDados"> Email </label>
-                    <input className="inputDados" type="text" disabled />
-                </div>
-                <div className='divfield' style={{opacity: 0}} id="none">
-                    <label className="stringDados"> Ocupação </label>
-                    <input className="inputDados" type="text" disabled />
+            <br />
+            <div className='fields'>
+                <div className='divrow'>
+                    <div className='divfield'>
+                        <label className="stringDados"> Telefone </label>
+                        <input className="inputDados" type="text" disabled />
+                    </div>
+                    <div className='divfield'>
+                        <label className="stringDados"> Email </label>
+                        <input className="inputDados" type="text" disabled />
+                    </div>
+                    <div className='divfield' style={{ opacity: 0 }} id="none">
+                        <label className="stringDados"> Ocupação </label>
+                        <input className="inputDados" type="text" disabled />
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
     );
 }
 
 function Tabprop() {
     return (
-        <text> Propostas </text>
+        <div className='caixaTabelaPropostas'>
+            <br />
+            <table className='tabelaPropostas'>
+                <tr className='linhasTabelaPropostas'>
+                    <th className='colunasTabelaPropostas'> Indicador </th>
+                    <th className='colunasTabelaPropostas'> Business </th>
+                    <th className='colunasTabelaPropostas'> Data da criação </th>
+                    <th className='colunasTabelaPropostas'> Razão Social </th>
+                    <th className='colunasTabelaPropostas'> Documento </th>
+                    <th className='colunasTabelaPropostas'> Status da propostas </th>
+                    <th className='colunasTabelaPropostas'> Visualizar </th>
+                </tr>
+                <tr className='linhasTabelaPropostas'>
+                    <td className='colunasTabelaPropostas'> TESTE </td>
+                    <td className='colunasTabelaPropostas'> TESTE </td>
+                    <td className='colunasTabelaPropostas'> TESTE </td>
+                    <td className='colunasTabelaPropostas'> TESTE </td>
+                    <td className='colunasTabelaPropostas'> TESTE </td>
+                    <td className='colunasTabelaPropostas'> TESTE </td>
+                    <td colunasTabelaPropostas>
+                        <button className='botaoVer'>
+                            <span className='stringVer'> Ver </span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
     );
 }
 
