@@ -50,7 +50,6 @@ function Telapessoas() {
 
   useEffect(() => {
     getData();
-    console.log(customersList);
   }, []);
 
   return (

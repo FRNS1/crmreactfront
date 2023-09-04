@@ -8,8 +8,11 @@ import '../css/sidebar.css';
 
 function NavLateral() {
   const navigate = useNavigate();
-  const handleButtonClick = () => {
+  const handleButtonClickPessoas = () => {
     navigate('/pessoas');
+  };
+  const handleButtonClickPropostas = () => {
+    navigate('/visualizacaopropostas');
   };
 
   return (
@@ -21,12 +24,12 @@ function NavLateral() {
               <text className='item-text'>Dashboard</text>
             </li>
             <hr className='line'></hr>
-            <li className="sidebar-item" onClick={handleButtonClick}>
+            <li className="sidebar-item" onClick={handleButtonClickPessoas}>
               <FontAwesomeIcon className="icone" icon={faIdBadge} />
               <text className='item-text'>Clientes</text>
             </li>
             <hr className='line'></hr>
-            <li className="sidebar-item">
+            <li className="sidebar-item" onClick={handleButtonClickPropostas}>
               <FontAwesomeIcon className="icone" icon={faHandshake} />
               <text className='item-text'>Propostas</text>
             </li>
