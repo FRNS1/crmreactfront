@@ -24,7 +24,7 @@ function VisualizacaoPropostas() {
                         <th className='colunasTabelaPropostas'> Razão Social </th>
                         <th className='colunasTabelaPropostas'> Documento </th>
                         <th className='colunasTabelaPropostas'> Status da propostas </th>
-                        <th className='colunasTabelaPropostas'> Visualizar </th>
+                        <th className='colunasTabelaPropostas'> </th>
                     </tr>
                     <tr className='linhasTabelaPropostas'>
                     <td className='colunasTabelaPropostas'> TESTE </td>
