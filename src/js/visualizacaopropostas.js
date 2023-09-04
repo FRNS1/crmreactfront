@@ -61,6 +61,7 @@ function VisualizacaoPropostas() {
                 </div>
                 <br />
                 <table className='tabelaPropostas'>
+<<<<<<< HEAD
                     <thead>
                         <tr className='linhasTabelaPropostas'>
                             <th className='colunasTabelaPropostas'> Indicador </th>
@@ -89,6 +90,30 @@ function VisualizacaoPropostas() {
                         </tr>
                         ))}
                     </tbody>
+=======
+                    <tr className='linhasTabelaPropostas'>
+                        <th className='colunasTabelaPropostas'> Indicador </th>
+                        <th className='colunasTabelaPropostas'> Business </th>
+                        <th className='colunasTabelaPropostas'> Data da criação </th>
+                        <th className='colunasTabelaPropostas'> Razão Social </th>
+                        <th className='colunasTabelaPropostas'> Documento </th>
+                        <th className='colunasTabelaPropostas'> Status da propostas </th>
+                        <th className='colunasTabelaPropostas'> </th>
+                    </tr>
+                    <tr className='linhasTabelaPropostas'>
+                    <td className='colunasTabelaPropostas'> TESTE </td>
+                    <td className='colunasTabelaPropostas'> TESTE </td>
+                    <td className='colunasTabelaPropostas'> TESTE </td>
+                    <td className='colunasTabelaPropostas'> TESTE </td>
+                    <td className='colunasTabelaPropostas'> TESTE </td>
+                    <td className='colunasTabelaPropostas'> TESTE </td>
+                    <td colunasTabelaPropostas>
+                        <button className='botaoVer'>
+                            <span className='stringVer'> Ver </span>
+                        </button>
+                    </td>
+                </tr>
+>>>>>>> 56ca593993c036819d6cc276dc0fb43cc819ac67
                 </table>
             </div>
         </div>

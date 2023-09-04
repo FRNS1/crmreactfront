@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../css/tela_pessoas.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
