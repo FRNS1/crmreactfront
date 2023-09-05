@@ -40,6 +40,9 @@ function VisualizacaoIndividual() {
                     <button className={`botoes ${muda === 'observacoes' ? 'botaoAtivo' : ''}`} onClick={() => Mudapagina("observacoes")}>
                         <span className='stringDados'> Observações </span>
                     </button>
+                    <button className={`botoes ${muda === 'upload' ? 'botaoAtivo' : ''}`} onClick={() => Mudapagina("upload")}>
+                        <span className='stringDados'> Upload </span>
+                    </button>
                 </div>
                 <br />
                 <br />
@@ -62,6 +65,9 @@ function VisualizacaoIndividual() {
                     )}
                     {muda === 'observacoes' && (
                         <Observacoes />
+                    )}
+                    {muda === 'upload' && (
+                        <Upload />
                     )}
                 </div>
             </div>
@@ -92,7 +98,13 @@ function InfPropostas() {
                     <div className='divrow'>
                         <div className='divfield'>
                             <label className="stringDados"> Status </label>
-                            <input className="inputCad" type="text" />
+                            <select className='inputCad'>
+                                <option className='inputCad'> Aguardando análise </option>
+                                <option className='inputCad'> Em análise </option>
+                                <option className='inputCad'> Aprovado </option>
+                                <option className='inputCad'> Reprovado </option>
+                                <option className='inputCad'> Empréstimo concedido </option>
+                            </select>
                         </div>
                         <div className='divfield'>
                             <label className="stringDados"> Montante </label>
@@ -124,25 +136,28 @@ function InfPropostas() {
                         </div>
                         <div className='divfield'>
                             <label className="stringDados"> Status do Contrato </label>
-                            <input className="inputCad" type="text" />
+                            <select className='inputCad'>
+                                <option className='inputCad'> Aberto </option>
+                                <option className='inputCad'> Quitado </option>
+                            </select>
                         </div>
                         <div className='divfield'>
                             <label className="stringDados"> Motivo da reprovação </label>
-                            <input className="inputCad" type="text" />
+                            <select className='inputCad'>
+                                <option className='inputCad'> Restrição biros de crédito  </option>
+                                <option className='inputCad'> Restrição de divida ativa </option>
+                                <option className='inputCad'> Restrição de cadin </option>
+                                <option className='inputCad'> Restrição de ausência de documento </option>
+                                <option className='inputCad'> Restrição de renda insuficiente </option>
+                                <option className='inputCad'> Restrição por score fora da política </option>
+                                <option className='inputCad'> Empresas ligadas com restrição </option>
+                            </select>
                         </div>
                     </div>
                     <div className='divrow'>
                         <div className='divfield'>
-                            <label className="stringDados"> Observação do Cliente </label>
-                            <input className="inputCad" type="text" />
-                        </div>
-                        <div className='divfield'>
-                            <label className="stringDados"> Observação do Analista </label>
-                            <input className="inputCad" type="text" />
-                        </div>
-                        <div className='divfield' style={{ opacity: 0 }} id="none">
-                            <label className="stringDados"> Motivo da reprovação </label>
-                            <input className="inputCad" type="text" disabled />
+                            <label className="stringDados"> Observação Cliente </label>
+                            <textarea className='observacaoCliente'> </textarea>
                         </div>
                     </div>
                 </div>
@@ -172,13 +187,13 @@ function BearusCredito() {
                             <input className="inputCad" type="number" />
                         </div>
                         <div className='divfield'>
-                            <label className="stringDados"> Titulos Protestados </label>
+                            <label className="stringDados"> Quantidade de titulos protestados </label>
                             <input className="inputCad" type="number" />
                         </div>
                     </div>
                     <div className='divrow'>
                         <div className='divfield'>
-                            <label className="stringDados"> Titulos Protestados </label>
+                            <label className="stringDados"> Valor dos titulos protestados </label>
                             <input className="inputCad" type="text" />
                         </div>
                         <div className='divfield'>
@@ -192,21 +207,21 @@ function BearusCredito() {
                     </div>
                     <div className='divrow'>
                         <div className='divfield'>
-                            <label className="stringDados"> Cheques Devolvidos </label>
+                            <label className="stringDados"> Quantidade de cheques devolvidos </label>
                             <input className="inputCad" type="number" />
                         </div>
                         <div className='divfield'>
-                            <label className="stringDados"> Cheques Devolvidos </label>
+                            <label className="stringDados"> Valor dos cheques devolvidos </label>
                             <input className="inputCad" type="text" />
                         </div>
                         <div className='divfield'>
-                            <label className="stringDados"> Pefin </label>
+                            <label className="stringDados"> Quantidade de pefin </label>
                             <input className="inputCad" type="number" />
                         </div>
                     </div>
                     <div className='divrow'>
                         <div className='divfield'>
-                            <label className="stringDados"> Pefin </label>
+                            <label className="stringDados"> Valor do pefin </label>
                             <input className="inputCad" type="text" />
                         </div>
                         <div className='divfield'>
@@ -237,12 +252,12 @@ function Juridico() {
                 <div className='fields'>
                     <div className='divrow'>
                         <div className='divfield'>
-                            <label className="stringDados"> Processos </label>
+                            <label className="stringDados"> Quantidade de processos </label>
                             <input className="inputCad" type="number" />
                         </div>
                         <div className='divfield'>
-                            <label className="stringDados"> Processos </label>
-                            <input className="inputCad" type="number" />
+                            <label className="stringDados"> Valor de processos </label>
+                            <input className="inputCad" type="text" />
                         </div>
                         <div className='divfield'>
                             <label className="stringDados"> UF Processos </label>
@@ -288,37 +303,53 @@ function Bacen() {
                     <thead>
                         <tr className='linhasTabelaPropostas'>
                             <th className='colunasTabelaPropostas'> Total </th>
-                            <th className='colunasTabelaPropostas'> "Valor total" </th>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> Até 30 dias e vencidos até 14 dias</td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> 31 a 60 dias</td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> 61 a 90 dias</td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> 91 a 180 dias</td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> 181 a 360 dias</td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> Acima de 360 dias </td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> Indeterminado </td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -332,33 +363,47 @@ function Bacen() {
                     <thead>
                         <tr className='linhasTabelaPropostas'>
                             <th className='colunasTabelaPropostas'> Total  </th>
-                            <th className='colunasTabelaPropostas'> "Valor total" </th>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> 15 a 30 dias </td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> 31 a 60 dias</td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> 61 a 90 dias</td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> 91 a 180 dias</td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> 181 a 360 dias</td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> Acima de 360 dias </td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -372,17 +417,23 @@ function Bacen() {
                     <thead>
                         <tr className='linhasTabelaPropostas'>
                             <th className='colunasTabelaPropostas'> Total </th>
-                            <th className='colunasTabelaPropostas'> "Valor total" </th>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> Até 12 meses </td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> Acima de 12 meses </td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -396,17 +447,23 @@ function Bacen() {
                     <thead>
                         <tr className='linhasTabelaPropostas'>
                             <th className='colunasTabelaPropostas'> Total </th>
-                            <th className='colunasTabelaPropostas'> "Valor total" </th>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> Coobrigação Assumida </td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> Coobrigação Prestadas </td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -420,17 +477,23 @@ function Bacen() {
                     <thead>
                         <tr className='linhasTabelaPropostas'>
                             <th className='colunasTabelaPropostas'> Total </th>
-                            <th className='colunasTabelaPropostas'> "Valor total" </th>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> Créditos a Liberar até 360 dias </td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> Créditos a Liberar acima de 360 dias </td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -444,17 +507,23 @@ function Bacen() {
                     <thead>
                         <tr className='linhasTabelaPropostas'>
                             <th className='colunasTabelaPropostas'> Total </th>
-                            <th className='colunasTabelaPropostas'> "Valor total" </th>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> Limite de Crédito com vencimento até 360 dias </td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'> Limites de Crédito com vencimento acima de 360 dias </td>
-                            <td className='colunasTabelaPropostas'> R$ </td>
+                            <td className='colunasTabelaPropostas'>
+                                <input className='dadosBacen' type='text' />
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -476,21 +545,21 @@ function AllsData() {
                 <div className='fields'>
                     <div className='divrow'>
                         <div className='divfield'>
-                            <label className="stringDados"> Pendência Financeria </label>
+                            <label className="stringDados"> Quantidade de pendências financeiras </label>
                             <input className="inputCad" type="number" />
                         </div>
                         <div className='divfield'>
-                            <label className="stringDados"> Pendência Financeria </label>
+                            <label className="stringDados"> Valor das pendências financeiras </label>
                             <input className="inputCad" type="text" />
                         </div>
                         <div className='divfield'>
-                            <label className="stringDados"> Recuperação </label>
+                            <label className="stringDados"> Quantidade de recuperação </label>
                             <input className="inputCad" type="number" />
                         </div>
                     </div>
                     <div className='divrow'>
                         <div className='divfield'>
-                            <label className="stringDados"> Recuperação </label>
+                            <label className="stringDados"> Valor da recuperação </label>
                             <input className="inputCad" type="text" />
                         </div>
                         <div className='divfield'>
@@ -498,13 +567,13 @@ function AllsData() {
                             <input className="inputCad" type="number" />
                         </div>
                         <div className='divfield'>
-                            <label className="stringDados"> Protesto </label>
+                            <label className="stringDados"> Quantidade de protestos </label>
                             <input className="inputCad" type="number" />
                         </div>
                     </div>
                     <div className='divrow'>
                         <div className='divfield'>
-                            <label className="stringDados"> Protesto </label>
+                            <label className="stringDados"> Valor dos protestos </label>
                             <input className="inputCad" type="text" />
                         </div>
                         <div className='divfield'>
@@ -512,13 +581,13 @@ function AllsData() {
                             <input className="inputCad" type="text" />
                         </div>
                         <div className='divfield'>
-                            <label className="stringDados"> Restrições </label>
+                            <label className="stringDados"> Quantidade de restrições </label>
                             <input className="inputCad" type="number" />
                         </div>
                     </div>
                     <div className='divrow'>
                         <div className='divfield'>
-                            <label className="stringDados"> Restrições </label>
+                            <label className="stringDados"> Valor das restrições </label>
                             <input className="inputCad" type="text" />
                         </div>
                         <div className='divfield' style={{ opacity: 0 }} id="none">
@@ -554,6 +623,27 @@ function Observacoes() {
                 <button className='botaoEnviarObservacoes'>
                     <span className='stringEnviarDados'> Salvar </span>
                 </button>
+            </div>
+        </div>
+    );
+}
+
+function Upload() {
+    return (
+        <div className='divUploadFiles'>
+            <div className='stringUpload'>
+                <text> Faça o upload dos seus documentos </text>
+            </div>
+            <div className='divinputFiles'>
+                <input className='inputFiles' type="file" multiple />
+            </div>
+            <div className='divlistaFiles'>
+                <ul className='listaFiles'>
+                    <li className='liFiles'> Nome do arquivo e arquivo </li>
+                    <li className='liFiles'> Nome do arquivo e arquivo </li>
+                    <li className='liFiles'> Nome do arquivo e arquivo </li>
+                    <li className='liFiles'> Nome do arquivo e arquivo </li>
+                </ul>
             </div>
         </div>
     );

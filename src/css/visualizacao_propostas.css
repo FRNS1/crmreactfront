@@ -7,8 +7,43 @@
     }
 
 .stringTitulos{
-    align-items: center;
+    justify-content: start;
     font-size: 3vh;
     font-weight: bold;
     font-family: 'HK Grotesk Regular Legacy';
+}
+
+.stringUpload{
+  margin-top: 1vh;
+  display: flex;
+  justify-content:center;
+  font-size: 3.25vh;
+  font-weight: bold;
+  font-family: 'HK Grotesk Regular Legacy';
+}
+
+.divinputFiles{
+  margin-top: 1vh;
+  display: flex;
+  justify-content:center;
+}
+
+.inputFiles{
+  font-size: 2vh;
+  font-weight: bold;
+}
+
+.divlistaFiles{
+  display: flex;
+  margin-top: 1vh;
+  justify-content: center;
+}
+
+.listaFiles{
+  margin-top: 2vh;
+}
+
+.liFiles{
+  font-size: 2vh;
+  font-family: 'HK Grotesk Regular Legacy';
 }

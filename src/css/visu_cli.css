@@ -10,11 +10,11 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: 1vh;
-    gap: 3vh;
+    gap: 1vh;
 }
 
 .botoes {
-    width: 15%;
+    width: 23.425vh;
     height: 5vh;
     border-radius: 1vh;
     justify-content: center;
