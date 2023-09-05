@@ -8,18 +8,10 @@ import '../css/sidebar.css';
 
 function NavLateral() {
   const navigate = useNavigate();
-<<<<<<< HEAD
   const handleButtonClickPessoas = () => {
-=======
-  const navegaParaClientes = () => {
->>>>>>> 56ca593993c036819d6cc276dc0fb43cc819ac67
     navigate('/pessoas');
   };
   const handleButtonClickPropostas = () => {
-    navigate('/visualizacaopropostas');
-  };
-
-  const navegaParaPropostas = () => {
     navigate('/visualizacaopropostas');
   };
 
@@ -32,20 +24,12 @@ function NavLateral() {
               <text className='item-text'>Dashboard</text>
             </li>
             <hr className='line'></hr>
-<<<<<<< HEAD
             <li className="sidebar-item" onClick={handleButtonClickPessoas}>
-=======
-            <li className="sidebar-item" onClick={navegaParaClientes}>
->>>>>>> 56ca593993c036819d6cc276dc0fb43cc819ac67
               <FontAwesomeIcon className="icone" icon={faIdBadge} />
               <text className='item-text'>Clientes</text>
             </li>
             <hr className='line'></hr>
-<<<<<<< HEAD
             <li className="sidebar-item" onClick={handleButtonClickPropostas}>
-=======
-            <li className="sidebar-item" onClick={navegaParaPropostas}>
->>>>>>> 56ca593993c036819d6cc276dc0fb43cc819ac67
               <FontAwesomeIcon className="icone" icon={faHandshake} />
               <text className='item-text'>Propostas</text>
             </li>
