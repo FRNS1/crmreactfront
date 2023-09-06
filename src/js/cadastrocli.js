@@ -3,6 +3,7 @@ import '../css/cadastro_cli.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
 import { useNavigate } from 'react-router-dom';
+import InputMask from 'react-input-mask';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
@@ -192,7 +193,7 @@ function Cadastrocli() {
               </div>
               <div className='divfield'>
                 <label className="stringDados"> CPF </label>
-                <input className="inputCad" type="text" onChange={handleCpfChange} required />
+                <InputMask mask="999.999.999-99" className="inputCad" type="text" onChange={handleCpfChange} required />
               </div>
               <div className='divfield'>
                 <label className="stringDados"> Data de Nascimento </label>
@@ -229,7 +230,7 @@ function Cadastrocli() {
             <div className='divrow'>
               <div className='divfield'>
                 <label className="stringDados"> CEP </label>
-                <input className="inputCad" type="text" onChange={handleCepChange} required />
+                <InputMask mask="99999-999" className="inputCad" type="text" onChange={handleCepChange} required />
               </div>
               <div className='divfield'>
                 <label className="stringDados"> Logradouro </label>
@@ -259,11 +260,11 @@ function Cadastrocli() {
             <div className='divrow'>
               <div className='divfield'>
                 <label className="stringDados"> Telefone </label>
-                <input className="inputCad" type="text" onChange={handleTelefoneChange} required />
+                <InputMask mask="(99) 99999-9999" className="inputCad" type="text" onChange={handleTelefoneChange} required />
               </div>
               <div className='divfield'>
                 <label className="stringDados"> Email </label>
-                <input className="inputCad" type="text" onChange={handleEmailChange} required />
+                <input className="inputCad" type="email" onChange={handleEmailChange} required />
               </div>
               <div className='divfield' style={{opacity: 0}} id="none">
                 <label className="stringDados"> Hided </label>
@@ -284,7 +285,7 @@ function Cadastrocli() {
             <div className='divrow'>
               <div className='divfield'>
                 <label className="stringDados"> CNPJ </label>
-                <input className="inputCad" type="text" onChange={handleCnpjChange} required />
+                <InputMask mask="99.999.999/9999-99" className="inputCad" type="text" onChange={handleCnpjChange} required />
               </div>
               <div className='divfield'>
                 <label className="stringDados"> Nome Fanstasia </label>
@@ -314,7 +315,7 @@ function Cadastrocli() {
             <div className='divrow'>
               <div className='divfield'>
                 <label className="stringDados"> CEP </label>
-                <input className="inputCad" type="text" onChange={handleCepChange} required />
+                <InputMask mask="99999-999" className="inputCad" type="text" onChange={handleCepChange} required />
               </div>
               <div className='divfield'>
                 <label className="stringDados"> Logradouro </label>
@@ -344,7 +345,7 @@ function Cadastrocli() {
             <div className='divrow'>
               <div className='divfield'>
                 <label className="stringDados"> Telefone </label>
-                <input className="inputCad" type="text" onChange={handleTelefoneChange} required />
+                <InputMask mask="(99) 99999-9999" className="inputCad" type="text" onChange={handleTelefoneChange} required />
               </div>
               <div className='divfield'>
                 <label className="stringDados"> Email </label>

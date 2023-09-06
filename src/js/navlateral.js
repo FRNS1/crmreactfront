@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartLine } from '@fortawesome/free-solid-svg-icons';
 import { faIdBadge } from '@fortawesome/free-solid-svg-icons';
 import { faHandshake } from '@fortawesome/free-solid-svg-icons';
+import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import '../css/sidebar.css';
 
@@ -15,6 +16,10 @@ function NavLateral() {
   const handleButtonClickPropostas = () => {
     navigate('/visualizacaopropostas');
   };
+  const handleButtonClickPagamentos = () => {
+    navigate('/registropagamentos');
+  };
+
 
   return (
         <div className="sidebar">
@@ -33,6 +38,11 @@ function NavLateral() {
             <li className="sidebar-item" onClick={handleButtonClickPropostas}>
               <FontAwesomeIcon className="icone" icon={faHandshake} />
               <text className='item-text'>Propostas</text>
+            </li>
+            <hr className='line'></hr>
+            <li className="sidebar-item" onClick={handleButtonClickPagamentos}>
+              <FontAwesomeIcon className="icone" icon={faDollarSign} />
+              <text className='item-text'>Pagamentos</text>
             </li>
             <hr className='line'></hr>
           </ul>

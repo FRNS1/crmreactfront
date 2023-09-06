@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../css/visualizacao_individual.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
+import CurrencyInput from 'react-currency-input-field';
 
 function VisualizacaoIndividual() {
     const [muda, handleButtonClick] = useState('infPropostas');
@@ -76,6 +77,19 @@ function VisualizacaoIndividual() {
 };
 
 function InfPropostas() {
+    const [totalJuros, setTotalJuros] = React.useState('');
+    const handleTotalJurosChange = (value, name) => {
+        setTotalJuros(value);
+    };
+    const [valorDesejado, setValorDesejado] = React.useState('');
+    const handleTotalValorDesejadoChange = (value, name) => {
+        setValorDesejado(value);
+    };
+    const [montante, setMontante] = React.useState('');
+    const handleMontanteChange = (value, name) => {
+        setMontante(value);
+    };
+
     return (
         <div>
             <form className='formularios'>
@@ -84,7 +98,17 @@ function InfPropostas() {
                     <div className='divrow'>
                         <div className='divfield'>
                             <label className="stringDados"> Valor Desejado </label>
-                            <input className="inputCad" type="text" disabled />
+                            <CurrencyInput
+                                name="totalValorDesejado"
+                                value={valorDesejado}
+                                onValueChange={handleTotalValorDesejadoChange}
+                                allowNegativeValue={false}
+                                decimalSeparator=","
+                                groupSeparator="."
+                                prefix="R$ "
+                                placeholder="R$ 0,00"
+                                className="inputCad"
+                            />
                         </div>
                         <div className='divfield'>
                             <label className="stringDados"> Taxa </label>
@@ -108,7 +132,17 @@ function InfPropostas() {
                         </div>
                         <div className='divfield'>
                             <label className="stringDados"> Montante </label>
-                            <input className="inputCad" type="text" />
+                            <CurrencyInput
+                                name="totalMontante"
+                                value={montante}
+                                onValueChange={handleMontanteChange}
+                                allowNegativeValue={false}
+                                decimalSeparator=","
+                                groupSeparator="."
+                                prefix="R$ "
+                                placeholder="R$ 0,00"
+                                className="inputCad"
+                            />
                         </div>
                         <div className='divfield'>
                             <label className="stringDados"> Valor Liberado </label>
@@ -132,7 +166,17 @@ function InfPropostas() {
                     <div className='divrow'>
                         <div className='divfield'>
                             <label className="stringDados"> Total de Juros </label>
-                            <input className="inputCad" type="text" />
+                            <CurrencyInput
+                                name="totalJuros"
+                                value={totalJuros}
+                                onValueChange={handleTotalJurosChange}
+                                allowNegativeValue={false}
+                                decimalSeparator=","
+                                groupSeparator="."
+                                prefix="R$ "
+                                placeholder="R$ 0,00"
+                                className="inputCad"
+                            />
                         </div>
                         <div className='divfield'>
                             <label className="stringDados"> Status do Contrato </label>
@@ -170,6 +214,7 @@ function InfPropostas() {
         </div>
     );
 }
+export default InfPropostas;
 
 function BearusCredito() {
     return (

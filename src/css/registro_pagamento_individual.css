@@ -20,10 +20,133 @@
         text-align: center;
         padding: 0.5vh 1vh;
         height: 4vh;
+        width: 20vh;
     }
     
     .tabelaPagamentosIndividual tr {
         border: 0.1vh solid rgba(0, 0, 0, 0.2);
         padding: 0.5vh 1vh;
         height: 4vh;
+    }
+
+    .botoesGerais {
+        width: 15vh;
+        height: 5vh;
+        border-radius: 1vh;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background-color: white;
+        color: black;
+        opacity: 1; /* Opacidade padrão */
+        transition: opacity 0.1s ease-in-out; /* Efeito de transição suave */
+    }
+    
+    .botoesGerais:hover {
+        opacity: 0.7; /* Opacidade no hover */
+    }
+
+    .botaoAtivo {
+        background-color: #081535; /* Cor de realce quando o botão está ativo */
+        color: white; /* Cor do texto quando o botão está ativo */
+    }
+
+    .stringbotoesGerais{
+        font-size: 2vh;
+    }
+
+    .botaofinalizarContrato{
+        width: 15vh;
+        height: 5vh;
+        border-radius: 1vh;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background-color:#AC7B39;
+        color: white;
+    }
+
+    .divtextAreaRegistroPagIndiv{
+        margin-top: 2vh;
+    }
+
+    .textAreaRegistroPagIndiv{
+        margin-top: 1vh;
+        width: 75%;
+        height: 25vh;
+        border-radius: 1vh;
+    }
+
+    .stringObservacao{
+        justify-content:left;
+        font-size: 2vh;
+        font-family: 'HK Grotesk Regular Legacy';
+    }
+
+    .divcaixaSelect{
+        margin-top: 2vh;
+        display: flex;
+        gap: 2vh;
+    }
+
+    .formSelect{
+        display: flex;
+        gap: 2vh;
+    }
+
+    .caixaSelect{
+        border-radius: 0.5vh;
+        width: 40vh;
+        height: 4vh;
+        font-size: 2vh;
+        font-family: 'HK Grotesk Regular Legacy';
+    }
+
+    .inputStatus{
+        font-size: 2vh;
+        font-family: 'HK Grotesk Regular Legacy';
+    }
+
+    .botaoEnviarSelect{
+        width: 10vh;
+        height: 4vh;
+        border-radius: 1vh;
+        align-items: center;
+        cursor: pointer;
+        background-color:#AC7B39;
+        color: white;
+    }
+
+    .divtabelaStatus{
+        margin-top: 2vh;
+        width: 100%;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        border-collapse: collapse;
+        font-family: 'HK Grotesk Regular Legacy';
+    }
+
+    .tabelaStatus{
+        width: 75%;
+        justify-content: center;
+        border-collapse: collapse;
+        font-family: 'HK Grotesk Regular Legacy';
+    }
+
+    .tabelaStatus th{
+        text-align: start;
+    }
+
+    .tabelaStatus tr{
+        border: 0.1vh solid rgba(0, 0, 0, 0.2);
+        padding: 0.5vh 1vh;
+        height: 4vh;
+    }
+
+    .tabelaStatus td{
+        text-align: start;
+        padding: 0.5vh 1vh;
+        height: 4vh;
+        width: 30%;
     }
