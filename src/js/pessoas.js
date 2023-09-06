@@ -3,6 +3,7 @@ import '../css/tela_pessoas.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
 import { useNavigate } from 'react-router-dom';
+import InputMask from 'react-input-mask';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
