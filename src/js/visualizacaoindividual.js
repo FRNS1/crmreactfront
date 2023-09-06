@@ -83,7 +83,7 @@ function VisualizacaoIndividual() {
     const [valorProtestosAlls, setValorProtestosAlls] = useState('');
     const [limiteSugeridoAlls, setLimiteSugeridoAlls] = useState('');
     const [NumRestricoesAlls, setNumRestricoesAlls] = useState('');
-    const [valorRestricoes, setValorRestricoesAlls] = useState('');
+    const [valorRestricoesAlls, setValorRestricoesAlls] = useState('');
     // Variáveis Files
     const [files, setFiles] = useState('');
 
@@ -286,53 +286,53 @@ function VisualizacaoIndividual() {
                         <div className='divrow'>
                             <div className='divfield'>
                                 <label className="stringDados"> Score </label>
-                                <input className="inputCad" type="text" />
+                                <input className="inputCad" type="text" value={score} />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Risco </label>
-                                <input className="inputCad" type="number" />
+                                <input className="inputCad" type="number" value={risco} />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Titulos Protestados </label>
-                                <input className="inputCad" type="number" />
+                                <input className="inputCad" type="number" value={numTitulosProtestados} />
                             </div>
                         </div>
                         <div className='divrow'>
                             <div className='divfield'>
                                 <label className="stringDados"> Titulos Protestados </label>
-                                <input className="inputCad" type="text" />
+                                <input className="inputCad" type="text" value={valorTitulosProtestados} />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Refins </label>
-                                <input className="inputCad" type="number" />
+                                <input className="inputCad" type="number" value={numRefins} />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Cadins </label>
-                                <input className="inputCad" type="text" />
+                                <input className="inputCad" type="text" value={valorCadins} />
                             </div>
                         </div>
                         <div className='divrow'>
                             <div className='divfield'>
                                 <label className="stringDados"> Cheques Devolvidos </label>
-                                <input className="inputCad" type="number" />
+                                <input className="inputCad" type="number" value={numChequesDevolvidos} />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Cheques Devolvidos </label>
-                                <input className="inputCad" type="text" />
+                                <input className="inputCad" type="text" value={valorChequesDevolvidos} />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Pefin </label>
-                                <input className="inputCad" type="number" />
+                                <input className="inputCad" type="number" value={numPefins} />
                             </div>
                         </div>
                         <div className='divrow'>
                             <div className='divfield'>
                                 <label className="stringDados"> Pefin </label>
-                                <input className="inputCad" type="text" />
+                                <input className="inputCad" type="text" value={valorPefins} />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Empresas não Informadas </label>
-                                <input className="inputCad" type="text" />
+                                <input className="inputCad" type="text" value={empresasNaoInformadas} />
                             </div>
                             <div className='divfield' style={{ opacity: 0 }} id="none">
                                 <label className="stringDados"> Disabled </label>
@@ -359,15 +359,15 @@ function VisualizacaoIndividual() {
                         <div className='divrow'>
                             <div className='divfield'>
                                 <label className="stringDados"> Processos </label>
-                                <input className="inputCad" type="number" />
+                                <input className="inputCad" type="number" value={numProcessos} />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Processos </label>
-                                <input className="inputCad" type="number" />
+                                <input className="inputCad" type="number" value={valorProcessos} />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> UF Processos </label>
-                                <input className="inputCad" type="number" />
+                                <input className="inputCad" type="number" value={numUfProcessos} />
                             </div>
                         </div>
                     </div>
@@ -375,11 +375,11 @@ function VisualizacaoIndividual() {
                         <div className='divrow'>
                             <div className='divfield'>
                                 <label className="stringDados"> PEP </label>
-                                <input className="inputCad" type="number" />
+                                <input className="inputCad" type="text" value={pep} />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> ISS </label>
-                                <input className="inputCad" type="number" />
+                                <input className="inputCad" type="text" value={valorIss} />
                             </div>
                             <div className='divfield' style={{ opacity: 0 }} id="none">
                                 <label className="stringDados"> Disabled </label>
@@ -409,37 +409,37 @@ function VisualizacaoIndividual() {
                         <thead>
                             <tr className='linhasTabelaPropostas'>
                                 <th className='colunasTabelaPropostas'> Total </th>
-                                <th className='colunasTabelaPropostas'> "Valor total" </th>
+                                <th className='colunasTabelaPropostas'> {vencerValorTotal} </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> Até 30 dias e vencidos até 14 dias</td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {vencerAte30DiasvencidosAte14Dias} </td>
                             </tr>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> 31 a 60 dias</td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {vencer3160Dias} </td>
                             </tr>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> 61 a 90 dias</td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {vencer6190Dias} </td>
                             </tr>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> 91 a 180 dias</td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> OLHAR </td>
                             </tr>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> 181 a 360 dias</td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {vencer181360Dias} </td>
                             </tr>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> Acima de 360 dias </td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {vencerAcima360Dias} </td>
                             </tr>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> Indeterminado </td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {vencerIndeterminado} </td>
                             </tr>
                         </tbody>
                     </table>
@@ -453,33 +453,33 @@ function VisualizacaoIndividual() {
                         <thead>
                             <tr className='linhasTabelaPropostas'>
                                 <th className='colunasTabelaPropostas'> Total  </th>
-                                <th className='colunasTabelaPropostas'> "Valor total" </th>
+                                <th className='colunasTabelaPropostas'> {vencidoTotal} </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> 15 a 30 dias </td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {vencido1530Dias} </td>
                             </tr>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> 31 a 60 dias</td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {vencido3160Dias} </td>
                             </tr>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> 61 a 90 dias</td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {vencido6190Dias} </td>
                             </tr>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> 91 a 180 dias</td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {vencido91180Dias} </td>
                             </tr>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> 181 a 360 dias</td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {vencido181360Dias} </td>
                             </tr>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> Acima de 360 dias </td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {vencidoAcima360Dias} </td>
                             </tr>
                         </tbody>
                     </table>
@@ -493,17 +493,17 @@ function VisualizacaoIndividual() {
                         <thead>
                             <tr className='linhasTabelaPropostas'>
                                 <th className='colunasTabelaPropostas'> Total </th>
-                                <th className='colunasTabelaPropostas'> "Valor total" </th>
+                                <th className='colunasTabelaPropostas'> {prejuizoTotal} </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> Até 12 meses </td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {prejuizoAte12Meses} </td>
                             </tr>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> Acima de 12 meses </td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {prejuizoAcima12Meses} </td>
                             </tr>
                         </tbody>
                     </table>
@@ -517,17 +517,17 @@ function VisualizacaoIndividual() {
                         <thead>
                             <tr className='linhasTabelaPropostas'>
                                 <th className='colunasTabelaPropostas'> Total </th>
-                                <th className='colunasTabelaPropostas'> "Valor total" </th>
+                                <th className='colunasTabelaPropostas'> {coobrigacaoTotal} </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> Coobrigação Assumida </td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {coobrigacaoAssumida} </td>
                             </tr>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> Coobrigação Prestadas </td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {coobrigacaoPrestadas} </td>
                             </tr>
                         </tbody>
                     </table>
@@ -541,17 +541,17 @@ function VisualizacaoIndividual() {
                         <thead>
                             <tr className='linhasTabelaPropostas'>
                                 <th className='colunasTabelaPropostas'> Total </th>
-                                <th className='colunasTabelaPropostas'> "Valor total" </th>
+                                <th className='colunasTabelaPropostas'> {creditosLiberarTotal} </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> Créditos a Liberar até 360 dias </td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {creditosLiberarAte360Dias} </td>
                             </tr>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> Créditos a Liberar acima de 360 dias </td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {creditosLiberarAcima360Dias} </td>
                             </tr>
                         </tbody>
                     </table>
@@ -565,17 +565,17 @@ function VisualizacaoIndividual() {
                         <thead>
                             <tr className='linhasTabelaPropostas'>
                                 <th className='colunasTabelaPropostas'> Total </th>
-                                <th className='colunasTabelaPropostas'> "Valor total" </th>
+                                <th className='colunasTabelaPropostas'> {limitesCreditoValorTotal} </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> Limite de Crédito com vencimento até 360 dias </td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {limitesCreditoVencimentoAte360Dias} </td>
                             </tr>
                             <tr className='linhasTabelaPropostas'>
                                 <td className='colunasTabelaPropostas'> Limites de Crédito com vencimento acima de 360 dias </td>
-                                <td className='colunasTabelaPropostas'> R$ </td>
+                                <td className='colunasTabelaPropostas'> {limitesCreditoVencimentoAcima360Dias} </td>
                             </tr>
                         </tbody>
                     </table>
@@ -598,49 +598,49 @@ function VisualizacaoIndividual() {
                         <div className='divrow'>
                             <div className='divfield'>
                                 <label className="stringDados"> Pendência Financeria </label>
-                                <input className="inputCad" type="number" />
+                                <input className="inputCad" type="number" value={NumPendenciasFinanceirasAlls} />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Pendência Financeria </label>
-                                <input className="inputCad" type="text" />
+                                <input className="inputCad" type="text" value={ValorPendenciasFinanceirasAlls} />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Recuperação </label>
-                                <input className="inputCad" type="number" />
+                                <input className="inputCad" type="number" value={NumRecuperacoesAlls} />
                             </div>
                         </div>
                         <div className='divrow'>
                             <div className='divfield'>
                                 <label className="stringDados"> Recuperação </label>
-                                <input className="inputCad" type="text" />
+                                <input className="inputCad" type="text" value={valorRecuperacoesAlls} />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Cheque sem fundo </label>
-                                <input className="inputCad" type="number" />
+                                <input className="inputCad" type="number" value={NumChequeSemFundoAlls} />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Protesto </label>
-                                <input className="inputCad" type="number" />
+                                <input className="inputCad" type="number" value={NumProtestosAlls} />
                             </div>
                         </div>
                         <div className='divrow'>
                             <div className='divfield'>
                                 <label className="stringDados"> Protesto </label>
-                                <input className="inputCad" type="text" />
+                                <input className="inputCad" type="text" value={valorProtestosAlls} />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Limite Sugerido </label>
-                                <input className="inputCad" type="text" />
+                                <input className="inputCad" type="text" value={limiteSugeridoAlls} />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Restrições </label>
-                                <input className="inputCad" type="number" />
+                                <input className="inputCad" type="number" value={NumRestricoesAlls} />
                             </div>
                         </div>
                         <div className='divrow'>
                             <div className='divfield'>
                                 <label className="stringDados"> Restrições </label>
-                                <input className="inputCad" type="text" />
+                                <input className="inputCad" type="text" value={valorRestricoesAlls} />
                             </div>
                             <div className='divfield' style={{ opacity: 0 }} id="none">
                                 <label className="stringDados"> Disabled </label>
