@@ -8,6 +8,7 @@ import axios from 'axios';
 function VisualizacaoIndividual() {
     const [muda, handleButtonClick] = useState('infPropostas');
     const [loading, setLoading] = useState(true);
+    const [data, setData] = useState();
     // Variaveis proposal
     const [proposalId, setProposalId] = useState('');
     const [customerName, setCustomerName] = useState('');
@@ -105,6 +106,7 @@ function VisualizacaoIndividual() {
             }
           );
           const data = response.data;
+          setData(data);
           setProposalId(data.proposalId);
           setCustomerName(data.customerName);
           setCustomerRazaoSocial(data.customerRazaoSocial);
@@ -124,49 +126,49 @@ function VisualizacaoIndividual() {
           setMotivoReprovacao(data.motivoReprovacao);
           setObservacaoCliente(data.observacaoCliente);
           setObservacaoAnalista(data.observacaoAnalista);
-          setNumTitulosProtestados(data.numTitulosProtestados);
-          setScore(data.score);
-          setNumRefins(data.numRefins);
-          setValorCadins(data.valorCadins);
-          setValorIss(data.valorIss);
-          setNumProcessos(data.numProcessos);
-          setValorProcessos(data.valorProcessos);
-          setNumUfProcessos(data.numUfProcessos);
-          setDividaAtiva(data.dividaAtiva);
-          setValorTitulosProtestados(data.valorTitulosProtestados);
-          setRisco(data.risco);
-          setPep(data.pep);
-          setNumChequesDevolvidos(data.numChequesDevolvidos);
-          setValorChequesDevolvidos(data.valorChequesDevolvidos);
-          setValorPefins(data.valorPefins);
-          setNumPefins(data.numPefins);
-          setEmpresasNaoInformadas(data.empresasNaoInformadas);
-          setVencerValorTotal(data.vencer_valor_total);
-          setVencerAte30DiasVencidosAte14Dias(data.vencer_ate_30_dias_vencidos_ate_14_dias);
-          setVencer3160Dias(data.vencer_31_60_dias);
-          setVencer6190Dias(data.vencer_61_90_dias);
-          setVencer181360Dias(data.vencer_181_360_dias);
-          setVencerAcima360Dias(data.vencer_acima_360_dias);
-          setVencerIndeterminado(data.vencer_indeterminado);
-          setVencidoTotal(data.vencido_total);
-          setVencido1530Dias(data.vencido_15_30_dias);
-          setVencido3160Dias(data.vencido_31_60_dias);
-          setVencido6190Dias(data.vencido_61_90_dias);
-          setVencido91180Dias(data.vencido_91_180_dias);
-          setVencido181360Dias(data.vencido_181_360_dias);
-          setVencidoAcima360Dias(data.vencido_acima_360_dias);
-          setPrejuizoTotal(data.prejuizo_total);
-          setPrejuizoAte12Meses(data.prejuizo_ate_12_meses);
-          setPrejuizoAcima12Meses(data.prejuizo_acima_12_meses);
-          setCoobrigacaoTotal(data.coobrigacao_total);
-          setCoobrigacaoAssumida(data.coobrigacao_assumida);
-          setCoobrigacaoPrestadas(data.coobrigacao_prestadas);
-          setCreditosLiberarTotal(data.creditos_liberar_total);
-          setCreditosLiberarAte360Dias(data.creditos_liberar_ate_360_dias);
-          setCreditosLiberarAcima360Dias(data.creditos_liberar_acima_360_dias);
-          setLimitesCreditoValorTotal(data.limites_credito_valor_total);
-          setLimitesCreditosVencimentoAte360Dias(data.limites_credito_vencimento_ate_360_dias);
-          setLimitesCreditosVencimentoAcima360Dias(data.limites_credito_vencimento_acima_360_dias);
+          setNumTitulosProtestados(data.analytics.num_titulos_protestados);
+          setScore(data.analytics.score);
+          setNumRefins(data.analytics.num_refins);
+          setValorCadins(data.analytics.valor_cadins);
+          setValorIss(data.analytics.valor_iss);
+          setNumProcessos(data.analytics.num_processos);
+          setValorProcessos(data.analytics.valor_processos);
+          setNumUfProcessos(data.analytics.num_uf_processos);
+          setDividaAtiva(data.analytics.divida_ativa);
+          setValorTitulosProtestados(data.analytics.valor_titulos_protestados);
+          setRisco(data.analytics.risco);
+          setPep(data.analytics.pep);
+          setNumChequesDevolvidos(data.analytics.num_cheques_devolvidos);
+          setValorChequesDevolvidos(data.analytics.valor_cheques_devolvidos);
+          setValorPefins(data.analytics.valor_pefins);
+          setNumPefins(data.analytics.num_pefins);
+          setEmpresasNaoInformadas(data.analytics.empresas_nao_informadas);
+          setVencerValorTotal(data.scr.vencer_valor_total);
+          setVencerAte30DiasVencidosAte14Dias(data.scr.vencer_ate_30_dias_vencidos_ate_14_dias);
+          setVencer3160Dias(data.scr.vencer_31_60_dias);
+          setVencer6190Dias(data.scr.vencer_61_90_dias);
+          setVencer181360Dias(data.scr.vencer_181_360_dias);
+          setVencerAcima360Dias(data.scr.vencer_acima_360_dias);
+          setVencerIndeterminado(data.scr.vencer_indeterminado);
+          setVencidoTotal(data.scr.vencido_total);
+          setVencido1530Dias(data.scr.vencido_15_30_dias);
+          setVencido3160Dias(data.scr.vencido_31_60_dias);
+          setVencido6190Dias(data.scr.vencido_61_90_dias);
+          setVencido91180Dias(data.scr.vencido_91_180_dias);
+          setVencido181360Dias(data.scr.vencido_181_360_dias);
+          setVencidoAcima360Dias(data.scr.vencido_acima_360_dias);
+          setPrejuizoTotal(data.scr.prejuizo_total);
+          setPrejuizoAte12Meses(data.scr.prejuizo_ate_12_meses);
+          setPrejuizoAcima12Meses(data.scr.prejuizo_acima_12_meses);
+          setCoobrigacaoTotal(data.scr.coobrigacao_total);
+          setCoobrigacaoAssumida(data.scr.coobrigacao_assumida);
+          setCoobrigacaoPrestadas(data.scr.coobrigacao_prestadas);
+          setCreditosLiberarTotal(data.scr.creditos_liberar_total);
+          setCreditosLiberarAte360Dias(data.scr.creditos_liberar_ate_360_dias);
+          setCreditosLiberarAcima360Dias(data.scr.creditos_liberar_acima_360_dias);
+          setLimitesCreditoValorTotal(data.scr.limites_credito_valor_total);
+          setLimitesCreditosVencimentoAte360Dias(data.scr.limites_credito_vencimento_ate_360_dias);
+          setLimitesCreditosVencimentoAcima360Dias(data.scr.limites_credito_vencimento_acima_360_dias);
           setNumPendenciasFinanceirasAlls(data.num_pendencias_financeiras_alls);
           setValorPendenciasFinanceirasAlls(data.valor_pendencias_financeiras_alls);
           setNumRecuperacoesAlls(data.num_recuperacoes_alls);
@@ -188,6 +190,7 @@ function VisualizacaoIndividual() {
 
       useEffect(() => {
         getDataProposal();
+        alert(numTitulosProtestados)
       }, []);
 
       function InfPropostas() {
@@ -690,7 +693,7 @@ function VisualizacaoIndividual() {
             </div>
             <div className='containerGeral'>
                 <div className='textoPropostas'>
-                    <text className='stringTitulos'> Nome do Cliente </text>
+                    <text className='stringTitulos'> {data.isCnpj == false ? customerName : customerRazaoSocial} </text>
                 </div>
                 <br />
                 <div className='rowbotoes'>
