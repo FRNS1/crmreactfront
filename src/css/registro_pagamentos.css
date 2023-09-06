@@ -1,0 +1,29 @@
+@font-face {
+    font-family: 'HK Grotesk Regular Legacy';
+    src: url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff2') format('woff2'),
+    url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
+
+.tabelaPagamentos{
+    margin-top: 3vh;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border-collapse: collapse;
+    font-family: 'HK Grotesk Regular Legacy';
+}
+
+.tabelaPagamentos td {
+    text-align: center;
+    padding: 0.5vh 1vh;
+    height: 4vh;
+}
+
+.tabelaPagamentos tr {
+    border: 0.1vh solid rgba(0, 0, 0, 0.2);
+    padding: 0.5vh 1vh;
+    height: 4vh;
+}

@@ -7,6 +7,8 @@ import { Visucli } from './js/visucli';
 import { VisualizacaoPropostas } from './js/visualizacaopropostas';
 import { CadastroPropostas } from './js/cadastropropostas';
 import { VisualizacaoIndividual } from './js/visualizacaoindividual';
+import { RegistroPagamentos } from './js/registropagamentos';
+import { RegistroPagamentoIndividual } from './js/registropagamentoindividual';
 import Cookies from 'js-cookie';
 
 const ButtonPage = () => {
@@ -126,6 +128,8 @@ function App() {
         <Route path='/visualizacaopropostas' element={<VisualizacaoPropostas />} />
         <Route path='/cadastropropostas' element={<CadastroPropostas />} />
         <Route path='/visualizacaoindividual' element={<VisualizacaoIndividual />} />
+        <Route path='/registropagamentos' element={<RegistroPagamentos />} />
+        <Route path='/registropagamentoindividual' element={<RegistroPagamentoIndividual />} />
       </Routes>
     </BrowserRouter>
   );

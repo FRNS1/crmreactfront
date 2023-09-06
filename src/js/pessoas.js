@@ -59,8 +59,8 @@ function Telapessoas() {
         <NavLateral />
       </div>
       <div className='containerGeral'>
-        <div className='tituloCli'>
-            <h2> Clientes </h2>
+        <div className='textoPropostas'>
+          <text className='stringTitulos'> Clientes </text>
         </div>
         <div className='botaoCadastrar'>
           <button className="textoCadastrar" onClick={handleButtonClick}>
