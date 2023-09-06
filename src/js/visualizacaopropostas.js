@@ -42,8 +42,8 @@ function VisualizacaoPropostas() {
 
     const visualizar = (id) => {
         Cookies.set("propostaSelecionada", id);
-        // navigate('/visualizacaoindividual');
-    }
+        navigate('/visualizacaoindividual');
+      }
 
     useEffect(() => {
         getDataProposal();
@@ -73,19 +73,21 @@ function VisualizacaoPropostas() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className='linhasTabelaPropostas'>
-                            <td className='colunasTabelaPropostas'> TESTE </td>
-                            <td className='colunasTabelaPropostas'> TESTE </td>
-                            <td className='colunasTabelaPropostas'> TESTE </td>
-                            <td className='colunasTabelaPropostas'> TESTE </td>
-                            <td className='colunasTabelaPropostas'> TESTE </td>
-                            <td className='colunasTabelaPropostas'> TESTE </td>
+                        {listProposal.map((proposal) =>(
+                        <tr className='linhasTabelaPropostas' key={proposal.proposalId}>
+                            <td className='colunasTabelaPropostas'>{proposal.indicador.username}</td>
+                            <td className='colunasTabelaPropostas'>{proposal.business}</td>
+                            <td className='colunasTabelaPropostas'>{proposal.dataCriacao}</td>
+                            <td className='colunasTabelaPropostas'>{proposal.cpf == null ? proposal.razaoSocial : proposal.nomeCompleto}</td>
+                            <td className='colunasTabelaPropostas'>{proposal.cpf == null ? proposal.cnpj : proposal.cpf}</td>
+                            <td className='colunasTabelaPropostas'>{proposal.status}</td>
                             <td colunasTabelaPropostas>
-                                <button className='botaoVer'>
+                                <button className='botaoVer' onClick={() => visualizar(proposal.proposalId)}>
                                     <span className='stringVer'> Ver </span>
                                 </button>
                             </td>
                         </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
