@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../css/cadastro_propostas.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
+import CurrencyInput from 'react-currency-input-field';
 
 function CadastroPropostas() {
+    const [valorDesejado, setValorDesejado] = React.useState('');
+    const handleValorDesejadoChange = (value, name) => {
+        setValorDesejado(value);
+    };
     return (
         <div className='containerPrincipal'>
             <div>
@@ -21,7 +26,17 @@ function CadastroPropostas() {
                         <div className='divrow'>
                             <div className='divfield'>
                                 <label className="stringDados"> Valor Desejado </label>
-                                <input className="inputCad" type="text" required />
+                                <CurrencyInput
+                                name="valorDesejado"
+                                value={valorDesejado}
+                                onValueChange={handleValorDesejadoChange}
+                                allowNegativeValue={false}
+                                decimalSeparator=","
+                                groupSeparator="."
+                                prefix="R$ "
+                                placeholder="R$ 0,00"
+                                className="inputCad"
+                                />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Prazo </label>

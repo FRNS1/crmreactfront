@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../css/visu_cli.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
+import { format } from 'date-fns';
 import InputMask from 'react-input-mask';
 import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -188,7 +189,6 @@ function Visucli() {
     }
 
     function Forminf() {
-
         return (
             <div>
                 {tipoCliente === false && (
@@ -208,7 +208,7 @@ function Visucli() {
                                 </div>
                                 <div className='divfield'>
                                     <label className="stringDados"> Data de Nascimento </label>
-                                    <input className="inputDados" value={dataNascimento} type="text" disabled />
+                                    <InputMask mask="99/99/9999" placeholder="DD/MM/AAAA" type="text" className="inputDados" value={dataNascimento ? format(new Date(dataNascimento), 'dd/MM/yyyy') : ''} disabled />
                                 </div>
                             </div>
                             <div className='divrow'>
@@ -253,7 +253,7 @@ function Visucli() {
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Data de abertura </label>
-                                <input className="inputDados" value={dataAbertura} type="text" disabled />
+                                <InputMask mask="99/99/9999" placeholder="DD/MM/AAAA" type="text" className="inputDados" value={dataAbertura ? format(new Date(dataAbertura), 'dd/MM/yyyy') : ''} disabled />
                             </div>
                             <div className='divfield' style={{ opacity: 0 }} id="none">
                                 <label className="stringDados"> Ocupação </label>

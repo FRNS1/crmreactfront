@@ -37,6 +37,7 @@
     }
 
     .botaoEnviarObservacoes{
+        cursor: pointer;
         background-color: #081535;
         border-radius: 1vh 1vh;
         width: 50%;
@@ -68,4 +69,66 @@
         border: 0;
         font-size: 2vh;
         font-family: 'HK Grotesk Regular Legacy';
+    }
+
+    .textJuridico{
+        justify-content: start;
+        font-size: 2.5vh;
+        font-weight: bold;
+        margin-left: 2vh;
+        font-family: 'HK Grotesk Regular Legacy';
+    }
+
+    .stringUpload{
+        justify-content: start;
+        font-family: 'HK Grotesk Regular Legacy';
+    }
+
+    .divinputFiles{
+        margin-top: 2vh;
+        justify-content: start;
+    }
+
+    .divlistaFiles{
+        justify-content: start;
+    }
+
+    .divbotaoEnviarArquivos{
+        justify-content: start;
+        align-items: center;
+    }
+
+    .botaoEnviarArquivos{
+        cursor: pointer;
+        margin-top: 2vh;
+        background-color: #081535;
+        border-radius: 1vh 1vh;
+        width: 30%;
+        height: 4vh;
+        text-align: center;
+        font-size: 2vh;
+        font-family: 'HK Grotesk Regular Legacy';
+    }
+
+    .tabelaPropostasBacen {
+        width: 100%;
+        font-size: 2vh;
+        border-collapse: collapse;
+        align-items: center;
+        justify-content: center;
+        font-family: 'HK Grotesk Regular Legacy';
+    }
+    
+    .linhasTabelaPropostasBacen{
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        border: 0.1vh solid rgba(0, 0, 0);
+    }
+    
+    .colunasTabelaPropostasBacen{
+        width: 75%;
+        height: 4vh;
+        align-self: center;
+        border: 0.1vh solid rgb(0, 0, 0);
     }
