@@ -10,6 +10,9 @@ function VisualizacaoIndividual() {
     const [muda, handleButtonClick] = useState('infPropostas');
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState();
+    const [analytics, setAnalytics] = useState(false);
+    const [allsData, setAllsData] = useState(false);
+    const [scr, setScr] = useState(false);
     // Variaveis proposal
     const [proposalId, setProposalId] = useState('');
     const [customerName, setCustomerName] = useState('');
@@ -170,18 +173,17 @@ function VisualizacaoIndividual() {
           setLimitesCreditoValorTotal(data.scr.limites_credito_valor_total);
           setLimitesCreditosVencimentoAte360Dias(data.scr.limites_credito_vencimento_ate_360_dias);
           setLimitesCreditosVencimentoAcima360Dias(data.scr.limites_credito_vencimento_acima_360_dias);
-          setNumPendenciasFinanceirasAlls(data.num_pendencias_financeiras_alls);
-          setValorPendenciasFinanceirasAlls(data.valor_pendencias_financeiras_alls);
-          setNumRecuperacoesAlls(data.num_recuperacoes_alls);
-          setValorRecuperacoesAlls(data.valor_recuperacoes_alls);
-          setNumChequeSemFundoAlls(data.num_cheque_sem_fundo_alls);
-          setNumProtestosAlls(data.num_protestos_alls);
-          setValorProtestosAlls(data.valor_protestos_alls);
-          setLimiteSugeridoAlls(data.limite_sugerido_alls);
-          setNumRestricoesAlls(data.num_restricoes_alls);
-          setValorRestricoesAlls(data.valor_restricoes);
+          setNumPendenciasFinanceirasAlls(data.allsData.num_pendencias_financeiras_alls);
+          setValorPendenciasFinanceirasAlls(data.allsData.valor_pendencias_financeiras_alls);
+          setNumRecuperacoesAlls(data.allsData.num_recuperacoes_alls);
+          setValorRecuperacoesAlls(data.allsData.valor_recuperacoes_alls);
+          setNumChequeSemFundoAlls(data.allsData.num_cheque_sem_fundo_alls);
+          setNumProtestosAlls(data.allsData.num_protestos_alls);
+          setValorProtestosAlls(data.allsData.valor_protestos_alls);
+          setLimiteSugeridoAlls(data.allsData.limite_sugerido_alls);
+          setNumRestricoesAlls(data.allsData.num_restricoes_alls);
+          setValorRestricoesAlls(data.allsData.valor_restricoes);
           setFiles(data.files);
-          console.log(response.data);
         } catch (error) {
           console.log('error', error);
         } finally {
@@ -189,9 +191,12 @@ function VisualizacaoIndividual() {
         }
     }
 
+    async function sendBureausCredito(){
+        
+    }
+
       useEffect(() => {
         getDataProposal();
-        alert(numTitulosProtestados)
       }, []);
 
       function InfPropostas() {
@@ -673,7 +678,7 @@ function VisualizacaoIndividual() {
                     <text> Observações </text>
                 </div>
                 <div className='divtextAreaobservacoes'>
-                    <textarea className='textAreaobservacoes'> </textarea>
+                    <textarea className='textAreaobservacoes' value={observacaoCliente}> </textarea>
                 </div>
                 <div className='divbotaoEnviarObservacoes'>
                     <button className='botaoEnviarObservacoes'>
@@ -747,145 +752,6 @@ function VisualizacaoIndividual() {
     );
 };
 
-function InfPropostas() {
-    const [totalJuros, setTotalJuros] = React.useState('');
-    const handleTotalJurosChange = (value, name) => {
-        setTotalJuros(value);
-    };
-    const [valorDesejado, setValorDesejado] = React.useState('');
-    const handleTotalValorDesejadoChange = (value, name) => {
-        setValorDesejado(value);
-    };
-    const [montante, setMontante] = React.useState('');
-    const handleMontanteChange = (value, name) => {
-        setMontante(value);
-    };
-
-    return (
-        <div>
-            <form className='formularios'>
-                <br />
-                <div className='fields'>
-                    <div className='divrow'>
-                        <div className='divfield'>
-                            <label className="stringDados"> Valor Desejado </label>
-                            <CurrencyInput
-                                name="totalValorDesejado"
-                                value={valorDesejado}
-                                onValueChange={handleTotalValorDesejadoChange}
-                                allowNegativeValue={false}
-                                decimalSeparator=","
-                                groupSeparator="."
-                                prefix="R$ "
-                                placeholder="R$ 0,00"
-                                className="inputCad"
-                            />
-                        </div>
-                        <div className='divfield'>
-                            <label className="stringDados"> Taxa </label>
-                            <input className="inputCad" type="text" />
-                        </div>
-                        <div className='divfield'>
-                            <label className="stringDados"> Corban </label>
-                            <input className="inputCad" type="text" />
-                        </div>
-                    </div>
-                    <div className='divrow'>
-                        <div className='divfield'>
-                            <label className="stringDados"> Status </label>
-                            <select className='inputCad'>
-                                <option className='inputCad'> Aguardando análise </option>
-                                <option className='inputCad'> Em análise </option>
-                                <option className='inputCad'> Aprovado </option>
-                                <option className='inputCad'> Reprovado </option>
-                                <option className='inputCad'> Empréstimo concedido </option>
-                            </select>
-                        </div>
-                        <div className='divfield'>
-                            <label className="stringDados"> Montante </label>
-                            <CurrencyInput
-                                name="totalMontante"
-                                value={montante}
-                                onValueChange={handleMontanteChange}
-                                allowNegativeValue={false}
-                                decimalSeparator=","
-                                groupSeparator="."
-                                prefix="R$ "
-                                placeholder="R$ 0,00"
-                                className="inputCad"
-                            />
-                        </div>
-                        <div className='divfield'>
-                            <label className="stringDados"> Valor Liberado </label>
-                            <input className="inputCad" type="text" />
-                        </div>
-                    </div>
-                    <div className='divrow'>
-                        <div className='divfield'>
-                            <label className="stringDados"> Prazo </label>
-                            <input className="inputCad" type="text" />
-                        </div>
-                        <div className='divfield'>
-                            <label className="stringDados"> Data de Abertura </label>
-                            <input className="inputCad" type="text" disabled />
-                        </div>
-                        <div className='divfield'>
-                            <label className="stringDados"> Data da Primeira Parcela </label>
-                            <input className="inputCad" type="text" />
-                        </div>
-                    </div>
-                    <div className='divrow'>
-                        <div className='divfield'>
-                            <label className="stringDados"> Total de Juros </label>
-                            <CurrencyInput
-                                name="totalJuros"
-                                value={totalJuros}
-                                onValueChange={handleTotalJurosChange}
-                                allowNegativeValue={false}
-                                decimalSeparator=","
-                                groupSeparator="."
-                                prefix="R$ "
-                                placeholder="R$ 0,00"
-                                className="inputCad"
-                            />
-                        </div>
-                        <div className='divfield'>
-                            <label className="stringDados"> Status do Contrato </label>
-                            <select className='inputCad'>
-                                <option className='inputCad'> Aberto </option>
-                                <option className='inputCad'> Quitado </option>
-                            </select>
-                        </div>
-                        <div className='divfield'>
-                            <label className="stringDados"> Motivo da reprovação </label>
-                            <select className='inputCad'>
-                                <option className='inputCad'> Restrição biros de crédito  </option>
-                                <option className='inputCad'> Restrição de divida ativa </option>
-                                <option className='inputCad'> Restrição de cadin </option>
-                                <option className='inputCad'> Restrição de ausência de documento </option>
-                                <option className='inputCad'> Restrição de renda insuficiente </option>
-                                <option className='inputCad'> Restrição por score fora da política </option>
-                                <option className='inputCad'> Empresas ligadas com restrição </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div className='divrow'>
-                        <div className='divfield'>
-                            <label className="stringDados"> Observação Cliente </label>
-                            <textarea className='observacaoCliente'> </textarea>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <div className='divbotaoEnviarObservacoes'>
-                <button className='botaoEnviarObservacoes'>
-                    <span className='stringEnviarDados'> Salvar </span>
-                </button>
-            </div>
-        </div>
-    );
-}
-export default InfPropostas;
 
 export { VisualizacaoIndividual };
 
