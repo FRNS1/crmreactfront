@@ -223,30 +223,22 @@ function VisualizacaoIndividual() {
         const HandleMotivoReprovacaoChange = (event) => {
             setMotivoReprovacao(event.target.value);
         };
-        const handleTaxaChange = (event) => {
-            setTaxa(event.target.value);
+        const handleTaxaChange = (value) => {
+            setTaxa(value);
         };
-        const handleCorbanChange = (event) => {
-            setCorban(event.target.value);
+        const handleCorbanChange = (value) => {
+            setCorban(value);
         };
         const handlePrazoChange = (event) => {
             const novoPrazo = event.target.value;
             setPrazo(novoPrazo);
         };
 
-        const inputRef = useRef(null);
-
-        const handleFocus = () => {
-            alert("click focus")
-            document.body.focus();
-        };
+        function sla(){
+            console.log(taxa);
+            console.log(corban);
+        }
         
-        const handleBlur = () => {
-            alert("click unfocus")
-            document.body.blur();
-        };
-        
-
         return (
             <div>
                 <form className='formularios'>
@@ -270,12 +262,9 @@ function VisualizacaoIndividual() {
                             <div className='divfield'>
                                 <label className="stringDados"> Taxa </label>
                                 <input
-                                    ref={inputRef}
                                     name="taxa"
-                                    value={taxa}
-                                    onChange={handleTaxaChange}
-                                    onClick={handleFocus}
-                                    onBlur={handleBlur}
+                                    placeholder={taxa}
+                                    onBlur={(event) => handleTaxaChange(event.target.value)}
                                     className="inputCad"
                                 />
                             </div>
@@ -283,10 +272,8 @@ function VisualizacaoIndividual() {
                                 <label className="stringDados"> Corban </label>
                                 <input
                                     name="Corban"
-                                    value={corban}
-                                    onChange={handleCorbanChange}
-                                    onClick={handleFocus}
-                                    onBlur={handleBlur}
+                                    placeholder={corban}
+                                    onBlur={(event) => handleCorbanChange(event.target.value)}
                                     className="inputCad"
                                 />
                             </div>
@@ -410,7 +397,7 @@ function VisualizacaoIndividual() {
                     </div>
                 </form>
                 <div className='divbotaoEnviarObservacoes'>
-                    <button className='botaoEnviarObservacoes'>
+                    <button className='botaoEnviarObservacoes' onClick={sla}>
                         <span className='stringEnviarDados'> Salvar </span>
                     </button>
                 </div>
