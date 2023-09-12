@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../css/visualizacao_individual.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
@@ -23,6 +23,9 @@ function VisualizacaoIndividual() {
     const [cpf, setCpf] = useState('');
     const [valorDesejado, setValorDesejado] = useState('');
     const [taxa, setTaxa] = useState('');
+    const [dados, setDados] = useState({
+        taxa:'',
+    }) 
     const [corban, setCorban] = useState('');
     const [status, setStatus] = useState('');
     const [montante, setMontante] = useState('');
@@ -102,90 +105,90 @@ function VisualizacaoIndividual() {
         const token = Cookies.get('token');
         const url = `http://127.0.0.1:8080/api/v1/proposal/getbyid/${Cookies.get('propostaSelecionada')}`;
         try {
-          const response = await axios.get(
-            url,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json'
-              }
-            }
-          );
-          const data = response.data;
-          setData(data);
-          setProposalId(data.proposalId);
-          setCustomerName(data.customerName);
-          setCustomerRazaoSocial(data.customerRazaoSocial);
-          setCnpj(data.cnpj);
-          setCpf(data.cpf);
-          setValorDesejado(data.valorDesejado);
-          setTaxa(data.taxa);
-          setCorban(data.corban);
-          setStatus(data.status);
-          setMontante(data.montante);
-          setValorLiberado(data.valorLiberado);
-          setPrazo(data.prazo);
-          setDataAbertura(data.dataAbertura);
-          setDataPrimeiraParcela(data.dataPrimeiraParcela);
-          setTotalJuros(data.totalJuros);
-          setStatusContrato(data.statusContrato);
-          setMotivoReprovacao(data.motivoReprovacao);
-          setObservacaoCliente(data.observacaoCliente);
-          setObservacaoAnalista(data.observacaoAnalista);
-          setNumTitulosProtestados(data.analytics.num_titulos_protestados);
-          setScore(data.analytics.score);
-          setNumRefins(data.analytics.num_refins);
-          setValorCadins(data.analytics.valor_cadins);
-          setValorIss(data.analytics.valor_iss);
-          setNumProcessos(data.analytics.num_processos);
-          setValorProcessos(data.analytics.valor_processos);
-          setNumUfProcessos(data.analytics.num_uf_processos);
-          setDividaAtiva(data.analytics.divida_ativa);
-          setValorTitulosProtestados(data.analytics.valor_titulos_protestados);
-          setRisco(data.analytics.risco);
-          setPep(data.analytics.pep);
-          setNumChequesDevolvidos(data.analytics.num_cheques_devolvidos);
-          setValorChequesDevolvidos(data.analytics.valor_cheques_devolvidos);
-          setValorPefins(data.analytics.valor_pefins);
-          setNumPefins(data.analytics.num_pefins);
-          setEmpresasNaoInformadas(data.analytics.empresas_nao_informadas);
-          setVencerValorTotal(data.scr.vencer_valor_total);
-          setVencerAte30DiasVencidosAte14Dias(data.scr.vencer_ate_30_dias_vencidos_ate_14_dias);
-          setVencer3160Dias(data.scr.vencer_31_60_dias);
-          setVencer6190Dias(data.scr.vencer_61_90_dias);
-          setVencer181360Dias(data.scr.vencer_181_360_dias);
-          setVencerAcima360Dias(data.scr.vencer_acima_360_dias);
-          setVencerIndeterminado(data.scr.vencer_indeterminado);
-          setVencidoTotal(data.scr.vencido_total);
-          setVencido1530Dias(data.scr.vencido_15_30_dias);
-          setVencido3160Dias(data.scr.vencido_31_60_dias);
-          setVencido6190Dias(data.scr.vencido_61_90_dias);
-          setVencido91180Dias(data.scr.vencido_91_180_dias);
-          setVencido181360Dias(data.scr.vencido_181_360_dias);
-          setVencidoAcima360Dias(data.scr.vencido_acima_360_dias);
-          setPrejuizoTotal(data.scr.prejuizo_total);
-          setPrejuizoAte12Meses(data.scr.prejuizo_ate_12_meses);
-          setPrejuizoAcima12Meses(data.scr.prejuizo_acima_12_meses);
-          setCoobrigacaoTotal(data.scr.coobrigacao_total);
-          setCoobrigacaoAssumida(data.scr.coobrigacao_assumida);
-          setCoobrigacaoPrestadas(data.scr.coobrigacao_prestadas);
-          setCreditosLiberarTotal(data.scr.creditos_liberar_total);
-          setCreditosLiberarAte360Dias(data.scr.creditos_liberar_ate_360_dias);
-          setCreditosLiberarAcima360Dias(data.scr.creditos_liberar_acima_360_dias);
-          setLimitesCreditoValorTotal(data.scr.limites_credito_valor_total);
-          setLimitesCreditosVencimentoAte360Dias(data.scr.limites_credito_vencimento_ate_360_dias);
-          setLimitesCreditosVencimentoAcima360Dias(data.scr.limites_credito_vencimento_acima_360_dias);
-          setNumPendenciasFinanceirasAlls(data.allsData.num_pendencias_financeiras_alls);
-          setValorPendenciasFinanceirasAlls(data.allsData.valor_pendencias_financeiras_alls);
-          setNumRecuperacoesAlls(data.allsData.num_recuperacoes_alls);
-          setValorRecuperacoesAlls(data.allsData.valor_recuperacoes_alls);
-          setNumChequeSemFundoAlls(data.allsData.num_cheque_sem_fundo_alls);
-          setNumProtestosAlls(data.allsData.num_protestos_alls);
-          setValorProtestosAlls(data.allsData.valor_protestos_alls);
-          setLimiteSugeridoAlls(data.allsData.limite_sugerido_alls);
-          setNumRestricoesAlls(data.allsData.num_restricoes_alls);
-          setValorRestricoesAlls(data.allsData.valor_restricoes);
-          setFiles(data.files);
+            const response = await axios.get(
+                url,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                }
+            );
+            const data = response.data;
+            setData(data);
+            setProposalId(data.proposalId);
+            setCustomerName(data.customerName);
+            setCustomerRazaoSocial(data.customerRazaoSocial);
+            setCnpj(data.cnpj);
+            setCpf(data.cpf);
+            setValorDesejado(data.valorDesejado);
+            setTaxa(data.taxa);
+            setCorban(data.corban);
+            setStatus(data.status);
+            setMontante(data.montante);
+            setValorLiberado(data.valorLiberado);
+            setPrazo(data.prazo);
+            setDataAbertura(data.dataAbertura);
+            setDataPrimeiraParcela(data.dataPrimeiraParcela);
+            setTotalJuros(data.totalJuros);
+            setStatusContrato(data.statusContrato);
+            setMotivoReprovacao(data.motivoReprovacao);
+            setObservacaoCliente(data.observacaoCliente);
+            setObservacaoAnalista(data.observacaoAnalista);
+            setNumTitulosProtestados(data.analytics.num_titulos_protestados);
+            setScore(data.analytics.score);
+            setNumRefins(data.analytics.num_refins);
+            setValorCadins(data.analytics.valor_cadins);
+            setValorIss(data.analytics.valor_iss);
+            setNumProcessos(data.analytics.num_processos);
+            setValorProcessos(data.analytics.valor_processos);
+            setNumUfProcessos(data.analytics.num_uf_processos);
+            setDividaAtiva(data.analytics.divida_ativa);
+            setValorTitulosProtestados(data.analytics.valor_titulos_protestados);
+            setRisco(data.analytics.risco);
+            setPep(data.analytics.pep);
+            setNumChequesDevolvidos(data.analytics.num_cheques_devolvidos);
+            setValorChequesDevolvidos(data.analytics.valor_cheques_devolvidos);
+            setValorPefins(data.analytics.valor_pefins);
+            setNumPefins(data.analytics.num_pefins);
+            setEmpresasNaoInformadas(data.analytics.empresas_nao_informadas);
+            setVencerValorTotal(data.scr.vencer_valor_total);
+            setVencerAte30DiasVencidosAte14Dias(data.scr.vencer_ate_30_dias_vencidos_ate_14_dias);
+            setVencer3160Dias(data.scr.vencer_31_60_dias);
+            setVencer6190Dias(data.scr.vencer_61_90_dias);
+            setVencer181360Dias(data.scr.vencer_181_360_dias);
+            setVencerAcima360Dias(data.scr.vencer_acima_360_dias);
+            setVencerIndeterminado(data.scr.vencer_indeterminado);
+            setVencidoTotal(data.scr.vencido_total);
+            setVencido1530Dias(data.scr.vencido_15_30_dias);
+            setVencido3160Dias(data.scr.vencido_31_60_dias);
+            setVencido6190Dias(data.scr.vencido_61_90_dias);
+            setVencido91180Dias(data.scr.vencido_91_180_dias);
+            setVencido181360Dias(data.scr.vencido_181_360_dias);
+            setVencidoAcima360Dias(data.scr.vencido_acima_360_dias);
+            setPrejuizoTotal(data.scr.prejuizo_total);
+            setPrejuizoAte12Meses(data.scr.prejuizo_ate_12_meses);
+            setPrejuizoAcima12Meses(data.scr.prejuizo_acima_12_meses);
+            setCoobrigacaoTotal(data.scr.coobrigacao_total);
+            setCoobrigacaoAssumida(data.scr.coobrigacao_assumida);
+            setCoobrigacaoPrestadas(data.scr.coobrigacao_prestadas);
+            setCreditosLiberarTotal(data.scr.creditos_liberar_total);
+            setCreditosLiberarAte360Dias(data.scr.creditos_liberar_ate_360_dias);
+            setCreditosLiberarAcima360Dias(data.scr.creditos_liberar_acima_360_dias);
+            setLimitesCreditoValorTotal(data.scr.limites_credito_valor_total);
+            setLimitesCreditosVencimentoAte360Dias(data.scr.limites_credito_vencimento_ate_360_dias);
+            setLimitesCreditosVencimentoAcima360Dias(data.scr.limites_credito_vencimento_acima_360_dias);
+            setNumPendenciasFinanceirasAlls(data.allsData.num_pendencias_financeiras_alls);
+            setValorPendenciasFinanceirasAlls(data.allsData.valor_pendencias_financeiras_alls);
+            setNumRecuperacoesAlls(data.allsData.num_recuperacoes_alls);
+            setValorRecuperacoesAlls(data.allsData.valor_recuperacoes_alls);
+            setNumChequeSemFundoAlls(data.allsData.num_cheque_sem_fundo_alls);
+            setNumProtestosAlls(data.allsData.num_protestos_alls);
+            setValorProtestosAlls(data.allsData.valor_protestos_alls);
+            setLimiteSugeridoAlls(data.allsData.limite_sugerido_alls);
+            setNumRestricoesAlls(data.allsData.num_restricoes_alls);
+            setValorRestricoesAlls(data.allsData.valor_restricoes);
+            setFiles(data.files);
         } catch (error) {
             console.log('error', error);
         } finally {
@@ -193,15 +196,57 @@ function VisualizacaoIndividual() {
         }
     }
 
-    async function sendBureausCredito(){
-        
+    async function sendBureausCredito() {
+
     }
 
-      useEffect(() => {
+    useEffect(() => {
         getDataProposal();
-      }, []);
-      
-    function InfPropostas(){
+    }, []);
+
+    function InfPropostas() {
+        const handleTotalJurosChange = (value) => {
+            setTotalJuros(value);
+        };
+        const handleMontanteChange = (value) => {
+            setMontante(value);
+        };
+        const handleValorLiberadoChange = (value) => {
+            setValorLiberado(value);
+        };
+        const handleStatusChange = (event) => {
+            setStatus(event.target.value);
+        };
+        const HandleStatusContratoChange = (event) => {
+            setStatusContrato(event.target.value);
+        };
+        const HandleMotivoReprovacaoChange = (event) => {
+            setMotivoReprovacao(event.target.value);
+        };
+        const handleTaxaChange = (event) => {
+            setTaxa(event.target.value);
+        };
+        const handleCorbanChange = (event) => {
+            setCorban(event.target.value);
+        };
+        const handlePrazoChange = (event) => {
+            const novoPrazo = event.target.value;
+            setPrazo(novoPrazo);
+        };
+
+        const inputRef = useRef(null);
+
+        const handleFocus = () => {
+            alert("click focus")
+            document.body.focus();
+        };
+        
+        const handleBlur = () => {
+            alert("click unfocus")
+            document.body.blur();
+        };
+        
+
         return (
             <div>
                 <form className='formularios'>
@@ -224,17 +269,37 @@ function VisualizacaoIndividual() {
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Taxa </label>
-                                <input className="inputCad" type="text" value={taxa} />
+                                <input
+                                    ref={inputRef}
+                                    name="taxa"
+                                    value={taxa}
+                                    onChange={handleTaxaChange}
+                                    onClick={handleFocus}
+                                    onBlur={handleBlur}
+                                    className="inputCad"
+                                />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Corban </label>
-                                <input className="inputCad" type="text" value={corban} />
+                                <input
+                                    name="Corban"
+                                    value={corban}
+                                    onChange={handleCorbanChange}
+                                    onClick={handleFocus}
+                                    onBlur={handleBlur}
+                                    className="inputCad"
+                                />
                             </div>
                         </div>
                         <div className='divrow'>
                             <div className='divfield'>
                                 <label className="stringDados"> Status </label>
-                                <input className="inputCad" type="text" value={status} />
+                                <select className='inputCad' value={status} onChange={handleStatusChange}>
+                                    <option className='inputCad'> Em análise </option>
+                                    <option className='inputCad'> Aprovado </option>
+                                    <option className='inputCad'> Reprovado </option>
+                                    <option className='inputCad'> Empréstimo concedido </option>
+                                </select>
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Montante </label>
@@ -254,7 +319,7 @@ function VisualizacaoIndividual() {
                                 <label className="stringDados"> Valor Liberado </label>
                                 <CurrencyInput
                                     name="valorliberado"
-                                    value={valorliberado}
+                                    value={valorLiberado}
                                     onValueChange={handleValorLiberadoChange}
                                     allowNegativeValue={false}
                                     decimalSeparator=","
@@ -268,7 +333,13 @@ function VisualizacaoIndividual() {
                         <div className='divrow'>
                             <div className='divfield'>
                                 <label className="stringDados"> Prazo </label>
-                                <input className="inputCad" type="text" value={prazo} />
+                                <input
+                                    name="prazo"
+                                    value={prazo}
+                                    allowNegativeValue={false}
+                                    onValueChange={handlePrazoChange}
+                                    className="inputCad"
+                                />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Data de Abertura </label>
@@ -276,7 +347,14 @@ function VisualizacaoIndividual() {
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Data da Primeira Parcela </label>
-                                <InputMask mask="99/99/9999" placeholder="DD/MM/AAAA" type="text" className="inputCad" value={dataPrimeiraParcela ? format(new Date(dataPrimeiraParcela), 'dd/MM/yyyy') : ''} />
+                                <InputMask
+                                    mask="99/99/9999"
+                                    placeholder="DD/MM/AAAA"
+                                    type="text"
+                                    className="inputCad"
+                                    value={dataPrimeiraParcela ? format(new Date(dataPrimeiraParcela), 'dd/MM/yyyy') : ''}
+                                    disabled
+                                />
                             </div>
                         </div>
                         <div className='divrow'>
@@ -296,17 +374,14 @@ function VisualizacaoIndividual() {
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Status do Contrato </label>
-                                <select className='inputCad' value={statusContrato}>
-                                    <option className='inputCad'> Aguardando análise </option>
-                                    <option className='inputCad'> Em análise </option>
-                                    <option className='inputCad'> Aprovado </option>
-                                    <option className='inputCad'> Reprovado </option>
-                                    <option className='inputCad'> Empréstimo concedido </option>
+                                <select className='inputCad' value={statusContrato} onChange={HandleStatusContratoChange}>
+                                    <option className='inputCad'> Aberto </option>
+                                    <option className='inputCad'> Quitado </option>
                                 </select>
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Motivo da reprovação </label>
-                                <select className='inputCad' value={motivoReprovacao}>
+                                <select className='inputCad' value={motivoReprovacao} onChange={HandleMotivoReprovacaoChange}>
                                     <option className='inputCad'> Selecione um motivo  </option>
                                     <option className='inputCad'> Restrição de biros de crédito  </option>
                                     <option className='inputCad'> Restrição por divida ativa </option>
@@ -345,29 +420,26 @@ function VisualizacaoIndividual() {
 
     function BearusCredito() {
 
-        const [cadins, setCadins] = React.useState('');
-        const handleCadinsChange = (value, name) => {
-            setCadins(value);
+        const handleValorCadinsChange = (value, name) => {
+            setValorCadins(value);
         };
-        const [valorTitulosProtestados, setValorTitulosProtestados] = React.useState('');
         const handleValorTitulosProtestadosChange = (value, name) => {
             setValorTitulosProtestados(value);
         };
-        const [valorPefins, setValorPefins] = React.useState('');
         const handleValorPefinsChange = (value, name) => {
             setValorPefins(value);
         };
-        const [valorChequesDevolvidos, setValorChequesDevolvidos] = React.useState('');
         const handleValorChequesDevolvidosChange = (value, name) => {
-            setValorChequesDevolvidos(value);
+            setValorChequesDevolvidos(value, name);
         };
-        const [valorProcessos, setValorProcessos] = React.useState('');
         const handleValorProcessosChange = (value, name) => {
             setValorProcessos(value);
         };
-        const [dividaAtiva, setDividaAtiva] = React.useState('');
         const handleDividaAtivaChange = (value, name) => {
             setDividaAtiva(value);
+        };
+        const handleValorISSChange = (value, name) => {
+            setValorIss(value);
         };
 
         return (
@@ -412,8 +484,8 @@ function VisualizacaoIndividual() {
                                 <label className="stringDados"> Cadins </label>
                                 <CurrencyInput
                                     name="cadins"
-                                    value={cadins}
-                                    onValueChange={handleCadinsChange}
+                                    value={valorCadins}
+                                    onValueChange={handleValorCadinsChange}
                                     allowNegativeValue={false}
                                     decimalSeparator=","
                                     groupSeparator="."
@@ -519,7 +591,18 @@ function VisualizacaoIndividual() {
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> ISS </label>
-                                <input className="inputCad" type="text" value={valorIss} />
+                                <CurrencyInput
+                                    name="valorIss"
+                                    type='text'
+                                    value={valorIss}
+                                    onValueChange={handleValorISSChange}
+                                    allowNegativeValue={false}
+                                    decimalSeparator=","
+                                    groupSeparator="."
+                                    prefix="R$ "
+                                    placeholder="R$ 0,00"
+                                    className="inputCad"
+                                />
                             </div>
                         </div>
                     </div>
@@ -546,37 +629,126 @@ function VisualizacaoIndividual() {
                         <thead>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <th className='colunasTabelaPropostasBacen'> Total </th>
-                                <th className='colunasTabelaPropostasBacen'> {vencerValorTotal} </th>
+                                <th className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoValorTotal"
+                                        value={vencerValorTotal}
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="thinputColunasTabelaPropostasBacen"
+                                    />
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> Até 30 dias e vencidos até 14 dias</td>
-                                <td className='colunasTabelaPropostasBacen'> {vencerAte30DiasvencidosAte14Dias} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={vencerAte30DiasvencidosAte14Dias} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> 31 a 60 dias</td>
-                                <td className='colunasTabelaPropostasBacen'> {vencer3160Dias} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={vencer3160Dias} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> 61 a 90 dias</td>
-                                <td className='colunasTabelaPropostasBacen'> {vencer6190Dias} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={vencer6190Dias} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> 91 a 180 dias</td>
-                                <td className='colunasTabelaPropostasBacen'> OLHAR </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    {/* OLHAR NOME DA VARIAVEL E ARRUMAR */}
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={vencer181360Dias} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> 181 a 360 dias</td>
-                                <td className='colunasTabelaPropostasBacen'> {vencer181360Dias} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={vencer181360Dias} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> Acima de 360 dias </td>
-                                <td className='colunasTabelaPropostasBacen'> {vencerAcima360Dias} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={vencerAcima360Dias} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> Indeterminado </td>
-                                <td className='colunasTabelaPropostasBacen'> {vencerIndeterminado} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={vencerIndeterminado} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -590,33 +762,110 @@ function VisualizacaoIndividual() {
                         <thead>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <th className='colunasTabelaPropostasBacen'> Total  </th>
-                                <th className='colunasTabelaPropostasBacen'> {vencidoTotal} </th>
+                                <th className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoValorTotal"
+                                        value={vencidoTotal}
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="thinputColunasTabelaPropostasBacen"
+                                    />
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> 15 a 30 dias </td>
-                                <td className='colunasTabelaPropostasBacen'> {vencido1530Dias} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={vencido1530Dias} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> 31 a 60 dias</td>
-                                <td className='colunasTabelaPropostasBacen'> {vencido3160Dias} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={vencido3160Dias} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> 61 a 90 dias</td>
-                                <td className='colunasTabelaPropostasBacen'> {vencido6190Dias} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={vencido6190Dias} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> 91 a 180 dias</td>
-                                <td className='colunasTabelaPropostasBacen'> {vencido91180Dias} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={vencido91180Dias} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> 181 a 360 dias</td>
-                                <td className='colunasTabelaPropostasBacen'> {vencido181360Dias} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={vencido181360Dias} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> Acima de 360 dias </td>
-                                <td className='colunasTabelaPropostasBacen'> {vencidoAcima360Dias} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={vencidoAcima360Dias} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -630,17 +879,50 @@ function VisualizacaoIndividual() {
                         <thead>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <th className='colunasTabelaPropostasBacen'> Total </th>
-                                <th className='colunasTabelaPropostasBacen'> {prejuizoTotal} </th>
+                                <th className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoValorTotal"
+                                        value={prejuizoTotal}
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="thinputColunasTabelaPropostasBacen"
+                                    />
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> Até 12 meses </td>
-                                <td className='colunasTabelaPropostasBacen'> {prejuizoAte12Meses} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={prejuizoAte12Meses} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> Acima de 12 meses </td>
-                                <td className='colunasTabelaPropostasBacen'> {prejuizoAcima12Meses} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={prejuizoAcima12Meses} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -654,17 +936,50 @@ function VisualizacaoIndividual() {
                         <thead>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <th className='colunasTabelaPropostasBacen'> Total </th>
-                                <th className='colunasTabelaPropostasBacen'> {coobrigacaoTotal} </th>
+                                <th className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoValorTotal"
+                                        value={coobrigacaoTotal}
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="thinputColunasTabelaPropostasBacen"
+                                    />
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> Coobrigação Assumida </td>
-                                <td className='colunasTabelaPropostasBacen'> {coobrigacaoAssumida} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={coobrigacaoAssumida} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> Coobrigação Prestadas </td>
-                                <td className='colunasTabelaPropostasBacen'> {coobrigacaoPrestadas} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={coobrigacaoPrestadas} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -678,17 +993,50 @@ function VisualizacaoIndividual() {
                         <thead>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <th className='colunasTabelaPropostasBacen'> Total </th>
-                                <th className='colunasTabelaPropostasBacen'> {creditosLiberarTotal} </th>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoValorTotal"
+                                        value={creditosLiberarTotal} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="thinputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> Créditos a Liberar até 360 dias </td>
-                                <td className='colunasTabelaPropostasBacen'> {creditosLiberarAte360Dias} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={creditosLiberarAte360Dias} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> Créditos a Liberar acima de 360 dias </td>
-                                <td className='colunasTabelaPropostasBacen'> {creditosLiberarAcima360Dias} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={creditosLiberarAcima360Dias} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -702,17 +1050,52 @@ function VisualizacaoIndividual() {
                         <thead>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <th className='colunasTabelaPropostasBacen'> Total </th>
-                                <th className='colunasTabelaPropostasBacen'> {limitesCreditoValorTotal} </th>
+                                <th className='colunasTabelaPropostasBacen'>
+                                    <CurrencyInput
+                                        name="limitesCreditoValorTotal"
+                                        value={limitesCreditoValorTotal} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="thinputColunasTabelaPropostasBacen"
+                                    />
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> Limite de Crédito com vencimento até 360 dias </td>
-                                <td className='colunasTabelaPropostasBacen'> {limitesCreditoVencimentoAte360Dias} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    {/* Formate o valor usando CurrencyInput */}
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAte360Dias"
+                                        value={limitesCreditoVencimentoAte360Dias} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> Limites de Crédito com vencimento acima de 360 dias </td>
-                                <td className='colunasTabelaPropostasBacen'> {limitesCreditoVencimentoAcima360Dias} </td>
+                                <td className='colunasTabelaPropostasBacen'>
+                                    {/* Formate o valor usando CurrencyInput */}
+                                    <CurrencyInput
+                                        name="limitesCreditoVencimentoAcima360Dias"
+                                        value={limitesCreditoVencimentoAcima360Dias} // Valor a ser formatado
+                                        allowNegativeValue={false}
+                                        prefix="R$ "
+                                        decimalSeparator=","
+                                        groupSeparator="."
+                                        placeholder="R$ 0,00"
+                                        className="inputColunasTabelaPropostasBacen"
+                                    />
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -728,23 +1111,18 @@ function VisualizacaoIndividual() {
     }
 
     function AllsData() {
-        const [ValorPendenciasFinanceirasAlls, setValorPendenciasFinanceirasAlls] = React.useState('');
         const handleValorPendenciasFinanceirasAllsChange = (value, name) => {
             setValorPendenciasFinanceirasAlls(value);
         };
-        const [valorRecuperacoesAlls, setValorRecuperacoesAlls] = React.useState('');
         const handleValorRecuperacoesAllsChange = (value, name) => {
             setValorRecuperacoesAlls(value);
         };
-        const [valorProtestosAlls, setValorProtestosAlls] = React.useState('');
         const handleValorProtestosAllsChange = (value, name) => {
             setValorProtestosAlls(value);
         };
-        const [limiteSugeridoAlls, setLimiteSugeridoAlls] = React.useState('');
         const handleLimiteSugeridoAllsChange = (value, name) => {
             setLimiteSugeridoAlls(value);
         };
-        const [valorRestricoesAlls, setValorRestricoesAlls] = React.useState('');
         const handleValorRestricoesAllsChange = (value, name) => {
             setValorRestricoesAlls(value);
         };

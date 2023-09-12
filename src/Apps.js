@@ -9,6 +9,7 @@ import { CadastroPropostas } from './js/cadastropropostas';
 import { VisualizacaoIndividual } from './js/visualizacaoindividual';
 import { RegistroPagamentos } from './js/registropagamentos';
 import { RegistroPagamentoIndividual } from './js/registropagamentoindividual';
+import { Teste } from './js/teste';
 import Cookies from 'js-cookie';
 
 const ButtonPage = () => {
@@ -130,6 +131,7 @@ function App() {
         <Route path='/visualizacaoindividual' element={<VisualizacaoIndividual />} />
         <Route path='/registropagamentos' element={<RegistroPagamentos />} />
         <Route path='/registropagamentoindividual' element={<RegistroPagamentoIndividual />} />
+        <Route path='/teste' element={<Teste />} />
       </Routes>
     </BrowserRouter>
   );

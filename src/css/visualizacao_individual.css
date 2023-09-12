@@ -127,8 +127,29 @@
     }
     
     .colunasTabelaPropostasBacen{
+        justify-content: center;
+        align-items: center;
         width: 75%;
         height: 4vh;
         align-self: center;
         border: 0.1vh solid rgb(0, 0, 0);
+    }
+
+    .inputColunasTabelaPropostasBacen{
+        width: 99%;
+        border: 0;
+        font-size: 2vh;
+        text-align: center;
+        height: 100%;
+        align-items: center;
+    }
+
+    .thinputColunasTabelaPropostasBacen{
+        width: 99%;
+        border: 0;
+        font-size: 2vh;
+        text-align: center;
+        font-weight: bold;
+        height: 100%;
+        align-items: center;
     }
