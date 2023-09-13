@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "ad79b6e0-732e-464d-a746-18767f35bb53"
+      }
+    },
+    "android": {
+      "package": "com.joaofernandesfer99.front_boracred"
+    }
+  }
+}
