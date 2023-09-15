@@ -1,9 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/registro_pagamentos.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
+import Cookies from 'js-cookie';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 
 function RegistroPagamentos() {
+    const navigate = useNavigate();
+    const [listLoans, setListLoans] = useState([]);
+
+    async function fetchLoans() {
+        const token = Cookies.get('token');
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${token}`);
+    
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+    
+        try {
+            const response = await fetch("http://127.0.0.1:8080/api/v1/payments/getloans", requestOptions);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const result = await response.json();
+            setListLoans(result);
+        } catch (error) {
+            console.error('error', error);
+        }
+    }
+
+    async function viewLoaninfo(loan){
+        await Cookies.set("chosenLoan", loan);
+        navigate('/registropagamentoindividual')   
+    }
+    
+    useEffect(() => {
+        fetchLoans();
+    }, []);
+
     return (
         <div className='containerPrincipal'>
             <div>
@@ -35,21 +72,23 @@ function RegistroPagamentos() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
+                        {listLoans.map((loan) => (
+                        <tr key={loan.proposalId}>
+                            <td>{loan.business}</td>
+                            <td>{loan.idCliente}</td>
+                            <td className='pointer' onClick={() => viewLoaninfo(loan.proposalId)}>{loan.isCnpj == true ? loan.nomeCliente : loan.razaoSocial}</td>
+                            <td>{loan.saldoDevedor}</td>
+                            <td>{loan.receitaEsperada}</td>
+                            <td>{loan.parcelas}</td>
+                            <td>{loan.amortizacaoPaga}</td>
+                            <td>{loan.jurosPagos}</td>
+                            <td>{loan.parcelasPagas}</td>
+                            <td>{loan.parcelasAtrasadas}</td>
+                            <td>{loan.atrasado == true ? 'SIM' : 'NÃO'}</td>
+                            <td>{loan.totalAtrasado}</td>
+                            <td>{loan.statusContrato}</td>
                         </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>

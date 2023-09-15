@@ -1,15 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/registro_pagamento_individual.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
+import Cookies from 'js-cookie';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 
 function RegistroPagamentoIndividual() {
 
     const [muda, handleButtonClick] = useState('geral');
+    const [loanDetails, setLoanDetails] = useState([])
 
     const Mudapagina = (value) => {
         handleButtonClick(value);
     };
+
+    async function fetchLoanDetails() {
+        const token = Cookies.get('token');
+        const proposalId = Cookies.get('chosenLoan');
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${token}`);
+    
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        const url = `http://127.0.0.1:8080/api/v1/proposal/loans/getproposal/info/${proposalId}`;
+    
+        try {
+            const response = await fetch(url, requestOptions);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const result = await response.json();
+            setLoanDetails(result);
+            console.log(result);
+        } catch (error) {
+            console.error('error', error);
+        }
+    }
+
+    useEffect(() => {
+        fetchLoanDetails();
+    }, []);
 
     return (
         <div className='containerPrincipal'>
@@ -19,7 +53,7 @@ function RegistroPagamentoIndividual() {
             </div>
             <div className='containerGeral'>
                 <div className='textoPropostas'>
-                    <text className='stringTitulos'> (Nome do cliente) </text>
+                    <text className='stringTitulos'> {loanDetails.proposal.customer._cnpj == true ? loanDetails.proposal.customer.razao_social : loanDetails.proposal.customer.nome_completo} </text>
                 </div>
                 <table className='tabelaPagamentosIndividual'>
                     <thead>
@@ -50,21 +84,19 @@ function RegistroPagamentoIndividual() {
                             <th> Qtd. parcelas </th>
                             <th> Taxa </th>
                             <th> Juros Total </th>
-                            <th> Valor Parcela </th>
                             <th> Multa </th>
                             <th> Mora p/dia </th>
                         </tr>
                         <tr>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
-                            <td> TESTE </td>
+                            <td>{loanDetails.proposal.customer._cnpj == true ? loanDetails.proposal.customer.cnpj : loanDetails.proposal.customer.cpf}</td>
+                            <td>{loanDetails.contact.email}</td>
+                            <td>{loanDetails.contact.telefone}</td>
+                            <td>{loanDetails.proposal.valor_liberado}</td>
+                            <td>{loanDetails.proposal.prazo}</td>
+                            <td>{loanDetails.proposal.taxa}</td>
+                            <td>{loanDetails.proposal.total_juros}</td>
+                            <td>1% do valor da parcela.</td>
+                            <td>0,033% do valor da parcela.</td>
                         </tr>
                     </tbody>
                 </table>
