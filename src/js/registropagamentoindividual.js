@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import '../css/registro_pagamento_individual.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
+import InputMask from 'react-input-mask';
 import Cookies from 'js-cookie';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+
 
 function RegistroPagamentoIndividual() {
 
