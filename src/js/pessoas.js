@@ -35,6 +35,7 @@ function Telapessoas() {
         }
       );
       handleCustomerListChange(response.data);
+      console.log(response.data);
     } catch (error) {
       console.log('error', error);
     }
@@ -123,8 +124,8 @@ function Telapessoas() {
                 <td>{customer.cpf == null ? customer.razaoSocial : customer.nome}</td>
                 <td>{customer.cpf == null ? 'PJ' : 'PF'}</td>
                 <td>{customer.cpf == null ? customer.cnpj : customer.cpf}</td>
-                <td>{customer.email}</td>
-                <td>{customer.telefone}</td>
+                <td>{customer.email == 'nan' ? 'Sem email' : customer.email}</td>
+                <td>{customer.telefone == 'nan' ? 'Sem telefone' : customer.telefone}</td>
                 <td className='colunaVer'>
                   <button className="botaoVer" style={{ backgroundColor: '#081535' }}>
                     <span className='stringVer' style={{ color: 'white' }} onClick={() => visualizacaoCliente(customer.customerId)}>visualizar</span>

@@ -9,6 +9,7 @@ function RegistroPagamentoIndividual() {
 
     const [muda, handleButtonClick] = useState('geral');
     const [loanDetails, setLoanDetails] = useState([])
+    const [payments, setPayments] = useState([]);
 
     const Mudapagina = (value) => {
         handleButtonClick(value);
@@ -26,10 +27,10 @@ function RegistroPagamentoIndividual() {
             redirect: 'follow'
         };
 
-        const url = `http://127.0.0.1:8080/api/v1/proposal/loans/getproposal/info/${proposalId}`;
+        const urlLoan = `http://127.0.0.1:8080/api/v1/proposal/loans/getproposal/info/${proposalId}`;
     
         try {
-            const response = await fetch(url, requestOptions);
+            const response = await fetch(urlLoan, requestOptions);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -41,8 +42,36 @@ function RegistroPagamentoIndividual() {
         }
     }
 
+    async function fetchFluxoDePagamentos() {
+        const token = Cookies.get('token');
+        const proposalId = Cookies.get('chosenLoan');
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${token}`);
+    
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        const urlFluxo = `http://127.0.0.1:8080/api/v1/payments/getloandetails/${proposalId}`;
+    
+        try {
+            const response = await fetch(urlFluxo, requestOptions);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const result = await response.json();
+            setPayments(result);
+            console.log(result);
+        } catch (error) {
+            console.error('error', error);
+        }
+    }
+
     useEffect(() => {
         fetchLoanDetails();
+        fetchFluxoDePagamentos();
     }, []);
 
     return (
