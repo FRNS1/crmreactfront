@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../css/registro_pagamento_individual.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
+import InputMask from 'react-input-mask';
 
 function RegistroPagamentoIndividual() {
 

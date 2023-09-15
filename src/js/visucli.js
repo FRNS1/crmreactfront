@@ -328,6 +328,25 @@ function Visucli() {
         );
     }
 
+    function formataCnpj(cnpj) {
+        const partesCNPJ = cnpj.split('')
+        const parte1 = partesCNPJ[0];
+        const parte2 = partesCNPJ[1];
+        const parte3 = partesCNPJ[2];
+        const parte4 = partesCNPJ[3];
+        const parte5 = partesCNPJ[4];
+        const parte6 = partesCNPJ[5];
+        const parte7 = partesCNPJ[6];
+        const parte8 = partesCNPJ[7];
+        const parte9 = partesCNPJ[8];
+        const parte10 = partesCNPJ[9];
+        const parte11 = partesCNPJ[10];
+        const parte12 = partesCNPJ[11];
+        const parte13 = partesCNPJ[12];
+        const parte14 = partesCNPJ[13];
+        return `${parte1}${parte2}.${parte3}${parte4}${parte5}.${parte6}${parte7}${parte8}/${parte9}${parte10}${parte11}${parte12}-${parte13}${parte14}`;
+    }
+
     function Tabprop() {
         return (
             <div className='caixaTabelaPropostas'>
@@ -346,7 +365,9 @@ function Visucli() {
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'>{item.username}</td>
                             <td className='colunasTabelaPropostas'>{item.business}</td>
-                            <td className='colunasTabelaPropostas'>{item.date}</td>
+                            <td className='colunasTabelaPropostas'> 
+                                <InputMask mask="99/99/9999" placeholder="DD/MM/AAAA" type="text" className="inputDadosTabela" value={item.date ? format(new Date(item.date), 'dd/MM/yyyy') : ''} />
+                            </td>
                             <td className='colunasTabelaPropostas'>{item.tipo == true ? item.razaoSocial : item.nomeCompleto}</td>
                             <td className='colunasTabelaPropostas'>{item.tipo == true ? item.cnpj : item.cpf}</td>
                             <td className='colunasTabelaPropostas'>{item.status}</td>
