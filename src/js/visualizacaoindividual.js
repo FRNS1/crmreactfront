@@ -24,8 +24,8 @@ function VisualizacaoIndividual() {
     const [valorDesejado, setValorDesejado] = useState('');
     const [taxa, setTaxa] = useState('');
     const [dados, setDados] = useState({
-        taxa:'',
-    }) 
+        taxa: '',
+    })
     const [corban, setCorban] = useState('');
     const [status, setStatus] = useState('');
     const [montante, setMontante] = useState('');
@@ -229,16 +229,22 @@ function VisualizacaoIndividual() {
         const handleCorbanChange = (value) => {
             setCorban(value);
         };
-        const handlePrazoChange = (event) => {
-            const novoPrazo = event.target.value;
-            setPrazo(novoPrazo);
+        const handlePrazoChange = (value) => {
+            setPrazo(value);
+        };
+        const handleObservacaoClienteChange = (value) => {
+            setObservacaoCliente(value);
+        };
+        const handleObservacaoAnalistaChange = (value) => {
+            setObservacaoAnalista(value);
         };
 
-        function sla(){
+
+        function sla() {
             console.log(taxa);
             console.log(corban);
         }
-        
+
         return (
             <div>
                 <form className='formularios'>
@@ -261,20 +267,22 @@ function VisualizacaoIndividual() {
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Taxa </label>
-                                <input
+                                <CurrencyInput
                                     name="taxa"
-                                    placeholder={taxa}
+                                    placeholder={`R$ ${taxa}`}
                                     onBlur={(event) => handleTaxaChange(event.target.value)}
                                     className="inputCad"
+                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Corban </label>
-                                <input
-                                    name="Corban"
-                                    placeholder={corban}
+                                <CurrencyInput
+                                    name="taxa"
+                                    placeholder={`R$ ${corban}`}
                                     onBlur={(event) => handleCorbanChange(event.target.value)}
                                     className="inputCad"
+                                    prefix="R$ "
                                 />
                             </div>
                         </div>
@@ -291,29 +299,21 @@ function VisualizacaoIndividual() {
                             <div className='divfield'>
                                 <label className="stringDados"> Montante </label>
                                 <CurrencyInput
-                                    name="totalMontante"
-                                    value={montante}
-                                    onValueChange={handleMontanteChange}
-                                    allowNegativeValue={false}
-                                    decimalSeparator=","
-                                    groupSeparator="."
-                                    prefix="R$ "
-                                    placeholder="R$ 0,00"
+                                    name="montante"
+                                    placeholder={`R$ ${montante}`}
+                                    onBlur={(event) => handleMontanteChange(event.target.value)}
                                     className="inputCad"
+                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Valor Liberado </label>
                                 <CurrencyInput
                                     name="valorliberado"
-                                    value={valorLiberado}
-                                    onValueChange={handleValorLiberadoChange}
-                                    allowNegativeValue={false}
-                                    decimalSeparator=","
-                                    groupSeparator="."
-                                    prefix="R$ "
-                                    placeholder="R$ 0,00"
+                                    placeholder={`R$ ${valorLiberado}`}
+                                    onBlur={(event) => handleValorLiberadoChange(event.target.value)}
                                     className="inputCad"
+                                    prefix="R$ "
                                 />
                             </div>
                         </div>
@@ -322,9 +322,8 @@ function VisualizacaoIndividual() {
                                 <label className="stringDados"> Prazo </label>
                                 <input
                                     name="prazo"
-                                    value={prazo}
-                                    allowNegativeValue={false}
-                                    onValueChange={handlePrazoChange}
+                                    placeholder={prazo}
+                                    onBlur={(event) => handlePrazoChange(event.target.value)}
                                     className="inputCad"
                                 />
                             </div>
@@ -349,14 +348,10 @@ function VisualizacaoIndividual() {
                                 <label className="stringDados"> Total de Juros </label>
                                 <CurrencyInput
                                     name="totalJuros"
-                                    value={totalJuros}
-                                    onValueChange={handleTotalJurosChange}
-                                    allowNegativeValue={false}
-                                    decimalSeparator=","
-                                    groupSeparator="."
-                                    prefix="R$ "
-                                    placeholder="R$ 0,00"
+                                    placeholder={`R$ ${totalJuros}`}
+                                    onBlur={(event) => handleTotalJurosChange(event.target.value)}
                                     className="inputCad"
+                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
@@ -383,11 +378,23 @@ function VisualizacaoIndividual() {
                         <div className='divrow'>
                             <div className='divfield'>
                                 <label className="stringDados"> Observação do Cliente </label>
-                                <input className="inputCad" type="text" value={observacaoCliente} />
+                                <input
+                                    name="observacaoCliente"
+                                    placeholder={observacaoCliente}
+                                    onBlur={(event) => handleObservacaoClienteChange(event.target.value)}
+                                    className="inputCad"
+                                    type="text"
+                                />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Observação do Analista </label>
-                                <input className="inputCad" type="text" value={observacaoAnalista} />
+                                <input
+                                    name="observacaoAnalista"
+                                    placeholder={observacaoAnalista}
+                                    onBlur={(event) => handleObservacaoAnalistaChange(event.target.value)}
+                                    className="inputCad"
+                                    type="text"
+                                />
                             </div>
                             <div className='divfield' style={{ opacity: 0 }} id="none">
                                 <label className="stringDados"> Disabled </label>
@@ -407,27 +414,55 @@ function VisualizacaoIndividual() {
 
     function BearusCredito() {
 
-        const handleValorCadinsChange = (value, name) => {
+        const handleScoreChange = (value) => {
+            setScore(value);
+        };
+        const handleRiscoChange = (value) => {
+            setRisco(value);
+        };
+        const handleQuantidadeTituloProtestadosChange = (value) => {
+            setNumTitulosProtestados(value);
+        };
+        const handleValorCadinsChange = (value) => {
             setValorCadins(value);
         };
-        const handleValorTitulosProtestadosChange = (value, name) => {
+        const handleValorTitulosProtestadosChange = (value) => {
             setValorTitulosProtestados(value);
         };
-        const handleValorPefinsChange = (value, name) => {
+        const handleQuantidadePefinsChange = (value) => {
+            setNumPefins(value);
+        };
+        const handleValorPefinsChange = (value) => {
             setValorPefins(value);
         };
-        const handleValorChequesDevolvidosChange = (value, name) => {
-            setValorChequesDevolvidos(value, name);
+        const handleQuantidadeChequesDevolvidosChange = (value) => {
+            setNumChequesDevolvidos(value);
         };
-        const handleValorProcessosChange = (value, name) => {
+        const handleValorChequesDevolvidosChange = (value) => {
+            setValorChequesDevolvidos(value);
+        };
+        const handleValorProcessosChange = (value) => {
             setValorProcessos(value);
         };
-        const handleDividaAtivaChange = (value, name) => {
+        const handleDividaAtivaChange = (value) => {
             setDividaAtiva(value);
         };
-        const handleValorISSChange = (value, name) => {
+        const handleValorISSChange = (value) => {
             setValorIss(value);
         };
+        const handleRefinsChange = (value) => {
+            setNumRefins(value);
+        };
+        const handleEmpresasNaoInformadasChange = (value) => {
+            setEmpresasNaoInformadas(value);
+        };
+        const handleQuantidadeProcessosChange = (value) => {
+            setNumProcessos(value);
+        }
+        const handleNumUfProcessosChange = (value) => {
+            setNumUfProcessos(value);
+        }
+
 
         return (
             <div>
@@ -437,15 +472,30 @@ function VisualizacaoIndividual() {
                         <div className='divrow'>
                             <div className='divfield'>
                                 <label className="stringDados"> Score </label>
-                                <input className="inputCad" type="text" value={score} />
+                                <input
+                                    name="score"
+                                    placeholder={score}
+                                    onBlur={(event) => handleScoreChange(event.target.value)}
+                                    className="inputCad"
+                                />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Risco </label>
-                                <input className="inputCad" type="number" value={risco} />
+                                <input
+                                    name="risco"
+                                    placeholder={risco}
+                                    onBlur={(event) => handleRiscoChange(event.target.value)}
+                                    className="inputCad"
+                                />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Quantidade de titulos protestados </label>
-                                <input className="inputCad" type="number" value={numTitulosProtestados} />
+                                <input
+                                    name="numTitulosProtestados"
+                                    placeholder={numTitulosProtestados}
+                                    onBlur={(event) => handleQuantidadeTituloProtestadosChange(event.target.value)}
+                                    className="inputCad"
+                                />
                             </div>
                         </div>
                         <div className='divrow'>
@@ -453,77 +503,81 @@ function VisualizacaoIndividual() {
                                 <label className="stringDados"> Valor dos titulos protestados </label>
                                 <CurrencyInput
                                     name="valortitulosprotestados"
-                                    value={valorTitulosProtestados}
-                                    onValueChange={handleValorTitulosProtestadosChange}
-                                    allowNegativeValue={false}
-                                    decimalSeparator=","
-                                    groupSeparator="."
-                                    prefix="R$ "
-                                    placeholder="R$ 0,00"
+                                    placeholder={`R$ ${valorTitulosProtestados}`}
+                                    onBlur={(event) => handleValorTitulosProtestadosChange(event.target.value)}
                                     className="inputCad"
+                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Refins </label>
-                                <input className="inputCad" type="number" value={numRefins} />
+                                <input
+                                    name="numRefins"
+                                    placeholder={numRefins}
+                                    onBlur={(event) => handleRefinsChange(event.target.value)}
+                                    className="inputCad"
+                                />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Cadins </label>
                                 <CurrencyInput
-                                    name="cadins"
-                                    value={valorCadins}
-                                    onValueChange={handleValorCadinsChange}
-                                    allowNegativeValue={false}
-                                    decimalSeparator=","
-                                    groupSeparator="."
-                                    prefix="R$ "
-                                    placeholder="R$ 0,00"
+                                    name="valorCadins"
+                                    placeholder={`R$ ${valorCadins}`}
+                                    onBlur={(event) => handleValorCadinsChange(event.target.value)}
                                     className="inputCad"
+                                    prefix="R$ "
                                 />
                             </div>
                         </div>
                         <div className='divrow'>
                             <div className='divfield'>
                                 <label className="stringDados"> Quantidade de cheques devolvidos </label>
-                                <input className="inputCad" type="number" value={numChequesDevolvidos} />
+                                <input
+                                    name="numChequesDevolvidos"
+                                    placeholder={numChequesDevolvidos}
+                                    onBlur={(event) => handleQuantidadeChequesDevolvidosChange(event.target.value)}
+                                    className="inputCad"
+                                />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Valor dos cheques devolvidos </label>
                                 <CurrencyInput
-                                    name="valorChequesDevolvidos"
-                                    value={valorChequesDevolvidos}
-                                    onValueChange={handleValorChequesDevolvidosChange}
-                                    allowNegativeValue={false}
-                                    decimalSeparator=","
-                                    groupSeparator="."
-                                    prefix="R$ "
-                                    placeholder="R$ 0,00"
+                                    name="valorCadins"
+                                    placeholder={`R$ ${valorChequesDevolvidos}`}
+                                    onBlur={(event) => handleValorChequesDevolvidosChange(event.target.value)}
                                     className="inputCad"
+                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
-                                <label className="stringDados"> Pefin </label>
-                                <input className="inputCad" type="number" value={numPefins} />
+                                <label className="stringDados"> Quantidade de Pefin </label>
+                                <input
+                                    name="numPefins"
+                                    placeholder={numPefins}
+                                    onBlur={(event) => handleQuantidadePefinsChange(event.target.value)}
+                                    className="inputCad"
+                                />
                             </div>
                         </div>
                         <div className='divrow'>
                             <div className='divfield'>
-                                <label className="stringDados"> Pefin </label>
+                                <label className="stringDados"> Valor de Pefin </label>
                                 <CurrencyInput
-                                    name="cadins"
-                                    value={valorPefins}
-                                    onValueChange={handleValorPefinsChange}
-                                    allowNegativeValue={false}
-                                    decimalSeparator=","
-                                    groupSeparator="."
-                                    prefix="R$ "
-                                    placeholder="R$ 0,00"
+                                    name="valorPefins"
+                                    placeholder={`R$ ${valorPefins}`}
+                                    onBlur={(event) => handleValorPefinsChange(event.target.value)}
                                     className="inputCad"
+                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Empresas não Informadas </label>
-                                <input className="inputCad" type="text" value={empresasNaoInformadas} />
+                                <input
+                                    name="empresasNaoInformadas"
+                                    placeholder={empresasNaoInformadas}
+                                    onBlur={(event) => handleEmpresasNaoInformadasChange(event.target.value)}
+                                    className="inputCad"
+                                />
                             </div>
                             <div className='divfield' style={{ opacity: 0 }} id="none">
                                 <label className="stringDados"> Disabled </label>
@@ -535,26 +589,32 @@ function VisualizacaoIndividual() {
                         <text className='textJuridico'> Jurídico </text>
                         <div className='divrow'>
                             <div className='divfield'>
-                                <label className="stringDados"> Processos </label>
-                                <input className="inputCad" type="number" value={numProcessos} />
-                            </div>
-                            <div className='divfield'>
-                                <label className="stringDados"> Processos </label>
-                                <CurrencyInput
-                                    name="valorProcessos"
-                                    value={valorProcessos}
-                                    onValueChange={handleValorProcessosChange}
-                                    allowNegativeValue={false}
-                                    decimalSeparator=","
-                                    groupSeparator="."
-                                    prefix="R$ "
-                                    placeholder="R$ 0,00"
+                                <label className="stringDados"> Quantidade de processos </label>
+                                <input
+                                    name="numProcessos"
+                                    placeholder={numProcessos}
+                                    onBlur={(event) => handleQuantidadeProcessosChange(event.target.value)}
                                     className="inputCad"
                                 />
                             </div>
                             <div className='divfield'>
+                                <label className="stringDados"> Valor dos processos </label>
+                                <CurrencyInput
+                                    name="valorProcessos"
+                                    placeholder={`R$ ${valorProcessos}`}
+                                    onBlur={(event) => handleValorProcessosChange(event.target.value)}
+                                    className="inputCad"
+                                    prefix="R$ "
+                                />
+                            </div>
+                            <div className='divfield'>
                                 <label className="stringDados"> UF Processos </label>
-                                <input className="inputCad" type="number" value={numUfProcessos} />
+                                <input
+                                    name="numUfProcessos"
+                                    placeholder={numUfProcessos}
+                                    onBlur={(event) => handleNumUfProcessosChange(event.target.value)}
+                                    className="inputCad"
+                                />
                             </div>
                         </div>
                         <div className='divrow'>
@@ -562,14 +622,10 @@ function VisualizacaoIndividual() {
                                 <label className="stringDados"> Divida Ativa </label>
                                 <CurrencyInput
                                     name="dividaAtiva"
-                                    value={dividaAtiva}
-                                    onValueChange={handleDividaAtivaChange}
-                                    allowNegativeValue={false}
-                                    decimalSeparator=","
-                                    groupSeparator="."
-                                    prefix="R$ "
-                                    placeholder="R$ 0,00"
+                                    placeholder={`R$ ${dividaAtiva}`}
+                                    onBlur={(event) => handleDividaAtivaChange(event.target.value)}
                                     className="inputCad"
+                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
@@ -580,15 +636,10 @@ function VisualizacaoIndividual() {
                                 <label className="stringDados"> ISS </label>
                                 <CurrencyInput
                                     name="valorIss"
-                                    type='text'
-                                    value={valorIss}
-                                    onValueChange={handleValorISSChange}
-                                    allowNegativeValue={false}
-                                    decimalSeparator=","
-                                    groupSeparator="."
-                                    prefix="R$ "
-                                    placeholder="R$ 0,00"
+                                    placeholder={`R$ ${valorIss}`}
+                                    onBlur={(event) => handleValorISSChange(event.target.value)}
                                     className="inputCad"
+                                    prefix="R$ "
                                 />
                             </div>
                         </div>
@@ -604,6 +655,86 @@ function VisualizacaoIndividual() {
     }
 
     function Bacen() {
+        const handleVencerValorTotalChange = (value) => {
+            setVencerValorTotal(value);
+        };
+        const handleVencerAte30DiasvencidosAte14DiasTotalChange = (value) => {
+            setVencerAte30DiasVencidosAte14Dias(value);
+        };
+        const handleVencer3160DiasChange = (value) => {
+            setVencer3160Dias(value);
+        };
+        const handleVencer6190DiasChange = (value) => {
+            setVencer6190Dias(value);
+        };
+        const handleVencer181360DiasChange = (value) => {
+            setVencer181360Dias(value);
+        };
+        const handleVencerAcima360DiasChange = (value) => {
+            setVencerAcima360Dias(value);
+        };
+        const handleVencerIndeterminadoChange = (value) => {
+            setVencerIndeterminado(value);
+        };
+        const handleVencidoTotalChange = (value) => {
+            setVencidoTotal(value);
+        };
+        const handleVencido1530DiasChange = (value) => {
+            setVencido1530Dias(value);
+        };
+        const handleVencido3160DiasChange = (value) => {
+            setVencido3160Dias(value);
+        };
+        const handleVencido6190DiasChange = (value) => {
+            setVencido6190Dias(value);
+        };
+        const handleVencido91180DiasChange = (value) => {
+            setVencido91180Dias(value);
+        };
+        const handleVencido181360DiasChange = (value) => {
+            setVencido181360Dias(value);
+        };
+        const handleVencidoAcima360DiasChange = (value) => {
+            setVencidoAcima360Dias(value);
+        };
+        const handlePrejuizoTotalChange = (value) => {
+            setPrejuizoTotal(value);
+        };
+        const handlePrejuizoAte12MesesChange = (value) => {
+            setPrejuizoAte12Meses(value);
+        };
+        const handlePrejuizoAcima12MesesChange = (value) => {
+            setPrejuizoAcima12Meses(value);
+        };
+        const handleCoobrigacaoTotalChange = (value) => {
+            setCoobrigacaoTotal(value);
+        };
+        const handleCoobrigacaoAssumidaChange = (value) => {
+            setCoobrigacaoAssumida(value);
+        };
+        const handleCoobrigacaoPrestadasChange = (value) => {
+            setCoobrigacaoPrestadas(value);
+        };
+        const handleCreditosLiberarTotalChange = (value) => {
+            setCreditosLiberarTotal(value);
+        };
+        const handleCreditosLiberarAte360DiasChange = (value) => {
+            setCreditosLiberarAte360Dias(value);
+        };
+        const handleCreditosLiberarAcima360DiasChange = (value) => {
+            setCreditosLiberarAcima360Dias(value);
+        };
+        const handleLimitesCreditoValorTotalChange = (value) => {
+            setLimitesCreditoValorTotal(value);
+        };
+        const handleLimitesCreditoVencimentoAte360DiasChange = (value) => {
+            setLimitesCreditosVencimentoAte360Dias(value);
+        };
+        const handleLimitesCreditoVencimentoAcima360DiasChange = (value) => {
+            setLimitesCreditosVencimentoAcima360Dias(value);
+        };
+
+
 
         return (
             <div>
@@ -618,13 +749,11 @@ function VisualizacaoIndividual() {
                                 <th className='colunasTabelaPropostasBacen'> Total </th>
                                 <th className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoValorTotal"
-                                        value={vencerValorTotal}
-                                        allowNegativeValue={false}
+                                        name="vencerValorTotal"
+                                        placeholder={`R$ ${vencerValorTotal}`}
+                                        onBlur={(event) => handleVencerValorTotalChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="thinputColunasTabelaPropostasBacen"
                                     />
                                 </th>
@@ -635,13 +764,11 @@ function VisualizacaoIndividual() {
                                 <td className='colunasTabelaPropostasBacen'> Até 30 dias e vencidos até 14 dias</td>
                                 <td className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoVencimentoAte360Dias"
-                                        value={vencerAte30DiasvencidosAte14Dias} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        name="vencerAte30DiasvencidosAte14Dias"
+                                        placeholder={`R$ ${vencerAte30DiasvencidosAte14Dias}`}
+                                        onBlur={(event) => handleVencerAte30DiasvencidosAte14DiasTotalChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -650,13 +777,11 @@ function VisualizacaoIndividual() {
                                 <td className='colunasTabelaPropostasBacen'> 31 a 60 dias</td>
                                 <td className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoVencimentoAte360Dias"
-                                        value={vencer3160Dias} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        name="vencer3160Dias"
+                                        placeholder={`R$ ${vencer3160Dias}`}
+                                        onBlur={(event) => handleVencer3160DiasChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -665,13 +790,11 @@ function VisualizacaoIndividual() {
                                 <td className='colunasTabelaPropostasBacen'> 61 a 90 dias</td>
                                 <td className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoVencimentoAte360Dias"
-                                        value={vencer6190Dias} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        name="vencer6190Dias"
+                                        placeholder={`R$ ${vencer6190Dias}`}
+                                        onBlur={(event) => handleVencer6190DiasChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -682,12 +805,10 @@ function VisualizacaoIndividual() {
                                     {/* OLHAR NOME DA VARIAVEL E ARRUMAR */}
                                     <CurrencyInput
                                         name="limitesCreditoVencimentoAte360Dias"
-                                        value={vencer181360Dias} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        placeholder={`R$ ${vencer181360Dias}`}
+                                        onBlur={(event) => handleVencer181360DiasChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -697,12 +818,10 @@ function VisualizacaoIndividual() {
                                 <td className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
                                         name="limitesCreditoVencimentoAte360Dias"
-                                        value={vencer181360Dias} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        placeholder={`R$ ${vencer181360Dias}`}
+                                        onBlur={(event) => handleVencer181360DiasChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -712,12 +831,10 @@ function VisualizacaoIndividual() {
                                 <td className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
                                         name="limitesCreditoVencimentoAte360Dias"
-                                        value={vencerAcima360Dias} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        placeholder={`R$ ${vencerAcima360Dias}`}
+                                        onBlur={(event) => handleVencerAcima360DiasChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -726,13 +843,11 @@ function VisualizacaoIndividual() {
                                 <td className='colunasTabelaPropostasBacen'> Indeterminado </td>
                                 <td className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoVencimentoAte360Dias"
-                                        value={vencerIndeterminado} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        name="vencerIndeterminado"
+                                        placeholder={`R$ ${vencerIndeterminado}`}
+                                        onBlur={(event) => handleVencerIndeterminadoChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -752,12 +867,10 @@ function VisualizacaoIndividual() {
                                 <th className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
                                         name="limitesCreditoValorTotal"
-                                        value={vencidoTotal}
-                                        allowNegativeValue={false}
+                                        placeholder={`R$ ${vencidoTotal}`}
+                                        onBlur={(event) => handleVencidoTotalChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="thinputColunasTabelaPropostasBacen"
                                     />
                                 </th>
@@ -768,13 +881,11 @@ function VisualizacaoIndividual() {
                                 <td className='colunasTabelaPropostasBacen'> 15 a 30 dias </td>
                                 <td className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoVencimentoAte360Dias"
-                                        value={vencido1530Dias} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        name="vencido1530Dias"
+                                        placeholder={`R$ ${vencido1530Dias}`}
+                                        onBlur={(event) => handleVencido1530DiasChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -783,13 +894,11 @@ function VisualizacaoIndividual() {
                                 <td className='colunasTabelaPropostasBacen'> 31 a 60 dias</td>
                                 <td className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoVencimentoAte360Dias"
-                                        value={vencido3160Dias} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        name="vencido3160Dias"
+                                        placeholder={`R$ ${vencido3160Dias}`}
+                                        onBlur={(event) => handleVencido3160DiasChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -798,13 +907,11 @@ function VisualizacaoIndividual() {
                                 <td className='colunasTabelaPropostasBacen'> 61 a 90 dias</td>
                                 <td className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoVencimentoAte360Dias"
-                                        value={vencido6190Dias} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        name="vencido6190Dias"
+                                        placeholder={`R$ ${vencido6190Dias}`}
+                                        onBlur={(event) => handleVencido6190DiasChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -813,13 +920,11 @@ function VisualizacaoIndividual() {
                                 <td className='colunasTabelaPropostasBacen'> 91 a 180 dias</td>
                                 <td className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoVencimentoAte360Dias"
-                                        value={vencido91180Dias} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        name="vencido91180Dias"
+                                        placeholder={`R$ ${vencido91180Dias}`}
+                                        onBlur={(event) => handleVencido91180DiasChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -828,13 +933,11 @@ function VisualizacaoIndividual() {
                                 <td className='colunasTabelaPropostasBacen'> 181 a 360 dias</td>
                                 <td className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoVencimentoAte360Dias"
-                                        value={vencido181360Dias} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        name="vencido181360Dias"
+                                        placeholder={`R$ ${vencido181360Dias}`}
+                                        onBlur={(event) => handleVencido181360DiasChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -843,13 +946,11 @@ function VisualizacaoIndividual() {
                                 <td className='colunasTabelaPropostasBacen'> Acima de 360 dias </td>
                                 <td className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoVencimentoAte360Dias"
-                                        value={vencidoAcima360Dias} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        name="vencidoAcima360Dias"
+                                        placeholder={`R$ ${vencidoAcima360Dias}`}
+                                        onBlur={(event) => handleVencidoAcima360DiasChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -868,13 +969,11 @@ function VisualizacaoIndividual() {
                                 <th className='colunasTabelaPropostasBacen'> Total </th>
                                 <th className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoValorTotal"
-                                        value={prejuizoTotal}
-                                        allowNegativeValue={false}
+                                        name="prejuizoTotal"
+                                        placeholder={`R$ ${prejuizoTotal}`}
+                                        onBlur={(event) => handlePrejuizoTotalChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="thinputColunasTabelaPropostasBacen"
                                     />
                                 </th>
@@ -885,13 +984,11 @@ function VisualizacaoIndividual() {
                                 <td className='colunasTabelaPropostasBacen'> Até 12 meses </td>
                                 <td className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoVencimentoAte360Dias"
-                                        value={prejuizoAte12Meses} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        name="prejuizoAte12Meses"
+                                        placeholder={`R$ ${prejuizoAte12Meses}`}
+                                        onBlur={(event) => handlePrejuizoAte12MesesChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -900,13 +997,11 @@ function VisualizacaoIndividual() {
                                 <td className='colunasTabelaPropostasBacen'> Acima de 12 meses </td>
                                 <td className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoVencimentoAte360Dias"
-                                        value={prejuizoAcima12Meses} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        name="prejuizoAcima12Meses"
+                                        placeholder={`R$ ${prejuizoAcima12Meses}`}
+                                        onBlur={(event) => handlePrejuizoAcima12MesesChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -925,13 +1020,11 @@ function VisualizacaoIndividual() {
                                 <th className='colunasTabelaPropostasBacen'> Total </th>
                                 <th className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoValorTotal"
-                                        value={coobrigacaoTotal}
-                                        allowNegativeValue={false}
+                                        name="prejuizoTcoobrigacaoTotalotal"
+                                        placeholder={`R$ ${coobrigacaoTotal}`}
+                                        onBlur={(event) => handleCoobrigacaoTotalChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="thinputColunasTabelaPropostasBacen"
                                     />
                                 </th>
@@ -942,13 +1035,11 @@ function VisualizacaoIndividual() {
                                 <td className='colunasTabelaPropostasBacen'> Coobrigação Assumida </td>
                                 <td className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoVencimentoAte360Dias"
-                                        value={coobrigacaoAssumida} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        name="coobrigacaoAssumida"
+                                        placeholder={`R$ ${coobrigacaoAssumida}`}
+                                        onBlur={(event) => handleCoobrigacaoAssumidaChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -957,13 +1048,11 @@ function VisualizacaoIndividual() {
                                 <td className='colunasTabelaPropostasBacen'> Coobrigação Prestadas </td>
                                 <td className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoVencimentoAte360Dias"
-                                        value={coobrigacaoPrestadas} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        name="coobrigacaoPrestadas"
+                                        placeholder={`R$ ${coobrigacaoPrestadas}`}
+                                        onBlur={(event) => handleCoobrigacaoPrestadasChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -982,13 +1071,11 @@ function VisualizacaoIndividual() {
                                 <th className='colunasTabelaPropostasBacen'> Total </th>
                                 <td className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoValorTotal"
-                                        value={creditosLiberarTotal} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        name="creditosLiberarTotal"
+                                        placeholder={`R$ ${creditosLiberarTotal}`}
+                                        onBlur={(event) => handleCreditosLiberarTotalChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="thinputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -999,13 +1086,11 @@ function VisualizacaoIndividual() {
                                 <td className='colunasTabelaPropostasBacen'> Créditos a Liberar até 360 dias </td>
                                 <td className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoVencimentoAte360Dias"
-                                        value={creditosLiberarAte360Dias} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        name="creditosLiberarAte360Dias"
+                                        placeholder={`R$ ${creditosLiberarAte360Dias}`}
+                                        onBlur={(event) => handleCreditosLiberarAte360DiasChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1014,13 +1099,11 @@ function VisualizacaoIndividual() {
                                 <td className='colunasTabelaPropostasBacen'> Créditos a Liberar acima de 360 dias </td>
                                 <td className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
-                                        name="limitesCreditoVencimentoAte360Dias"
-                                        value={creditosLiberarAcima360Dias} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        name="creditosLiberarAcima360Dias"
+                                        placeholder={`R$ ${creditosLiberarAcima360Dias}`}
+                                        onBlur={(event) => handleCreditosLiberarAcima360DiasChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1040,12 +1123,10 @@ function VisualizacaoIndividual() {
                                 <th className='colunasTabelaPropostasBacen'>
                                     <CurrencyInput
                                         name="limitesCreditoValorTotal"
-                                        value={limitesCreditoValorTotal} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        placeholder={`R$ ${limitesCreditoValorTotal}`}
+                                        onBlur={(event) => handleLimitesCreditoValorTotalChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="thinputColunasTabelaPropostasBacen"
                                     />
                                 </th>
@@ -1058,12 +1139,10 @@ function VisualizacaoIndividual() {
                                     {/* Formate o valor usando CurrencyInput */}
                                     <CurrencyInput
                                         name="limitesCreditoVencimentoAte360Dias"
-                                        value={limitesCreditoVencimentoAte360Dias} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        placeholder={`R$ ${limitesCreditoVencimentoAte360Dias}`}
+                                        onBlur={(event) => handleLimitesCreditoVencimentoAte360DiasChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1071,15 +1150,12 @@ function VisualizacaoIndividual() {
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> Limites de Crédito com vencimento acima de 360 dias </td>
                                 <td className='colunasTabelaPropostasBacen'>
-                                    {/* Formate o valor usando CurrencyInput */}
                                     <CurrencyInput
                                         name="limitesCreditoVencimentoAcima360Dias"
-                                        value={limitesCreditoVencimentoAcima360Dias} // Valor a ser formatado
-                                        allowNegativeValue={false}
+                                        placeholder={`R$ ${limitesCreditoVencimentoAcima360Dias}`}
+                                        onBlur={(event) => handleLimitesCreditoVencimentoAcima360DiasChange(event.target.value)}
+                                        className="inputCad"
                                         prefix="R$ "
-                                        decimalSeparator=","
-                                        groupSeparator="."
-                                        placeholder="R$ 0,00"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1098,21 +1174,36 @@ function VisualizacaoIndividual() {
     }
 
     function AllsData() {
-        const handleValorPendenciasFinanceirasAllsChange = (value, name) => {
+        const handleValorPendenciasFinanceirasAllsChange = (value) => {
             setValorPendenciasFinanceirasAlls(value);
         };
-        const handleValorRecuperacoesAllsChange = (value, name) => {
+        const handleValorRecuperacoesAllsChange = (value) => {
             setValorRecuperacoesAlls(value);
         };
-        const handleValorProtestosAllsChange = (value, name) => {
+        const handleValorProtestosAllsChange = (value) => {
             setValorProtestosAlls(value);
         };
-        const handleLimiteSugeridoAllsChange = (value, name) => {
+        const handleLimiteSugeridoAllsChange = (value) => {
             setLimiteSugeridoAlls(value);
         };
-        const handleValorRestricoesAllsChange = (value, name) => {
+        const handleValorRestricoesAllsChange = (value) => {
             setValorRestricoesAlls(value);
         };
+        const handleNumPendenciasFinanceirasAllsChange = (value) => {
+            setNumPendenciasFinanceirasAlls(value);
+        };
+        const handleNumRecuperacoesAllsChange = (value) => {
+            setNumRecuperacoesAlls(value);
+        }
+        const handleNumChequeSemFundoAllsChange = (value) => {
+            setNumChequeSemFundoAlls(value);
+        }
+        const handleNumProtestosAllsChange = (value) => {
+            setNumProtestosAlls(value);
+        }
+        const handleNumRestricoesAllsChange = (value) => {
+            setNumRestricoesAlls(value);
+        }
 
 
         return (
@@ -1123,25 +1214,31 @@ function VisualizacaoIndividual() {
                         <div className='divrow'>
                             <div className='divfield'>
                                 <label className="stringDados"> Quantidade de pendências financeiras </label>
-                                <input className="inputCad" type="number" value={NumPendenciasFinanceirasAlls} />
+                                <input
+                                    name="NumPendenciasFinanceirasAlls"
+                                    placeholder={NumPendenciasFinanceirasAlls}
+                                    onBlur={(event) => handleNumPendenciasFinanceirasAllsChange(event.target.value)}
+                                    className="inputCad"
+                                />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Valor das pendências financeiras </label>
                                 <CurrencyInput
                                     name="ValorPendenciasFinanceirasAlls"
-                                    value={ValorPendenciasFinanceirasAlls}
-                                    onValueChange={handleValorPendenciasFinanceirasAllsChange}
-                                    allowNegativeValue={false}
-                                    decimalSeparator=","
-                                    groupSeparator="."
-                                    prefix="R$ "
-                                    placeholder="R$ 0,00"
+                                    placeholder={`R$ ${ValorPendenciasFinanceirasAlls}`}
+                                    onBlur={(event) => handleValorPendenciasFinanceirasAllsChange(event.target.value)}
                                     className="inputCad"
+                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Quantidade de recuperação </label>
-                                <input className="inputCad" type="number" value={NumRecuperacoesAlls} />
+                                <input
+                                    name="NumRecuperacoesAlls"
+                                    placeholder={NumRecuperacoesAlls}
+                                    onBlur={(event) => handleNumRecuperacoesAllsChange(event.target.value)}
+                                    className="inputCad"
+                                />
                             </div>
                         </div>
                         <div className='divrow'>
@@ -1149,57 +1246,60 @@ function VisualizacaoIndividual() {
                                 <label className="stringDados"> Valor da Recuperação </label>
                                 <CurrencyInput
                                     name="valorRecuperacoesAlls"
-                                    value={valorRecuperacoesAlls}
-                                    onValueChange={handleValorRecuperacoesAllsChange}
-                                    allowNegativeValue={false}
-                                    decimalSeparator=","
-                                    groupSeparator="."
-                                    prefix="R$ "
-                                    placeholder="R$ 0,00"
+                                    placeholder={`R$ ${valorRecuperacoesAlls}`}
+                                    onBlur={(event) => handleValorRecuperacoesAllsChange(event.target.value)}
                                     className="inputCad"
+                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Quantidade de cheque sem fundo </label>
-                                <input className="inputCad" type="number" value={NumChequeSemFundoAlls} />
+                                <input
+                                    name="NumChequeSemFundoAlls"
+                                    placeholder={NumChequeSemFundoAlls}
+                                    onBlur={(event) => handleNumChequeSemFundoAllsChange(event.target.value)}
+                                    className="inputCad"
+                                />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Quantidade de protestos </label>
-                                <input className="inputCad" type="number" value={NumProtestosAlls} />
+                                <input
+                                    name="NumProtestosAlls"
+                                    placeholder={NumProtestosAlls}
+                                    onBlur={(event) => handleNumProtestosAllsChange(event.target.value)}
+                                    className="inputCad"
+                                />
                             </div>
                         </div>
                         <div className='divrow'>
                             <div className='divfield'>
                                 <label className="stringDados"> Valor dos protestos </label>
                                 <CurrencyInput
-                                    name="valorRecuperacoesAlls"
-                                    value={valorProtestosAlls}
-                                    onValueChange={handleValorProtestosAllsChange}
-                                    allowNegativeValue={false}
-                                    decimalSeparator=","
-                                    groupSeparator="."
-                                    prefix="R$ "
-                                    placeholder="R$ 0,00"
+                                    name="valorProtestosAlls"
+                                    placeholder={`R$ ${valorProtestosAlls}`}
+                                    onBlur={(event) => handleValorProtestosAllsChange(event.target.value)}
                                     className="inputCad"
+                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Limite Sugerido </label>
                                 <CurrencyInput
                                     name="limiteSugeridoAlls"
-                                    value={limiteSugeridoAlls}
-                                    onValueChange={handleLimiteSugeridoAllsChange}
-                                    allowNegativeValue={false}
-                                    decimalSeparator=","
-                                    groupSeparator="."
-                                    prefix="R$ "
-                                    placeholder="R$ 0,00"
+                                    placeholder={`R$ ${limiteSugeridoAlls}`}
+                                    onBlur={(event) => handleLimiteSugeridoAllsChange(event.target.value)}
                                     className="inputCad"
+                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Quantidade de restrições </label>
-                                <input className="inputCad" type="number" value={NumRestricoesAlls} />
+                                <input
+                                    name="NumRestricoesAlls"
+                                    placeholder={NumRestricoesAlls}
+                                    onBlur={(event) => handleNumRestricoesAllsChange(event.target.value)}
+                                    className="inputCad"
+                                />
                             </div>
                         </div>
                         <div className='divrow'>
@@ -1207,14 +1307,10 @@ function VisualizacaoIndividual() {
                                 <label className="stringDados"> Valor das restrições </label>
                                 <CurrencyInput
                                     name="valorRestricoesAlls"
-                                    value={valorRestricoesAlls}
-                                    onValueChange={handleValorRestricoesAllsChange}
-                                    allowNegativeValue={false}
-                                    decimalSeparator=","
-                                    groupSeparator="."
-                                    prefix="R$ "
-                                    placeholder="R$ 0,00"
+                                    placeholder={`R$ ${valorRestricoesAlls}`}
+                                    onBlur={(event) => handleValorRestricoesAllsChange(event.target.value)}
                                     className="inputCad"
+                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield' style={{ opacity: 0 }} id="none">
