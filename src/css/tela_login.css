@@ -1,10 +1,4 @@
-  @font-face {
-  font-family: 'HK Grotesk Regular Legacy';
-  src: url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff2') format('woff2'),
-  url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  }
+
 
 .container {
   height: 100vh;
@@ -25,7 +19,6 @@
   width: 38vh; /*define a posição na horizontal da string*/
   color: white; /*define a cor da string*/
   font-size: 2vh;
-  font-family: 'HK Grotesk Regular Legacy';
   }
 
 .containerInput {
@@ -36,7 +29,6 @@
   padding: 5px 10px;
   text-align: start;
   font-size: 2vh;
-  font-family: 'HK Grotesk Regular Legacy';
   }
 
 .deltaimg{
@@ -55,13 +47,11 @@
   text-align: center;
   font-size: 2vh;
   cursor: pointer;
-  font-family: 'HK Grotesk Regular Legacy';
 }
 
 .stringEntrar{
   text-align: center;
   font-size: 2vh;
-  font-family: 'HK Grotesk Regular Legacy';
   color: #FFFFFF;
 }
 
@@ -70,7 +60,6 @@
   width: 38vh; /*define a posição na horizontal da string*/
   color: white; /*define a cor da string*/
   font-size: 2vh;
-  font-family: 'HK Grotesk Regular Legacy';
 }
 .erro {
   padding: 1vh;

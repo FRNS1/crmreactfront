@@ -1,16 +1,4 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'HK Grotesk Regular Legacy'
-  }
-  
-  @font-face {
-    font-family: 'HK Grotesk Regular Legacy';
-    src: url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff2') format('woff2'),
-    url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  }
+
 
 .navbar {
     display: flex;
@@ -23,7 +11,6 @@
     height: 4vh;
     margin: 0 auto;
     box-shadow: 2vh 0vh 2vh rgba(122, 58, 206, 0.2);
-    font-family: 'HK Grotesk Regular Legacy';
     position: absolute;
       right: 0;
     }

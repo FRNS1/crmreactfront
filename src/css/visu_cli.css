@@ -1,10 +1,4 @@
-@font-face {
-    font-family: 'HK Grotesk Regular Legacy';
-    src: url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff2') format('woff2'),
-    url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-    }
+
 
 .rowbotoes {
     display: flex;
@@ -48,7 +42,6 @@
     width: 48vh;
     text-align: start;
     font-size: 2vh;
-    font-family: 'HK Grotesk Regular Legacy';
 }
 
 .tabelaPropostas {
@@ -57,7 +50,6 @@
     border-collapse: collapse;
     align-items: center;
     justify-content: center;
-    font-family: 'HK Grotesk Regular Legacy';
 }
 
 .linhasTabelaPropostas{
@@ -83,12 +75,10 @@
     width: 8vh;
     height: 4vh;
     text-align: center;
-    font-family: 'HK Grotesk Regular Legacy';
 }
 
 .stringVer{
     font-size: 2vh;
-    font-family: 'HK Grotesk Regular Legacy';
 }
 
 .divbotaoCadastrarNovoCliente{
@@ -105,10 +95,8 @@
     width: 25vh;
     height: 4vh;
     text-align: center;
-    font-family: 'HK Grotesk Regular Legacy';
 }
 
 .stringCadastrarNovoCliente{
     font-size: 2vh;
-    font-family: 'HK Grotesk Regular Legacy';
 }

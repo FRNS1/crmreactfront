@@ -1,10 +1,4 @@
-@font-face {
-    font-family: 'HK Grotesk Regular Legacy';
-    src: url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff2') format('woff2'),
-    url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-    }
+
 
 .containerGeral {
   height: 85vh;
@@ -12,23 +6,19 @@
   position: absolute;
   top: 10vh;
   left: 30vh;
-  font-family: 'HK Grotesk Regular Legacy'
 }
 
 .stringSelect {
   font-size: 2vh;
-  font-family: 'HK Grotesk Regular Legacy';
 }
 
 .caixaOption {
   font-size: 2vh;
   size: 4vh;
-  font-family: 'HK Grotesk Regular Legacy';
 }
 
 .stringOption {
   font-size: 2vh;
-  font-family: 'HK Grotesk Regular Legacy';
 }
 
 .divrow {
@@ -63,14 +53,12 @@
   text-align: start;
   font-size: 2vh;
   padding-left: 0.5vh;
-  font-family: 'HK Grotesk Regular Legacy';
 }
 
 .classesForm {
   padding-left: 3vh;
   font-size: 2.5vh;
   font-weight: bold;
-  font-family: 'HK Grotesk Regular Legacy';
 }
 
 .botaoEnviar {
@@ -83,10 +71,8 @@
   padding: 1vh 10vh;
   width: 50vh;
   text-align: center;
-  font-family: 'HK Grotesk Regular Legacy';
 }
 
 .stringEnviar {
   font-size: 2vh;
-  font-family: 'HK Grotesk Regular Legacy';
 }

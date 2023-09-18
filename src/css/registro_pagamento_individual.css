@@ -1,10 +1,4 @@
-@font-face {
-    font-family: 'HK Grotesk Regular Legacy';
-    src: url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff2') format('woff2'),
-    url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    }
+
 
     .tabelaPagamentosIndividual{
         margin-top: 2vh;
