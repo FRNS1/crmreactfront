@@ -85,7 +85,6 @@ function Telapessoas() {
               <tr className='textodados' key={customer.customerId}>
                 <td>{customer.cpf == null ? customer.razaoSocial : customer.nome}</td>
                 <td>{customer.cpf == null ? 'PJ' : 'PF'}</td>
-                {/* NAO NECESSITA MASCARAR POIS OS DADOS JA VEM MASCARADOS */}
                 <td>{customer.cpf == null ? customer.cnpj : customer.cpf}</td>
                 <td>{customer.email == 'nan' ? 'Sem email' : customer.email}</td>
                 <td>{customer.telefone == 'nan' ? 'Sem telefone' : customer.telefone}</td>
