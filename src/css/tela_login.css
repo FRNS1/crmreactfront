@@ -1,4 +1,20 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'HK Grotesk Regular Legacy'
+}
 
+@font-face {
+  font-family: 'HK Grotesk Regular Legacy';
+  src: url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff2') format('woff2'),
+  url('..\\..\\public\\fonts\\HKGrotesk-RegularLegacy.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  }
+
+  .body{
+    background-color: #081535;
+  }
 
 .container {
   height: 100vh;
@@ -6,19 +22,14 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #081535;
   }
 
-.title {
-  color: white;
-  font-size: 85px;
-  }
-
-.stringInput {
+.labelInput {
   height: 2.5vh;
   width: 38vh; /*define a posição na horizontal da string*/
   color: white; /*define a cor da string*/
   font-size: 2vh;
+  font-family: 'HK Grotesk Regular Legacy';
   }
 
 .containerInput {
@@ -29,6 +40,7 @@
   padding: 5px 10px;
   text-align: start;
   font-size: 2vh;
+  font-family: 'HK Grotesk Regular Legacy';
   }
 
 .deltaimg{
@@ -53,6 +65,7 @@
   text-align: center;
   font-size: 2vh;
   color: #FFFFFF;
+  font-family: 'HK Grotesk Regular Legacy';
 }
 
 .esqueceuSenha{
@@ -60,7 +73,9 @@
   width: 38vh; /*define a posição na horizontal da string*/
   color: white; /*define a cor da string*/
   font-size: 2vh;
+  font-family: 'HK Grotesk Regular Legacy';
 }
+
 .erro {
   padding: 1vh;
   color: white;
