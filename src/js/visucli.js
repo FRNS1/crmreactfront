@@ -135,7 +135,7 @@ function Visucli() {
 
     async function getCustomerProposal() {
         const token = Cookies.get('token');
-        const urlProposal = `http://127.0.0.1:8080/api/v1/proposal/getbyuser/${Cookies.get('clienteSelecionado')}`
+        const urlProposal = `http://35.175.231.117:8080/api/v1/proposal/getbyuser/${Cookies.get('clienteSelecionado')}`
         try {
             const responseProposals = await axios.get(urlProposal,
                 {
@@ -154,7 +154,7 @@ function Visucli() {
 
     async function getCustomerData() {
         const token = Cookies.get('token');
-        const url = `http://127.0.0.1:8080/api/v1/customers/getbyid/${Cookies.get('clienteSelecionado')}`
+        const url = `http://35.175.231.117:8080/api/v1/customers/getbyid/${Cookies.get('clienteSelecionado')}`
         try {
             const response = await axios.get(url,
                 {

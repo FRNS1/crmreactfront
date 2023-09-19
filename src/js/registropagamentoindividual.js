@@ -29,7 +29,7 @@ function RegistroPagamentoIndividual() {
             redirect: 'follow'
         };
 
-        const urlLoan = `http://127.0.0.1:8080/api/v1/proposal/loans/getproposal/info/${proposalId}`;
+        const urlLoan = `http://35.175.231.117:8080/api/v1/proposal/loans/getproposal/info/${proposalId}`;
     
         try {
             const response = await fetch(urlLoan, requestOptions);
