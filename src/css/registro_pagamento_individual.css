@@ -7,7 +7,7 @@
         text-align: center;
         justify-content: center;
         border-collapse: collapse;
-        font-family: 'HK Grotesk Regular Legacy';
+        font-family: sans-serif;
     }
     
     .tabelaPagamentosIndividual td {
@@ -74,7 +74,8 @@
     .stringObservacao{
         justify-content:left;
         font-size: 2vh;
-        font-family: 'HK Grotesk Regular Legacy';
+        font-family: sans-serif;
+            ;
     }
 
     .divcaixaSelect{
@@ -93,12 +94,14 @@
         width: 40vh;
         height: 4vh;
         font-size: 2vh;
-        font-family: 'HK Grotesk Regular Legacy';
+        font-family: sans-serif;
+            ;
     }
 
     .inputStatus{
         font-size: 2vh;
-        font-family: 'HK Grotesk Regular Legacy';
+        font-family: sans-serif;
+            ;
     }
 
     .botaoEnviarSelect{
@@ -118,14 +121,16 @@
         text-align: center;
         justify-content: center;
         border-collapse: collapse;
-        font-family: 'HK Grotesk Regular Legacy';
+        font-family: sans-serif;
+            ;
     }
 
     .tabelaStatus{
         width: 75%;
         justify-content: center;
         border-collapse: collapse;
-        font-family: 'HK Grotesk Regular Legacy';
+        font-family: sans-serif;
+            ;
     }
 
     .tabelaStatus th{

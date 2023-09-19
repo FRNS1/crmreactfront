@@ -21,7 +21,7 @@ function RegistroPagamentos() {
         };
     
         try {
-            const response = await fetch("http://127.0.0.1:8080/api/v1/payments/getloans", requestOptions);
+            const response = await fetch("http://35.175.231.117:8080/api/v1/payments/getloans", requestOptions);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
