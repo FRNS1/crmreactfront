@@ -106,20 +106,18 @@ function Cadastrocli() {
     const grupo = Cookies.get('usergroup');
     const userid = Cookies.get('userid');
     const url = 'http://35.175.231.117:8080/api/v1/customers/register'
-    alert(selectedOption);
     if (selectedOption === 'formpj'){
-      alert("TA ERRADO");
       try{
         const response = await axios.post(url, {
           is_cnpj: true,
           nome_fantasia: nomeFantasia,
           razao_social: razaoSocial,
-          cnpj: cnpj,
+          cnpj: cnpj.replace(".", "").replace("-", "").replace("/", ""),
           segmento: segmento,
           data_abertura: dataAbertura,
           email: email,
-          telefone: telefone,
-          cep: cep,
+          telefone: telefone.replace("(", "").replace(")", "").replace(" ", "").replace("-", ""),
+          cep: cep.replace(".", "").replace("-", ""),
           logradouro: logradouro,
           bairro: bairro,
           cidade: cidade,
@@ -142,19 +140,18 @@ function Cadastrocli() {
         console.log('error', error)
       }
     }else {
-      alert("TA CERTO");
       try{
         const response = await axios.post(url, {
           is_cnpj: false,
           nome_completo: nomeCompleto,
-          cpf: cpf,
+          cpf: cpf.replace(".", "").replace("-", ""),
           data_nascimento: dataNascimento,
           escolaridade: escolaridade,
           genero: genero,
           ocupacao: ocupacao,
           email: email,
-          telefone: telefone,
-          cep: cep,
+          telefone: telefone.replace("(", "").replace(")", "").replace(" ", "").replace("-", ""),
+          cep: cep.replace(".", "").replace("-", ""),
           logradouro: logradouro,
           bairro: bairro,
           cidade: cidade,

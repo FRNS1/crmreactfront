@@ -196,7 +196,27 @@ function VisualizacaoIndividual() {
         }
     }
 
+    async function sendInfos(){
+        
+    }
+
     async function sendBureausCredito() {
+
+    }
+
+    async function sendBacen(){
+
+    }
+
+    async function sendAllsData(){
+
+    }
+
+    async function sendObs(){
+
+    }
+
+    async function sendFiles(){
 
     }
 
