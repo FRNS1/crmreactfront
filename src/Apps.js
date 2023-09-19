@@ -51,7 +51,7 @@ const ButtonPage = () => {
   }
 
   async function handleButtonClick() {
-    const apiUrl = "http://54.198.255.134:8080/api/v1/users/login";
+    const apiUrl = "http://35.175.231.117:8080/api/v1/users/login";
   
     const requestData = {
       username: `${user}`,

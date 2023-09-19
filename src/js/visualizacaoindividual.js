@@ -103,7 +103,7 @@ function VisualizacaoIndividual() {
 
     async function getDataProposal() {
         const token = Cookies.get('token');
-        const url = `http://127.0.0.1:8080/api/v1/proposal/getbyid/${Cookies.get('propostaSelecionada')}`;
+        const url = `http://35.175.231.117:8080/api/v1/proposal/getbyid/${Cookies.get('propostaSelecionada')}`;
         try {
             const response = await axios.get(
                 url,

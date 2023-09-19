@@ -20,7 +20,7 @@ function VisualizacaoPropostas() {
         const token = Cookies.get('token');
         const grupo = Cookies.get('usergroup');
         const userid = Cookies.get('userid');
-        const url = 'http://127.0.0.1:8080/api/v1/proposal/getcustomers';
+        const url = 'http://35.175.231.117:8080/api/v1/proposal/getcustomers';
         try {
             const response = await axios.post(
                 url,
