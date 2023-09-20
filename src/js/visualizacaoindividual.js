@@ -230,6 +230,42 @@ function VisualizacaoIndividual() {
     }
 
     async function sendBureausCredito() {
+        const token = Cookies.get('token');
+        const urlUpdateAnalytics = 'http://35.175.231.117:8080/api/v1/analytics/update';
+    
+        const analyticsUpdateDTO = {
+            proposalId: Cookies.get('propostaSelecionada'),
+            numTitulosProtestados: numTitulosProtestados,
+            score: score,
+            numRefins: numRefins,
+            valorCadins: valorCadins,
+            valorIss: valorIss,
+            numProcessos: numProcessos,
+            valorProcessos: valorProcessos,
+            numUfProcessos: numUfProcessos,
+            dividaAtiva: dividaAtiva,
+            valorTitulosProtestados: valorTitulosProtestados,
+            risco: risco,
+            pep: pep,
+            numChequesDevolvidos: numChequesDevolvidos,
+            valorChequesDevolvidos: valorChequesDevolvidos,
+            valorPefins: valorPefins,
+            numPefins: numPefins,
+            empresasNaoInformadas: empresasNaoInformadas
+        };
+    
+        try {
+            const responseUpdateInfos = await axios.post(urlUpdateAnalytics, analyticsUpdateDTO, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+            console.log('Dados enviados com sucesso:', responseUpdateInfos.data);
+            alert("Dados atualizados com sucesso")
+        } catch (erro) {
+            console.error('Erro ao enviar os dados:', erro);
+        }
 
     }
 
@@ -448,8 +484,8 @@ function VisualizacaoIndividual() {
                         </div>
                     </div>
                 </form>
-                <div className='divbotaoEnviarObservacoes'>
-                    <button className='botaoEnviarObservacoes' onClick={sendInfos}>
+                <div className='divbotaoEnviarObservacoes' onClick={sendInfos}>
+                    <button className='botaoEnviarObservacoes'>
                         <span className='stringEnviarDados'> Salvar </span>
                     </button>
                 </div>
@@ -683,7 +719,7 @@ function VisualizacaoIndividual() {
                         </div>
                     </div>
                 </form>
-                <div className='divbotaoEnviarObservacoes'>
+                <div className='divbotaoEnviarObservacoes' onClick={sendBureausCredito}>
                     <button className='botaoEnviarObservacoes'>
                         <span className='stringEnviarDados'> Salvar </span>
                     </button>
