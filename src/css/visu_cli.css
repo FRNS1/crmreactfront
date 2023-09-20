@@ -45,6 +45,7 @@
 }
 
 .tabelaPropostas {
+    margin-top: 1vh;
     width: 100%;
     font-size: 2vh;
     border-collapse: collapse;
@@ -99,4 +100,19 @@
 
 .stringCadastrarNovoCliente{
     font-size: 2vh;
+}
+
+.botaoCadastrarProposta{
+    border-radius: 1vh;
+    cursor: pointer;
+    width: 20vh;
+    height: 4vh;
+    font-size: 2vh;
+    background-color: #081535;
+    color: white;
+}
+
+.divbotaoCadastrarProposta{
+    display: flex;
+    justify-content: end;
 }

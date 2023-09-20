@@ -1,0 +1,21 @@
+.inputPesquisa{
+    height: 4vh;
+    width: 30vh;
+    border-radius:1vh;
+    padding-left: 1vh;
+    font-size: 2vh;
+}
+
+.botaoPesquisa{
+    margin-left: 1vh;
+    height: 4.25vh;
+    width: 5vh;
+    border-radius: 1vh;
+    cursor: pointer;
+    background-color: #081535 ;
+    color: white;
+}
+
+.caixaPesquisa{
+    display: flex;
+}

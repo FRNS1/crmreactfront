@@ -137,3 +137,21 @@
         height: 100%;
         align-items: center;
     }
+
+    .textAreaObsCliente{
+        width: 50vh;
+        height: 25vh;
+        border-radius: 1vh;
+        font-size: 2vh;
+        padding-left: 1vh;
+        padding-top: 0.5vh;
+    }
+
+    .textAreaObsAnalista{
+        width: 50vh;
+        height: 25vh;
+        border-radius: 1vh;
+        font-size: 2vh;
+        padding-left: 1vh;
+        padding-top: 0.5vh;
+    }

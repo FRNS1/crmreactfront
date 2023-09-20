@@ -3,6 +3,7 @@ import '../css/visu_cli.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
 import { format } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 import InputMask from 'react-input-mask';
 import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -376,9 +377,20 @@ function Visucli() {
     }
 
     function Tabprop() {
+
+        const navigate = useNavigate();
+        const handleButtonClick = () => {
+            navigate('/cadastropropostas');
+        };
+
         return (
             <div className='caixaTabelaPropostas'>
                 <br />
+                <div className='divbotaoCadastrarProposta'>
+                    <button className='botaoCadastrarProposta' onClick={handleButtonClick}>
+                        <span> Cadastrar Proposta </span>
+                    </button>
+                </div>
                 <table className='tabelaPropostas'>
                     <tr className='linhasTabelaPropostas'>
                         <th className='colunasTabelaPropostas'> Indicador </th>
@@ -393,7 +405,7 @@ function Visucli() {
                         <tr className='linhasTabelaPropostas'>
                             <td className='colunasTabelaPropostas'>{item.username}</td>
                             <td className='colunasTabelaPropostas'>{item.business}</td>
-                            <td className='colunasTabelaPropostas'> 
+                            <td className='colunasTabelaPropostas'>
                                 <InputMask mask="99/99/9999" placeholder="DD/MM/AAAA" type="text" className="inputDadosTabela" value={item.date ? format(new Date(item.date), 'dd/MM/yyyy') : ''} />
                             </td>
                             <td className='colunasTabelaPropostas'>{item.tipo == true ? item.razaoSocial : item.nomeCompleto}</td>

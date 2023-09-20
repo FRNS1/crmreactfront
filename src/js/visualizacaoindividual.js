@@ -289,7 +289,7 @@ function VisualizacaoIndividual() {
                                 <label className="stringDados"> Taxa </label>
                                 <CurrencyInput
                                     name="taxa"
-                                    placeholder={`R$ ${taxa}`}
+                                    placeholder={`${taxa}%`}
                                     onBlur={(event) => handleTaxaChange(event.target.value)}
                                     className="inputCad"
                                 />
@@ -400,21 +400,21 @@ function VisualizacaoIndividual() {
                         <div className='divrow'>
                             <div className='divfield'>
                                 <label className="stringDados"> Observação do Cliente </label>
-                                <input
+                                <textarea
                                     name="observacaoCliente"
                                     placeholder={observacaoCliente}
                                     onBlur={(event) => handleObservacaoClienteChange(event.target.value)}
-                                    className="inputCad"
+                                    className="textAreaObsCliente"
                                     type="text"
                                 />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Observação do Analista </label>
-                                <input
+                                <textarea
                                     name="observacaoAnalista"
                                     placeholder={observacaoAnalista}
                                     onBlur={(event) => handleObservacaoAnalistaChange(event.target.value)}
-                                    className="inputCad"
+                                    className="textAreaObsAnalista"
                                     type="text"
                                 />
                             </div>
@@ -767,7 +767,6 @@ function VisualizacaoIndividual() {
                                         name="vencerValorTotal"
                                         placeholder={`R$ ${vencerValorTotal}`}
                                         onBlur={(event) => handleVencerValorTotalChange(event.target.value)}
-                                        className="inputCad"
                                         className="thinputColunasTabelaPropostasBacen"
                                     />
                                 </th>
@@ -781,7 +780,6 @@ function VisualizacaoIndividual() {
                                         name="vencerAte30DiasvencidosAte14Dias"
                                         placeholder={`R$ ${vencerAte30DiasvencidosAte14Dias}`}
                                         onBlur={(event) => handleVencerAte30DiasvencidosAte14DiasTotalChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -793,7 +791,6 @@ function VisualizacaoIndividual() {
                                         name="vencer3160Dias"
                                         placeholder={`R$ ${vencer3160Dias}`}
                                         onBlur={(event) => handleVencer3160DiasChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -805,7 +802,6 @@ function VisualizacaoIndividual() {
                                         name="vencer6190Dias"
                                         placeholder={`R$ ${vencer6190Dias}`}
                                         onBlur={(event) => handleVencer6190DiasChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -818,7 +814,6 @@ function VisualizacaoIndividual() {
                                         name="limitesCreditoVencimentoAte360Dias"
                                         placeholder={`R$ ${vencer181360Dias}`}
                                         onBlur={(event) => handleVencer181360DiasChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -830,7 +825,6 @@ function VisualizacaoIndividual() {
                                         name="limitesCreditoVencimentoAte360Dias"
                                         placeholder={`R$ ${vencer181360Dias}`}
                                         onBlur={(event) => handleVencer181360DiasChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -842,7 +836,6 @@ function VisualizacaoIndividual() {
                                         name="limitesCreditoVencimentoAte360Dias"
                                         placeholder={`R$ ${vencerAcima360Dias}`}
                                         onBlur={(event) => handleVencerAcima360DiasChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -854,7 +847,6 @@ function VisualizacaoIndividual() {
                                         name="vencerIndeterminado"
                                         placeholder={`R$ ${vencerIndeterminado}`}
                                         onBlur={(event) => handleVencerIndeterminadoChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -876,7 +868,6 @@ function VisualizacaoIndividual() {
                                         name="limitesCreditoValorTotal"
                                         placeholder={`R$ ${vencidoTotal}`}
                                         onBlur={(event) => handleVencidoTotalChange(event.target.value)}
-                                        className="inputCad"
                                         prefix="R$ "
                                         className="thinputColunasTabelaPropostasBacen"
                                     />
@@ -891,7 +882,6 @@ function VisualizacaoIndividual() {
                                         name="vencido1530Dias"
                                         placeholder={`R$ ${vencido1530Dias}`}
                                         onBlur={(event) => handleVencido1530DiasChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -903,7 +893,6 @@ function VisualizacaoIndividual() {
                                         name="vencido3160Dias"
                                         placeholder={`R$ ${vencido3160Dias}`}
                                         onBlur={(event) => handleVencido3160DiasChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -915,7 +904,6 @@ function VisualizacaoIndividual() {
                                         name="vencido6190Dias"
                                         placeholder={`R$ ${vencido6190Dias}`}
                                         onBlur={(event) => handleVencido6190DiasChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -927,7 +915,6 @@ function VisualizacaoIndividual() {
                                         name="vencido91180Dias"
                                         placeholder={`R$ ${vencido91180Dias}`}
                                         onBlur={(event) => handleVencido91180DiasChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -939,7 +926,6 @@ function VisualizacaoIndividual() {
                                         name="vencido181360Dias"
                                         placeholder={`R$ ${vencido181360Dias}`}
                                         onBlur={(event) => handleVencido181360DiasChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -951,7 +937,6 @@ function VisualizacaoIndividual() {
                                         name="vencidoAcima360Dias"
                                         placeholder={`R$ ${vencidoAcima360Dias}`}
                                         onBlur={(event) => handleVencidoAcima360DiasChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -973,7 +958,6 @@ function VisualizacaoIndividual() {
                                         name="prejuizoTotal"
                                         placeholder={`R$ ${prejuizoTotal}`}
                                         onBlur={(event) => handlePrejuizoTotalChange(event.target.value)}
-                                        className="inputCad"
                                         className="thinputColunasTabelaPropostasBacen"
                                     />
                                 </th>
@@ -987,7 +971,6 @@ function VisualizacaoIndividual() {
                                         name="prejuizoAte12Meses"
                                         placeholder={`R$ ${prejuizoAte12Meses}`}
                                         onBlur={(event) => handlePrejuizoAte12MesesChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -999,7 +982,6 @@ function VisualizacaoIndividual() {
                                         name="prejuizoAcima12Meses"
                                         placeholder={`R$ ${prejuizoAcima12Meses}`}
                                         onBlur={(event) => handlePrejuizoAcima12MesesChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1021,7 +1003,6 @@ function VisualizacaoIndividual() {
                                         name="prejuizoTcoobrigacaoTotalotal"
                                         placeholder={`R$ ${coobrigacaoTotal}`}
                                         onBlur={(event) => handleCoobrigacaoTotalChange(event.target.value)}
-                                        className="inputCad"
                                         className="thinputColunasTabelaPropostasBacen"
                                     />
                                 </th>
@@ -1035,7 +1016,6 @@ function VisualizacaoIndividual() {
                                         name="coobrigacaoAssumida"
                                         placeholder={`R$ ${coobrigacaoAssumida}`}
                                         onBlur={(event) => handleCoobrigacaoAssumidaChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1047,7 +1027,6 @@ function VisualizacaoIndividual() {
                                         name="coobrigacaoPrestadas"
                                         placeholder={`R$ ${coobrigacaoPrestadas}`}
                                         onBlur={(event) => handleCoobrigacaoPrestadasChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1069,7 +1048,6 @@ function VisualizacaoIndividual() {
                                         name="creditosLiberarTotal"
                                         placeholder={`R$ ${creditosLiberarTotal}`}
                                         onBlur={(event) => handleCreditosLiberarTotalChange(event.target.value)}
-                                        className="inputCad"
                                         className="thinputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1083,7 +1061,6 @@ function VisualizacaoIndividual() {
                                         name="creditosLiberarAte360Dias"
                                         placeholder={`R$ ${creditosLiberarAte360Dias}`}
                                         onBlur={(event) => handleCreditosLiberarAte360DiasChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1095,7 +1072,6 @@ function VisualizacaoIndividual() {
                                         name="creditosLiberarAcima360Dias"
                                         placeholder={`R$ ${creditosLiberarAcima360Dias}`}
                                         onBlur={(event) => handleCreditosLiberarAcima360DiasChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1117,7 +1093,6 @@ function VisualizacaoIndividual() {
                                         name="limitesCreditoValorTotal"
                                         placeholder={`R$ ${limitesCreditoValorTotal}`}
                                         onBlur={(event) => handleLimitesCreditoValorTotalChange(event.target.value)}
-                                        className="inputCad"
                                         className="thinputColunasTabelaPropostasBacen"
                                     />
                                 </th>
@@ -1132,7 +1107,6 @@ function VisualizacaoIndividual() {
                                         name="limitesCreditoVencimentoAte360Dias"
                                         placeholder={`R$ ${limitesCreditoVencimentoAte360Dias}`}
                                         onBlur={(event) => handleLimitesCreditoVencimentoAte360DiasChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1144,7 +1118,6 @@ function VisualizacaoIndividual() {
                                         name="limitesCreditoVencimentoAcima360Dias"
                                         placeholder={`R$ ${limitesCreditoVencimentoAcima360Dias}`}
                                         onBlur={(event) => handleLimitesCreditoVencimentoAcima360DiasChange(event.target.value)}
-                                        className="inputCad"
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1426,7 +1399,3 @@ function VisualizacaoIndividual() {
 };
 
 export { VisualizacaoIndividual };
-
-
-
-

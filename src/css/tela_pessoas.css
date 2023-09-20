@@ -58,7 +58,6 @@
 
 .botaoCadastrar {
   display: flex; 
-  align-items: end;
   justify-content: end;
   margin-bottom: 1vh;
 }
@@ -70,8 +69,9 @@
   font-size: 2vh;
 }
 
-.botaoVer {
-  width: 100%;
+.botaoTDVer {
+  cursor: pointer;
+  width: 10vh;
   height: 5vh;
   border-radius: 1vh;
 }

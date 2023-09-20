@@ -69,7 +69,6 @@ function Telapessoas() {
       const parte10 = partesTelefone[9];
       const parte11 = partesTelefone[10];
       return `(${parte1}${parte2}) ${parte3}${parte4}${parte5}${parte6}${parte7}-${parte8}${parte9}${parte10}${parte11}`;
-
     } else if(partesTelefone.length = 10) {
       const parte1 = partesTelefone[0];
       const parte2 = partesTelefone[1];
@@ -82,7 +81,6 @@ function Telapessoas() {
       const parte9 = partesTelefone[8];
       const parte10 = partesTelefone[9];
       return `(${parte1}${parte2}) ${parte3}${parte4}${parte5}${parte6}-${parte7}${parte8}${parte9}${parte10}`;
-
     } else {
       return 'Telefone Inválido';
     }
@@ -169,7 +167,7 @@ function Telapessoas() {
                   <td>{customer.email == 'nan' ? 'Sem email' : customer.email}</td>
                   <td>{formataTelefone(customer.telefone)}</td>
                   <td className='colunaVer'>
-                    <button className="botaoVer" style={{ backgroundColor: '#081535' }}>
+                    <button className="botaoTDVer" style={{ backgroundColor: '#081535' }}>
                       <span className='stringVer' style={{ color: 'white' }} onClick={() => visualizacaoCliente(customer.customerId)}>visualizar</span>
                     </button>
                   </td>

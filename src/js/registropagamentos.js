@@ -3,6 +3,10 @@ import '../css/registro_pagamentos.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
 import Cookies from 'js-cookie';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import '../css/pesquisar.css';
+import { SearchBar } from '../js/pesquisar';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 
 function RegistroPagamentos() {
@@ -13,13 +17,13 @@ function RegistroPagamentos() {
         const token = Cookies.get('token');
         var myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${token}`);
-    
+
         var requestOptions = {
             method: 'GET',
             headers: myHeaders,
             redirect: 'follow'
         };
-    
+
         try {
             const response = await fetch("http://35.175.231.117:8080/api/v1/payments/getloans", requestOptions);
             if (!response.ok) {
@@ -32,14 +36,21 @@ function RegistroPagamentos() {
         }
     }
 
-    async function viewLoaninfo(loan){
+    async function viewLoaninfo(loan) {
         await Cookies.set("chosenLoan", loan);
-        navigate('/registropagamentoindividual')   
+        navigate('/registropagamentoindividual')
     }
-    
+
     useEffect(() => {
         fetchLoans();
     }, []);
+
+    const [searchResults, setSearchResults] = useState([]);
+
+    const handleSearch = (searchTerm) => {
+        // Aqui você pode realizar a lógica de pesquisa, como fazer uma solicitação de API.
+        // Neste exemplo, apenas atualizamos o estado com os resultados fictícios.
+    };
 
     return (
         <div className='containerPrincipal'>
@@ -48,8 +59,13 @@ function RegistroPagamentos() {
                 <NavLateral />
             </div>
             <div className='containerGeral'>
-                <div className='textoPropostas'>
-                    <text className='stringTitulos'> (Barra de pesquisa) </text>
+                <div className="caixaPesquisar">
+                    <SearchBar onSearch={handleSearch} />
+                    <ul>
+                        {searchResults.map((result, index) => (
+                            <li key={index}>{result}</li>
+                        ))}
+                    </ul>
                 </div>
                 <br />
                 <hr />
@@ -73,21 +89,21 @@ function RegistroPagamentos() {
                     </thead>
                     <tbody>
                         {listLoans.map((loan) => (
-                        <tr key={loan.proposalId}>
-                            <td>{loan.business}</td>
-                            <td>{loan.idCliente}</td>
-                            <td className='pointer' onClick={() => viewLoaninfo(loan.proposalId)}>{loan.isCnpj == true ? loan.nomeCliente : loan.razaoSocial}</td>
-                            <td>{loan.saldoDevedor}</td>
-                            <td>{loan.receitaEsperada}</td>
-                            <td>{loan.parcelas}</td>
-                            <td>{loan.amortizacaoPaga}</td>
-                            <td>{loan.jurosPagos}</td>
-                            <td>{loan.parcelasPagas}</td>
-                            <td>{loan.parcelasAtrasadas}</td>
-                            <td>{loan.atrasado == true ? 'SIM' : 'NÃO'}</td>
-                            <td>{loan.totalAtrasado}</td>
-                            <td>{loan.statusContrato}</td>
-                        </tr>
+                            <tr key={loan.proposalId}>
+                                <td>{loan.business}</td>
+                                <td>{loan.idCliente}</td>
+                                <td className='pointer' onClick={() => viewLoaninfo(loan.proposalId)}>{loan.isCnpj == true ? loan.nomeCliente : loan.razaoSocial}</td>
+                                <td>{loan.saldoDevedor}</td>
+                                <td>{loan.receitaEsperada}</td>
+                                <td>{loan.parcelas}</td>
+                                <td>{loan.amortizacaoPaga}</td>
+                                <td>{loan.jurosPagos}</td>
+                                <td>{loan.parcelasPagas}</td>
+                                <td>{loan.parcelasAtrasadas}</td>
+                                <td>{loan.atrasado == true ? 'SIM' : 'NÃO'}</td>
+                                <td>{loan.totalAtrasado}</td>
+                                <td>{loan.statusContrato}</td>
+                            </tr>
                         ))}
                     </tbody>
                 </table>
@@ -96,4 +112,4 @@ function RegistroPagamentos() {
     )
 }
 
-export{ RegistroPagamentos };
+export { RegistroPagamentos };
