@@ -58,6 +58,7 @@ function VisualizacaoIndividual() {
     const [vencerAte30DiasvencidosAte14Dias, setVencerAte30DiasVencidosAte14Dias] = useState('');
     const [vencer3160Dias, setVencer3160Dias] = useState('');
     const [vencer6190Dias, setVencer6190Dias] = useState('');
+    const [vencer91180Dias, setVencer91180Dias] = useState('');
     const [vencer181360Dias, setVencer181360Dias] = useState('');
     const [vencerAcima360Dias, setVencerAcima360Dias] = useState('');
     const [vencerIndeterminado, setVencerIndeterminado] = useState('');
@@ -81,18 +82,19 @@ function VisualizacaoIndividual() {
     const [limitesCreditoVencimentoAte360Dias, setLimitesCreditosVencimentoAte360Dias] = useState('');
     const [limitesCreditoVencimentoAcima360Dias, setLimitesCreditosVencimentoAcima360Dias] = useState('');
     // Variáveis AllsData
-    const [NumPendenciasFinanceirasAlls, setNumPendenciasFinanceirasAlls] = useState('');
-    const [ValorPendenciasFinanceirasAlls, setValorPendenciasFinanceirasAlls] = useState('');
-    const [NumRecuperacoesAlls, setNumRecuperacoesAlls] = useState('');
+    const [numPendenciasFinanceirasAlls, setNumPendenciasFinanceirasAlls] = useState('');
+    const [valorPendenciasFinanceirasAlls, setValorPendenciasFinanceirasAlls] = useState('');
+    const [numRecuperacoesAlls, setNumRecuperacoesAlls] = useState('');
     const [valorRecuperacoesAlls, setValorRecuperacoesAlls] = useState('');
-    const [NumChequeSemFundoAlls, setNumChequeSemFundoAlls] = useState('');
-    const [NumProtestosAlls, setNumProtestosAlls] = useState('');
+    const [numChequeSemFundoAlls, setNumChequeSemFundoAlls] = useState('');
+    const [numProtestosAlls, setNumProtestosAlls] = useState('');
     const [valorProtestosAlls, setValorProtestosAlls] = useState('');
     const [limiteSugeridoAlls, setLimiteSugeridoAlls] = useState('');
-    const [NumRestricoesAlls, setNumRestricoesAlls] = useState('');
+    const [numRestricoesAlls, setNumRestricoesAlls] = useState('');
     const [valorRestricoesAlls, setValorRestricoesAlls] = useState('');
     // Variáveis Files
-    const [files, setFiles] = useState('');
+    const [files, setFiles] = useState([]);
+    const [filesReceived, setFilesReceived] = useState([]);
 
     const Mudapagina = (value) => {
         handleButtonClick(value);
@@ -153,6 +155,7 @@ function VisualizacaoIndividual() {
             setVencerAte30DiasVencidosAte14Dias(data.scr.vencer_ate_30_dias_vencidos_ate_14_dias);
             setVencer3160Dias(data.scr.vencer_31_60_dias);
             setVencer6190Dias(data.scr.vencer_61_90_dias);
+            setVencer91180Dias(data.scr.vencer_91_180_dias);
             setVencer181360Dias(data.scr.vencer_181_360_dias);
             setVencerAcima360Dias(data.scr.vencer_acima_360_dias);
             setVencerIndeterminado(data.scr.vencer_indeterminado);
@@ -185,7 +188,7 @@ function VisualizacaoIndividual() {
             setLimiteSugeridoAlls(data.allsData.limite_sugerido_alls);
             setNumRestricoesAlls(data.allsData.num_restricoes_alls);
             setValorRestricoesAlls(data.allsData.valor_restricoes);
-            setFiles(data.files);
+            setFilesReceived(data.files);
         } catch (error) {
             console.log('error', error);
         } finally {
@@ -238,30 +241,30 @@ function VisualizacaoIndividual() {
             numTitulosProtestados: numTitulosProtestados,
             score: score,
             numRefins: numRefins,
-            valorCadins: valorCadins,
-            valorIss: valorIss,
+            valorCadins: valorCadins.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            valorIss: valorIss.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
             numProcessos: numProcessos,
-            valorProcessos: valorProcessos,
+            valorProcessos: valorProcessos.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
             numUfProcessos: numUfProcessos,
-            dividaAtiva: dividaAtiva,
-            valorTitulosProtestados: valorTitulosProtestados,
+            dividaAtiva: dividaAtiva.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            valorTitulosProtestados: valorTitulosProtestados.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
             risco: risco,
             pep: pep,
             numChequesDevolvidos: numChequesDevolvidos,
-            valorChequesDevolvidos: valorChequesDevolvidos,
-            valorPefins: valorPefins,
+            valorChequesDevolvidos: valorChequesDevolvidos.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            valorPefins: valorPefins.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
             numPefins: numPefins,
             empresasNaoInformadas: empresasNaoInformadas
         };
     
         try {
-            const responseUpdateInfos = await axios.post(urlUpdateAnalytics, analyticsUpdateDTO, {
+            const responseUpdateAnalytics = await axios.post(urlUpdateAnalytics, analyticsUpdateDTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json'
                 }
             });
-            console.log('Dados enviados com sucesso:', responseUpdateInfos.data);
+            console.log('Dados enviados com sucesso:', responseUpdateAnalytics.data);
             alert("Dados atualizados com sucesso")
         } catch (erro) {
             console.error('Erro ao enviar os dados:', erro);
@@ -270,19 +273,141 @@ function VisualizacaoIndividual() {
     }
 
     async function sendBacen(){
+        const token = Cookies.get('token');
+        const urlUpdateScr = 'http://35.175.231.117:8080/api/v1/scr/update';
+    
+        const ScrUpdateDTO = {
+            proposal_id: Cookies.get('propostaSelecionada'),
+            vencer_valor_total: vencerValorTotal.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            vencer_ate_30_dias_vencidos_ate_14_dias: vencerAte30DiasvencidosAte14Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            vencer_31_60_dias: vencer3160Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            vencer_61_90_dias: vencer6190Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            vencer_91_180_dias: vencer91180Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            vencer_181_360_dias: vencer181360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            vencer_acima_360_dias: vencerAcima360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            vencer_indeterminado: vencerIndeterminado.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            vencido_total: vencidoTotal.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            vencido_15_30_dias: vencido1530Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            vencido_31_60_dias: vencido3160Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            vencido_61_90_dias: vencido6190Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            vencido_91_180_dias: vencido91180Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            vencido_181_360_dias: vencido181360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            vencido_acima_360_dias: vencidoAcima360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            prejuizo_total: prejuizoTotal.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            prejuizo_ate_12_meses: prejuizoAte12Meses.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            prejuizo_acima_12_meses: prejuizoAcima12Meses.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            coobrigacao_total: coobrigacaoTotal.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            coobrigacao_assumida: coobrigacaoAssumida.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            coobrigacao_prestadas: coobrigacaoPrestadas.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            creditos_liberar_total: creditosLiberarTotal.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            creditos_liberar_ate_360_dias: creditosLiberarAte360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            creditos_liberar_acima_360_dias: creditosLiberarAcima360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            limites_credito_valor_total: limitesCreditoValorTotal.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            limites_credito_vencimento_ate_360_dias: limitesCreditoVencimentoAte360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            limites_credito_vencimento_acima_360_dias: limitesCreditoVencimentoAcima360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
+        };
+    
+        try {
+            const responseUpdateScr = await axios.post(urlUpdateScr, ScrUpdateDTO, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+            console.log('Dados enviados com sucesso:', responseUpdateScr.data);
+            alert("Dados atualizados com sucesso")
+        } catch (erro) {
+            console.error('Erro ao enviar os dados:', erro);
+        }
 
     }
 
     async function sendAllsData(){
-
+        const token = Cookies.get('token');
+        const urlUpdateAllsData = 'http://35.175.231.117:8080/api/v1/allsdata/update';
+    
+        const AllsDataUpdateDTO = {
+            proposal_id: Cookies.get('propostaSelecionada'),
+            num_pendencias_financeiras: numPendenciasFinanceirasAlls,
+            valor_pendencias_financeiras: valorPendenciasFinanceirasAlls.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            num_recuperacoes: numRecuperacoesAlls,
+            valor_recuperacoes: valorRecuperacoesAlls.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            num_cheque_sem_fundo: numChequeSemFundoAlls,
+            num_protestos: numProtestosAlls,
+            valor_protestos: valorProtestosAlls.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            limite_sugerido: limiteSugeridoAlls.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            num_restricoes: numRestricoesAlls,
+            valor_restricoes: valorRestricoesAlls.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
+        };
+    
+        try {
+            const responseUpdateAllsData = await axios.post(urlUpdateAllsData, AllsDataUpdateDTO, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+            console.log('Dados enviados com sucesso:', responseUpdateAllsData.data);
+            alert("Dados atualizados com sucesso")
+        } catch (erro) {
+            console.error('Erro ao enviar os dados:', erro);
+        }
     }
 
-    async function sendObs(){
-
-    }
-
-    async function sendFiles(){
-
+    async function sendFiles() {
+        console.log("Enviando");
+        console.log(files);
+    
+        for (let i = 0; i < files.length; i++) {
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", `Bearer ${Cookies.get('token')}`);
+    
+            var formdata = new FormData();
+            formdata.append("file", files[i]);
+    
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: formdata,
+                redirect: 'follow'
+            };
+    
+            // Upload do arquivo
+            await fetch("http://35.175.231.117:8080/api/v1/files/upload", requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                    console.log("Arquivo enviado:", result)
+                })
+                .catch(error => console.log('error', error));
+    
+            // Construir o link S3
+            var myHeaders2 = new Headers();
+            myHeaders2.append("Authorization", `Bearer ${Cookies.get('token')}`);
+            myHeaders2.append("Content-Type", "application/json");
+    
+            let fileName = files[i].name.replace(/\s/g, "+");
+            let link = `https://docsbora.s3.amazonaws.com/${fileName}`;
+    
+            var data = {
+                fileName: fileName,
+                tipoArquivo: "Documentos do cliente",
+                proposal: Cookies.get('propostaSelecionada'),
+                url: link
+            };
+    
+            var requestOptionsData = {
+                method: 'POST',
+                headers: myHeaders2,
+                body: JSON.stringify(data),
+                redirect: 'follow'
+            };
+    
+            // Enviar informações sobre o arquivo
+            await fetch("http://35.175.231.117:8080/api/v1/files/filesdata", requestOptionsData)
+                .then(response => response.text())
+                .then(result => {alert("Informações e arquivo enviados"); setFiles([]); getDataProposal();})
+                .catch(error => console.log('error', error));
+        }
     }
 
     useEffect(() => {
@@ -741,6 +866,9 @@ function VisualizacaoIndividual() {
         const handleVencer6190DiasChange = (value) => {
             setVencer6190Dias(value);
         };
+        const handleVencer91180DiasChange = (value) => {
+            setVencer91180Dias(value);
+        };
         const handleVencer181360DiasChange = (value) => {
             setVencer181360Dias(value);
         };
@@ -868,11 +996,10 @@ function VisualizacaoIndividual() {
                             <tr className='linhasTabelaPropostasBacen'>
                                 <td className='colunasTabelaPropostasBacen'> 91 a 180 dias</td>
                                 <td className='colunasTabelaPropostasBacen'>
-                                    {/* OLHAR NOME DA VARIAVEL E ARRUMAR */}
                                     <CurrencyInput
                                         name="limitesCreditoVencimentoAte360Dias"
-                                        placeholder={`R$ ${vencer181360Dias}`}
-                                        onBlur={(event) => handleVencer181360DiasChange(event.target.value)}
+                                        placeholder={`R$ ${vencer91180Dias}`}
+                                        onBlur={(event) => handleVencer91180DiasChange(event.target.value)}
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -927,7 +1054,6 @@ function VisualizacaoIndividual() {
                                         name="limitesCreditoValorTotal"
                                         placeholder={`R$ ${vencidoTotal}`}
                                         onBlur={(event) => handleVencidoTotalChange(event.target.value)}
-                                        prefix="R$ "
                                         className="thinputColunasTabelaPropostasBacen"
                                     />
                                 </th>
@@ -1184,7 +1310,7 @@ function VisualizacaoIndividual() {
                         </tbody>
                     </table>
                 </div>
-                <div className='divbotaoEnviarObservacoes'>
+                <div className='divbotaoEnviarObservacoes' onClick={sendBacen}>
                     <button className='botaoEnviarObservacoes'>
                         <span className='stringEnviarDados'> Salvar </span>
                     </button>
@@ -1237,7 +1363,7 @@ function VisualizacaoIndividual() {
                                 <label className="stringDados"> Quantidade de pendências financeiras </label>
                                 <input
                                     name="NumPendenciasFinanceirasAlls"
-                                    placeholder={NumPendenciasFinanceirasAlls}
+                                    placeholder={numPendenciasFinanceirasAlls}
                                     onBlur={(event) => handleNumPendenciasFinanceirasAllsChange(event.target.value)}
                                     className="inputCad"
                                 />
@@ -1246,7 +1372,7 @@ function VisualizacaoIndividual() {
                                 <label className="stringDados"> Valor das pendências financeiras </label>
                                 <CurrencyInput
                                     name="ValorPendenciasFinanceirasAlls"
-                                    placeholder={`R$ ${ValorPendenciasFinanceirasAlls}`}
+                                    placeholder={`R$ ${valorPendenciasFinanceirasAlls}`}
                                     onBlur={(event) => handleValorPendenciasFinanceirasAllsChange(event.target.value)}
                                     className="inputCad"
                                 />
@@ -1255,7 +1381,7 @@ function VisualizacaoIndividual() {
                                 <label className="stringDados"> Quantidade de recuperação </label>
                                 <input
                                     name="NumRecuperacoesAlls"
-                                    placeholder={NumRecuperacoesAlls}
+                                    placeholder={numRecuperacoesAlls}
                                     onBlur={(event) => handleNumRecuperacoesAllsChange(event.target.value)}
                                     className="inputCad"
                                 />
@@ -1275,7 +1401,7 @@ function VisualizacaoIndividual() {
                                 <label className="stringDados"> Quantidade de cheque sem fundo </label>
                                 <input
                                     name="NumChequeSemFundoAlls"
-                                    placeholder={NumChequeSemFundoAlls}
+                                    placeholder={numChequeSemFundoAlls}
                                     onBlur={(event) => handleNumChequeSemFundoAllsChange(event.target.value)}
                                     className="inputCad"
                                 />
@@ -1284,7 +1410,7 @@ function VisualizacaoIndividual() {
                                 <label className="stringDados"> Quantidade de protestos </label>
                                 <input
                                     name="NumProtestosAlls"
-                                    placeholder={NumProtestosAlls}
+                                    placeholder={numProtestosAlls}
                                     onBlur={(event) => handleNumProtestosAllsChange(event.target.value)}
                                     className="inputCad"
                                 />
@@ -1313,7 +1439,7 @@ function VisualizacaoIndividual() {
                                 <label className="stringDados"> Quantidade de restrições </label>
                                 <input
                                     name="NumRestricoesAlls"
-                                    placeholder={NumRestricoesAlls}
+                                    placeholder={numRestricoesAlls}
                                     onBlur={(event) => handleNumRestricoesAllsChange(event.target.value)}
                                     className="inputCad"
                                 />
@@ -1340,7 +1466,7 @@ function VisualizacaoIndividual() {
                         </div>
                     </div>
                 </form>
-                <div className='divbotaoEnviarObservacoes'>
+                <div className='divbotaoEnviarObservacoes' onClick={sendAllsData}>
                     <button className='botaoEnviarObservacoes'>
                         <span className='stringEnviarDados'> Salvar </span>
                     </button>
@@ -1349,6 +1475,11 @@ function VisualizacaoIndividual() {
         );
     }
 
+    const handleFilesChange = (value) => {
+        setFiles(value);
+    }
+
+
     function Upload() {
         return (
             <div className='divUploadFiles'>
@@ -1356,17 +1487,16 @@ function VisualizacaoIndividual() {
                     <text> Faça o upload dos seus documentos </text>
                 </div>
                 <div className='divinputFiles'>
-                    <input className='inputFiles' type="file" multiple />
+                    <input className='inputFiles' name='file' type="file" onChange={(event) => handleFilesChange(event.target.files)} multiple />
                 </div>
                 <div className='divlistaFiles'>
                     <ul className='listaFiles'>
-                        <li className='liFiles'> Nome do arquivo e arquivo </li>
-                        <li className='liFiles'> Nome do arquivo e arquivo </li>
-                        <li className='liFiles'> Nome do arquivo e arquivo </li>
-                        <li className='liFiles'> Nome do arquivo e arquivo </li>
+                        {filesReceived.map((file) => 
+                        <li className='liFiles'> <a href={file.url_arquivo}>{file.url_arquivo}</a> </li>
+                        )}
                     </ul>
                 </div>
-                <div className='divbotaoEnviarArquivos'>
+                <div className='divbotaoEnviarArquivos' onClick={sendFiles}>
                     <button className='botaoEnviarArquivos'>
                         <span className='stringEnviarDados'> Enviar Arquivos </span>
                     </button>
