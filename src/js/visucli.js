@@ -312,7 +312,7 @@ function Visucli() {
                     <div className='divrow'>
                         <div className='divfield'>
                             <label className="stringDados"> Telefone </label>
-                            <InputMask mask="(99)99999-9999" className="inputDados" value={telefone} type="text" disabled />
+                            <InputMask mask="(99) 99999-9999" className="inputDados" value={telefone} type="text" disabled />
                         </div>
                         <div className='divfield'>
                             <label className="stringDados"> Email </label>
@@ -330,21 +330,49 @@ function Visucli() {
 
     function formataCnpj(cnpj) {
         const partesCNPJ = cnpj.split('')
-        const parte1 = partesCNPJ[0];
-        const parte2 = partesCNPJ[1];
-        const parte3 = partesCNPJ[2];
-        const parte4 = partesCNPJ[3];
-        const parte5 = partesCNPJ[4];
-        const parte6 = partesCNPJ[5];
-        const parte7 = partesCNPJ[6];
-        const parte8 = partesCNPJ[7];
-        const parte9 = partesCNPJ[8];
-        const parte10 = partesCNPJ[9];
-        const parte11 = partesCNPJ[10];
-        const parte12 = partesCNPJ[11];
-        const parte13 = partesCNPJ[12];
-        const parte14 = partesCNPJ[13];
-        return `${parte1}${parte2}.${parte3}${parte4}${parte5}.${parte6}${parte7}${parte8}/${parte9}${parte10}${parte11}${parte12}-${parte13}${parte14}`;
+        if (partesCNPJ.length != 14) {
+            return `Documento inválido`
+
+        } else {
+            const parte1 = partesCNPJ[0];
+            const parte2 = partesCNPJ[1];
+            const parte3 = partesCNPJ[2];
+            const parte4 = partesCNPJ[3];
+            const parte5 = partesCNPJ[4];
+            const parte6 = partesCNPJ[5];
+            const parte7 = partesCNPJ[6];
+            const parte8 = partesCNPJ[7];
+            const parte9 = partesCNPJ[8];
+            const parte10 = partesCNPJ[9];
+            const parte11 = partesCNPJ[10];
+            const parte12 = partesCNPJ[11];
+            const parte13 = partesCNPJ[12];
+            const parte14 = partesCNPJ[13];
+            return `${parte1}${parte2}.${parte3}${parte4}${parte5}.${parte6}${parte7}${parte8}/${parte9}${parte10}${parte11}${parte12}-${parte13}${parte14}`;
+        }
+    }
+
+    function formataCpf(cpf) {
+        // let cpf2 = cpf + "babaca";
+        // return cpf2;
+        const partesCPF = cpf.split('')
+        if (partesCPF.length != 11) {
+            return `Documento inválido`
+
+        } else {
+            const parte1 = partesCPF[0];
+            const parte2 = partesCPF[1];
+            const parte3 = partesCPF[2];
+            const parte4 = partesCPF[3];
+            const parte5 = partesCPF[4];
+            const parte6 = partesCPF[5];
+            const parte7 = partesCPF[6];
+            const parte8 = partesCPF[7];
+            const parte9 = partesCPF[8];
+            const parte10 = partesCPF[9];
+            const parte11 = partesCPF[10];
+            return `${parte1}${parte2}${parte3}.${parte4}${parte5}${parte6}.${parte7}${parte8}${parte9}-${parte10}${parte11}`;
+        }
     }
 
     function Tabprop() {
@@ -369,7 +397,7 @@ function Visucli() {
                                 <InputMask mask="99/99/9999" placeholder="DD/MM/AAAA" type="text" className="inputDadosTabela" value={item.date ? format(new Date(item.date), 'dd/MM/yyyy') : ''} />
                             </td>
                             <td className='colunasTabelaPropostas'>{item.tipo == true ? item.razaoSocial : item.nomeCompleto}</td>
-                            <td className='colunasTabelaPropostas'>{item.tipo == true ? item.cnpj : item.cpf}</td>
+                            <td className='colunasTabelaPropostas'>{item.tipo == true ? formataCnpj(item.cnpj) : formataCpf(item.cpf)}</td>
                             <td className='colunasTabelaPropostas'>{item.status}</td>
                             <td colunasTabelaPropostas>
                                 <button className='botaoVer'>
