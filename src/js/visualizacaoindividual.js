@@ -23,9 +23,6 @@ function VisualizacaoIndividual() {
     const [cpf, setCpf] = useState('');
     const [valorDesejado, setValorDesejado] = useState('');
     const [taxa, setTaxa] = useState('');
-    const [dados, setDados] = useState({
-        taxa: '',
-    })
     const [corban, setCorban] = useState('');
     const [status, setStatus] = useState('');
     const [montante, setMontante] = useState('');
@@ -196,8 +193,40 @@ function VisualizacaoIndividual() {
         }
     }
 
-    async function sendInfos(){
-        
+    async function sendInfos() {
+        const token = Cookies.get('token');
+        const urlUpdateInfos = 'http://35.175.231.117:8080/api/v1/proposal/update';
+    
+        const proposalUpdateDTO = {
+            proposal_id: Cookies.get('propostaSelecionada'),
+            valor_desejado: valorDesejado,
+            taxa: taxa.toString().replace(",", "."),
+            corban: corban.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            status: status,
+            montante: montante.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            valor_liberado: valorLiberado.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            prazo: prazo,
+            data_abertura: dataAbertura,
+            data_primeira_parcela: dataPrimeiraParcela,
+            total_juros: totalJuros.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            status_contrato: statusContrato,
+            motivo_reprovacao: motivoReprovacao,
+            observacao_cliente: observacaoCliente,
+            observacao_analista: observacaoAnalista
+        };
+    
+        try {
+            const responseUpdateInfos = await axios.post(urlUpdateInfos, proposalUpdateDTO, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+            console.log('Dados enviados com sucesso:', responseUpdateInfos.data);
+            alert("Dados atualizados com sucesso")
+        } catch (erro) {
+            console.error('Erro ao enviar os dados:', erro);
+        }
     }
 
     async function sendBureausCredito() {
@@ -259,12 +288,6 @@ function VisualizacaoIndividual() {
             setObservacaoAnalista(value);
         };
 
-
-        function sla() {
-            console.log(taxa);
-            console.log(corban);
-        }
-
         return (
             <div>
                 <form className='formularios'>
@@ -287,9 +310,9 @@ function VisualizacaoIndividual() {
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Taxa </label>
-                                <CurrencyInput
+                                <input
                                     name="taxa"
-                                    placeholder={`${taxa}%`}
+                                    placeholder={taxa}
                                     onBlur={(event) => handleTaxaChange(event.target.value)}
                                     className="inputCad"
                                 />
@@ -426,7 +449,7 @@ function VisualizacaoIndividual() {
                     </div>
                 </form>
                 <div className='divbotaoEnviarObservacoes'>
-                    <button className='botaoEnviarObservacoes' onClick={sla}>
+                    <button className='botaoEnviarObservacoes' onClick={sendInfos}>
                         <span className='stringEnviarDados'> Salvar </span>
                     </button>
                 </div>
