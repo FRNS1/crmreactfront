@@ -1313,24 +1313,6 @@ function VisualizacaoIndividual() {
         );
     }
 
-    function Observacoes() {
-        return (
-            <div>
-                <div className="stringObservacoes">
-                    <text> Observações </text>
-                </div>
-                <div className='divtextAreaobservacoes'>
-                    <textarea className='textAreaobservacoes' value={observacaoCliente}> </textarea>
-                </div>
-                <div className='divbotaoEnviarObservacoes'>
-                    <button className='botaoEnviarObservacoes'>
-                        <span className='stringEnviarDados'> Salvar </span>
-                    </button>
-                </div>
-            </div>
-        );
-    }
-
     function Upload() {
         return (
             <div className='divUploadFiles'>
@@ -1359,7 +1341,7 @@ function VisualizacaoIndividual() {
 
 
     return (
-        <>
+        <div>
             {loading === false ? (
                 <div className='containerPrincipal'>
                     <div>
@@ -1384,9 +1366,6 @@ function VisualizacaoIndividual() {
                             <button className={`botoes ${muda === 'allsdata' ? 'botaoAtivo' : ''}`} onClick={() => Mudapagina("allsdata")}>
                                 <span className='stringDados'> Alls Data </span>
                             </button>
-                            <button className={`botoes ${muda === 'observacoes' ? 'botaoAtivo' : ''}`} onClick={() => Mudapagina("observacoes")}>
-                                <span className='stringDados'> Observações </span>
-                            </button>
                             <button className={`botoes ${muda === 'upload' ? 'botaoAtivo' : ''}`} onClick={() => Mudapagina("upload")}>
                                 <span className='stringDados'> Upload </span>
                             </button>
@@ -1407,9 +1386,6 @@ function VisualizacaoIndividual() {
                             {muda === 'allsdata' && (
                                 <AllsData />
                             )}
-                            {muda === 'observacoes' && (
-                                <Observacoes />
-                            )}
                             {muda === 'upload' && (
                                 <Upload />
                             )}
@@ -1417,7 +1393,7 @@ function VisualizacaoIndividual() {
                     </div>
                 </div>
             ) : null}
-        </>
+        </div>
     );
 };
 

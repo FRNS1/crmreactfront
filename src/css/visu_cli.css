@@ -62,7 +62,8 @@
 }
 
 .colunasTabelaPropostas{
-    padding: 0.5vh 1vh;
+    width: 55vh;
+    padding: 0.5vh;
     height: 4vh;
     align-self: center;
     border: 0.1vh solid rgb(0, 0, 0);

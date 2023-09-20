@@ -28,6 +28,7 @@
 }
   
 .tabela td {
+  text-align: center;
   border: 0.1vh solid rgba(0, 0, 0, 0.2);
   padding: 0.5vh 1vh;
   height: 4vh;
