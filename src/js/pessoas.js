@@ -91,6 +91,7 @@ function Telapessoas() {
   function formataCnpj(cnpj) {
     const partesCNPJ = cnpj.split('')
     if (partesCNPJ.length != 14) {
+      return `Documento inválido`
       
     } else {
       const parte1 = partesCNPJ[0];

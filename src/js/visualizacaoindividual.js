@@ -324,7 +324,6 @@ function VisualizacaoIndividual() {
                                     placeholder={`R$ ${corban}`}
                                     onBlur={(event) => handleCorbanChange(event.target.value)}
                                     className="inputCad"
-                                    prefix="R$ "
                                 />
                             </div>
                         </div>
@@ -345,7 +344,6 @@ function VisualizacaoIndividual() {
                                     placeholder={`R$ ${montante}`}
                                     onBlur={(event) => handleMontanteChange(event.target.value)}
                                     className="inputCad"
-                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
@@ -355,7 +353,6 @@ function VisualizacaoIndividual() {
                                     placeholder={`R$ ${valorLiberado}`}
                                     onBlur={(event) => handleValorLiberadoChange(event.target.value)}
                                     className="inputCad"
-                                    prefix="R$ "
                                 />
                             </div>
                         </div>
@@ -371,7 +368,14 @@ function VisualizacaoIndividual() {
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Data de Abertura </label>
-                                <InputMask mask="99/99/9999" placeholder="DD/MM/AAAA" type="text" className="inputCad" value={dataAbertura ? format(new Date(dataAbertura), 'dd/MM/yyyy') : ''} disabled />
+                                <InputMask 
+                                    mask="99/99/9999" 
+                                    placeholder="DD/MM/AAAA" 
+                                    type="text" 
+                                    className="inputCad" 
+                                    value={dataAbertura ? format(new Date(dataAbertura), 'dd/MM/yyyy') : ''} 
+                                    disabled 
+                                />
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Data da Primeira Parcela </label>
@@ -393,7 +397,6 @@ function VisualizacaoIndividual() {
                                     placeholder={`R$ ${totalJuros}`}
                                     onBlur={(event) => handleTotalJurosChange(event.target.value)}
                                     className="inputCad"
-                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
@@ -548,7 +551,6 @@ function VisualizacaoIndividual() {
                                     placeholder={`R$ ${valorTitulosProtestados}`}
                                     onBlur={(event) => handleValorTitulosProtestadosChange(event.target.value)}
                                     className="inputCad"
-                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
@@ -567,7 +569,6 @@ function VisualizacaoIndividual() {
                                     placeholder={`R$ ${valorCadins}`}
                                     onBlur={(event) => handleValorCadinsChange(event.target.value)}
                                     className="inputCad"
-                                    prefix="R$ "
                                 />
                             </div>
                         </div>
@@ -588,7 +589,6 @@ function VisualizacaoIndividual() {
                                     placeholder={`R$ ${valorChequesDevolvidos}`}
                                     onBlur={(event) => handleValorChequesDevolvidosChange(event.target.value)}
                                     className="inputCad"
-                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
@@ -609,7 +609,6 @@ function VisualizacaoIndividual() {
                                     placeholder={`R$ ${valorPefins}`}
                                     onBlur={(event) => handleValorPefinsChange(event.target.value)}
                                     className="inputCad"
-                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
@@ -646,7 +645,6 @@ function VisualizacaoIndividual() {
                                     placeholder={`R$ ${valorProcessos}`}
                                     onBlur={(event) => handleValorProcessosChange(event.target.value)}
                                     className="inputCad"
-                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
@@ -667,7 +665,6 @@ function VisualizacaoIndividual() {
                                     placeholder={`R$ ${dividaAtiva}`}
                                     onBlur={(event) => handleDividaAtivaChange(event.target.value)}
                                     className="inputCad"
-                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
@@ -681,7 +678,6 @@ function VisualizacaoIndividual() {
                                     placeholder={`R$ ${valorIss}`}
                                     onBlur={(event) => handleValorISSChange(event.target.value)}
                                     className="inputCad"
-                                    prefix="R$ "
                                 />
                             </div>
                         </div>
@@ -795,7 +791,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${vencerValorTotal}`}
                                         onBlur={(event) => handleVencerValorTotalChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="thinputColunasTabelaPropostasBacen"
                                     />
                                 </th>
@@ -810,7 +805,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${vencerAte30DiasvencidosAte14Dias}`}
                                         onBlur={(event) => handleVencerAte30DiasvencidosAte14DiasTotalChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -823,7 +817,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${vencer3160Dias}`}
                                         onBlur={(event) => handleVencer3160DiasChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -836,7 +829,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${vencer6190Dias}`}
                                         onBlur={(event) => handleVencer6190DiasChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -850,7 +842,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${vencer181360Dias}`}
                                         onBlur={(event) => handleVencer181360DiasChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -863,7 +854,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${vencer181360Dias}`}
                                         onBlur={(event) => handleVencer181360DiasChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -876,7 +866,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${vencerAcima360Dias}`}
                                         onBlur={(event) => handleVencerAcima360DiasChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -889,7 +878,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${vencerIndeterminado}`}
                                         onBlur={(event) => handleVencerIndeterminadoChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -927,7 +915,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${vencido1530Dias}`}
                                         onBlur={(event) => handleVencido1530DiasChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -940,7 +927,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${vencido3160Dias}`}
                                         onBlur={(event) => handleVencido3160DiasChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -953,7 +939,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${vencido6190Dias}`}
                                         onBlur={(event) => handleVencido6190DiasChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -966,7 +951,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${vencido91180Dias}`}
                                         onBlur={(event) => handleVencido91180DiasChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -979,7 +963,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${vencido181360Dias}`}
                                         onBlur={(event) => handleVencido181360DiasChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -992,7 +975,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${vencidoAcima360Dias}`}
                                         onBlur={(event) => handleVencidoAcima360DiasChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1015,7 +997,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${prejuizoTotal}`}
                                         onBlur={(event) => handlePrejuizoTotalChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="thinputColunasTabelaPropostasBacen"
                                     />
                                 </th>
@@ -1030,7 +1011,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${prejuizoAte12Meses}`}
                                         onBlur={(event) => handlePrejuizoAte12MesesChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1043,7 +1023,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${prejuizoAcima12Meses}`}
                                         onBlur={(event) => handlePrejuizoAcima12MesesChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1066,7 +1045,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${coobrigacaoTotal}`}
                                         onBlur={(event) => handleCoobrigacaoTotalChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="thinputColunasTabelaPropostasBacen"
                                     />
                                 </th>
@@ -1081,7 +1059,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${coobrigacaoAssumida}`}
                                         onBlur={(event) => handleCoobrigacaoAssumidaChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1094,7 +1071,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${coobrigacaoPrestadas}`}
                                         onBlur={(event) => handleCoobrigacaoPrestadasChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1117,7 +1093,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${creditosLiberarTotal}`}
                                         onBlur={(event) => handleCreditosLiberarTotalChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="thinputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1132,7 +1107,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${creditosLiberarAte360Dias}`}
                                         onBlur={(event) => handleCreditosLiberarAte360DiasChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1145,7 +1119,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${creditosLiberarAcima360Dias}`}
                                         onBlur={(event) => handleCreditosLiberarAcima360DiasChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1168,7 +1141,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${limitesCreditoValorTotal}`}
                                         onBlur={(event) => handleLimitesCreditoValorTotalChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="thinputColunasTabelaPropostasBacen"
                                     />
                                 </th>
@@ -1184,7 +1156,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${limitesCreditoVencimentoAte360Dias}`}
                                         onBlur={(event) => handleLimitesCreditoVencimentoAte360DiasChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1197,7 +1168,6 @@ function VisualizacaoIndividual() {
                                         placeholder={`R$ ${limitesCreditoVencimentoAcima360Dias}`}
                                         onBlur={(event) => handleLimitesCreditoVencimentoAcima360DiasChange(event.target.value)}
                                         className="inputCad"
-                                        prefix="R$ "
                                         className="inputColunasTabelaPropostasBacen"
                                     />
                                 </td>
@@ -1270,7 +1240,6 @@ function VisualizacaoIndividual() {
                                     placeholder={`R$ ${ValorPendenciasFinanceirasAlls}`}
                                     onBlur={(event) => handleValorPendenciasFinanceirasAllsChange(event.target.value)}
                                     className="inputCad"
-                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
@@ -1291,7 +1260,6 @@ function VisualizacaoIndividual() {
                                     placeholder={`R$ ${valorRecuperacoesAlls}`}
                                     onBlur={(event) => handleValorRecuperacoesAllsChange(event.target.value)}
                                     className="inputCad"
-                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
@@ -1321,7 +1289,6 @@ function VisualizacaoIndividual() {
                                     placeholder={`R$ ${valorProtestosAlls}`}
                                     onBlur={(event) => handleValorProtestosAllsChange(event.target.value)}
                                     className="inputCad"
-                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
@@ -1331,7 +1298,6 @@ function VisualizacaoIndividual() {
                                     placeholder={`R$ ${limiteSugeridoAlls}`}
                                     onBlur={(event) => handleLimiteSugeridoAllsChange(event.target.value)}
                                     className="inputCad"
-                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield'>
@@ -1352,7 +1318,6 @@ function VisualizacaoIndividual() {
                                     placeholder={`R$ ${valorRestricoesAlls}`}
                                     onBlur={(event) => handleValorRestricoesAllsChange(event.target.value)}
                                     className="inputCad"
-                                    prefix="R$ "
                                 />
                             </div>
                             <div className='divfield' style={{ opacity: 0 }} id="none">
