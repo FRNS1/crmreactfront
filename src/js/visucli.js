@@ -9,6 +9,7 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 
 function Visucli() {
+    const navigate = useNavigate();
     const [muda, handleButtonClick] = useState('infPessoal');
     const [tipoCliente, setTipoCliente] = useState(false);
     const [nomeCompleto, setNomeCompleto] = useState('');
@@ -376,6 +377,11 @@ function Visucli() {
         }
     }
 
+    const visualizar = (id) => {
+        Cookies.set("propostaSelecionada", id);
+        navigate('/visualizacaoindividual');
+    }
+
     function Tabprop() {
 
         const navigate = useNavigate();
@@ -402,7 +408,7 @@ function Visucli() {
                         <th className='colunasTabelaPropostas'> Visualizar </th>
                     </tr>
                     {list.map((item) => (
-                        <tr className='linhasTabelaPropostas'>
+                        <tr className='linhasTabelaPropostas' key={item.proposalId}>
                             <td className='colunasTabelaPropostas'>{item.username}</td>
                             <td className='colunasTabelaPropostas'>{item.business}</td>
                             <td className='colunasTabelaPropostas'>
@@ -412,7 +418,7 @@ function Visucli() {
                             <td className='colunasTabelaPropostas'>{item.tipo == true ? formataCnpj(item.cnpj) : formataCpf(item.cpf)}</td>
                             <td className='colunasTabelaPropostas'>{item.status}</td>
                             <td colunasTabelaPropostas>
-                                <button className='botaoVer'>
+                                <button className='botaoVer' onClick={() => visualizar(item.proposalId)}>
                                     <span className='stringVer'> Ver </span>
                                 </button>
                             </td>
