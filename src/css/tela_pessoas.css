@@ -1,5 +1,10 @@
-
-
+#containerGeral{
+  position: absolute;
+  top: 10vh;
+  left: 30vh;
+  width: 165vh;
+  overflow-x: auto;
+}
 
 .titulo {
     padding-bottom: 1vh;
@@ -14,36 +19,6 @@
     position: absolute;
     right: 160vh;
     top: 9vh;
-}
-
-.tabela {
-    width: 100%;
-    padding-top: 1.5vh;
-    padding-bottom: 1.5vh;
-    padding-left: 1vh;
-    padding-right: 2vh;
-    align-items: center;
-    justify-content: center;
-    border-collapse: collapse;
-}
-  
-.tabela td {
-  text-align: center;
-  border: 0.1vh solid rgba(0, 0, 0, 0.2);
-  padding: 0.5vh 1vh;
-  height: 4vh;
-  width: 15vh;
-}
-
-.textodados {
-    font-size: 2vh;
-    color: black;
-    text-align: left;
-  }
-
-.textoClasses{
-  font-size: 2vh;
-  font-weight: bold;
 }
 
 .textoCadastrar {
@@ -66,6 +41,34 @@
 .stringCadastrar {
   font-size: 2vh;
 }
+
+.divTabela {
+  overflow-x: auto;
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabela td {
+  text-align: center;
+  border: 0.1vh solid rgba(0, 0, 0, 0.2);
+  height: 4vh;
+  width: 15vh;
+}
+
+.textodados {
+  font-size: 2vh;
+  color: black;
+  text-align: left;
+}
+
+.textoClasses {
+  font-size: 2vh;
+  font-weight: bold;
+}
+
 .stringVer {
   font-size: 2vh;
 }

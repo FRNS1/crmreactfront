@@ -69,8 +69,8 @@ function Telapessoas() {
       const parte10 = partesTelefone[9];
       const parte11 = partesTelefone[10];
       return `(${parte1}${parte2}) ${parte3}${parte4}${parte5}${parte6}${parte7}-${parte8}${parte9}${parte10}${parte11}`;
-      
-    } else if(partesTelefone.length == 10) {
+
+    } else if (partesTelefone.length == 10) {
       const parte1 = partesTelefone[0];
       const parte2 = partesTelefone[1];
       const parte3 = partesTelefone[2];
@@ -92,7 +92,7 @@ function Telapessoas() {
     const partesCNPJ = cnpj.split('')
     if (partesCNPJ.length != 14) {
       return `Documento inválido`
-      
+
     } else {
       const parte1 = partesCNPJ[0];
       const parte2 = partesCNPJ[1];
@@ -112,43 +112,44 @@ function Telapessoas() {
     }
   }
 
-    function formataCpf(cpf) {
-      // let cpf2 = cpf + "babaca";
-      // return cpf2;
-      const partesCPF = cpf.split('')
-      if (partesCPF.length != 11) {
-        return `Documento inválido`
-      } else {
-        const parte1 = partesCPF[0];
-        const parte2 = partesCPF[1];
-        const parte3 = partesCPF[2];
-        const parte4 = partesCPF[3];
-        const parte5 = partesCPF[4];
-        const parte6 = partesCPF[5];
-        const parte7 = partesCPF[6];
-        const parte8 = partesCPF[7];
-        const parte9 = partesCPF[8];
-        const parte10 = partesCPF[9];
-        const parte11 = partesCPF[10];
-        return `${parte1}${parte2}${parte3}.${parte4}${parte5}${parte6}.${parte7}${parte8}${parte9}-${parte10}${parte11}`;
-      }
+  function formataCpf(cpf) {
+    // let cpf2 = cpf + "babaca";
+    // return cpf2;
+    const partesCPF = cpf.split('')
+    if (partesCPF.length != 11) {
+      return `Documento inválido`
+    } else {
+      const parte1 = partesCPF[0];
+      const parte2 = partesCPF[1];
+      const parte3 = partesCPF[2];
+      const parte4 = partesCPF[3];
+      const parte5 = partesCPF[4];
+      const parte6 = partesCPF[5];
+      const parte7 = partesCPF[6];
+      const parte8 = partesCPF[7];
+      const parte9 = partesCPF[8];
+      const parte10 = partesCPF[9];
+      const parte11 = partesCPF[10];
+      return `${parte1}${parte2}${parte3}.${parte4}${parte5}${parte6}.${parte7}${parte8}${parte9}-${parte10}${parte11}`;
     }
+  }
 
-    return (
-      <div className='containerPrincipal'>
-        <div>
-          <NavSuperior />
-          <NavLateral />
+  return (
+    <div className='containerPrincipal'>
+      <div>
+        <NavSuperior />
+        <NavLateral />
+      </div>
+      <div id='containerGeral'>
+        <div className='textoPropostas'>
+          <text className='stringTitulos'> Clientes </text>
         </div>
-        <div className='containerGeral'>
-          <div className='textoPropostas'>
-            <text className='stringTitulos'> Clientes </text>
-          </div>
-          <div className='botaoCadastrar'>
-            <button className="textoCadastrar" onClick={handleButtonClick}>
-              <span className='stringCadastrar'> Cadastrar Cliente </span>
-            </button>
-          </div>
+        <div className='botaoCadastrar'>
+          <button className="textoCadastrar" onClick={handleButtonClick}>
+            <span className='stringCadastrar'> Cadastrar Cliente </span>
+          </button>
+        </div>
+        <div className='divTabela'>
           <table className='tabela'>
             <thead>
               <tr className='textoClasses'>
@@ -179,7 +180,8 @@ function Telapessoas() {
           </table>
         </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
-  export { Telapessoas };
+export { Telapessoas };
