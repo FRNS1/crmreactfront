@@ -1533,7 +1533,7 @@ function VisualizacaoIndividual() {
                                 <span className='stringDados'> Alls Data </span>
                             </button>
                             <button className={`botoes ${muda === 'upload' ? 'botaoAtivo' : ''}`} onClick={() => Mudapagina("upload")}>
-                                <span className='stringDados'> Upload </span>
+                                <span className='stringDados'> Arquivos </span>
                             </button>
                         </div>
                         <br />
@@ -1552,7 +1552,7 @@ function VisualizacaoIndividual() {
                             {muda === 'allsdata' && (
                                 <AllsData />
                             )}
-                            {muda === 'Arquivos' && (
+                            {muda === 'upload' && (
                                 <Upload />
                             )}
                         </div>
