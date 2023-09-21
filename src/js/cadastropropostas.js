@@ -14,28 +14,36 @@ function CadastroPropostas() {
     const [prazo, setPrazo] = useState('');
     const [obsAnalista, setObsAnalista] = useState('');
 
-    async function registerProposal(){
-        try{
-            const response = await axios.get("http://35.175.231.117:8080/api/v1/proposal/register", {
+    async function registerProposal() {
+        try {
+            const url = "http://35.175.231.117:8080/api/v1/proposal/register";
+            const data = {
                 customer_id: Cookies.get('clienteSelecionado'),
                 user_id: Cookies.get('userid'),
                 valor_desejado: valorDesejado,
                 prazo: prazo,
                 observacao_cliente: obsAnalista
-            },
-            {
+            };
+    
+            const response = await fetch(url, {
+                method: 'POST',
                 headers: {
-                    Authorization: `Bearer ${Cookies.get('token')}`,
+                    'Authorization': `Bearer ${Cookies.get('token')}`,
                     'Content-Type': 'application/json'
-                }
-            })
-            if (response.data == 'Created'){
-                alert('Dados enviados com sucesso!')
-                navigate('/visualizacaoindividual')
+                },
+                body: JSON.stringify(data)
+            });
+    
+            if (response.ok) {
+                alert('Dados enviados com sucesso!');
+                navigate('/visucli');
+            } else {
+                alert('Houve um erro na requisição');
+                console.error('Request failed with status:', response.status);
             }
-        }catch (error){
+        } catch (error) {
             alert('Houve um erro na requisição');
-            console.log(error);
+            console.error(error);
         }
     }
 
