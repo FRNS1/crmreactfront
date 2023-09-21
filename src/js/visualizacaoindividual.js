@@ -1552,7 +1552,7 @@ function VisualizacaoIndividual() {
                             {muda === 'allsdata' && (
                                 <AllsData />
                             )}
-                            {muda === 'upload' && (
+                            {muda === 'Arquivos' && (
                                 <Upload />
                             )}
                         </div>
