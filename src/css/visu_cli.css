@@ -47,6 +47,7 @@
 .tabelaPropostas {
     margin-top: 1vh;
     width: 100%;
+    height: 100%;
     font-size: 2vh;
     border-collapse: collapse;
     align-items: center;
@@ -116,4 +117,14 @@
 .divbotaoCadastrarProposta{
     display: flex;
     justify-content: end;
+}
+
+.divTabelaPropostasVisuCli{
+    position: absolute;
+    top: 18vh;
+    left: 0;
+    width: 100%;
+    height: 70vh;
+    overflow-x: auto;
+    overflow-y: auto;
 }

@@ -390,41 +390,45 @@ function Visucli() {
         };
 
         return (
-            <div className='caixaTabelaPropostas'>
-                <br />
-                <div className='divbotaoCadastrarProposta'>
-                    <button className='botaoCadastrarProposta' onClick={handleButtonClick}>
-                        <span> Cadastrar Proposta </span>
-                    </button>
+            <div>
+                <div className='caixaTabelaPropostas'>
+                    <br />
+                    <div className='divbotaoCadastrarProposta'>
+                        <button className='botaoCadastrarProposta' onClick={handleButtonClick}>
+                            <span> Cadastrar Proposta </span>
+                        </button>
+                    </div>
                 </div>
-                <table className='tabelaPropostas'>
-                    <tr className='linhasTabelaPropostas'>
-                        <th className='colunasTabelaPropostas'> Indicador </th>
-                        <th className='colunasTabelaPropostas'> Business </th>
-                        <th className='colunasTabelaPropostas'> Data da criação </th>
-                        <th className='colunasTabelaPropostas'> Nome Cliente </th>
-                        <th className='colunasTabelaPropostas'> Documento </th>
-                        <th className='colunasTabelaPropostas'> Status da propostas </th>
-                        <th className='colunasTabelaPropostas'> Visualizar </th>
-                    </tr>
-                    {list.map((item) => (
-                        <tr className='linhasTabelaPropostas' key={item.proposalId}>
-                            <td className='colunasTabelaPropostas'>{item.username}</td>
-                            <td className='colunasTabelaPropostas'>{item.business}</td>
-                            <td className='colunasTabelaPropostas'>
-                                <InputMask mask="99/99/9999" placeholder="DD/MM/AAAA" type="text" className="inputDadosTabela" value={item.date ? format(new Date(item.date), 'dd/MM/yyyy') : ''} />
-                            </td>
-                            <td className='colunasTabelaPropostas'>{item.tipo == true ? item.razaoSocial : item.nomeCompleto}</td>
-                            <td className='colunasTabelaPropostas'>{item.tipo == true ? formataCnpj(item.cnpj) : formataCpf(item.cpf)}</td>
-                            <td className='colunasTabelaPropostas'>{item.status}</td>
-                            <td colunasTabelaPropostas>
-                                <button className='botaoVer' onClick={() => visualizar(item.proposalId)}>
-                                    <span className='stringVer'> Ver </span>
-                                </button>
-                            </td>
+                <div className='divTabelaPropostasVisuCli'>
+                    <table className='tabelaPropostas'>
+                        <tr className='linhasTabelaPropostas'>
+                            <th className='colunasTabelaPropostas'> Indicador </th>
+                            <th className='colunasTabelaPropostas'> Business </th>
+                            <th className='colunasTabelaPropostas'> Data da criação </th>
+                            <th className='colunasTabelaPropostas'> Nome Cliente </th>
+                            <th className='colunasTabelaPropostas'> Documento </th>
+                            <th className='colunasTabelaPropostas'> Status da propostas </th>
+                            <th className='colunasTabelaPropostas'> Visualizar </th>
                         </tr>
-                    ))}
-                </table>
+                        {list.map((item) => (
+                            <tr className='linhasTabelaPropostas' key={item.proposalId}>
+                                <td className='colunasTabelaPropostas'>{item.username}</td>
+                                <td className='colunasTabelaPropostas'>{item.business}</td>
+                                <td className='colunasTabelaPropostas'>
+                                    <InputMask mask="99/99/9999" placeholder="DD/MM/AAAA" type="text" className="inputDadosTabela" value={item.date ? format(new Date(item.date), 'dd/MM/yyyy') : ''} />
+                                </td>
+                                <td className='colunasTabelaPropostas'>{item.tipo == true ? item.razaoSocial : item.nomeCompleto}</td>
+                                <td className='colunasTabelaPropostas'>{item.tipo == true ? formataCnpj(item.cnpj) : formataCpf(item.cpf)}</td>
+                                <td className='colunasTabelaPropostas'>{item.status}</td>
+                                <td colunasTabelaPropostas>
+                                    <button className='botaoVer' onClick={() => visualizar(item.proposalId)}>
+                                        <span className='stringVer'> Ver </span>
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </table>
+                </div>
             </div>
         );
     }
@@ -440,9 +444,11 @@ function Visucli() {
 
     return (
         <div className='containerPrincipal'>
-            <div>
-                <NavSuperior />
+            <div className='positionNavLateral'>
                 <NavLateral />
+            </div>
+            <div className='positionNavSuperior'>
+                <NavSuperior />
             </div>
             <div className='containerGeral'>
                 <div className='rowbotoes'>

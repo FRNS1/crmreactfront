@@ -1,13 +1,12 @@
-#containerGeral{
+.containerGeral{
   position: absolute;
   top: 10vh;
   left: 30vh;
-  width: 165vh;
-  overflow-x: auto;
+  width: 80%;
 }
 
 .titulo {
-    padding-bottom: 1vh;
+    margin-bottom: 1vh;
     font-size: 2vh;
 }
 
@@ -42,16 +41,22 @@
   font-size: 2vh;
 }
 
-.divTabela {
+.divTabelaCLientes{
+  position: absolute;
+  top: 20vh;
+  left: 30vh;
+  width: 80%;
+  height: 75vh;
   overflow-x: auto;
+  overflow-y: auto;
 }
 
-.tabela {
+.tabelaClientes{
   width: 100%;
   border-collapse: collapse;
 }
 
-.tabela td {
+.tabelaClientes td {
   text-align: center;
   border: 0.1vh solid rgba(0, 0, 0, 0.2);
   height: 4vh;
@@ -76,6 +81,20 @@
 .botaoTDVer {
   cursor: pointer;
   width: 10vh;
-  height: 5vh;
+  height: 3.5vh;
   border-radius: 1vh;
+}
+
+.positionNavSuperior{
+  position: absolute;
+  top: 0vh;
+  right: 0vh;
+  width: 100%;
+}
+
+.positionNavLateral{
+  position: absolute;
+  top: 0vh;
+  left: 0vh;
+  z-index: 1;
 }

@@ -100,15 +100,19 @@ function VisualizacaoPropostas() {
 
     return (
         <div className='containerPrincipal'>
-            <div>
-                <NavSuperior />
+            <div className='positionNavLateral'>
                 <NavLateral />
+            </div>
+            <div className='positionNavSuperior'>
+                <NavSuperior />
             </div>
             <div className='containerGeral'>
                 <div className='textoPropostas'>
                     <text className='stringTitulos'> Propostas </text>
                 </div>
-                <br />
+            </div>
+            <br />
+            <div className='divTabelaPropostas'>
                 <table className='tabelaPropostas'>
                     <thead>
                         <tr className='linhasTabelaPropostas'>

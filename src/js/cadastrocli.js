@@ -360,10 +360,12 @@ function Cadastrocli() {
 
   return (
     <div className='containerPrincipal'>
-      <div>
-        <NavSuperior />
-        <NavLateral />
-      </div>
+        <div className='positionNavLateral'>
+          <NavLateral />
+        </div>
+        <div className='positionNavSuperior'>
+          <NavSuperior />
+        </div>
       <div className='containerGeral'>
         <label className='stringSelect'> Escolha o tipo de pessoa: </label>
           <select className='caixaOption' value={selectedOption} onChange={handleOptionChange}>
