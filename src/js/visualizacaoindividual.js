@@ -668,6 +668,13 @@ function VisualizacaoIndividual() {
         const handleNumUfProcessosChange = (value) => {
             setNumUfProcessos(value);
         }
+        const [isChecked, setIsChecked] = useState(false);
+        const handleCheckboxChange = () => {
+            setIsChecked(!isChecked); // Inverte o estado da checkbox
+        };
+
+
+
 
 
         return (
@@ -831,10 +838,13 @@ function VisualizacaoIndividual() {
                             <div className='divfield'>
                                 <label className="stringDados"> PEP </label>
                                 <div className='checkBox'>
-                                    <label className='labelCheckBox'> True </label>
-                                    <input className="inputCheckbox" type="radio" value={pep} />
-                                    <label className='labelCheckBox'> False </label>
-                                    <input className="inputCheckbox" type="radio" value={pep} />
+                                    <label className='labelCheckBox'>
+                                        <input
+                                            type="checkbox"
+                                            checked={isChecked}
+                                            onChange={handleCheckboxChange}
+                                        />
+                                    </label>
                                 </div>
                             </div>
                             <div className='divfield'>
