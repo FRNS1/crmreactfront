@@ -830,7 +830,12 @@ function VisualizacaoIndividual() {
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> PEP </label>
-                                <input className="inputCheckbox" type="checkbox" value={pep} />
+                                <div className='checkBox'>
+                                    <label className='labelCheckBox'> True </label>
+                                    <input className="inputCheckbox" type="radio" value={pep} />
+                                    <label className='labelCheckBox'> False </label>
+                                    <input className="inputCheckbox" type="radio" value={pep} />
+                                </div>
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> ISS </label>
