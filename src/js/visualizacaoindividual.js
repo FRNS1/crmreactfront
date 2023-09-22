@@ -202,6 +202,7 @@ function VisualizacaoIndividual() {
 
         const proposalUpdateDTO = {
             proposal_id: Cookies.get('propostaSelecionada'),
+            user_id: Cookies.get('userid'),
             valor_desejado: valorDesejado,
             taxa: taxa.toString().replace(",", "."),
             corban: corban.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
