@@ -22,7 +22,7 @@ function RegistroPagamentoIndividual() {
         const proposalId = Cookies.get('chosenLoan');
         var myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${token}`);
-    
+
         var requestOptions = {
             method: 'GET',
             headers: myHeaders,
@@ -30,7 +30,7 @@ function RegistroPagamentoIndividual() {
         };
 
         const urlLoan = `http://35.175.231.117:8080/api/v1/proposal/loans/getproposal/info/${proposalId}`;
-    
+
         try {
             const response = await fetch(urlLoan, requestOptions);
             if (!response.ok) {
@@ -49,7 +49,7 @@ function RegistroPagamentoIndividual() {
         const proposalId = Cookies.get('chosenLoan');
         var myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${token}`);
-    
+
         var requestOptions = {
             method: 'GET',
             headers: myHeaders,
@@ -57,7 +57,7 @@ function RegistroPagamentoIndividual() {
         };
 
         const urlFluxo = `http://127.0.0.1:8080/api/v1/payments/getloandetails/${proposalId}`;
-    
+
         try {
             const response = await fetch(urlFluxo, requestOptions);
             if (!response.ok) {
@@ -78,9 +78,11 @@ function RegistroPagamentoIndividual() {
 
     return (
         <div className='containerPrincipal'>
-            <div>
-                <NavSuperior />
+            <div className='positionNavLateral'>
                 <NavLateral />
+            </div>
+            <div className='positionNavSuperior'>
+                <NavSuperior />
             </div>
             <div className='containerGeral'>
                 <div className='textoPropostas'>

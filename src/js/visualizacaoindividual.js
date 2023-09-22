@@ -199,7 +199,7 @@ function VisualizacaoIndividual() {
     async function sendInfos() {
         const token = Cookies.get('token');
         const urlUpdateInfos = 'http://35.175.231.117:8080/api/v1/proposal/update';
-    
+
         const proposalUpdateDTO = {
             proposal_id: Cookies.get('propostaSelecionada'),
             user_id: Cookies.get('userid'),
@@ -218,7 +218,7 @@ function VisualizacaoIndividual() {
             observacao_cliente: observacaoCliente,
             observacao_analista: observacaoAnalista
         };
-    
+
         try {
             const responseUpdateInfos = await axios.post(urlUpdateInfos, proposalUpdateDTO, {
                 headers: {
@@ -236,7 +236,7 @@ function VisualizacaoIndividual() {
     async function sendBureausCredito() {
         const token = Cookies.get('token');
         const urlUpdateAnalytics = 'http://35.175.231.117:8080/api/v1/analytics/update';
-    
+
         const analyticsUpdateDTO = {
             proposalId: Cookies.get('propostaSelecionada'),
             numTitulosProtestados: numTitulosProtestados,
@@ -257,7 +257,7 @@ function VisualizacaoIndividual() {
             numPefins: numPefins,
             empresasNaoInformadas: empresasNaoInformadas
         };
-    
+
         try {
             const responseUpdateAnalytics = await axios.post(urlUpdateAnalytics, analyticsUpdateDTO, {
                 headers: {
@@ -273,10 +273,10 @@ function VisualizacaoIndividual() {
 
     }
 
-    async function sendBacen(){
+    async function sendBacen() {
         const token = Cookies.get('token');
         const urlUpdateScr = 'http://35.175.231.117:8080/api/v1/scr/update';
-    
+
         const ScrUpdateDTO = {
             proposal_id: Cookies.get('propostaSelecionada'),
             vencer_valor_total: vencerValorTotal.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
@@ -307,7 +307,7 @@ function VisualizacaoIndividual() {
             limites_credito_vencimento_ate_360_dias: limitesCreditoVencimentoAte360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
             limites_credito_vencimento_acima_360_dias: limitesCreditoVencimentoAcima360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
         };
-    
+
         try {
             const responseUpdateScr = await axios.post(urlUpdateScr, ScrUpdateDTO, {
                 headers: {
@@ -323,10 +323,10 @@ function VisualizacaoIndividual() {
 
     }
 
-    async function sendAllsData(){
+    async function sendAllsData() {
         const token = Cookies.get('token');
         const urlUpdateAllsData = 'http://35.175.231.117:8080/api/v1/allsdata/update';
-    
+
         const AllsDataUpdateDTO = {
             proposal_id: Cookies.get('propostaSelecionada'),
             num_pendencias_financeiras: numPendenciasFinanceirasAlls,
@@ -340,7 +340,7 @@ function VisualizacaoIndividual() {
             num_restricoes: numRestricoesAlls,
             valor_restricoes: valorRestricoesAlls.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
         };
-    
+
         try {
             const responseUpdateAllsData = await axios.post(urlUpdateAllsData, AllsDataUpdateDTO, {
                 headers: {
@@ -358,21 +358,21 @@ function VisualizacaoIndividual() {
     async function sendFiles() {
         console.log("Enviando");
         console.log(files);
-    
+
         for (let i = 0; i < files.length; i++) {
             var myHeaders = new Headers();
             myHeaders.append("Authorization", `Bearer ${Cookies.get('token')}`);
-    
+
             var formdata = new FormData();
             formdata.append("file", files[i]);
-    
+
             var requestOptions = {
                 method: 'POST',
                 headers: myHeaders,
                 body: formdata,
                 redirect: 'follow'
             };
-    
+
             // Upload do arquivo
             await fetch("http://35.175.231.117:8080/api/v1/files/upload", requestOptions)
                 .then(response => response.text())
@@ -380,33 +380,33 @@ function VisualizacaoIndividual() {
                     console.log("Arquivo enviado:", result)
                 })
                 .catch(error => console.log('error', error));
-    
+
             // Construir o link S3
             var myHeaders2 = new Headers();
             myHeaders2.append("Authorization", `Bearer ${Cookies.get('token')}`);
             myHeaders2.append("Content-Type", "application/json");
-    
+
             let fileName = files[i].name.replace(/\s/g, "+");
             let link = `https://docsbora.s3.amazonaws.com/${fileName}`;
-    
+
             var data = {
                 fileName: fileName,
                 tipoArquivo: "Documentos do cliente",
                 proposal: Cookies.get('propostaSelecionada'),
                 url: link
             };
-    
+
             var requestOptionsData = {
                 method: 'POST',
                 headers: myHeaders2,
                 body: JSON.stringify(data),
                 redirect: 'follow'
             };
-    
+
             // Enviar informações sobre o arquivo
             await fetch("http://35.175.231.117:8080/api/v1/files/filesdata", requestOptionsData)
                 .then(response => response.text())
-                .then(result => {alert("Informações e arquivo enviados"); setFiles([]); getDataProposal();})
+                .then(result => { alert("Informações e arquivo enviados"); setFiles([]); getDataProposal(); })
                 .catch(error => console.log('error', error));
         }
     }
@@ -530,13 +530,13 @@ function VisualizacaoIndividual() {
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> Data de Abertura </label>
-                                <InputMask 
-                                    mask="99/99/9999" 
-                                    placeholder="DD/MM/AAAA" 
-                                    type="text" 
-                                    className="inputCad" 
-                                    value={dataAbertura ? format(new Date(dataAbertura), 'dd/MM/yyyy') : ''} 
-                                    disabled 
+                                <InputMask
+                                    mask="99/99/9999"
+                                    placeholder="DD/MM/AAAA"
+                                    type="text"
+                                    className="inputCad"
+                                    value={dataAbertura ? format(new Date(dataAbertura), 'dd/MM/yyyy') : ''}
+                                    disabled
                                 />
                             </div>
                             <div className='divfield'>
@@ -831,7 +831,12 @@ function VisualizacaoIndividual() {
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> PEP </label>
-                                <input className="inputCheckbox" type="checkbox" value={pep}/>
+                                <div className='checkBox'>
+                                    <label className='labelCheckBox'> True </label>
+                                    <input className="inputCheckbox" type="radio" value={pep} />
+                                    <label className='labelCheckBox'> False </label>
+                                    <input className="inputCheckbox" type="radio" value={pep} />
+                                </div>
                             </div>
                             <div className='divfield'>
                                 <label className="stringDados"> ISS </label>
@@ -1492,8 +1497,8 @@ function VisualizacaoIndividual() {
                 </div>
                 <div className='divlistaFiles'>
                     <ul className='listaFiles'>
-                        {filesReceived.map((file) => 
-                        <li className='liFiles'> <a href={file.url_arquivo}>{file.url_arquivo}</a> </li>
+                        {filesReceived.map((file) =>
+                            <li className='liFiles'> <a href={file.url_arquivo}>{file.url_arquivo}</a> </li>
                         )}
                     </ul>
                 </div>
@@ -1511,9 +1516,11 @@ function VisualizacaoIndividual() {
         <div>
             {loading === false ? (
                 <div className='containerPrincipal'>
-                    <div>
-                        <NavSuperior />
+                    <div className='positionNavLateral'>
                         <NavLateral />
+                    </div>
+                    <div className='positionNavSuperior'>
+                        <NavSuperior />
                     </div>
                     <div className='containerGeral'>
                         <div className='textoPropostas'>

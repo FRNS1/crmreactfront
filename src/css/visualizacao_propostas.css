@@ -46,3 +46,13 @@
   font-size: 2vh;
   text-align: center;
 }
+
+.divTabelaPropostas{
+  position: absolute;
+  top: 20vh;
+  left: 30vh;
+  width: 80%;
+  height: 75vh;
+  overflow-x: auto;
+  overflow-y: auto;
+}

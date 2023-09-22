@@ -3,7 +3,7 @@ import '../css/tela_pessoas.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
 import { useNavigate } from 'react-router-dom';
-import InputMask from 'react-input-mask';
+import { Table } from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
@@ -137,10 +137,14 @@ function Telapessoas() {
   return (
     <div className='containerPrincipal'>
       <div>
-        <NavSuperior />
-        <NavLateral />
+        <div className='positionNavLateral'>
+          <NavLateral />
+        </div>
+        <div className='positionNavSuperior'>
+          <NavSuperior />
+        </div>
       </div>
-      <div id='containerGeral'>
+      <div className='containerGeral'>
         <div className='textoPropostas'>
           <text className='stringTitulos'> Clientes </text>
         </div>
@@ -149,36 +153,36 @@ function Telapessoas() {
             <span className='stringCadastrar'> Cadastrar Cliente </span>
           </button>
         </div>
-        <div className='divTabela'>
-          <table className='tabela'>
-            <thead>
-              <tr className='textoClasses'>
-                <td>Nome</td>
-                <td>Tipo-Cliente</td>
-                <td>Identidade</td>
-                <td>Email</td>
-                <td>Telefone</td>
-                <td></td>
+      </div>
+      <div className='divTabelaCLientes'>
+        <table className='tabelaClientes'>
+          <thead>
+            <tr className='textoClasses'>
+              <td>Nome</td>
+              <td>Tipo-Cliente</td>
+              <td>Identidade</td>
+              <td>Email</td>
+              <td>Telefone</td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            {customersList.map((customer) => (
+              <tr className='textodados' key={customer.customerId}>
+                <td>{customer.cpf == null ? customer.razaoSocial : customer.nome}</td>
+                <td>{customer.cpf == null ? 'PJ' : 'PF'}</td>
+                <td>{customer.cpf == null ? formataCnpj(customer.cnpj) : formataCpf(customer.cpf)}</td>
+                <td>{customer.email == 'nan' ? 'Sem email' : customer.email}</td>
+                <td>{formataTelefone(customer.telefone)}</td>
+                <td className='colunaVer'>
+                  <button className="botaoTDVer" style={{ backgroundColor: '#081535' }}>
+                    <span className='stringVer' style={{ color: 'white' }} onClick={() => visualizacaoCliente(customer.customerId)}>visualizar</span>
+                  </button>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {customersList.map((customer) => (
-                <tr className='textodados' key={customer.customerId}>
-                  <td>{customer.cpf == null ? customer.razaoSocial : customer.nome}</td>
-                  <td>{customer.cpf == null ? 'PJ' : 'PF'}</td>
-                  <td>{customer.cpf == null ? formataCnpj(customer.cnpj) : formataCpf(customer.cpf)}</td>
-                  <td>{customer.email == 'nan' ? 'Sem email' : customer.email}</td>
-                  <td>{formataTelefone(customer.telefone)}</td>
-                  <td className='colunaVer'>
-                    <button className="botaoTDVer" style={{ backgroundColor: '#081535' }}>
-                      <span className='stringVer' style={{ color: 'white' }} onClick={() => visualizacaoCliente(customer.customerId)}>visualizar</span>
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

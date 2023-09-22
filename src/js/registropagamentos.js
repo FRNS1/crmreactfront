@@ -54,9 +54,11 @@ function RegistroPagamentos() {
 
     return (
         <div className='containerPrincipal'>
-            <div>
-                <NavSuperior />
+            <div className='positionNavLateral'>
                 <NavLateral />
+            </div>
+            <div className='positionNavSuperior'>
+                <NavSuperior />
             </div>
             <div className='containerGeral'>
                 <div className="caixaPesquisar">
@@ -69,6 +71,8 @@ function RegistroPagamentos() {
                 </div>
                 <br />
                 <hr />
+            </div>
+            <div className='divTabelaCLientes'>
                 <table className="tabelaPagamentos">
                     <thead>
                         <tr>
