@@ -1,6 +1,10 @@
+import './css/tela_login.css';
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ButtonPage } from './js/login'
+import { Checklist } from './js/checklist'
+import { PedroRiccoPf } from './js/links-indicador/pf/pedroricco'
 import { Telapessoas } from './js/pessoas';
 import { Cadastrocli } from './js/cadastrocli';
 import { Visucli } from './js/visucli';
@@ -9,115 +13,9 @@ import { CadastroPropostas } from './js/cadastropropostas';
 import { VisualizacaoIndividual } from './js/visualizacaoindividual';
 import { RegistroPagamentos } from './js/registropagamentos';
 import { RegistroPagamentoIndividual } from './js/registropagamentoindividual';
+import { ChecklistPj } from './js/checklistpj';
 import Cookies from 'js-cookie';
 
-const ButtonPage = () => {
-  const navigate = useNavigate();
-
-  const [user, setUser] = useState("");
-  const [password, setPassword] = useState("");
-  const [logged, setLogged] = useState(false);
-  const [userFullName, setUserFullName] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [token, setToken] = useState("");
-  const [erro, setErro] = useState("");
-
-  const handleErroChange = (erro) => {
-    setErro(erro);
-  }
-
-  const handleTokenChange = (token) => {
-    setToken(token);
-  }
-
-  const handleLoggedChange = () => {
-    setLogged(true);
-  }
-
-  const handleEmailChange = (email) => {
-    setUserEmail(email);
-  }
-
-  const handleUserFullNameChange = (name) => {
-    setUserFullName(name);
-  }
-
-  const handleUserChange = (event) => {
-    setUser(event.target.value);
-  }
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  }
-
-  async function handleButtonClick() {
-    const apiUrl = "http://35.175.231.117:8080/api/v1/users/login";
-  
-    const requestData = {
-      username: `${user}`,
-      password: `${password}`
-    };
-
-    const headers = {
-      "Content-Type": "application/json"
-    };
-
-    try {
-      const response = await axios.post(apiUrl, requestData, { headers });
-      const result = response.data;
-      Cookies.set('token', result.token);
-      Cookies.set('email', result.email);
-      Cookies.set('nome', result.nome);
-      Cookies.set('logged', true);
-      Cookies.set('userid', result.userid);
-      Cookies.set('usergroup', result.usergroup);
-      navigate('/pessoas');
-    } catch (error) {
-      handleErroChange("Usuário ou senha incorretos.")
-    }
-  };
-
-
-  function test() {
-    console.log(token, userEmail);
-  }
-
-  const handleEnterKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      handleButtonClick();
-    }
-  };
-
-
-  useEffect(() => {
-    window.addEventListener('keydown', handleEnterKeyPress);
-
-    return () => {
-      window.removeEventListener('keydown', handleEnterKeyPress);
-    };
-  }, [handleEnterKeyPress]);
-
-  return (
-    <body className="body">
-      <div className="container">
-        <img className="deltaimg" src={require('./imgs/deltalogologin.png')} alt="Logo" />
-        <br />
-        <label className="labelInput"> Usuário </label>
-        <input className="containerInput" type="text" id="user" value={user} onChange={handleUserChange} />
-        <br />
-        <label className="labelInput"> Senha </label>
-        <input className="containerInput" type="password" id="password" value={password} onChange={handlePasswordChange} />
-        <br />
-        <div>
-          <button className="botaoEntrar" onClick={handleButtonClick}> Entrar </button>
-        </div>
-        <text className='erro'>{erro}</text>
-        <a className="esqueceuSenha" href="https://testador.com.br"> Esqueceu sua senha? </a>
-      </div>
-    </body>
-  );
-};
 
 function App() {
   return (
@@ -132,6 +30,9 @@ function App() {
         <Route path='/visualizacaoindividual' element={<VisualizacaoIndividual />} />
         <Route path='/registropagamentos' element={<RegistroPagamentos />} />
         <Route path='/registropagamentoindividual' element={<RegistroPagamentoIndividual />} />
+        <Route path='/checklistpf' element={<Checklist />} />
+        <Route path='/checklistpj' element={<ChecklistPj />} />
+        <Route path='/indicadorpedroricco' element={<PedroRiccoPf />} />
       </Routes>
     </BrowserRouter>
   );
