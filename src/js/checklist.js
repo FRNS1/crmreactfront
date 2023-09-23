@@ -21,21 +21,20 @@ function Checklist(){
     const [latitude, setLatitude] = useState('');
     const [longitude, setLongitude] = useState('');
 
-    function getGeoLocation(){
-        if ('geolocation' in navigator){
-            navigator.geolocation.getCurrentPosition((position) => {
-                setLatitude(position.coords.latitude);
-                setLongitude(position.coords.longitude);
-            })
-        } else {
-            console.log("Indisponível");
-        }
+    function sla(){
+        console.log(latitude, longitude);
     }
 
-    function showGeo(){
-        getGeoLocation();
-        console.log(latitude + " " + longitude);
-    }
+    useEffect(() => {
+        if ('geolocation' in navigator) {
+          navigator.geolocation.getCurrentPosition((position) => {
+            setLatitude(position.coords.latitude);
+            setLongitude(position.coords.longitude);
+          });
+        } else {
+          console.log('Geolocalização não está disponível no seu navegador.');
+        }
+      }, []);
 
     function TermosCondicoesScr(){
         return(
@@ -234,7 +233,7 @@ function Checklist(){
                     <input type="checkbox" />
                     <text>Estou de acordo com os <a className='termos-checklist' onClick={() => setShow('termos')}>termos e condições </a>e com o <a className='termos-checklist' onClick={() => setShow('scr')}>termo de autorização de consulta ao SCR.</a></text>
                 </div>
-                <button className='buttonchecklist' onClick={showGeo}>Enviar</button>
+                <button className='buttonchecklist' onClick={sla}>Enviar</button>
                 </form>
             </div>
         </div>
