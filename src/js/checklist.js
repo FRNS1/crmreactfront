@@ -22,7 +22,7 @@ function Checklist(){
     const [longitude, setLongitude] = useState('');
 
     function sla(){
-        console.log(latitude, longitude);
+        alert(latitude, longitude);
     }
 
     useEffect(() => {
