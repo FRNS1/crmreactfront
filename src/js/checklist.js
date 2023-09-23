@@ -32,7 +32,7 @@ function Checklist(){
             setLongitude(position.coords.longitude);
           });
         } else {
-          console.log('Geolocalização não está disponível no seu navegador.');
+          alert('Geolocalização não está disponível no seu navegador.');
         }
       }, []);
 
