@@ -110,6 +110,7 @@ function Cadastrocli() {
       try{
         const response = await axios.post(url, {
           is_cnpj: true,
+          user_id: Cookies.get('userid'),
           nome_fantasia: nomeFantasia,
           razao_social: razaoSocial,
           cnpj: cnpj.replace(".", "").replace("-", "").replace("/", ""),
@@ -143,6 +144,7 @@ function Cadastrocli() {
       try{
         const response = await axios.post(url, {
           is_cnpj: false,
+          user_id: Cookies.get('userid'),
           nome_completo: nomeCompleto,
           cpf: cpf.replace(".", "").replace("-", ""),
           data_nascimento: dataNascimento,

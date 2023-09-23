@@ -239,6 +239,7 @@ function VisualizacaoIndividual() {
 
         const analyticsUpdateDTO = {
             proposalId: Cookies.get('propostaSelecionada'),
+            user_id: Cookies.get('userid'),
             numTitulosProtestados: numTitulosProtestados,
             score: score,
             numRefins: numRefins,
@@ -327,18 +328,54 @@ function VisualizacaoIndividual() {
         const token = Cookies.get('token');
         const urlUpdateAllsData = 'http://35.175.231.117:8080/api/v1/allsdata/update';
 
+        let valor_pendencias_financeiras = 0;
+        try {
+            valor_pendencias_financeiras = valorPendenciasFinanceirasAlls.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
+        } catch (erro) {
+            valor_pendencias_financeiras = valorPendenciasFinanceirasAlls
+        };
+
+        let valor_recuperacoes = 0;
+        try {
+            valor_recuperacoes = valorRecuperacoesAlls.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
+        } catch (erro) {
+            valor_recuperacoes = valorRecuperacoesAlls
+        };
+
+        let valor_protestos = 0;
+        try {
+            valor_protestos = valorProtestosAlls.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
+        } catch (erro) {
+            valor_protestos = valorProtestosAlls
+        };
+
+        let limite_sugerido = 0;
+        try {
+            limite_sugerido = limiteSugeridoAlls.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
+        } catch (erro) {
+            limite_sugerido = limiteSugeridoAlls
+        };
+
+        let valor_restricoes = 0;
+        try {
+            valor_restricoes = valorRestricoesAlls.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
+        } catch (erro) {
+            valor_restricoes = valorRestricoesAlls
+        };
+
         const AllsDataUpdateDTO = {
             proposal_id: Cookies.get('propostaSelecionada'),
+            user_id: Cookies.get('userid'),
             num_pendencias_financeiras: numPendenciasFinanceirasAlls,
-            valor_pendencias_financeiras: valorPendenciasFinanceirasAlls.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            valor_pendencias_financeiras: valor_pendencias_financeiras,
             num_recuperacoes: numRecuperacoesAlls,
-            valor_recuperacoes: valorRecuperacoesAlls.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            valor_recuperacoes: valor_recuperacoes,
             num_cheque_sem_fundo: numChequeSemFundoAlls,
             num_protestos: numProtestosAlls,
-            valor_protestos: valorProtestosAlls.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-            limite_sugerido: limiteSugeridoAlls.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+            valor_protestos: valor_protestos,
+            limite_sugerido: limite_sugerido,
             num_restricoes: numRestricoesAlls,
-            valor_restricoes: valorRestricoesAlls.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
+            valor_restricoes: valor_restricoes,
         };
 
         try {
@@ -391,6 +428,7 @@ function VisualizacaoIndividual() {
 
             var data = {
                 fileName: fileName,
+                user_id: Cookies.get('userid'),
                 tipoArquivo: "Documentos do cliente",
                 proposal: Cookies.get('propostaSelecionada'),
                 url: link
@@ -580,6 +618,47 @@ function VisualizacaoIndividual() {
                                     <option className='inputCad'> Restrição por score fora da política </option>
                                     <option className='inputCad'> Empresas ligadas com restrição </option>
                                 </select>
+                            </div>
+                        </div>
+                        <div className='divrow'>
+                            <div className='divfield'>
+                                <label className="stringDados"> Renda Média </label>
+                                <CurrencyInput
+                                    name="valorliberado"
+                                    placeholder={`R$ ${valorLiberado}`}
+                                    onBlur={(event) => handleValorLiberadoChange(event.target.value)}
+                                    className="inputCad"
+                                />
+                            </div>
+                            <div className='divfield'>
+                                <label className="stringDados"> CPF (Somente PF) </label>
+                                <InputMask mask="999.999.999-99" className="inputCad" type="text" disabled />
+                            </div>
+                            <div className='divfield'>
+                                <label className="stringDados"> Telefone (Somente PF) </label>
+                                <InputMask mask="(99) 99999-9999" className="inputCad" type="text" disabled />
+                            </div>
+                        </div>
+                        <div className='divrow'>
+                            <div className='divfield'>
+                                <label className="stringDados"> Nome do Sócio (Somente PJ) </label>
+                                <input
+                                    name="prazo"
+                                    className="inputCad"
+                                    disabled
+                                />
+                            </div>
+                            <div className='divfield'>
+                                <label className="stringDados"> CPF do Sócio (Somente PJ) </label>
+                                <input
+                                    name="prazo"
+                                    className="inputCad"
+                                    disabled
+                                />
+                            </div>
+                            <div className='divfield' style={{ opacity: 0 }} id="none">
+                                <label className="stringDados"> Disabled </label>
+                                <input className="inputCad" type="text" disabled />
                             </div>
                         </div>
                         <div className='divrow'>

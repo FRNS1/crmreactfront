@@ -24,7 +24,7 @@ function CadastroPropostas() {
                 prazo: prazo,
                 observacao_cliente: obsAnalista
             };
-    
+
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -33,7 +33,7 @@ function CadastroPropostas() {
                 },
                 body: JSON.stringify(data)
             });
-    
+
             if (response.ok) {
                 alert('Dados enviados com sucesso!');
                 navigate('/visucli');
@@ -52,9 +52,11 @@ function CadastroPropostas() {
     };
     return (
         <div className='containerPrincipal'>
-            <div>
-                <NavSuperior />
+            <div className='positionNavLateral'>
                 <NavLateral />
+            </div>
+            <div className='positionNavSuperior'>
+                <NavSuperior />
             </div>
             <div className='containerGeral'>
                 <div>
@@ -68,15 +70,15 @@ function CadastroPropostas() {
                             <div className='divfield'>
                                 <label className="stringDados"> Valor Desejado </label>
                                 <CurrencyInput
-                                name="valorDesejado"
-                                value={valorDesejado}
-                                onValueChange={handleValorDesejadoChange}
-                                allowNegativeValue={false}
-                                decimalSeparator=","
-                                groupSeparator="."
-                                prefix="R$ "
-                                placeholder="R$ 0,00"
-                                className="inputCad"
+                                    name="valorDesejado"
+                                    value={valorDesejado}
+                                    onValueChange={handleValorDesejadoChange}
+                                    allowNegativeValue={false}
+                                    decimalSeparator=","
+                                    groupSeparator="."
+                                    prefix="R$ "
+                                    placeholder="R$ 0,00"
+                                    className="inputCad"
                                 />
                             </div>
                             <div className='divfield'>

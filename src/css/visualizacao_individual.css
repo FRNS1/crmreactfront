@@ -140,7 +140,7 @@
 
     .textAreaObsCliente{
         width: 50vh;
-        height: 25vh;
+        height:10vh;
         border-radius: 1vh;
         font-size: 2vh;
         padding-left: 1vh;
@@ -149,7 +149,7 @@
 
     .textAreaObsAnalista{
         width: 50vh;
-        height: 25vh;
+        height:10vh;
         border-radius: 1vh;
         font-size: 2vh;
         padding-left: 1vh;
