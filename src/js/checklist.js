@@ -18,23 +18,39 @@ function Checklist(){
     const [prazo, setPrazo] = useState('');
     const [telefone, setTelefone] = useState('');
     const [show, setShow] = useState('');
-    const [latitude, setLatitude] = useState('');
-    const [longitude, setLongitude] = useState('');
 
-    function sla(){
-        alert(latitude, longitude);
+    function sendData(){
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+        "nome": `${nome}`,
+        "cpf": `${cpf}`,
+        "email": `${email}`,
+        "telefone": `${telefone}`,
+        "profissao": `${profissao}`,
+        "rendaMedia": rendaMedia,
+        "valorDesejado": valorDesejado,
+        "prazo": prazo,
+        "codigo_indicador": `${Cookies.get('codigoIndicador')}`
+        });
+
+        alert(raw);
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
+
+        fetch("http://35.175.231.117:8080/api/v1/business/formwebindicacaopf", requestOptions)
+        .then(response => response.text())
+        .then(result => {if (result.status == 200){
+            alert("Dados enviados com sucesso!");
+        }})
+        .catch(error => console.log('error', error));
     }
-
-    useEffect(() => {
-        if ('geolocation' in navigator) {
-          navigator.geolocation.getCurrentPosition((position) => {
-            setLatitude(position.coords.latitude);
-            setLongitude(position.coords.longitude);
-          });
-        } else {
-          alert('Geolocalização não está disponível no seu navegador.');
-        }
-      }, []);
 
     function TermosCondicoesScr(){
         return(
@@ -233,7 +249,7 @@ function Checklist(){
                     <input type="checkbox" />
                     <text>Estou de acordo com os <a className='termos-checklist' onClick={() => setShow('termos')}>termos e condições </a>e com o <a className='termos-checklist' onClick={() => setShow('scr')}>termo de autorização de consulta ao SCR.</a></text>
                 </div>
-                <button className='buttonchecklist' onClick={sla}>Enviar</button>
+                <div className='buttonchecklist' onClick={() => sendData()}>Enviar</div>
                 </form>
             </div>
         </div>

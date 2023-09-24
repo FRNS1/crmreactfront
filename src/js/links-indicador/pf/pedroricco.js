@@ -8,8 +8,8 @@ function PedroRiccoPf(){
     const navigate = useNavigate();
 
     function redirectPedroPf(){
-        Cookies.set('codigoIndicador', '5GI7BCZQLOZT')
-        navigate('/checklist')
+        Cookies.set('codigoIndicador', 3)
+        navigate('/checklistpf')
     }
 
     useEffect(() => {
