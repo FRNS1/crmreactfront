@@ -5,6 +5,7 @@ import { NavLateral } from '../js/navlateral';
 import InputMask from 'react-input-mask';
 import { format } from 'date-fns';
 import Cookies from 'js-cookie';
+import CurrencyInput from 'react-currency-input-field';
 import { id } from 'date-fns/locale';
 
 
@@ -80,19 +81,113 @@ function RegistroPagamentoIndividual() {
         fetchFluxoDePagamentos();
     }, []);
 
+    function formataTelefone(telefone) {
+        try {
+            const partesTelefone = telefone.split('')
+            if (partesTelefone.length == 11) {
+                const parte1 = partesTelefone[0];
+                const parte2 = partesTelefone[1];
+                const parte3 = partesTelefone[2];
+                const parte4 = partesTelefone[3];
+                const parte5 = partesTelefone[4];
+                const parte6 = partesTelefone[5];
+                const parte7 = partesTelefone[6];
+                const parte8 = partesTelefone[7];
+                const parte9 = partesTelefone[8];
+                const parte10 = partesTelefone[9];
+                const parte11 = partesTelefone[10];
+                return `(${parte1}${parte2}) ${parte3}${parte4}${parte5}${parte6}${parte7}-${parte8}${parte9}${parte10}${parte11}`;
+
+            } else if (partesTelefone.length == 10) {
+                const parte1 = partesTelefone[0];
+                const parte2 = partesTelefone[1];
+                const parte3 = partesTelefone[2];
+                const parte4 = partesTelefone[3];
+                const parte5 = partesTelefone[4];
+                const parte6 = partesTelefone[5];
+                const parte7 = partesTelefone[6];
+                const parte8 = partesTelefone[7];
+                const parte9 = partesTelefone[8];
+                const parte10 = partesTelefone[9];
+                return `(${parte1}${parte2}) ${parte3}${parte4}${parte5}${parte6}-${parte7}${parte8}${parte9}${parte10}`;
+
+            } else {
+                return 'Telefone Inválido';
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    function formataCnpj(cnpj) {
+        try {
+            const partesCNPJ = cnpj.split('')
+            if (partesCNPJ.length != 14) {
+                return `Documento inválido`
+
+            } else {
+                const parte1 = partesCNPJ[0];
+                const parte2 = partesCNPJ[1];
+                const parte3 = partesCNPJ[2];
+                const parte4 = partesCNPJ[3];
+                const parte5 = partesCNPJ[4];
+                const parte6 = partesCNPJ[5];
+                const parte7 = partesCNPJ[6];
+                const parte8 = partesCNPJ[7];
+                const parte9 = partesCNPJ[8];
+                const parte10 = partesCNPJ[9];
+                const parte11 = partesCNPJ[10];
+                const parte12 = partesCNPJ[11];
+                const parte13 = partesCNPJ[12];
+                const parte14 = partesCNPJ[13];
+                return `${parte1}${parte2}.${parte3}${parte4}${parte5}.${parte6}${parte7}${parte8}/${parte9}${parte10}${parte11}${parte12}-${parte13}${parte14}`;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    function formataCpf(cpf) {
+        try {
+            const partesCPF = cpf.split('')
+            if (partesCPF.length != 11) {
+                return `Documento inválido`
+            } else {
+                const parte1 = partesCPF[0];
+                const parte2 = partesCPF[1];
+                const parte3 = partesCPF[2];
+                const parte4 = partesCPF[3];
+                const parte5 = partesCPF[4];
+                const parte6 = partesCPF[5];
+                const parte7 = partesCPF[6];
+                const parte8 = partesCPF[7];
+                const parte9 = partesCPF[8];
+                const parte10 = partesCPF[9];
+                const parte11 = partesCPF[10];
+                return `${parte1}${parte2}${parte3}.${parte4}${parte5}${parte6}.${parte7}${parte8}${parte9}-${parte10}${parte11}`;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     function Geral() {
 
-        const [paymentSelections, setPaymentSelections] = useState({});
-        const handlePagamentosChange = (event, paymentId) => {
+        const [paymentSelections, setPaymentSelections] = useState([]);
+
+        useEffect(() => {
+            // Inicialize o array de seleções com base na lista de pagamentos
+            const initialSelections = payments.map((payment) => payment.pago || 'Vingente');
+            setPaymentSelections(initialSelections);
+        }, [payments]);
+
+        const handlePagamentosChange = (event, paymentIndex) => {
             const { value } = event.target;
-            alert(payments[paymentId]);
-            payments[paymentId] = value;
-            alert(payments[paymentId]['pago']);
-            alert(payments[paymentId+1]['pago']);
-            // setPaymentSelections((prevSelections) => ({
-            //     ...prevSelections,
-            //     [paymentId]: value,
-            // }));
+            setPaymentSelections((prevSelections) => {
+                const newSelections = [...prevSelections];
+                newSelections[paymentIndex] = value;
+                return newSelections;
+            });
         };
 
         return (
@@ -112,16 +207,24 @@ function RegistroPagamentoIndividual() {
                         </tr>
                     </thead>
                     <tbody>
-                        {payments.map((payment) => (
-                            <tr>
+                        {payments.map((payment, index) => (
+                            <tr key={payment.id}>
                                 <td> {payment.num_parcela} </td>
                                 <td> <InputMask mask="99/99/9999" placeholder="DD/MM/AAAA" type="text" className="inputDataPagamentos" value={payment.vencimento ? format(new Date(payment.vencimento), 'dd/MM/yyyy') : ''} disabled /> </td>
                                 <td> {`R$ ${payment.saldo_devedor}`} </td>
                                 <td> {payment.amortizacao} </td>
                                 <td> {`R$ ${payment.juros}`} </td>
-                                <td> {`R$ ${payment.pagamento}`} </td>
+                                <td> 
+                                    <CurrencyInput
+                                        prefix='R$ '
+                                        name="valorParcela"
+                                        type="text"
+                                        placeholder={`R$ ${payment.pagamento}`}
+                                        className="selectPago"
+                                    />
+                                </td>
                                 <td>
-                                    <select className='selectPago' value={payments[payment.num_parcela] || payment.pago} onChange={(event) => handlePagamentosChange(event, payment.num_parcela)}>
+                                    <select className='selectPago' value={paymentSelections[index]} onChange={(event) => handlePagamentosChange(event, index)}>
                                         <option className='optionselectPago' value="VIGENTE"> VIGENTE </option>
                                         <option className='optionselectPago' value="EM ATRASO"> EM ATRASO </option>
                                         <option className='optionselectPago' value="PAGO"> PAGO </option>
@@ -186,13 +289,13 @@ function RegistroPagamentoIndividual() {
                             <th> Mora p/dia </th>
                         </tr>
                         <tr>
-                            <td>{loanDetails?.proposal?.customer?._cnpj == true ? loanDetails?.proposal?.customer?.cnpj : loanDetails?.proposal?.customer?.cpf}</td>
+                            <td>{loanDetails?.proposal?.customer?._cnpj == true ? formataCnpj(loanDetails?.proposal?.customer?.cnpj) : formataCpf(loanDetails?.proposal?.customer?.cpf)}</td>
                             <td>{loanDetails?.contact?.email}</td>
-                            <td>{loanDetails?.contact?.telefone}</td>
-                            <td>{loanDetails?.proposal?.valor_liberado}</td>
+                            <td>{formataTelefone(loanDetails?.contact?.telefone)}</td>
+                            <td>{`R$ ${loanDetails?.proposal?.valor_liberado}`}</td>
                             <td>{loanDetails?.proposal?.prazo}</td>
-                            <td>{loanDetails?.proposal?.taxa}</td>
-                            <td>{loanDetails?.proposal?.total_juros}</td>
+                            <td>{` ${loanDetails?.proposal?.taxa}%`}</td>
+                            <td>{`R$ ${loanDetails?.proposal?.total_juros}`}</td>
                             <td>1% do valor da parcela.</td>
                             <td>0,033% do valor da parcela.</td>
                         </tr>
