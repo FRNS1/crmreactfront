@@ -7,6 +7,7 @@ import { format } from 'date-fns';
 import Cookies from 'js-cookie';
 import CurrencyInput from 'react-currency-input-field';
 import { id } from 'date-fns/locale';
+import axios from 'axios';
 
 
 function RegistroPagamentoIndividual() {
@@ -75,6 +76,40 @@ function RegistroPagamentoIndividual() {
             console.error('error', error);
         }
     }
+
+    async function sendData(id, valorParcela, pago, dataPagamento) {
+        let dataPagamentoUs;
+        try {
+          const dataPagamentoSplit = dataPagamento.split("/");
+          dataPagamentoUs = `${dataPagamentoSplit[2]}-${dataPagamentoSplit[1]}-${dataPagamentoSplit[0]}`;
+        } catch {
+          console.log("Não mudou a data");
+        }
+      
+        const data = {
+          parcela: id,
+          valor_parcela: valorParcela.toString().replace("R$ ", ""),
+          pago: pago,
+          data_pagamento: dataPagamentoUs,
+        };
+      
+        const urlPost = `http://35.175.231.117:8080/api/v1/payments/update`;
+      
+        try {
+          const response = await axios.post(urlPost, data, {
+            headers: {
+              Authorization: `Bearer ${Cookies.get('token')}`,
+              'Content-Type': 'application/json',
+            },
+          });
+      
+          if (response.status === 200) {
+            alert("Dados atualizados");
+          }
+        } catch (error) {
+          console.error("Erro ao enviar os dados:", error);
+        }
+      }
 
     useEffect(() => {
         fetchLoanDetails();
@@ -232,7 +267,7 @@ function RegistroPagamentoIndividual() {
                                 </td>
                                 <td> <InputMask mask="99/99/9999" type="text" className="inputDataPagamentos" placeholder={payment.data_pagamento ? format(new Date(payment.data_pagamento), 'dd/MM/yyyy') : ''} /> </td>
                                 <td>
-                                    <button className="botaoTDVer" style={{ backgroundColor: '#081535' }}>
+                                    <button className="botaoTDVer" style={{ backgroundColor: '#081535' }} onClick={() => sendData(payment.parcela_id, payment.pagamento, payment.pago, payment.data_pagamento)}>
                                         <span className='stringVer' style={{ color: 'white' }}>salvar</span>
                                     </button>
                                 </td>
