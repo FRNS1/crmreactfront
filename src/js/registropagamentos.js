@@ -27,6 +27,7 @@ function RegistroPagamentos() {
         try {
             const response = await fetch("http://35.175.231.117:8080/api/v1/payments/getloans", requestOptions);
             if (!response.ok) {
+                console.log(response);
                 throw new Error('Network response was not ok');
             }
             const result = await response.json();
@@ -96,7 +97,7 @@ function RegistroPagamentos() {
                             <tr key={loan.proposalId}>
                                 <td>{loan.business}</td>
                                 <td>{loan.idCliente}</td>
-                                <td className='pointer' onClick={() => viewLoaninfo(loan.proposalId)}>{loan.isCnpj == true ? loan.nomeCliente : loan.razaoSocial}</td>
+                                <td className='pointer' onClick={() => viewLoaninfo(loan.proposalId)}>{loan.isCnpj == false ? loan.nomeCliente : loan.razaoSocial}</td>
                                 <td>{loan.saldoDevedor}</td>
                                 <td>{loan.receitaEsperada}</td>
                                 <td>{loan.parcelas}</td>

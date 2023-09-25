@@ -34,9 +34,11 @@ function RegistroPagamentoIndividual() {
         try {
             const response = await fetch(urlLoan, requestOptions);
             if (!response.ok) {
+                console.log(response);
                 throw new Error('Network response was not ok');
             }
             const result = await response.json();
+            console.log("consegui")
             setLoanDetails(result);
             console.log(result);
         } catch (error) {
@@ -56,11 +58,12 @@ function RegistroPagamentoIndividual() {
             redirect: 'follow'
         };
 
-        const urlFluxo = `http://127.0.0.1:8080/api/v1/payments/getloandetails/${proposalId}`;
+        const urlFluxo = `http://35.175.231.117:8080/api/v1/payments/getloandetails/${proposalId}`;
 
         try {
             const response = await fetch(urlFluxo, requestOptions);
             if (!response.ok) {
+                console.log(response);
                 throw new Error('Network response was not ok');
             }
             const result = await response.json();
@@ -76,6 +79,43 @@ function RegistroPagamentoIndividual() {
         fetchFluxoDePagamentos();
     }, []);
 
+    function Geral() {
+        return (
+            <div>
+                <table className='tabelaPagamentosIndividual'>
+                    <thead>
+                        <tr>
+                            <th> Parcela </th>
+                            <th> Vencimento </th>
+                            <th> Saldo Devedor </th>
+                            <th> Amortização </th>
+                            <th> Juros </th>
+                            <th> Valor Parcela </th>
+                            <th> Pago? </th>
+                            <th> Data Pagamento </th>
+                            <th> Editar? </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {payments.map((payment) => (
+                        <tr>
+                            <td> {payment.num_parcela} </td>
+                            <td> {payment.vencimento} </td>
+                            <td> {payment.saldo_devedor} </td>
+                            <td> {payment.amortizacao} </td>
+                            <td> {payment.juros} </td>
+                            <td> {payment.pagamento} </td>
+                            <td> {payment.pago} </td>
+                            <td> {payment.data_pagamento} </td>
+                            <td> Salvar </td>
+                        </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        );
+    };
+
     return (
         <div className='containerPrincipal'>
             <div className='positionNavLateral'>
@@ -86,7 +126,7 @@ function RegistroPagamentoIndividual() {
             </div>
             <div className='containerGeral'>
                 <div className='textoPropostas'>
-                    <text className='stringTitulos'> {loanDetails.proposal.customer._cnpj == true ? loanDetails.proposal.customer.razao_social : loanDetails.proposal.customer.nome_completo} </text>
+                    <text className='stringTitulos'> {loanDetails?.proposal?.customer?._cnpj == true ? loanDetails?.proposal?.customer?.razao_social : loanDetails?.proposal?.customer?.nome_completo} </text>
                 </div>
                 <table className='tabelaPagamentosIndividual'>
                     <thead>
@@ -121,13 +161,13 @@ function RegistroPagamentoIndividual() {
                             <th> Mora p/dia </th>
                         </tr>
                         <tr>
-                            <td>{loanDetails.proposal.customer._cnpj == true ? loanDetails.proposal.customer.cnpj : loanDetails.proposal.customer.cpf}</td>
-                            <td>{loanDetails.contact.email}</td>
-                            <td>{loanDetails.contact.telefone}</td>
-                            <td>{loanDetails.proposal.valor_liberado}</td>
-                            <td>{loanDetails.proposal.prazo}</td>
-                            <td>{loanDetails.proposal.taxa}</td>
-                            <td>{loanDetails.proposal.total_juros}</td>
+                            <td>{loanDetails?.proposal?.customer?._cnpj == true ? loanDetails?.proposal?.customer?.cnpj : loanDetails?.proposal?.customer?.cpf}</td>
+                            <td>{loanDetails?.contact?.email}</td>
+                            <td>{loanDetails?.contact?.telefone}</td>
+                            <td>{loanDetails?.proposal?.valor_liberado}</td>
+                            <td>{loanDetails?.proposal?.prazo}</td>
+                            <td>{loanDetails?.proposal?.taxa}</td>
+                            <td>{loanDetails?.proposal?.total_juros}</td>
                             <td>1% do valor da parcela.</td>
                             <td>0,033% do valor da parcela.</td>
                         </tr>
@@ -146,40 +186,6 @@ function RegistroPagamentoIndividual() {
     )
 }
 
-function Geral() {
-    return (
-        <div>
-            <table className='tabelaPagamentosIndividual'>
-                <thead>
-                    <tr>
-                        <th> Parcela </th>
-                        <th> Vencimento </th>
-                        <th> Saldo Devedor </th>
-                        <th> Amortização </th>
-                        <th> Juros </th>
-                        <th> Valor Parcela </th>
-                        <th> Pago? </th>
-                        <th> Data Pagamento </th>
-                        <th> Editar? </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td> TESTE </td>
-                        <td> TESTE </td>
-                        <td> TESTE </td>
-                        <td> TESTE </td>
-                        <td> TESTE </td>
-                        <td> TESTE </td>
-                        <td> TESTE </td>
-                        <td> TESTE </td>
-                        <td> TESTE </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    );
-};
 
 function Observacoes() {
     return (

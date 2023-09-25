@@ -17,39 +17,42 @@ function Checklist(){
     const [valorDesejado, setValorDesejado] = useState('');
     const [prazo, setPrazo] = useState('');
     const [telefone, setTelefone] = useState('');
+    const [aceite, setAceite] = useState(false);
     const [show, setShow] = useState('');
 
     function sendData(){
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+        if (aceite == false){
+            alert("Você deve concordar com os termos e condições.")
+        } else {
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify({
-        "nome": `${nome}`,
-        "cpf": `${cpf}`,
-        "email": `${email}`,
-        "telefone": `${telefone}`,
-        "profissao": `${profissao}`,
-        "rendaMedia": rendaMedia,
-        "valorDesejado": valorDesejado,
-        "prazo": prazo,
-        "codigo_indicador": `${Cookies.get('codigoIndicador')}`
-        });
+            var raw = JSON.stringify({
+            "nome": `${nome}`,
+            "cpf": `${cpf}`,
+            "email": `${email}`,
+            "telefone": `${telefone}`,
+            "profissao": `${profissao}`,
+            "rendaMedia": rendaMedia,
+            "valorDesejado": valorDesejado,
+            "prazo": prazo,
+            "codigo_indicador": `${Cookies.get('codigoIndicador')}`
+            });
 
-        alert(raw);
+            var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+            };
 
-        var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-        };
-
-        fetch("http://35.175.231.117:8080/api/v1/business/formwebindicacaopf", requestOptions)
-        .then(response => response.text())
-        .then(result => {if (result.status == 200){
-            alert("Dados enviados com sucesso!");
-        }})
-        .catch(error => console.log('error', error));
+            fetch("http://35.175.231.117:8080/api/v1/business/formwebindicacaopf", requestOptions)
+            .then(response => {if (response.status == 200){
+                alert("Dados enviados com sucesso!");
+            }})
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+        }
     }
 
     function TermosCondicoesScr(){
@@ -189,7 +192,7 @@ function Checklist(){
                     name="email"
                     value={telefone}
                     onChange={(e) => setTelefone(e.target.value)}
-                    placeholder="Digite seu email"
+                    placeholder="Digite seu telefone"
                     required
                     />
                 </div>
@@ -246,7 +249,7 @@ function Checklist(){
                     />
                 </div>
                 <div className='form-groupchecklist-checkbox'>
-                    <input type="checkbox" />
+                    <input type="checkbox" onChange={(e) => setAceite(e.target.value)} />
                     <text>Estou de acordo com os <a className='termos-checklist' onClick={() => setShow('termos')}>termos e condições </a>e com o <a className='termos-checklist' onClick={() => setShow('scr')}>termo de autorização de consulta ao SCR.</a></text>
                 </div>
                 <div className='buttonchecklist' onClick={() => sendData()}>Enviar</div>

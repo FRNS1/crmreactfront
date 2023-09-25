@@ -14,6 +14,7 @@ import { VisualizacaoIndividual } from './js/visualizacaoindividual';
 import { RegistroPagamentos } from './js/registropagamentos';
 import { RegistroPagamentoIndividual } from './js/registropagamentoindividual';
 import { ChecklistPj } from './js/checklistpj';
+import { PedroRiccoPj } from './js/links-indicador/pj/pedroriccopj'
 import Cookies from 'js-cookie';
 
 
@@ -32,7 +33,8 @@ function App() {
         <Route path='/registropagamentoindividual' element={<RegistroPagamentoIndividual />} />
         <Route path='/checklistpf' element={<Checklist />} />
         <Route path='/checklistpj' element={<ChecklistPj />} />
-        <Route path='/indicadorpedroricco' element={<PedroRiccoPf />} />
+        <Route path='/indicadorpedroriccopf' element={<PedroRiccoPf />} />
+        <Route path='/indicadorpedroriccopj' element={<PedroRiccoPj />} />
       </Routes>
     </BrowserRouter>
   );

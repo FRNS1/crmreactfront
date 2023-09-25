@@ -55,82 +55,92 @@ function Telapessoas() {
   }, []);
 
   function formataTelefone(telefone) {
-    const partesTelefone = telefone.split('')
-    if (partesTelefone.length == 11) {
-      const parte1 = partesTelefone[0];
-      const parte2 = partesTelefone[1];
-      const parte3 = partesTelefone[2];
-      const parte4 = partesTelefone[3];
-      const parte5 = partesTelefone[4];
-      const parte6 = partesTelefone[5];
-      const parte7 = partesTelefone[6];
-      const parte8 = partesTelefone[7];
-      const parte9 = partesTelefone[8];
-      const parte10 = partesTelefone[9];
-      const parte11 = partesTelefone[10];
-      return `(${parte1}${parte2}) ${parte3}${parte4}${parte5}${parte6}${parte7}-${parte8}${parte9}${parte10}${parte11}`;
+    try{
+      const partesTelefone = telefone.split('')
+      if (partesTelefone.length == 11) {
+        const parte1 = partesTelefone[0];
+        const parte2 = partesTelefone[1];
+        const parte3 = partesTelefone[2];
+        const parte4 = partesTelefone[3];
+        const parte5 = partesTelefone[4];
+        const parte6 = partesTelefone[5];
+        const parte7 = partesTelefone[6];
+        const parte8 = partesTelefone[7];
+        const parte9 = partesTelefone[8];
+        const parte10 = partesTelefone[9];
+        const parte11 = partesTelefone[10];
+        return `(${parte1}${parte2}) ${parte3}${parte4}${parte5}${parte6}${parte7}-${parte8}${parte9}${parte10}${parte11}`;
 
-    } else if (partesTelefone.length == 10) {
-      const parte1 = partesTelefone[0];
-      const parte2 = partesTelefone[1];
-      const parte3 = partesTelefone[2];
-      const parte4 = partesTelefone[3];
-      const parte5 = partesTelefone[4];
-      const parte6 = partesTelefone[5];
-      const parte7 = partesTelefone[6];
-      const parte8 = partesTelefone[7];
-      const parte9 = partesTelefone[8];
-      const parte10 = partesTelefone[9];
-      return `(${parte1}${parte2}) ${parte3}${parte4}${parte5}${parte6}-${parte7}${parte8}${parte9}${parte10}`;
+      } else if (partesTelefone.length == 10) {
+        const parte1 = partesTelefone[0];
+        const parte2 = partesTelefone[1];
+        const parte3 = partesTelefone[2];
+        const parte4 = partesTelefone[3];
+        const parte5 = partesTelefone[4];
+        const parte6 = partesTelefone[5];
+        const parte7 = partesTelefone[6];
+        const parte8 = partesTelefone[7];
+        const parte9 = partesTelefone[8];
+        const parte10 = partesTelefone[9];
+        return `(${parte1}${parte2}) ${parte3}${parte4}${parte5}${parte6}-${parte7}${parte8}${parte9}${parte10}`;
 
-    } else {
-      return 'Telefone Inválido';
+      } else {
+        return 'Telefone Inválido';
+      }
+    } catch (error){
+      console.log(error);
     }
   }
 
   function formataCnpj(cnpj) {
-    const partesCNPJ = cnpj.split('')
-    if (partesCNPJ.length != 14) {
-      return `Documento inválido`
+    try{
+      const partesCNPJ = cnpj.split('')
+      if (partesCNPJ.length != 14) {
+        return `Documento inválido`
 
-    } else {
-      const parte1 = partesCNPJ[0];
-      const parte2 = partesCNPJ[1];
-      const parte3 = partesCNPJ[2];
-      const parte4 = partesCNPJ[3];
-      const parte5 = partesCNPJ[4];
-      const parte6 = partesCNPJ[5];
-      const parte7 = partesCNPJ[6];
-      const parte8 = partesCNPJ[7];
-      const parte9 = partesCNPJ[8];
-      const parte10 = partesCNPJ[9];
-      const parte11 = partesCNPJ[10];
-      const parte12 = partesCNPJ[11];
-      const parte13 = partesCNPJ[12];
-      const parte14 = partesCNPJ[13];
-      return `${parte1}${parte2}.${parte3}${parte4}${parte5}.${parte6}${parte7}${parte8}/${parte9}${parte10}${parte11}${parte12}-${parte13}${parte14}`;
+      } else {
+        const parte1 = partesCNPJ[0];
+        const parte2 = partesCNPJ[1];
+        const parte3 = partesCNPJ[2];
+        const parte4 = partesCNPJ[3];
+        const parte5 = partesCNPJ[4];
+        const parte6 = partesCNPJ[5];
+        const parte7 = partesCNPJ[6];
+        const parte8 = partesCNPJ[7];
+        const parte9 = partesCNPJ[8];
+        const parte10 = partesCNPJ[9];
+        const parte11 = partesCNPJ[10];
+        const parte12 = partesCNPJ[11];
+        const parte13 = partesCNPJ[12];
+        const parte14 = partesCNPJ[13];
+        return `${parte1}${parte2}.${parte3}${parte4}${parte5}.${parte6}${parte7}${parte8}/${parte9}${parte10}${parte11}${parte12}-${parte13}${parte14}`;
+      }
+    } catch(error) {
+      console.log(error);
     }
   }
 
   function formataCpf(cpf) {
-    // let cpf2 = cpf + "babaca";
-    // return cpf2;
-    const partesCPF = cpf.split('')
-    if (partesCPF.length != 11) {
-      return `Documento inválido`
-    } else {
-      const parte1 = partesCPF[0];
-      const parte2 = partesCPF[1];
-      const parte3 = partesCPF[2];
-      const parte4 = partesCPF[3];
-      const parte5 = partesCPF[4];
-      const parte6 = partesCPF[5];
-      const parte7 = partesCPF[6];
-      const parte8 = partesCPF[7];
-      const parte9 = partesCPF[8];
-      const parte10 = partesCPF[9];
-      const parte11 = partesCPF[10];
-      return `${parte1}${parte2}${parte3}.${parte4}${parte5}${parte6}.${parte7}${parte8}${parte9}-${parte10}${parte11}`;
+    try{
+      const partesCPF = cpf.split('')
+      if (partesCPF.length != 11) {
+        return `Documento inválido`
+      } else {
+        const parte1 = partesCPF[0];
+        const parte2 = partesCPF[1];
+        const parte3 = partesCPF[2];
+        const parte4 = partesCPF[3];
+        const parte5 = partesCPF[4];
+        const parte6 = partesCPF[5];
+        const parte7 = partesCPF[6];
+        const parte8 = partesCPF[7];
+        const parte9 = partesCPF[8];
+        const parte10 = partesCPF[9];
+        const parte11 = partesCPF[10];
+        return `${parte1}${parte2}${parte3}.${parte4}${parte5}${parte6}.${parte7}${parte8}${parte9}-${parte10}${parte11}`;
+      }
+    }catch (error){
+      console.log(error);
     }
   }
 
