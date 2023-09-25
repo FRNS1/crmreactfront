@@ -1,6 +1,7 @@
 .pointer {
     cursor: pointer;
 }
+
 .tabelaPagamentos{
     width: 100%;
     align-items: center;
@@ -13,6 +14,7 @@
     text-align: center;
     padding: 0.5vh 1vh;
     height: 4vh;
+    width: 40vh;
 }
 
 .tabelaPagamentos tr {

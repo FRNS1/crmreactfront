@@ -98,15 +98,15 @@ function RegistroPagamentos() {
                                 <td>{loan.business}</td>
                                 <td>{loan.idCliente}</td>
                                 <td className='pointer' onClick={() => viewLoaninfo(loan.proposalId)}>{loan.isCnpj == false ? loan.nomeCliente : loan.razaoSocial}</td>
-                                <td>{loan.saldoDevedor}</td>
-                                <td>{loan.receitaEsperada}</td>
+                                <td>{`R$ ${loan.saldoDevedor}`}</td>
+                                <td>{`R$ ${loan.receitaEsperada}`}</td>
                                 <td>{loan.parcelas}</td>
                                 <td>{loan.amortizacaoPaga}</td>
-                                <td>{loan.jurosPagos}</td>
+                                <td>{`R$ ${loan.jurosPagos}`}</td>
                                 <td>{loan.parcelasPagas}</td>
                                 <td>{loan.parcelasAtrasadas}</td>
                                 <td>{loan.atrasado == true ? 'SIM' : 'NÃO'}</td>
-                                <td>{loan.totalAtrasado}</td>
+                                <td>{`R$ ${loan.totalAtrasado}`}</td>
                                 <td>{loan.statusContrato}</td>
                             </tr>
                         ))}

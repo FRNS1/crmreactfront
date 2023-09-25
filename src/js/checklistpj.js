@@ -5,9 +5,10 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import InputMask from 'react-input-mask';
 import '../css/checklist.css';
 
-function ChecklistPj(){
+function ChecklistPj() {
     const navigate = useNavigate();
     const [cnpj, setCnpj] = useState('');
     const [razaoSocial, setRazaoSocial] = useState('');
@@ -24,48 +25,50 @@ function ChecklistPj(){
     const [aceite, setAceite] = useState(false);
     const [show, setShow] = useState('');
 
-    function sendData(){
-        if (aceite == false){
+    function sendData() {
+        if (aceite == false) {
             alert("Você deve concordar com os termos e condições!")
         } else {
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
 
             var raw = JSON.stringify({
-            "cnpj": `${cnpj}`,
-            "razaoSocial": `${razaoSocial}`,
-            "nomeFantasia": `${nomeFantasia}`,
-            "segmento": `${segmento}`,
-            "nomeSocio": `${nomeSocio}`,
-            "cpfSocio": `${cpfSocio}`,
-            "email": `${email}`,
-            "telefone": `${telefone}`,
-            "receitaMedia": rendaMedia,
-            "valorDesejado": valorDesejado,
-            "prazo": prazo,
-            "data_abertura": `${dataAbertura}`,
-            "codigo_indicador": Cookies.get('codigoIndicador')
+                "cnpj": `${cnpj}`,
+                "razaoSocial": `${razaoSocial}`,
+                "nomeFantasia": `${nomeFantasia}`,
+                "segmento": `${segmento}`,
+                "nomeSocio": `${nomeSocio}`,
+                "cpfSocio": `${cpfSocio}`,
+                "email": `${email}`,
+                "telefone": `${telefone}`,
+                "receitaMedia": rendaMedia,
+                "valorDesejado": valorDesejado,
+                "prazo": prazo,
+                "data_abertura": `${dataAbertura}`,
+                "codigo_indicador": Cookies.get('codigoIndicador')
             });
 
             var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
             };
 
             fetch("http://35.175.231.117:8080/api/v1/business/formwebindicacaopj", requestOptions)
-            .then(response => {if (response.status == 200) {
-                response.text();
-                alert("Dados enviados com sucesso!")
-            }})
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
+                .then(response => {
+                    if (response.status == 200) {
+                        response.text();
+                        alert("Dados enviados com sucesso!")
+                    }
+                })
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
         }
     }
 
-    function TermosCondicoesScr(){
-        return(
+    function TermosCondicoesScr() {
+        return (
             <div className='termos-container'>
                 <FontAwesomeIcon className='close-icon-checklist' icon={faXmark} onClick={() => setShow('')} />
                 <h1>Termo de Autorização para Consulta SCR</h1><br></br><br></br>
@@ -118,8 +121,8 @@ function ChecklistPj(){
         )
     }
 
-    function TermosCondicoes(){
-        return(
+    function TermosCondicoes() {
+        return (
             <div className='termos-container-bigger'>
                 <FontAwesomeIcon className='close-icon-checklist' icon={faXmark} onClick={() => setShow('')} />
                 <h1>TERMOS DE USO E CONDIÇÕES</h1><br></br><br></br>
@@ -145,7 +148,15 @@ function ChecklistPj(){
         )
     }
 
-    return(
+    const handleRendaMediaChange = (value, name) => {
+        setRendaMedia(value);
+    };
+
+    const handlevalorDesejadoChange = (value, name) => {
+        setValorDesejado(value);
+    };
+
+    return (
         <div className="containerchecklist">
             {show == 'scr' && (<TermosCondicoesScr />)}
             {show == 'termos' && (<TermosCondicoes />)}
@@ -153,143 +164,152 @@ function ChecklistPj(){
                 <img className="deltalogoazulchecklist" src='https://docsbora.s3.amazonaws.com/uploads/deltalogoazul.png' alt="Logo" />
                 <h2 className='h2checklist'>Informações básicas PJ</h2>
                 <form>
-                <div className="form-groupchecklist">
-                <label className='classNamechecklist'>CNPJ</label>
-                    <input
-                    className='inputchecklist'
-                    type="text"
-                    value={cnpj}
-                    onChange={(e) => setCnpj(e.target.value)}
-                    placeholder="Digite o CNPJ da empresa"
-                    required
-                    />
-                </div>
-                <div className="form-groupchecklist">
-                <label className='classNamechecklist'>Razão Social</label>
-                    <input
-                    className='inputchecklist'
-                    type="text"
-                    value={razaoSocial}
-                    onChange={(e) => setRazaoSocial(e.target.value)}
-                    placeholder="Digite a razão social da empresa"
-                    required
-                    />
-                </div>
-                <div className="form-groupchecklist">
-                <label className='classNamechecklist'>Nome Fantasia</label>
-                    <input
-                    className='inputchecklist'
-                    type="text"
-                    value={nomeFantasia}
-                    onChange={(e) => setNomeFantasia(e.target.value)}
-                    placeholder="Digite o nome fantasia da empresa"
-                    required
-                    />
-                </div>
-                <div className="form-groupchecklist">
-                <label className='classNamechecklist'>Segmento</label>
-                    <input
-                    className='inputchecklist'
-                    type="text"
-                    value={segmento}
-                    onChange={(e) => setSegmento(e.target.value)}
-                    placeholder="Digite o segmento da empresa"
-                    required
-                    />
-                </div>
-                <div className="form-groupchecklist">
-                <label className='classNamechecklist'>Data Abertura</label>
-                    <input
-                    className='inputchecklist'
-                    type='date'
-                    value={dataAbertura}
-                    onChange={(e) => setDataAbertura(e.target.value)}
-                    placeholder="Digite a data de abertura da empresa"
-                    required
-                    />
-                </div>
-                <div className="form-groupchecklist">
-                <label className='classNamechecklist' htmlFor="email">Nome do sócio</label>
-                    <input
-                    className='inputchecklist'
-                    type="text"
-                    value={nomeSocio}
-                    onChange={(e) => setNomeSocio(e.target.value)}
-                    placeholder="Digite o nome do principal sócio da empresa"
-                    required
-                    />
-                </div>
-                <div className="form-groupchecklist">
-                <label className='classNamechecklist'>CPF do sócio</label>
-                    <input
-                    className='inputchecklist'
-                    type="text"
-                    value={cpfSocio}
-                    onChange={(e) => setCpfSocio(e.target.value)}
-                    placeholder="Digite o CPF do principal sócio da empresa"
-                    required
-                    />
-                </div>
-                <div className="form-groupchecklist">
-                <label className='classNamechecklist'>Email</label>
-                    <input
-                    className='inputchecklist'
-                    type="text"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Digite um email de contato"
-                    required
-                    />
-                </div>
-                <div className="form-groupchecklist">
-                <label className='classNamechecklist'>Telefone</label>
-                    <input
-                    className='inputchecklist'
-                    type="text"
-                    value={telefone}
-                    onChange={(e) => setTelefone(e.target.value)}
-                    placeholder="Digite um telefone de contato"
-                    required
-                    />
-                </div>
-                <div className="form-groupchecklist">
-                <label className='classNamechecklist'>Receita Média Mensal</label>
-                    <input
-                    className='inputchecklist'
-                    type="text"
-                    value={rendaMedia}
-                    onChange={(e) => setRendaMedia(e.target.value)}
-                    placeholder="Digite a receita mensal da empresa"
-                    required
-                    />
-                </div>
-                <div className="form-groupchecklist">
-                <label className='classNamechecklist'>Valor Desejado</label>
-                    <input
-                    className='inputchecklist'
-                    type="text"
-                    value={valorDesejado}
-                    onChange={(e) => setValorDesejado(e.target.value)}
-                    placeholder="Digite o valor desejado"
-                    required
-                    />
-                </div>
-                <div className="form-groupchecklist">
-                <label className='classNamechecklist'>Prazo</label>
-                    <input
-                    className='inputchecklist'
-                    type="number"
-                    value={prazo}
-                    onChange={(e) => setPrazo(e.target.value)}
-                    placeholder="Digite em quantas vezes você quer pagar"
-                    required
-                    />
-                </div>
-                <div className='form-groupchecklist-checkbox'>
-                    <input type="checkbox" onChange={(e) => setAceite(e.target.value)} />
-                    <text>Estou de acordo com os <a className='termos-checklist' onClick={() => setShow('termos')}>termos e condições </a>e com o <a className='termos-checklist' onClick={() => setShow('scr')}>termo de autorização de consulta ao SCR.</a></text>
-                </div>
-                <div className='buttonchecklist' onClick={() => sendData()}>Enviar</div>
+                    <div className="form-groupchecklist">
+                        <label className='classNamechecklist'>CNPJ</label>
+                        <InputMask
+                            mask="99.999.999/9999-99"
+                            className='inputchecklist'
+                            type="text"
+                            value={cnpj}
+                            onChange={(e) => setCnpj(e.target.value)}
+                            placeholder="Digite o CNPJ da empresa"
+                            required
+                        />
+                    </div>
+                    <div className="form-groupchecklist">
+                        <label className='classNamechecklist'>Razão Social</label>
+                        <input
+                            className='inputchecklist'
+                            type="text"
+                            value={razaoSocial}
+                            onChange={(e) => setRazaoSocial(e.target.value)}
+                            placeholder="Digite a razão social da empresa"
+                            required
+                        />
+                    </div>
+                    <div className="form-groupchecklist">
+                        <label className='classNamechecklist'>Nome Fantasia</label>
+                        <input
+                            className='inputchecklist'
+                            type="text"
+                            value={nomeFantasia}
+                            onChange={(e) => setNomeFantasia(e.target.value)}
+                            placeholder="Digite o nome fantasia da empresa"
+                            required
+                        />
+                    </div>
+                    <div className="form-groupchecklist">
+                        <label className='classNamechecklist'>Segmento</label>
+                        <input
+                            className='inputchecklist'
+                            type="text"
+                            value={segmento}
+                            onChange={(e) => setSegmento(e.target.value)}
+                            placeholder="Digite o segmento da empresa"
+                            required
+                        />
+                    </div>
+                    <div className="form-groupchecklist">
+                        <label className='classNamechecklist'>Data Abertura</label>
+                        <input
+                            className='inputchecklist'
+                            type='date'
+                            value={dataAbertura}
+                            onChange={(e) => setDataAbertura(e.target.value)}
+                            placeholder="Digite a data de abertura da empresa"
+                            required
+                        />
+                    </div>
+                    <div className="form-groupchecklist">
+                        <label className='classNamechecklist' htmlFor="email">Nome do sócio</label>
+                        <input
+                            className='inputchecklist'
+                            type="text"
+                            value={nomeSocio}
+                            onChange={(e) => setNomeSocio(e.target.value)}
+                            placeholder="Digite o nome do principal sócio da empresa"
+                            required
+                        />
+                    </div>
+                    <div className="form-groupchecklist">
+                        <label className='classNamechecklist'>CPF do sócio</label>
+                        <InputMask
+                            mask="999.999.999-99"
+                            className='inputchecklist'
+                            type="text"
+                            value={cpfSocio}
+                            onChange={(e) => setCpfSocio(e.target.value)}
+                            placeholder="Digite o CPF do principal sócio da empresa"
+                            required
+                        />
+                    </div>
+                    <div className="form-groupchecklist">
+                        <label className='classNamechecklist'>Email</label>
+                        <input
+                            className='inputchecklist'
+                            type="text"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Digite um email de contato"
+                            required
+                        />
+                    </div>
+                    <div className="form-groupchecklist">
+                        <label className='classNamechecklist'>Telefone</label>
+                        <InputMask
+                            mask="(99) 99999-9999"
+                            className='inputchecklist'
+                            type="text"
+                            value={telefone}
+                            onChange={(e) => setTelefone(e.target.value)}
+                            placeholder="Digite um telefone de contato"
+                            required
+                        />
+                    </div>
+                    <div className="form-groupchecklist">
+                        <label className='classNamechecklist'>Receita Média Mensal</label>
+                        <CurrencyInput
+                            name="valorDesejado"
+                            value={rendaMedia}
+                            onValueChange={handleRendaMediaChange}
+                            decimalSeparator=","
+                            groupSeparator="."
+                            prefix="R$ "
+                            placeholder="Digite a receita mensal da empresa"
+                            required
+                            className="inputchecklist"
+                        />
+                    </div>
+                    <div className="form-groupchecklist">
+                        <label className='classNamechecklist'>Valor Desejado</label>
+                        <CurrencyInput
+                            name="valorDesejado"
+                            value={valorDesejado}
+                            onValueChange={handlevalorDesejadoChange}
+                            decimalSeparator=","
+                            groupSeparator="."
+                            prefix="R$ "
+                            placeholder="Digite o valor desejado"
+                            required
+                            className="inputchecklist"
+                        />
+                    </div>
+                    <div className="form-groupchecklist">
+                        <label className='classNamechecklist'>Prazo</label>
+                        <input
+                            className='inputchecklist'
+                            type="number"
+                            value={prazo}
+                            onChange={(e) => setPrazo(e.target.value)}
+                            placeholder="Digite em quantas vezes você quer pagar"
+                            required
+                        />
+                    </div>
+                    <div className='form-groupchecklist-checkbox'>
+                        <input type="checkbox" onChange={(e) => setAceite(e.target.value)} />
+                        <text>Estou de acordo com os <a className='termos-checklist' onClick={() => setShow('termos')}>termos e condições </a>e com o <a className='termos-checklist' onClick={() => setShow('scr')}>termo de autorização de consulta ao SCR.</a></text>
+                    </div>
+                    <div className='buttonchecklist' onClick={() => sendData()}>Enviar</div>
                 </form>
             </div>
         </div>
