@@ -3,8 +3,9 @@ import '../css/registro_pagamento_individual.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
 import InputMask from 'react-input-mask';
+import { format } from 'date-fns';
 import Cookies from 'js-cookie';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { id } from 'date-fns/locale';
 
 
 function RegistroPagamentoIndividual() {
@@ -80,8 +81,22 @@ function RegistroPagamentoIndividual() {
     }, []);
 
     function Geral() {
+
+        const [paymentSelections, setPaymentSelections] = useState({});
+        const handlePagamentosChange = (event, paymentId) => {
+            const { value } = event.target;
+            alert(payments[paymentId]);
+            payments[paymentId] = value;
+            alert(payments[paymentId]['pago']);
+            alert(payments[paymentId+1]['pago']);
+            // setPaymentSelections((prevSelections) => ({
+            //     ...prevSelections,
+            //     [paymentId]: value,
+            // }));
+        };
+
         return (
-            <div>
+            <div className='divtabelaPagamentosIndividual'>
                 <table className='tabelaPagamentosIndividual'>
                     <thead>
                         <tr>
@@ -98,17 +113,27 @@ function RegistroPagamentoIndividual() {
                     </thead>
                     <tbody>
                         {payments.map((payment) => (
-                        <tr>
-                            <td> {payment.num_parcela} </td>
-                            <td> {payment.vencimento} </td>
-                            <td> {payment.saldo_devedor} </td>
-                            <td> {payment.amortizacao} </td>
-                            <td> {payment.juros} </td>
-                            <td> {payment.pagamento} </td>
-                            <td> {payment.pago} </td>
-                            <td> {payment.data_pagamento} </td>
-                            <td> Salvar </td>
-                        </tr>
+                            <tr>
+                                <td> {payment.num_parcela} </td>
+                                <td> <InputMask mask="99/99/9999" placeholder="DD/MM/AAAA" type="text" className="inputDataPagamentos" value={payment.vencimento ? format(new Date(payment.vencimento), 'dd/MM/yyyy') : ''} disabled /> </td>
+                                <td> {`R$ ${payment.saldo_devedor}`} </td>
+                                <td> {payment.amortizacao} </td>
+                                <td> {`R$ ${payment.juros}`} </td>
+                                <td> {`R$ ${payment.pagamento}`} </td>
+                                <td>
+                                    <select className='selectPago' value={payments[payment.num_parcela] || payment.pago} onChange={(event) => handlePagamentosChange(event, payment.num_parcela)}>
+                                        <option className='optionselectPago' value="VIGENTE"> VIGENTE </option>
+                                        <option className='optionselectPago' value="EM ATRASO"> EM ATRASO </option>
+                                        <option className='optionselectPago' value="PAGO"> PAGO </option>
+                                    </select>
+                                </td>
+                                <td> <InputMask mask="99/99/9999" type="text" className="inputDataPagamentos" placeholder={payment.data_pagamento ? format(new Date(payment.data_pagamento), 'dd/MM/yyyy') : ''} /> </td>
+                                <td>
+                                    <button className="botaoTDVer" style={{ backgroundColor: '#081535' }}>
+                                        <span className='stringVer' style={{ color: 'white' }}>salvar</span>
+                                    </button>
+                                </td>
+                            </tr>
                         ))}
                     </tbody>
                 </table>
