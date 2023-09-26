@@ -14,7 +14,8 @@ import { VisualizacaoIndividual } from './js/visualizacaoindividual';
 import { RegistroPagamentos } from './js/registropagamentos';
 import { RegistroPagamentoIndividual } from './js/registropagamentoindividual';
 import { ChecklistPj } from './js/checklistpj';
-import { PedroRiccoPj } from './js/links-indicador/pj/pedroriccopj'
+import { PedroRiccoPj } from './js/links-indicador/pj/pedroriccopj';
+import { DeltaHubBackOffice } from './js/deltahubbackoffice';
 import Cookies from 'js-cookie';
 
 
@@ -35,6 +36,7 @@ function App() {
         <Route path='/checklistpj' element={<ChecklistPj />} />
         <Route path='/indicadorpedroriccopf' element={<PedroRiccoPf />} />
         <Route path='/indicadorpedroriccopj' element={<PedroRiccoPj />} />
+        <Route path='/deltahub/backoffice' element={<DeltaHubBackOffice />} />
       </Routes>
     </BrowserRouter>
   );

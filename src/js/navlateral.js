@@ -4,6 +4,7 @@ import { faChartLine } from '@fortawesome/free-solid-svg-icons';
 import { faIdBadge } from '@fortawesome/free-solid-svg-icons';
 import { faHandshake } from '@fortawesome/free-solid-svg-icons';
 import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
+import { faMobile } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import '../css/sidebar.css';
 
@@ -19,8 +20,7 @@ function NavLateral() {
     navigate('/registropagamentos');
   };
 
-
-  const navegaParaPropostas = () => {
+  const handleButtonClickDeltaHub = () => {
     navigate('/visualizacaopropostas');
   };
 
@@ -48,6 +48,10 @@ function NavLateral() {
               <text className='item-text'>Pagamentos</text>
             </li>
             <hr className='line'></hr>
+            <li className="sidebar-item" onClick={handleButtonClickDeltaHub}>
+              <FontAwesomeIcon icon={faMobile} />
+              <text className='item-text'>DeltaHub Back Office</text>
+            </li>
           </ul>
         </div>
   );
