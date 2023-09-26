@@ -146,7 +146,7 @@ function Cadastrocli() {
           is_cnpj: false,
           user_id: Cookies.get('userid'),
           nome_completo: nomeCompleto,
-          cpf: cpf.replace(".", "").replace("-", ""),
+          cpf: cpf.replace(".", "").replace("-", "").replace(".", ""),
           data_nascimento: dataNascimento,
           escolaridade: escolaridade,
           genero: genero,

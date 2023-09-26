@@ -15,7 +15,20 @@ import { RegistroPagamentos } from './js/registropagamentos';
 import { RegistroPagamentoIndividual } from './js/registropagamentoindividual';
 import { ChecklistPj } from './js/checklistpj';
 import { PedroRiccoPj } from './js/links-indicador/pj/pedroriccopj';
-import { DeltaHubBackOffice } from './js/deltahubbackoffice';
+import { GabrielGuedesPf } from './js/links-indicador/pf/gabrielguedes';
+import { GabrielGuedesPj } from './js/links-indicador/pj/gabrielguedespj';
+import { MarceloPorfirioPf } from './js/links-indicador/pf/marceloporfirio';
+import { MarceloPorfirioPj } from './js/links-indicador/pj/marceloporfiriopj';
+import { IlgnerRochaPf } from './js/links-indicador/pf/ilgnerrocha';
+import { IlgnerRochaPj } from './js/links-indicador/pj/ilgnerrochapj';
+import { VanessaDonnianniPf } from './js/links-indicador/pf/vanessadonnianni';
+import { VanessaDonnianniPj } from './js/links-indicador/pj/vanessadonniannipj';
+import { HumbertoCardosoPf } from './js/links-indicador/pf/humbertocardoso';
+import { HumbertoCardosoPj } from './js/links-indicador/pj/humbertocardosopj';
+import { NilsonBentoPf } from './js/links-indicador/pf/nilsonbento';
+import { NilsonBentoPj } from './js/links-indicador/pj/nilsonbentopj';
+import { RicardoBetoPf } from './js/links-indicador/pf/ricardobeto';
+import { RicardoBetoPj } from './js/links-indicador/pj/ricardobetopj';
 import Cookies from 'js-cookie';
 
 
@@ -36,7 +49,20 @@ function App() {
         <Route path='/checklistpj' element={<ChecklistPj />} />
         <Route path='/indicadorpedroriccopf' element={<PedroRiccoPf />} />
         <Route path='/indicadorpedroriccopj' element={<PedroRiccoPj />} />
-        <Route path='/deltahub/backoffice' element={<DeltaHubBackOffice />} />
+        <Route path='/indicadorgabrielpf' element={<GabrielGuedesPf />} />
+        <Route path='/indicadorgabrielpj' element={<GabrielGuedesPj />} />
+        <Route path='/indicadormarceloporfiriopf' element={<MarceloPorfirioPf />} />
+        <Route path='/indicadormarceloporfiriopj' element={<MarceloPorfirioPj />} />
+        <Route path='/indicadorilgnerpf' element={<IlgnerRochaPf />} />
+        <Route path='/indicadorilgnerpj' element={<IlgnerRochaPj />} />
+        <Route path='/indicadorvanessadonniannipf' element={<VanessaDonnianniPf />} />
+        <Route path='/indicadorvanessadonniannipj' element={<VanessaDonnianniPj />} />
+        <Route path='/indicadorhumbertocardosopf' element={<HumbertoCardosoPf />} />
+        <Route path='/indicadorhumbertocardosopj' element={<HumbertoCardosoPj />} />
+        <Route path='/indicadornilsonbentopf' element={<NilsonBentoPf />} />
+        <Route path='/indicadornilsonbentopj' element={<NilsonBentoPj />} />
+        <Route path='/indicadorricardobetopf' element={<RicardoBetoPf />} />
+        <Route path='/indicadorricardobetopj' element={<RicardoBetoPj />} />
       </Routes>
     </BrowserRouter>
   );
