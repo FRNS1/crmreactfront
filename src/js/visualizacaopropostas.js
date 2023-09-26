@@ -131,7 +131,7 @@ function VisualizacaoPropostas() {
                                 <td className='colunasTabelaPropostas'>{proposal.indicador.username}</td>
                                 <td className='colunasTabelaPropostas'>{proposal.business}</td>
                                 <td className='colunasTabelaPropostas'>
-                                    <InputMask mask="99/99/9999" placeholder="DD/MM/AAAA" type="text" className="inputDadosTabela" value={proposal.dataCriacao ? format(new Date(proposal.dataCriacao), 'dd/MM/yyyy') : ''} />
+                                    <InputMask mask="99/99/9999" placeholder="DD/MM/AAAA" type="text" className="inputDadosTabela" value={proposal.dataCriacao ? format(new Date(proposal.dataCriacao), 'dd/MM/yyyy') : ''} disabled />
                                 </td>
                                 <td className='colunasTabelaPropostas'>{proposal.cpf == null ? proposal.razaoSocial : proposal.nomeCompleto}</td>
                                 <td className='colunasTabelaPropostas'>{proposal.cpf == null ? formataCnpj(proposal.cnpj) : formataCpf(proposal.cpf)} </td>
