@@ -59,7 +59,7 @@
 
 .tabelaClientes td {
   text-align: center;
-  border: 0.1vh solid rgba(0, 0, 0, 0.2);
+  border: 0.1vh solid rgb(0, 0, 0);
   height: 4vh;
   width: 15vh;
 }

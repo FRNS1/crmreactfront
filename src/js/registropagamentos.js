@@ -76,7 +76,7 @@ function RegistroPagamentos() {
             <div className='divTabelaCLientes'>
                 <table className="tabelaPagamentos">
                     <thead>
-                        <tr>
+                        <tr className='thTabelaClientes'>
                             <th> Business </th>
                             <th> ID Cliente </th>
                             <th> Nome Cliente </th>
@@ -94,19 +94,19 @@ function RegistroPagamentos() {
                     </thead>
                     <tbody>
                         {listLoans.map((loan) => (
-                            <tr key={loan.proposalId}>
+                            <tr className='trTabelaClientes' key={loan.proposalId}>
                                 <td>{loan.business}</td>
                                 <td>{loan.idCliente}</td>
                                 <td className='pointer' onClick={() => viewLoaninfo(loan.proposalId)}>{loan.isCnpj == false ? loan.nomeCliente : loan.razaoSocial}</td>
                                 <td>{`R$ ${loan.saldoDevedor}`}</td>
-                                <td>{`R$ ${loan.receitaEsperada}`}</td>
+                                <td>{`R$ ${parseFloat(loan.receitaEsperada).toFixed(2)}`}</td>
                                 <td>{loan.parcelas}</td>
-                                <td>{loan.amortizacaoPaga}</td>
+                                <td> {`R$ ${parseFloat(loan.amortizacaoPaga).toFixed(2)}`}</td>
                                 <td>{`R$ ${loan.jurosPagos}`}</td>
                                 <td>{loan.parcelasPagas}</td>
                                 <td>{loan.parcelasAtrasadas}</td>
                                 <td>{loan.atrasado == true ? 'SIM' : 'NÃO'}</td>
-                                <td>{`R$ ${loan.totalAtrasado}`}</td>
+                                <td>{`R$ ${parseFloat(loan.totalAtrasado).toFixed(2)}`}</td>
                                 <td>{loan.statusContrato}</td>
                             </tr>
                         ))}

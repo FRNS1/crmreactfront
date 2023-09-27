@@ -534,7 +534,7 @@ function VisualizacaoIndividual() {
                                     <option className='inputCad'> Em análise </option>
                                     <option className='inputCad'> Aprovado </option>
                                     <option className='inputCad'> Reprovado </option>
-                                    <option className='inputCad'> Empréstimo concedido </option>
+                                    <option className='inputCad'> Empréstimo concedido </option>   
                                 </select>
                             </div>
                             <div className='divfield'>
@@ -610,12 +610,13 @@ function VisualizacaoIndividual() {
                                 <label className="stringDados"> Motivo da reprovação </label>
                                 <select className='inputCad' value={motivoReprovacao} onChange={HandleMotivoReprovacaoChange}>
                                     <option className='inputCad'> Selecione um motivo  </option>
-                                    <option className='inputCad'> Restrição de biros de crédito  </option>
+                                    <option className='inputCad'> Restrição de bureaus de crédito  </option>
                                     <option className='inputCad'> Restrição por divida ativa </option>
                                     <option className='inputCad'> Restrição de cadin </option>
                                     <option className='inputCad'> Restrição por ausência de documento </option>
                                     <option className='inputCad'> Restrição por renda insuficiente </option>
                                     <option className='inputCad'> Restrição por score fora da política </option>
+                                    <option className='inputCad'> Restrição por processo criminal ou civil </option>
                                     <option className='inputCad'> Empresas ligadas com restrição </option>
                                 </select>
                             </div>
