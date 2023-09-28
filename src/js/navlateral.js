@@ -21,7 +21,7 @@ function NavLateral() {
   };
 
   const handleButtonClickDeltaHub = () => {
-    navigate('/visualizacaopropostas');
+    navigate('/deltahubbackoffice');
   };
 
   return (
@@ -48,7 +48,7 @@ function NavLateral() {
               <text className='item-text'>Pagamentos</text>
             </li>
             <hr className='line'></hr>
-            <li className="sidebar-item" onClick={handleButtonClickDeltaHub}>
+            <li className="sidebar-item">
               <FontAwesomeIcon icon={faMobile} />
               <text className='item-text'>DeltaHub Back Office</text>
             </li>
