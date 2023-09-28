@@ -15,8 +15,6 @@ import { RegistroPagamentos } from './js/registropagamentos';
 import { RegistroPagamentoIndividual } from './js/registropagamentoindividual';
 import { ChecklistPj } from './js/checklistpj';
 import { PedroRiccoPj } from './js/links-indicador/pj/pedroriccopj';
-import { GabrielGuedesPf } from './js/links-indicador/pf/gabrielguedes';
-import { GabrielGuedesPj } from './js/links-indicador/pj/gabrielguedespj';
 import { MarceloPorfirioPf } from './js/links-indicador/pf/marceloporfirio';
 import { MarceloPorfirioPj } from './js/links-indicador/pj/marceloporfiriopj';
 import { IlgnerRochaPf } from './js/links-indicador/pf/ilgnerrocha';
