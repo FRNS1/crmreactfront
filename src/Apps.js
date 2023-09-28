@@ -49,8 +49,6 @@ function App() {
         <Route path='/checklistpj' element={<ChecklistPj />} />
         <Route path='/indicadorpedroriccopf' element={<PedroRiccoPf />} />
         <Route path='/indicadorpedroriccopj' element={<PedroRiccoPj />} />
-        <Route path='/indicadorgabrielpf' element={<GabrielGuedesPf />} />
-        <Route path='/indicadorgabrielpj' element={<GabrielGuedesPj />} />
         <Route path='/indicadormarceloporfiriopf' element={<MarceloPorfirioPf />} />
         <Route path='/indicadormarceloporfiriopj' element={<MarceloPorfirioPj />} />
         <Route path='/indicadorilgnerpf' element={<IlgnerRochaPf />} />
