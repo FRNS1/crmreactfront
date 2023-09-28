@@ -56,3 +56,28 @@
   overflow-x: auto;
   overflow-y: auto;
 }
+
+.caixaPesquisarPropostas{
+  margin-top: 1vh;
+}
+
+.filtros{
+  display: flex;
+  gap: 2vh;
+}
+
+.divfiltroSelect{
+  margin-top: 1vh;
+}
+
+.filtroSelect{
+  height: 4vh;
+  width: 18vh;
+  border-radius: 1vh;
+}
+
+.optionsFiltroSelect{
+  height: 10vh;
+  width: 15vh;
+  border-radius: 1vh;
+}

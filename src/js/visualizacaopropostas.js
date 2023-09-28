@@ -7,10 +7,13 @@ import InputMask from 'react-input-mask';
 import { format } from 'date-fns';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import { SearchBar } from '../js/pesquisar';
 
 function VisualizacaoPropostas() {
     const navigate = useNavigate();
     const [listProposal, setListProposal] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
 
     const handleListProposal = (list) => {
         setListProposal(list);
@@ -98,6 +101,28 @@ function VisualizacaoPropostas() {
         getDataProposal();
     }, []);
 
+    const handleSearch = (term) => {
+        if (term.trim() === '') {
+            setSearchTerm('');
+            setSearchResults([]); // Limpe os resultados quando a pesquisa estiver vazia
+        } else {
+            setSearchTerm(term);
+            const results = [];
+            for (let i = 0; i < listProposal.length; i++) {
+                const proposal = listProposal[i];
+                if (
+                    (proposal.cpf === null && proposal.razaoSocial.toLowerCase().includes(term.toLowerCase())) ||
+                    (proposal.cpf !== null && proposal.nomeCompleto.toLowerCase().includes(term.toLowerCase()))
+                ) {
+                    results.push(proposal);
+                }
+            }
+            setSearchResults(results);
+        }
+        console.log(searchResults);
+    };
+
+
     return (
         <div className='containerPrincipal'>
             <div className='positionNavLateral'>
@@ -109,6 +134,19 @@ function VisualizacaoPropostas() {
             <div className='containerGeral'>
                 <div className='textoPropostas'>
                     <text className='stringTitulos'> Propostas </text>
+                </div>
+                <div className='filtros'>
+                    <div className="caixaPesquisarPropostas">
+                        <SearchBar onSearch={handleSearch} />
+                    </div>
+                    <div className='divfiltroSelect'>
+                        <select className='filtroSelect'>
+                            <option className='optionsFiltroSelect'> Em análise </option>
+                            <option className='optionsFiltroSelect'> Aprovado </option>
+                            <option className='optionsFiltroSelect'> Reprovado </option>
+                            <option className='optionsFiltroSelect'> Empréstimo concedido </option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <br />
@@ -126,16 +164,31 @@ function VisualizacaoPropostas() {
                         </tr>
                     </thead>
                     <tbody>
-                        {listProposal.map((proposal) => (
+                        {(searchTerm === '' ? listProposal : searchResults).map((proposal) => (
                             <tr className='linhasTabelaPropostas' key={proposal.proposalId}>
                                 <td className='colunasTabelaPropostas'>{proposal.indicador.username}</td>
                                 <td className='colunasTabelaPropostas'>{proposal.business}</td>
                                 <td className='colunasTabelaPropostas'>
-                                    <InputMask mask="99/99/9999" placeholder="DD/MM/AAAA" type="text" className="inputDadosTabela" value={proposal.dataCriacao ? format(new Date(proposal.dataCriacao), 'dd/MM/yyyy') : ''} disabled />
+                                    <InputMask
+                                        mask="99/99/9999"
+                                        placeholder="DD/MM/AAAA"
+                                        type="text"
+                                        className="inputDadosTabela"
+                                        value={proposal.dataCriacao ? format(new Date(proposal.dataCriacao), 'dd/MM/yyyy') : ''}
+                                        disabled
+                                    />
                                 </td>
-                                <td className='colunasTabelaPropostas'>{proposal.cpf == null ? proposal.razaoSocial : proposal.nomeCompleto}</td>
-                                <td className='colunasTabelaPropostas'>{proposal.cpf == null ? formataCnpj(proposal.cnpj) : formataCpf(proposal.cpf)} </td>
-                                <td className='colunasTabelaPropostas'>{proposal.status} </td>
+                                <td className='colunasTabelaPropostas'>
+                                    {proposal.cpf == null
+                                        ? proposal.razaoSocial
+                                        : proposal.nomeCompleto}
+                                </td>
+                                <td className='colunasTabelaPropostas'>
+                                    {proposal.cpf == null
+                                        ? formataCnpj(proposal.cnpj)
+                                        : formataCpf(proposal.cpf)}
+                                </td>
+                                <td className='colunasTabelaPropostas'>{proposal.status}</td>
                                 <td colunasTabelaPropostas>
                                     <button className='botaoVer' onClick={() => visualizar(proposal.proposalId)}>
                                         <span className='stringVer'> Ver </span>

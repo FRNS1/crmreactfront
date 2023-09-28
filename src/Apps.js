@@ -28,6 +28,7 @@ import { NilsonBentoPj } from './js/links-indicador/pj/nilsonbentopj';
 import { RicardoBetoPf } from './js/links-indicador/pf/ricardobeto';
 import { RicardoBetoPj } from './js/links-indicador/pj/ricardobetopj';
 import { DeltaHubBackOffice } from './js/deltahubbackoffice';
+import { RedefinicaoSenha } from './js/redefinicao_senha';
 import Cookies from 'js-cookie';
 
 
@@ -61,6 +62,7 @@ function App() {
         <Route path='/indicadorricardobetopf' element={<RicardoBetoPf />} />
         <Route path='/indicadorricardobetopj' element={<RicardoBetoPj />} />
         <Route path='/deltahubbackoffice' element={<DeltaHubBackOffice />} />
+        <Route path='/redefinicao_senha' element={<RedefinicaoSenha />} />
       </Routes>
     </BrowserRouter>
   );
