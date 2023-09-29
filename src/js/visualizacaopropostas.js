@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../css/visualizacao_propostas.css';
 import '../css/pesquisar.css';
 import { NavSuperior } from '../js/navsuperior';
@@ -19,7 +19,8 @@ function VisualizacaoPropostas() {
     const [searchStatusResult, setSearchStatusResult] = useState([]);
     const [searchStatus, setSearchStatus] = useState('');
     const [searchType, setSearchType] = useState('');
-    const [selectedFilter, setSelectedFilter] = useState(''); // Adicione o estado para a opção selecionada
+    const [selectedFilter, setSelectedFilter] = useState('');
+    const [loading, setLoading] = useState(true);
 
     const handleListProposal = (list) => {
         setListProposal(list);
@@ -81,8 +82,6 @@ function VisualizacaoPropostas() {
     }
 
     function formataCpf(cpf) {
-        // let cpf2 = cpf + "babaca";
-        // return cpf2;
         const partesCPF = cpf.split('')
         if (partesCPF.length != 11) {
             return `Documento inválido`
@@ -103,8 +102,19 @@ function VisualizacaoPropostas() {
         }
     }
 
+    const myButtonRef = useRef(null);
+
+    // Função para ser executada ao carregar a página
+    const handleButtonClick = () => {
+        alert('CLICK');
+    };
+
     useEffect(() => {
         getDataProposal();
+        if (myButtonRef.current) {
+            myButtonRef.current.click(); // Simula o clique no botão
+        }
+        handleButtonClick();
     }, []);
 
     const handleFilterChange = (event) => {
@@ -144,10 +154,14 @@ function VisualizacaoPropostas() {
         setSearchStatusResult(results);
     }
 
-    const handleSearch = () => {
+    async function handleSearch() {
         if (searchTerm.trim() === '') {
             setSearchTerm('');
-            setSearchResults([]); // Limpe os resultados quando a pesquisa estiver vazia
+            if (selectedFilter === '') {
+                setSearchResults(listProposal); // Mostrar todos os dados quando a opção "Todos" estiver selecionada
+            } else {
+                setSearchResults([]); // Limpar os resultados quando a pesquisa estiver vazia
+            }
         } else {
             const results = [];
             for (let i = 0; i < listProposal.length; i++) {
@@ -161,7 +175,7 @@ function VisualizacaoPropostas() {
             }
             setSearchResults(results);
         }
-        console.log(searchResults);
+        setLoading(false);
     };
 
     return (
@@ -180,13 +194,13 @@ function VisualizacaoPropostas() {
                     <div className="caixaPesquisarPropostas">
                         <div className='caixaPesquisa'>
                             <input className='inputPesquisa' placeholder='Pesquisar' onChange={(e) => setSearchTerm(e.target.value)} />
-                            <button className='botaoPesquisa' onClick={handleSearch}>
+                            <button className='botaoPesquisaNome' ref={myButtonRef} onClick={() => {handleSearch(); handleButtonClick(); }}>
                                 <span> <FontAwesomeIcon icon={faMagnifyingGlass} /> </span>
                             </button>
                         </div>
                     </div>
                     <div className='divfiltroSelect'>
-                        <select className='filtroSelect' onChange={handleFilterChange}>
+                        <select className='filtroSelect' value={selectedFilter} onChange={handleFilterChange}>
                             <option value='' className='optionsFiltroSelect'>Todos</option>
                             <option value='EM ANALISE' className='optionsFiltroSelect'>Em análise</option>
                             <option value='APROVADO' className='optionsFiltroSelect'>Aprovado</option>
@@ -211,38 +225,40 @@ function VisualizacaoPropostas() {
                         </tr>
                     </thead>
                     <tbody>
-                        {(searchType === 'name' ? searchResults : (selectedFilter === '' ? listProposal : searchStatusResult)).map((proposal) => (
-                            <tr className='linhasTabelaPropostas' key={proposal.proposalId}>
-                                <td className='colunasTabelaPropostas'>{proposal.indicador.username}</td>
-                                <td className='colunasTabelaPropostas'>{proposal.business}</td>
-                                <td className='colunasTabelaPropostas'>
-                                    <InputMask
-                                        mask="99/99/9999"
-                                        placeholder="DD/MM/AAAA"
-                                        type="text"
-                                        className="inputDadosTabela"
-                                        value={proposal.dataCriacao ? format(new Date(proposal.dataCriacao), 'dd/MM/yyyy') : ''}
-                                        disabled
-                                    />
-                                </td>
-                                <td className='colunasTabelaPropostas'>
-                                    {proposal.cpf == null
-                                        ? proposal.razaoSocial
-                                        : proposal.nomeCompleto}
-                                </td>
-                                <td className='colunasTabelaPropostas'>
-                                    {proposal.cpf == null
-                                        ? formataCnpj(proposal.cnpj)
-                                        : formataCpf(proposal.cpf)}
-                                </td>
-                                <td className='colunasTabelaPropostas'>{proposal.status}</td>
-                                <td colunasTabelaPropostas>
-                                    <button className='botaoVer' onClick={() => visualizar(proposal.proposalId)}>
-                                        <span className='stringVer'> Ver </span>
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
+                        {loading === false ? (
+                            (selectedFilter === '' ? searchResults : searchStatusResult).map((proposal) => (
+                                <tr className='linhasTabelaPropostas' key={proposal.proposalId}>
+                                    <td className='colunasTabelaPropostas'>{proposal.indicador.username}</td>
+                                    <td className='colunasTabelaPropostas'>{proposal.business}</td>
+                                    <td className='colunasTabelaPropostas'>
+                                        <InputMask
+                                            mask="99/99/9999"
+                                            placeholder="DD/MM/AAAA"
+                                            type="text"
+                                            className="inputDadosTabela"
+                                            value={proposal.dataCriacao ? format(new Date(proposal.dataCriacao), 'dd/MM/yyyy') : ''}
+                                            disabled
+                                        />
+                                    </td>
+                                    <td className='colunasTabelaPropostas'>
+                                        {proposal.cpf == null
+                                            ? proposal.razaoSocial
+                                            : proposal.nomeCompleto}
+                                    </td>
+                                    <td className='colunasTabelaPropostas'>
+                                        {proposal.cpf == null
+                                            ? formataCnpj(proposal.cnpj)
+                                            : formataCpf(proposal.cpf)}
+                                    </td>
+                                    <td className='colunasTabelaPropostas'>{proposal.status}</td>
+                                    <td className='colunasTabelaPropostas'>
+                                        <button className='botaoVer' onClick={() => visualizar(proposal.proposalId)}>
+                                            <span className='stringVer'> Ver </span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))
+                        ) : null}
                     </tbody>
                 </table>
             </div>
