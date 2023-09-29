@@ -105,16 +105,17 @@ function VisualizacaoPropostas() {
     const myButtonRef = useRef(null);
 
     // Função para ser executada ao carregar a página
-    const handleButtonClick = () => {
-        alert('CLICK');
-    };
+    // const handleButtonClick = () => {
+    //     alert('CLICK');
+    // };
 
     useEffect(() => {
-        getDataProposal();
-        if (myButtonRef.current) {
-            myButtonRef.current.click(); // Simula o clique no botão
+        async function porra(){
+        await getDataProposal();
+        if (loading == false){
+            await handleSearch();
+            }
         }
-        handleButtonClick();
     }, []);
 
     const handleFilterChange = (event) => {
@@ -194,7 +195,7 @@ function VisualizacaoPropostas() {
                     <div className="caixaPesquisarPropostas">
                         <div className='caixaPesquisa'>
                             <input className='inputPesquisa' placeholder='Pesquisar' onChange={(e) => setSearchTerm(e.target.value)} />
-                            <button className='botaoPesquisaNome' ref={myButtonRef} onClick={() => {handleSearch(); handleButtonClick(); }}>
+                            <button className='botaoPesquisaNome' ref={myButtonRef} onClick={() => {handleSearch(); }}>
                                 <span> <FontAwesomeIcon icon={faMagnifyingGlass} /> </span>
                             </button>
                         </div>
