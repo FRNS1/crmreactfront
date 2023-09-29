@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../css/visualizacao_propostas.css';
+import '../css/pesquisar.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
 import { useNavigate } from 'react-router-dom';
@@ -7,13 +8,18 @@ import InputMask from 'react-input-mask';
 import { format } from 'date-fns';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { SearchBar } from '../js/pesquisar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 function VisualizacaoPropostas() {
     const navigate = useNavigate();
     const [listProposal, setListProposal] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const [searchStatusResult, setSearchStatusResult] = useState([]);
+    const [searchStatus, setSearchStatus] = useState('');
+    const [searchType, setSearchType] = useState('');
+    const [selectedFilter, setSelectedFilter] = useState(''); // Adicione o estado para a opção selecionada
 
     const handleListProposal = (list) => {
         setListProposal(list);
@@ -101,18 +107,54 @@ function VisualizacaoPropostas() {
         getDataProposal();
     }, []);
 
-    const handleSearch = (term) => {
-        if (term.trim() === '') {
+    const handleFilterChange = (event) => {
+        setSelectedFilter(event.target.value);
+        // Chame a função que filtra com base na opção selecionada
+        handleSearchStatus(event.target.value);
+    };
+
+    const handleSearchStatus = (selectedOption) => {
+        const results = [];
+        // Verifique a opção selecionada e filtre com base nela
+        if (selectedOption === 'EM ANALISE') {
+            for (let i = 0; i < listProposal.length; i++) {
+                if (listProposal[i].status === 'EM ANALISE') {
+                    results.push(listProposal[i]);
+                }
+            }
+        } else if (selectedOption === 'APROVADO') {
+            for (let i = 0; i < listProposal.length; i++) {
+                if (listProposal[i].status === 'APROVADO') {
+                    results.push(listProposal[i]);
+                }
+            }
+        } else if (selectedOption === 'REPROVADO') {
+            for (let i = 0; i < listProposal.length; i++) {
+                if (listProposal[i].status === 'REPROVADO') {
+                    results.push(listProposal[i]);
+                }
+            }
+        } else if (selectedOption === 'EMPRESTIMO CONCEDIDO') {
+            for (let i = 0; i < listProposal.length; i++) {
+                if (listProposal[i].status === 'EMPRESTIMO CONCEDIDO') {
+                    results.push(listProposal[i]);
+                }
+            }
+        }
+        setSearchStatusResult(results);
+    }
+
+    const handleSearch = () => {
+        if (searchTerm.trim() === '') {
             setSearchTerm('');
             setSearchResults([]); // Limpe os resultados quando a pesquisa estiver vazia
         } else {
-            setSearchTerm(term);
             const results = [];
             for (let i = 0; i < listProposal.length; i++) {
                 const proposal = listProposal[i];
                 if (
-                    (proposal.cpf === null && proposal.razaoSocial.toLowerCase().includes(term.toLowerCase())) ||
-                    (proposal.cpf !== null && proposal.nomeCompleto.toLowerCase().includes(term.toLowerCase()))
+                    (proposal.cpf === null && proposal.razaoSocial.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                    (proposal.cpf !== null && proposal.nomeCompleto.toLowerCase().includes(searchTerm.toLowerCase()))
                 ) {
                     results.push(proposal);
                 }
@@ -121,7 +163,6 @@ function VisualizacaoPropostas() {
         }
         console.log(searchResults);
     };
-
 
     return (
         <div className='containerPrincipal'>
@@ -137,14 +178,20 @@ function VisualizacaoPropostas() {
                 </div>
                 <div className='filtros'>
                     <div className="caixaPesquisarPropostas">
-                        <SearchBar onSearch={handleSearch} />
+                        <div className='caixaPesquisa'>
+                            <input className='inputPesquisa' placeholder='Pesquisar' onChange={(e) => setSearchTerm(e.target.value)} />
+                            <button className='botaoPesquisa' onClick={handleSearch}>
+                                <span> <FontAwesomeIcon icon={faMagnifyingGlass} /> </span>
+                            </button>
+                        </div>
                     </div>
                     <div className='divfiltroSelect'>
-                        <select className='filtroSelect'>
-                            <option className='optionsFiltroSelect'> Em análise </option>
-                            <option className='optionsFiltroSelect'> Aprovado </option>
-                            <option className='optionsFiltroSelect'> Reprovado </option>
-                            <option className='optionsFiltroSelect'> Empréstimo concedido </option>
+                        <select className='filtroSelect' onChange={handleFilterChange}>
+                            <option value='' className='optionsFiltroSelect'>Todos</option>
+                            <option value='EM ANALISE' className='optionsFiltroSelect'>Em análise</option>
+                            <option value='APROVADO' className='optionsFiltroSelect'>Aprovado</option>
+                            <option value='REPROVADO' className='optionsFiltroSelect'>Reprovado</option>
+                            <option value='EMPRESTIMO CONCEDIDO' className='optionsFiltroSelect'>Empréstimo concedido</option>
                         </select>
                     </div>
                 </div>
@@ -164,7 +211,7 @@ function VisualizacaoPropostas() {
                         </tr>
                     </thead>
                     <tbody>
-                        {(searchTerm === '' ? listProposal : searchResults).map((proposal) => (
+                        {(searchType === 'name' ? searchResults : (selectedFilter === '' ? listProposal : searchStatusResult)).map((proposal) => (
                             <tr className='linhasTabelaPropostas' key={proposal.proposalId}>
                                 <td className='colunasTabelaPropostas'>{proposal.indicador.username}</td>
                                 <td className='colunasTabelaPropostas'>{proposal.business}</td>
