@@ -47,6 +47,7 @@ function VisualizacaoPropostas() {
             );
             console.log(response.data);
             handleListProposal(response.data);
+            handleSearch();
         } catch (error) {
             console.log('error', error);
         }
@@ -102,21 +103,12 @@ function VisualizacaoPropostas() {
         }
     }
 
-    const myButtonRef = useRef(null);
-
-    // Função para ser executada ao carregar a página
-    // const handleButtonClick = () => {
-    //     alert('CLICK');
-    // };
-
     useEffect(() => {
-        async function porra(){
-        await getDataProposal();
-        if (loading == false){
-            await handleSearch();
-            }
+        getDataProposal();
+        if (!loading) {
+            handleSearch();
         }
-    }, []);
+    }, [loading]);
 
     const handleFilterChange = (event) => {
         setSelectedFilter(event.target.value);
@@ -156,25 +148,23 @@ function VisualizacaoPropostas() {
     }
 
     async function handleSearch() {
-        if (searchTerm.trim() === '') {
-            setSearchTerm('');
-            if (selectedFilter === '') {
-                setSearchResults(listProposal); // Mostrar todos os dados quando a opção "Todos" estiver selecionada
+        if (selectedFilter === '') {
+            setSearchResults(listProposal); // Mostrar todos os dados quando a opção "Todos" estiver selecionada
+            if (searchTerm.trim() === '') {
+                setSearchResults(listProposal);
             } else {
-                setSearchResults([]); // Limpar os resultados quando a pesquisa estiver vazia
-            }
-        } else {
-            const results = [];
-            for (let i = 0; i < listProposal.length; i++) {
-                const proposal = listProposal[i];
-                if (
-                    (proposal.cpf === null && proposal.razaoSocial.toLowerCase().includes(searchTerm.toLowerCase())) ||
-                    (proposal.cpf !== null && proposal.nomeCompleto.toLowerCase().includes(searchTerm.toLowerCase()))
-                ) {
-                    results.push(proposal);
+                const results = [];
+                for (let i = 0; i < listProposal.length; i++) {
+                    const proposal = listProposal[i];
+                    if (
+                        (proposal.cpf === null && proposal.razaoSocial.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                        (proposal.cpf !== null && proposal.nomeCompleto.toLowerCase().includes(searchTerm.toLowerCase()))
+                    ) {
+                        results.push(proposal);
+                    }
                 }
+                setSearchResults(results);
             }
-            setSearchResults(results);
         }
         setLoading(false);
     };
@@ -195,7 +185,7 @@ function VisualizacaoPropostas() {
                     <div className="caixaPesquisarPropostas">
                         <div className='caixaPesquisa'>
                             <input className='inputPesquisa' placeholder='Pesquisar' onChange={(e) => setSearchTerm(e.target.value)} />
-                            <button className='botaoPesquisaNome' ref={myButtonRef} onClick={() => {handleSearch(); }}>
+                            <button className='botaoPesquisaNome' onClick={() => { handleSearch(); }}>
                                 <span> <FontAwesomeIcon icon={faMagnifyingGlass} /> </span>
                             </button>
                         </div>
