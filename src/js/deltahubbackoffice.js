@@ -324,197 +324,6 @@ function DeltaHubBackOffice() {
     }
   }, [loginComplete]);
 
-  function FormUpdateParceiro(){
-    return(
-      <div className='formModalBODH'>
-        <AiFillCloseCircle className='iconFormBODH' onClick={() => setShow('')} />
-        <div className='fieldsetModalBODH'>
-          <h1 className='titleModalBODH'>Atualizar Parceiro</h1>
-          <form>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Nome Parceiro</label>
-              <input className='inputBODH' placeholder={partner.name}></input>
-            </div>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>CNPJ</label>
-              <input className='inputBODH' placeholder={partner.taxId}></input>
-            </div>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Telefone</label>
-              <input className='inputBODH' placeholder={partner.phone}></input>
-            </div>
-            <div className='fieldBODH'>
-              <button className='buttonsaveBODH'>Salvar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    )
-  }
-
-  function FormCadastroParceiro(){
-    return(
-      <div className='formModalBODH'>
-        <AiFillCloseCircle className='iconFormBODH' onClick={() => setShow('')} />
-        <div className='fieldsetModalBODH'>
-          <h1 className='titleModalBODH'>Atualizar Parceiro</h1>
-          <form>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Nome Parceiro</label>
-              <input className='inputBODH'></input>
-            </div>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>CNPJ</label>
-              <input className='inputBODH'></input>
-            </div>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Telefone</label>
-              <input className='inputBODH'></input>
-            </div>
-            <div className='fieldBODH'>
-              <button className='buttonsaveBODH'>Salvar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    )
-  }
-
-  function FormUpdateProduto(){
-    return(
-      <div className='formModalBODH'>
-        <AiFillCloseCircle className='iconFormBODH' onClick={() => setShow('')} />
-        <div className='fieldsetModalBODH'>
-          <h1 className='titleModalBODH'>Atualizar Produto</h1>
-          <form>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Categoria</label>
-              <select value={product.category.categoryId}>
-                <option value={product.category.categoryId}>{product.category.nomeCategoria}</option>
-                {listCategories.map((category) => 
-                <option value={category.categoryId}>{category.nomeCategoria}</option>
-                )}
-              </select>
-            </div>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Parceiro</label>
-              <select value={product.partnerId.partnerId}>
-                <option value={product.partnerId.partnerId}>{product.partnerId.name}</option>
-                {listPartner.map((partner) => 
-                <option value={partner.partnerId}>{partner.name}</option>
-                )}
-              </select>
-            </div>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Link</label>
-              <input className='inputBODH' placeholder={product.linkTrackeado}></input>
-            </div>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Descrição</label>
-              <input className='inputBODH' placeholder={product.descricao}></input>
-            </div>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Arte</label>
-              <input className='inputBODH' type='file'></input>
-            </div>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Nome</label>
-              <input className='inputBODH' placeholder={product.productName}></input>
-            </div>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Tipo</label>
-              <select defaultValue={product.type}>
-              <option value='produtoCat'>Produto de categoria</option>
-                <option value='banner'>banner</option>
-              </select>
-            </div>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Ativo</label>
-              <select defaultValue={product.ativo}>
-                <option value={true}>Verdadeiro</option>
-                <option value={false}>False</option>
-              </select>
-            </div>
-            <div className='fieldBODH'>
-              <button className='buttonsaveBODH'>Salvar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    )
-  }
-
-  function FormCadastroCategoria(){
-    return(
-      <div className='formModalBODH'>
-        <AiFillCloseCircle className='iconFormBODH' onClick={() => setShow('')} />
-        <div className='fieldsetModalBODH'>
-          <h1 className='titleModalBODH'>Cadastro Categoria</h1>
-          <form>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Nome Categoria</label>
-              <input 
-                    className='inputBODH'                             
-                    type="text"
-                    id="nome"
-                    name="nome" 
-                    value={nomeCategoriaReg} 
-                    onChange={(e) => setNomeCategoriaReg(e.target.value)}>
-              </input>
-            </div>
-            <div className='fieldBODH'>
-              <button className='buttonsaveBODH' onClick={() => alert(nomeCategoriaReg)}>Salvar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    )
-  }
-
-  function FormCadastroProduto(){
-    return(
-      <div className='formModalBODH'>
-        <AiFillCloseCircle className='iconFormBODH' onClick={() => setShow('')} />
-        <div className='fieldsetModalBODH'>
-          <h1 className='titleModalBODH'>Atualizar Produto</h1>
-          <form>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Categoria</label>
-              <input className='inputBODH'></input>
-            </div>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Parceiro</label>
-              <input className='inputBODH'></input>
-            </div>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Link</label>
-              <input className='inputBODH'></input>
-            </div>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Descrição</label>
-              <input className='inputBODH'></input>
-            </div>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Arte</label>
-              <input className='inputBODH'></input>
-            </div>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Nome</label>
-              <input className='inputBODH'></input>
-            </div>
-            <div className='fieldBODH'>
-              <label className='labelBODH'>Tipo</label>
-              <input className='inputBODH'></input>
-            </div>
-            <div className='fieldBODH'>
-              <button className='buttonsaveBODH'>Salvar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    )
-  }
-
   return (
     <div className='containerPrincipal'>
       <div className='positionNavLateral'>
@@ -529,7 +338,30 @@ function DeltaHubBackOffice() {
               <h1>Categorias</h1>
               <div className='buttonBODH'><span className='textButtonBODH' onClick={() => setShow('cadastroCategorias')} style={{color: 'white'}}>Criar nova categoria</span></div>
           </div>
-          {show == 'cadastroCategorias' && (<FormCadastroCategoria />)}
+          {show == 'cadastroCategorias' && (
+                 <div className='formModalBODH'>
+                 <AiFillCloseCircle className='iconFormBODH' onClick={() => setShow('')} />
+                 <div className='fieldsetModalBODH'>
+                   <h1 className='titleModalBODH'>Cadastro Categoria</h1>
+                   <form>
+                     <div className='fieldBODH'>
+                       <label className='labelBODH'>Nome Categoria</label>
+                       <input 
+                             className='inputBODH'                             
+                             type="text"
+                             id="nome"
+                             name="nome" 
+                             value={nomeCategoriaReg} 
+                             onChange={(e) => setNomeCategoriaReg(e.target.value)}>
+                       </input>
+                     </div>
+                     <div className='fieldBODH'>
+                       <button className='buttonsaveBODH' onClick={() => alert(nomeCategoriaReg)}>Salvar</button>
+                     </div>
+                   </form>
+                 </div>
+               </div>
+          )}
           <div className='relativeContainer'>
             <div className='cardContainer'>
               {listCategories.map((category) => 
@@ -545,8 +377,56 @@ function DeltaHubBackOffice() {
                 <h1>Parceiros</h1>
                 <div className='buttonBODH'><span className='textButtonBODH' onClick={() => setShow('cadastroParceiros')} style={{color: 'white'}}>Criar novo parceiro</span></div>
             </div>
-            {show == 'updateParceiros' && (<FormUpdateParceiro />)}
-            {show == 'cadastroParceiros' && (<FormCadastroParceiro />)}
+            {show == 'updateParceiros' && (
+              <div className='formModalBODH'>
+              <AiFillCloseCircle className='iconFormBODH' onClick={() => setShow('')} />
+              <div className='fieldsetModalBODH'>
+                <h1 className='titleModalBODH'>Atualizar Parceiro</h1>
+                <form>
+                  <div className='fieldBODH'>
+                    <label className='labelBODH'>Nome Parceiro</label>
+                    <input className='inputBODH' placeholder={partner.name}></input>
+                  </div>
+                  <div className='fieldBODH'>
+                    <label className='labelBODH'>CNPJ</label>
+                    <input className='inputBODH' placeholder={partner.taxId}></input>
+                  </div>
+                  <div className='fieldBODH'>
+                    <label className='labelBODH'>Telefone</label>
+                    <input className='inputBODH' placeholder={partner.phone}></input>
+                  </div>
+                  <div className='fieldBODH'>
+                    <button className='buttonsaveBODH'>Salvar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            )}
+            {show == 'cadastroParceiros' && (
+                    <div className='formModalBODH'>
+                    <AiFillCloseCircle className='iconFormBODH' onClick={() => setShow('')} />
+                    <div className='fieldsetModalBODH'>
+                      <h1 className='titleModalBODH'>Atualizar Parceiro</h1>
+                      <form>
+                        <div className='fieldBODH'>
+                          <label className='labelBODH'>Nome Parceiro</label>
+                          <input className='inputBODH'></input>
+                        </div>
+                        <div className='fieldBODH'>
+                          <label className='labelBODH'>CNPJ</label>
+                          <input className='inputBODH'></input>
+                        </div>
+                        <div className='fieldBODH'>
+                          <label className='labelBODH'>Telefone</label>
+                          <input className='inputBODH'></input>
+                        </div>
+                        <div className='fieldBODH'>
+                          <button className='buttonsaveBODH'>Salvar</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+            )}
             <div className='relativeContainer'>
               <div className='cardContainer'>
                 {listPartner.map((partner) => 
@@ -562,8 +442,108 @@ function DeltaHubBackOffice() {
                   <h1>Produtos</h1>
                   <div className='buttonBODH'><span className='textButtonBODH' onClick={() => setShow('cadastroProdutos')} style={{color: 'white'}}>Criar novo produto</span></div>
               </div>
-              {show == 'cadastroProdutos' && (<FormCadastroProduto />)}
-              {show == 'updateProdutos' && (<FormUpdateProduto />)}
+              {show == 'cadastroProdutos' && (
+                      <div className='formModalBODH'>
+                      <AiFillCloseCircle className='iconFormBODH' onClick={() => setShow('')} />
+                      <div className='fieldsetModalBODH'>
+                        <h1 className='titleModalBODH'>Atualizar Produto</h1>
+                        <form>
+                          <div className='fieldBODH'>
+                            <label className='labelBODH'>Categoria</label>
+                            <input className='inputBODH'></input>
+                          </div>
+                          <div className='fieldBODH'>
+                            <label className='labelBODH'>Parceiro</label>
+                            <input className='inputBODH'></input>
+                          </div>
+                          <div className='fieldBODH'>
+                            <label className='labelBODH'>Link</label>
+                            <input className='inputBODH'></input>
+                          </div>
+                          <div className='fieldBODH'>
+                            <label className='labelBODH'>Descrição</label>
+                            <input className='inputBODH'></input>
+                          </div>
+                          <div className='fieldBODH'>
+                            <label className='labelBODH'>Arte</label>
+                            <input className='inputBODH'></input>
+                          </div>
+                          <div className='fieldBODH'>
+                            <label className='labelBODH'>Nome</label>
+                            <input className='inputBODH'></input>
+                          </div>
+                          <div className='fieldBODH'>
+                            <label className='labelBODH'>Tipo</label>
+                            <input className='inputBODH'></input>
+                          </div>
+                          <div className='fieldBODH'>
+                            <button className='buttonsaveBODH'>Salvar</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+              )}
+              {show == 'updateProdutos' && (
+                <div className='formModalBODH'>
+                <AiFillCloseCircle className='iconFormBODH' onClick={() => setShow('')} />
+                <div className='fieldsetModalBODH'>
+                  <h1 className='titleModalBODH'>Atualizar Produto</h1>
+                  <form>
+                    <div className='fieldBODH'>
+                      <label className='labelBODH'>Categoria</label>
+                      <select value={product.category.categoryId}>
+                        <option value={product.category.categoryId}>{product.category.nomeCategoria}</option>
+                        {listCategories.map((category) => 
+                        <option value={category.categoryId}>{category.nomeCategoria}</option>
+                        )}
+                      </select>
+                    </div>
+                    <div className='fieldBODH'>
+                      <label className='labelBODH'>Parceiro</label>
+                      <select value={product.partnerId.partnerId}>
+                        <option value={product.partnerId.partnerId}>{product.partnerId.name}</option>
+                        {listPartner.map((partner) => 
+                        <option value={partner.partnerId}>{partner.name}</option>
+                        )}
+                      </select>
+                    </div>
+                    <div className='fieldBODH'>
+                      <label className='labelBODH'>Link</label>
+                      <input className='inputBODH' placeholder={product.linkTrackeado}></input>
+                    </div>
+                    <div className='fieldBODH'>
+                      <label className='labelBODH'>Descrição</label>
+                      <input className='inputBODH' placeholder={product.descricao}></input>
+                    </div>
+                    <div className='fieldBODH'>
+                      <label className='labelBODH'>Arte</label>
+                      <input className='inputBODH' type='file'></input>
+                    </div>
+                    <div className='fieldBODH'>
+                      <label className='labelBODH'>Nome</label>
+                      <input className='inputBODH' placeholder={product.productName}></input>
+                    </div>
+                    <div className='fieldBODH'>
+                      <label className='labelBODH'>Tipo</label>
+                      <select defaultValue={product.type}>
+                      <option value='produtoCat'>Produto de categoria</option>
+                        <option value='banner'>banner</option>
+                      </select>
+                    </div>
+                    <div className='fieldBODH'>
+                      <label className='labelBODH'>Ativo</label>
+                      <select defaultValue={product.ativo}>
+                        <option value={true}>Verdadeiro</option>
+                        <option value={false}>False</option>
+                      </select>
+                    </div>
+                    <div className='fieldBODH'>
+                      <button className='buttonsaveBODH'>Salvar</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              )}
               <div className='relativeContainer'>
                 <div className='cardContainer'>
                   {listProducts.map((product) => 
