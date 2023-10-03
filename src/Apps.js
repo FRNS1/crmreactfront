@@ -1,7 +1,10 @@
-import './css/tela_login.css';
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
+import './css/tela_login.css';
+import './style/global.css'
+
 import { ButtonPage } from './js/login'
 import { Checklist } from './js/checklist'
 import { PedroRiccoPf } from './js/links-indicador/pf/pedroricco'
@@ -32,7 +35,7 @@ import { RedefinicaoSenha } from './js/redefinicao_senha';
 import Cookies from 'js-cookie';
 
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>
