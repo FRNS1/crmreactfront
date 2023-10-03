@@ -1,0 +1,9 @@
+.container-loading{
+  display: flex;
+  width: 100%;
+  background: rgba(242,244,246,0.6);
+  height: 100%;
+  position: absolute;
+  align-items: center;
+  justify-content: center
+}
