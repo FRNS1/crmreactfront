@@ -1,5 +1,6 @@
 .containerchecklist {
-    width: 30%;
+    position: relative;
+    width: 40%;
     margin: 0 auto;
     margin-top: 1%;
     padding: 20px;
@@ -45,7 +46,7 @@
     display: block;
     font-size: 24px;
     margin-bottom: 5px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .inputchecklist {
@@ -77,51 +78,17 @@
     margin-bottom: 15px;
 }
 
+.modalcontainer{
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .termos-checklist {
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.termos-container {
-    position: absolute;
-    width: 70%;
-    height: 70%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #F4F7F8;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 20px;
-    z-index: 2;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    overflow: auto;
-}
-
-.termos-container-bigger {
-    position: absolute;
-    width: 70%;
-    height: 70%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #F4F7F8;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 20px;
-    z-index: 2;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    overflow: auto;
-}
-
-.close-icon-checklist {
-    width: 40px;
-    height: 40px;
-    align-self: center;
+    font-weight: 700;
     cursor: pointer;
 }
 
