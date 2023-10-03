@@ -14,10 +14,13 @@
 
   .body{
     background-color: #081535;
+    height: 100vh;
+    width: 100%;
   }
 
 .container {
-  height: 100vh;
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,7 +29,7 @@
 
 .labelInput {
   height: 2.5vh;
-  width: 38vh; /*define a posição na horizontal da string*/
+  width: 18%; /*define a posição na horizontal da string*/
   color: white; /*define a cor da string*/
   font-size: 2vh;
   font-family: sans-serif;
@@ -35,9 +38,9 @@
 .containerInput {
   background-color: white;
   border-radius: 1vh 1vh; /* Define o raio da borda */
-  padding: 1vh 10vh; /* Opcional: ajusta o preenchimento interno */
-  width:37vh;
-  padding: 5px 10px;
+  width: 18%;
+  height: 3.5%;
+  padding-left: 10px;
   text-align: start;
   font-size: 2vh;
   font-family: sans-serif;
@@ -49,12 +52,16 @@
   height: 25vh;
   }
 
+  .divbotaoEntrar{
+    width: 18.5%;
+  }
+
 .botaoEntrar{
   background-color: #AC7B39;
   color: white;
   border-radius: 1vh 1vh;
   padding: 1vh 10vh;
-  width:39vh;
+  width: 100%;
   padding: 5px 10px;
   text-align: center;
   font-size: 2vh;
@@ -79,4 +86,16 @@
 .erro {
   padding: 1vh;
   color: white;
+}
+
+.botaoEnviarEmail{
+  margin-top: 1%;
+  background-color: #AC7B39;
+  color: white;
+  border-radius: 1vh 1vh;
+  width: 18.5%;
+  height: 3.5%;
+  text-align: center;
+  font-size: 2vh;
+  cursor: pointer;
 }

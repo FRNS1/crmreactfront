@@ -531,10 +531,10 @@ function VisualizacaoIndividual() {
                             <div className='divfield'>
                                 <label className="stringDados"> Status </label>
                                 <select className='inputCad' value={status} onChange={handleStatusChange}>
-                                    <option className='inputCad'> Em análise </option>
-                                    <option className='inputCad'> Aprovado </option>
-                                    <option className='inputCad'> Reprovado </option>
-                                    <option className='inputCad'> Empréstimo concedido </option>   
+                                    <option className='inputCad' value='EM ANALISE'> EM ANALISE </option>
+                                    <option className='inputCad' value='APROVADO'> APROVADO </option>
+                                    <option className='inputCad' value='REPROVADO'> REPROVADO </option>
+                                    <option className='inputCad' value='EMPRESTIMO CONCEDIDO'> EMPRESTIMO CONCEDIDO </option>   
                                 </select>
                             </div>
                             <div className='divfield'>

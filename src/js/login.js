@@ -102,11 +102,11 @@ const ButtonPage = () => {
           <label className="labelInput"> Senha </label>
           <input className="containerInput" type="password" id="password" value={password} onChange={handlePasswordChange} />
           <br />
-          <div>
+          <div className='divbotaoEntrar'>
             <button className="botaoEntrar" onClick={handleButtonClick}> Entrar </button>
           </div>
           <text className='erro'>{erro}</text>
-          <a className="esqueceuSenha" href="https://testador.com.br"> Esqueceu sua senha? </a>
+          <a className="esqueceuSenha" href="RedefinicaoSenha"> Esqueceu sua senha? </a>
         </div>
       </body>
     );
