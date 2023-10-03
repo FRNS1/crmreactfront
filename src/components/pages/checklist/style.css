@@ -1,0 +1,97 @@
+.containerchecklist {
+  position: relative;
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 1%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #F4F7F8;
+  text-align: center;
+  display: flex;
+  /* Use flexbox para centralizar */
+  flex-direction: column;
+  /* Empilhe elementos verticalmente */
+  justify-content: center;
+  /* Centralize verticalmente */
+  align-items: center;
+  /* Centralize horizontalmente */
+  min-height: 100vh;
+  /* Garanta altura mínima de tela inteira */
+}
+
+.deltalogoazulchecklist {
+  width: 125px;
+  height: 125px;
+}
+
+.contentchecklist {
+  height: 100%;
+  width: 90%;
+}
+
+.h2checklist {
+  font-size: 22px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-groupchecklist {
+  display: block;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.classNamechecklist {
+  display: block;
+  font-size: 24px;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.inputchecklist {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #E8EEEF;
+}
+
+.buttonchecklist {
+  background-color: #081535;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  width: 90%;
+  margin-top: 10%;
+}
+
+.form-groupchecklist-checkbox {
+  align-self: center;
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.modalcontainer{
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.termos-checklist {
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  cursor: pointer;
+}
