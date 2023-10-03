@@ -66,10 +66,20 @@
 .filtros{
   display: flex;
   flex-direction: row;
-  gap: 2vh;
+  width: 100%;
+  margin-top: 1vh;
+}
+
+.labelFiltros{
+  font-weight: bold;
+  font-size: 1.5vh;
+  text-align: start;
+  margin-left: 0.5vh;
 }
 
 .divfiltroSelect{
+  display: flex;
+  flex-direction: column;
   margin-top: 0vh;
 }
 
@@ -77,6 +87,7 @@
   height: 4vh;
   width: 18vh;
   border-radius: 1vh;
+  margin-right: 2vh;
 }
 
 .optionsFiltroSelect{
@@ -86,6 +97,8 @@
 }
 
 .caixaPesquisa{
+  display: flex;
+  flex-direction: column;
   margin-top: 0vh;
 }
 
@@ -97,12 +110,40 @@
   font-size: 1.5vh;
 }
 
+.divbotaoPesquisaNome{
+  display: flex;
+  align-items: end;
+  padding-left: 1vh;
+  margin-right: 2vh;
+}
+
 .botaoPesquisaNome{
-  margin-left: 1vh;
   height: 4.25vh;
   width: 5vh;
   border-radius: 1vh;
   cursor: pointer;
   background-color: #081535 ;
   color: white;
+}
+
+.divfiltroData{
+  margin-top: 0vh;
+  gap: 1vh;
+  display: flex;
+  align-items: center;
+}
+
+.botaoFiltrarData{
+  background-color: #081535;
+  color: white;
+  font-size: 1.5vh;
+  width: 13vh;
+  height: 3.5vh;
+  border-radius: 1vh;
+}
+
+.inputfiltroData{
+  border: 0.1vh solid #081535;
+  border-radius: 0.5vh;
+  height: 3vh;
 }

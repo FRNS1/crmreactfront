@@ -20,6 +20,8 @@ function VisualizacaoPropostas() {
     const [selectedFilter, setSelectedFilter] = useState('');
     const [selectedFilterBusiness, setselectedFilterBusiness] = useState('GRUPOS');
     const [loading, setLoading] = useState(true);
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
 
     const handleListProposal = (list) => {
         setListProposal(list);
@@ -170,9 +172,20 @@ function VisualizacaoPropostas() {
         }
     }
 
+    const handleDateChange = (start, end) => {
+        setStartDate(start);
+        setEndDate(end);
+    };
+
     const handleSearch = () => {
         if (selectedFilter === '') {
-            if (searchTerm.trim() === '') {
+            if (searchTerm.trim() === '' && startDate && endDate) {
+                const results = listProposal.filter((proposal) => {
+                    const proposalDate = proposal.dataCriacao;
+                    return proposalDate >= startDate && proposalDate <= endDate;
+                });
+                setSearchResults(results);
+            } else if (searchTerm.trim() === '') {
                 setSearchResults(listProposal);
             } else {
                 const results = [];
@@ -202,10 +215,9 @@ function VisualizacaoPropostas() {
                 <div className='textoPropostas'>
                     <text className='stringTitulos'> Propostas </text>
                 </div>
-                <br />
-                <text id='textPesquisarPor'> Pesquisar por: </text>
                 <div className='filtros'>
                     <div className='divfiltroSelect'>
+                        <label className='labelFiltros'> Status </label>
                         <select className='filtroSelect' value={selectedFilter} onChange={handleFilterChange}>
                             <option value='' className='optionsFiltroSelect'>Todos</option>
                             <option value='EM ANALISE' className='optionsFiltroSelect'>Em análise</option>
@@ -215,14 +227,27 @@ function VisualizacaoPropostas() {
                         </select>
                     </div>
                     <div className='caixaPesquisa'>
-                        <input className='inputPesquisar' placeholder='Pesquisar' onChange={(e) => setSearchTerm(e.target.value)} />
+                        <label className='labelFiltros'> Nome </label>
+                        <input
+                            className="inputPesquisar"
+                            placeholder="Pesquisar"
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    handleSearch();
+                                }
+                            }}
+                        />
+                    </div>
+                    <div className='divbotaoPesquisaNome'>
                         <button className='botaoPesquisaNome' onClick={handleSearch}>
                             <span> <FontAwesomeIcon icon={faMagnifyingGlass} /> </span>
                         </button>
                     </div>
                     <div className='divfiltroSelect'>
+                        <label className='labelFiltros'> Business </label>
                         <select className='filtroSelect' value={selectedFilterBusiness} onChange={handleFilterBusinessChange}>
-                            <option value='GRUPOS' className='optionsFiltroSelect'>Grupos</option>
+                            <option value='GRUPOS' className='optionsFiltroSelect'>TODOS</option>
                             <option value='MASTER' className='optionsFiltroSelect'>MASTER</option>
                             <option value='RISK' className='optionsFiltroSelect'>RISK</option>
                             <option value='CHARGES' className='optionsFiltroSelect'>CHARGES</option>
@@ -233,6 +258,27 @@ function VisualizacaoPropostas() {
                             <option value='INDICADOR' className='optionsFiltroSelect'>INDICADOR</option>
                         </select>
                     </div>
+                    {/* <div className='divfiltroData'>
+                        <div className='dataInicial'>
+                            <label className='textofiltroData'> De: </label>
+                            <input type='date'
+                            className='inputfiltroData'
+                            value={startDate}
+                            onChange={(e) => setStartDate(e.target.value)}
+                            />
+                        </div>
+                        <div className='dataFinal'>
+                            <label className='textofiltroData'> Até: </label>
+                            <input type='date' 
+                            className='inputfiltroData'
+                            value={endDate}
+                            onChange={(e) => setEndDate(e.target.value)}
+                            />
+                        </div>
+                        <button className="botaoFiltrarData" onClick={handleSearch}>
+                            <span>Filtrar por Data</span>
+                        </button>
+                    </div> */}
                 </div>
             </div>
             <br />
