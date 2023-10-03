@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../css/visualizacao_propostas.css';
 import '../css/pesquisar.css';
 import { NavSuperior } from '../js/navsuperior';
@@ -17,10 +17,11 @@ function VisualizacaoPropostas() {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [searchStatusResult, setSearchStatusResult] = useState([]);
-    const [searchStatus, setSearchStatus] = useState('');
-    const [searchType, setSearchType] = useState('');
     const [selectedFilter, setSelectedFilter] = useState('');
+    const [selectedFilterBusiness, setselectedFilterBusiness] = useState('GRUPOS');
     const [loading, setLoading] = useState(true);
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
 
     const handleListProposal = (list) => {
         setListProposal(list);
@@ -47,7 +48,7 @@ function VisualizacaoPropostas() {
             );
             console.log(response.data);
             handleListProposal(response.data);
-            handleSearch();
+            setLoading(false); // Removemos a chamada para handleSearch aqui
         } catch (error) {
             console.log('error', error);
         }
@@ -110,15 +111,17 @@ function VisualizacaoPropostas() {
         }
     }, [loading]);
 
+
     const handleFilterChange = (event) => {
         setSelectedFilter(event.target.value);
-        // Chame a função que filtra com base na opção selecionada
+        if (event.target.value === '') {
+            setselectedFilterBusiness('GRUPOS'); // Quando a opção "Todos" for selecionada, redefina o filtro de Business para "GRUPOS"
+        }
         handleSearchStatus(event.target.value);
     };
 
     const handleSearchStatus = (selectedOption) => {
         const results = [];
-        // Verifique a opção selecionada e filtre com base nela
         if (selectedOption === 'EM ANALISE') {
             for (let i = 0; i < listProposal.length; i++) {
                 if (listProposal[i].status === 'EM ANALISE') {
@@ -147,10 +150,42 @@ function VisualizacaoPropostas() {
         setSearchStatusResult(results);
     }
 
-    async function handleSearch() {
+    const handleFilterBusinessChange = (event) => {
+        setselectedFilterBusiness(event.target.value);
+    };
+
+    useEffect(() => {
+        handleSearchBusiness(selectedFilterBusiness);
+    }, [selectedFilterBusiness]);
+
+    const handleSearchBusiness = (selectedOption) => {
+        const results = [];
+        if (selectedOption === 'GRUPOS' && selectedFilter === '' && searchTerm.trim() === '') {
+            setSearchResults(listProposal); // Quando a opção "Todos" for selecionada ou se a opção principal for '' (vazio), mostre todos os dados
+        } else {
+            for (let i = 0; i < listProposal.length; i++) {
+                if (listProposal[i].business === selectedOption) {
+                    results.push(listProposal[i]);
+                }
+            }
+            setSearchResults(results);
+        }
+    }
+
+    const handleDateChange = (start, end) => {
+        setStartDate(start);
+        setEndDate(end);
+    };
+
+    const handleSearch = () => {
         if (selectedFilter === '') {
-            setSearchResults(listProposal); // Mostrar todos os dados quando a opção "Todos" estiver selecionada
-            if (searchTerm.trim() === '') {
+            if (searchTerm.trim() === '' && startDate && endDate) {
+                const results = listProposal.filter((proposal) => {
+                    const proposalDate = proposal.dataCriacao;
+                    return proposalDate >= startDate && proposalDate <= endDate;
+                });
+                setSearchResults(results);
+            } else if (searchTerm.trim() === '') {
                 setSearchResults(listProposal);
             } else {
                 const results = [];
@@ -166,7 +201,6 @@ function VisualizacaoPropostas() {
                 setSearchResults(results);
             }
         }
-        setLoading(false);
     };
 
     return (
@@ -182,15 +216,8 @@ function VisualizacaoPropostas() {
                     <text className='stringTitulos'> Propostas </text>
                 </div>
                 <div className='filtros'>
-                    <div className="caixaPesquisarPropostas">
-                        <div className='caixaPesquisa'>
-                            <input className='inputPesquisa' placeholder='Pesquisar' onChange={(e) => setSearchTerm(e.target.value)} />
-                            <button className='botaoPesquisaNome' onClick={() => { handleSearch(); }}>
-                                <span> <FontAwesomeIcon icon={faMagnifyingGlass} /> </span>
-                            </button>
-                        </div>
-                    </div>
                     <div className='divfiltroSelect'>
+                        <label className='labelFiltros'> Status </label>
                         <select className='filtroSelect' value={selectedFilter} onChange={handleFilterChange}>
                             <option value='' className='optionsFiltroSelect'>Todos</option>
                             <option value='EM ANALISE' className='optionsFiltroSelect'>Em análise</option>
@@ -199,6 +226,59 @@ function VisualizacaoPropostas() {
                             <option value='EMPRESTIMO CONCEDIDO' className='optionsFiltroSelect'>Empréstimo concedido</option>
                         </select>
                     </div>
+                    <div className='caixaPesquisa'>
+                        <label className='labelFiltros'> Nome </label>
+                        <input
+                            className="inputPesquisar"
+                            placeholder="Pesquisar"
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    handleSearch();
+                                }
+                            }}
+                        />
+                    </div>
+                    <div className='divbotaoPesquisaNome'>
+                        <button className='botaoPesquisaNome' onClick={handleSearch}>
+                            <span> <FontAwesomeIcon icon={faMagnifyingGlass} /> </span>
+                        </button>
+                    </div>
+                    <div className='divfiltroSelect'>
+                        <label className='labelFiltros'> Business </label>
+                        <select className='filtroSelect' value={selectedFilterBusiness} onChange={handleFilterBusinessChange}>
+                            <option value='GRUPOS' className='optionsFiltroSelect'>TODOS</option>
+                            <option value='MASTER' className='optionsFiltroSelect'>MASTER</option>
+                            <option value='RISK' className='optionsFiltroSelect'>RISK</option>
+                            <option value='CHARGES' className='optionsFiltroSelect'>CHARGES</option>
+                            <option value='BDI DIGITAL' className='optionsFiltroSelect'>BDI DIGITAL</option>
+                            <option value='BDI DIGITAL MASTER' className='optionsFiltroSelect'>BDI DIGITAL MASTER</option>
+                            <option value='KEEPER MASTER' className='optionsFiltroSelect'>KEEPER MASTER</option>
+                            <option value='KEEPER' className='optionsFiltroSelect'>KEEPER</option>
+                            <option value='INDICADOR' className='optionsFiltroSelect'>INDICADOR</option>
+                        </select>
+                    </div>
+                    {/* <div className='divfiltroData'>
+                        <div className='dataInicial'>
+                            <label className='textofiltroData'> De: </label>
+                            <input type='date'
+                            className='inputfiltroData'
+                            value={startDate}
+                            onChange={(e) => setStartDate(e.target.value)}
+                            />
+                        </div>
+                        <div className='dataFinal'>
+                            <label className='textofiltroData'> Até: </label>
+                            <input type='date' 
+                            className='inputfiltroData'
+                            value={endDate}
+                            onChange={(e) => setEndDate(e.target.value)}
+                            />
+                        </div>
+                        <button className="botaoFiltrarData" onClick={handleSearch}>
+                            <span>Filtrar por Data</span>
+                        </button>
+                    </div> */}
                 </div>
             </div>
             <br />
