@@ -80,7 +80,7 @@ function ChecklistPj() {
                             timer: 1500
                         }).then(() => {
                             // Redireciona para uma página externa após o modal
-                            window.location.href = "https://www.google.com";
+                            window.location.href = "https://www.instagram.com/bdidigital/";
                         });
                     }
                 })
