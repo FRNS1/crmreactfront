@@ -3,13 +3,19 @@ import '../css/tela_pessoas.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
 import { useNavigate } from 'react-router-dom';
-import { Table } from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 function Telapessoas() {
   const navigate = useNavigate();
   const [customersList, setCustomersList] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
+  const [filteredLoans, setFilteredLoans] = useState([]);
+  const [selectedBusiness, setSelectedBusiness] = useState('TODOS'); // Estado para armazenar a opção de 'Business'
+  const [loading, setLoading] = useState(true);
+
 
   const handleCustomerListChange = (data) => {
     setCustomersList(data);
@@ -36,6 +42,7 @@ function Telapessoas() {
       );
       handleCustomerListChange(response.data);
       console.log(response.data);
+      setLoading(false);
     } catch (error) {
       console.log('error', error);
     }
@@ -52,10 +59,13 @@ function Telapessoas() {
 
   useEffect(() => {
     getData();
-  }, []);
+    if (!loading) {
+      handleSearchButtonClick();
+  }
+}, [loading]);
 
   function formataTelefone(telefone) {
-    try{
+    try {
       const partesTelefone = telefone.split('')
       if (partesTelefone.length == 11) {
         const parte1 = partesTelefone[0];
@@ -87,13 +97,13 @@ function Telapessoas() {
       } else {
         return 'Telefone Inválido';
       }
-    } catch (error){
+    } catch (error) {
       console.log(error);
     }
   }
 
   function formataCnpj(cnpj) {
-    try{
+    try {
       const partesCNPJ = cnpj.split('')
       if (partesCNPJ.length != 14) {
         return `Documento inválido`
@@ -115,13 +125,13 @@ function Telapessoas() {
         const parte14 = partesCNPJ[13];
         return `${parte1}${parte2}.${parte3}${parte4}${parte5}.${parte6}${parte7}${parte8}/${parte9}${parte10}${parte11}${parte12}-${parte13}${parte14}`;
       }
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
   }
 
   function formataCpf(cpf) {
-    try{
+    try {
       const partesCPF = cpf.split('')
       if (partesCPF.length != 11) {
         return `Documento inválido`
@@ -139,10 +149,44 @@ function Telapessoas() {
         const parte11 = partesCPF[10];
         return `${parte1}${parte2}${parte3}.${parte4}${parte5}${parte6}.${parte7}${parte8}${parte9}-${parte10}${parte11}`;
       }
-    }catch (error){
+    } catch (error) {
       console.log(error);
     }
   }
+
+  useEffect(() => {
+    // Filtrar a lista de empréstimos com base no valor de pesquisa e na opção de 'Business'.
+    const newFilteredLoans = customersList.filter((customer) => {
+        const businessCondition = selectedBusiness === 'TODOS' || (customer.cpf == null ? 'PJ' : 'PF') == selectedBusiness;
+        const nameCondition = selectedBusiness === '' || (
+          customer.cpf == null ? customer.razaoSocial.toLowerCase().includes(searchValue.toLowerCase()) : customer.nome.toLowerCase().includes(searchValue.toLowerCase())
+        );
+        return businessCondition && nameCondition;
+    });
+    setFilteredLoans(newFilteredLoans);
+}, [customersList, selectedBusiness, searchValue]); // Atualiza os resultados do filtro sempre que listLoans, selectedBusiness ou searchValue mudar
+
+const handleSearchButtonClick = () => {
+    // Quando o botão de pesquisa for clicado, você pode executar a mesma lógica de filtragem
+    const newFilteredLoans = customersList.filter((customer) => {
+      const businessCondition = selectedBusiness == 'TODOS' || (customer.cpf == null ? 'PJ' : 'PF') == selectedBusiness;
+      const nameCondition = selectedBusiness === '' || (
+        customer.cpf == null ? customer.razaoSocial.toLowerCase().includes(searchValue.toLowerCase()) : customer.nome.toLowerCase().includes(searchValue.toLowerCase())
+      );
+      return businessCondition && nameCondition;
+  });
+  setFilteredLoans(newFilteredLoans);
+};
+
+const handleSearchInputChange = (event) => {
+    setSearchValue(event.target.value);
+};
+
+const handleBusinessSelectChange = (event) => {
+    setSelectedBusiness(event.target.value);
+    // Ao selecionar uma opção de 'Business', chame a função de pesquisa para atualizar imediatamente os resultados.
+    handleSearchButtonClick();
+};
 
   return (
     <div className='containerPrincipal'>
@@ -158,10 +202,41 @@ function Telapessoas() {
         <div className='textoPropostas'>
           <text className='stringTitulos'> Clientes </text>
         </div>
-        <div className='botaoCadastrar'>
-          <button className="textoCadastrar" onClick={handleButtonClick}>
-            <span className='stringCadastrar'> Cadastrar Cliente </span>
-          </button>
+        <div className='filtrosCliente'>
+          <div className='divfiltroSelectRegistroPagamentos'>
+            <label className='labelFiltros'> Tipo-Cliente </label>
+            <select className='filtroSelect' onChange={handleBusinessSelectChange} value={selectedBusiness}>
+              <option value='TODOS' className='optionsFiltroSelect'>TODOS</option>
+              <option value='PF' className='optionsFiltroSelect'>PF</option>
+              <option value='PJ' className='optionsFiltroSelect'>PJ</option>
+            </select>
+          </div>
+          <div className='caixaPesquisaNomeClienteRegistroPagamentos'>
+            <div className='filtroNomeClienteRegistroPagamentos'>
+              <label className='labelFiltros'> Nome </label>
+              <input
+                className="inputPesquisa"
+                placeholder="Pesquisar"
+                value={searchValue}
+                onChange={handleSearchInputChange}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handleSearchButtonClick();
+                  }
+                }}
+              />
+            </div>
+            <div className='divbotaoPesquisaNomeClienteRegistroPagamentos'>
+              <button className='botaoPesquisaNomeClienteRegistroPagamentos' onClick={handleSearchButtonClick}>
+                <span> <FontAwesomeIcon icon={faMagnifyingGlass} /> </span>
+              </button>
+            </div>
+          </div>
+          <div className='botaoCadastrar'>
+            <button className="textoCadastrar">
+              <span className='stringCadastrar'> Cadastrar Cliente </span>
+            </button>
+          </div>
         </div>
       </div>
       <div className='divTabelaCLientes'>
@@ -177,7 +252,7 @@ function Telapessoas() {
             </tr>
           </thead>
           <tbody>
-            {customersList.map((customer) => (
+            {filteredLoans.map((customer) => (
               <tr className='textodados' key={customer.customerId}>
                 <td>{customer.cpf == null ? customer.razaoSocial : customer.nome}</td>
                 <td>{customer.cpf == null ? 'PJ' : 'PF'}</td>

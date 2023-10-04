@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import '../css/visualizacao_propostas.css';
-import '../css/pesquisar.css';
 import { NavSuperior } from '../js/navsuperior';
 import { NavLateral } from '../js/navlateral';
 import { useNavigate } from 'react-router-dom';

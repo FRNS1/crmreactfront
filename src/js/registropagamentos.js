@@ -5,7 +5,6 @@ import { NavLateral } from '../js/navlateral';
 import Cookies from 'js-cookie';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import '../css/pesquisar.css';
 import { useNavigate } from 'react-router-dom';
 
 function RegistroPagamentos() {
