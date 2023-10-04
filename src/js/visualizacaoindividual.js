@@ -7,15 +7,19 @@ import InputMask from 'react-input-mask';
 import CurrencyInput from 'react-currency-input-field';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import Swal from 'sweetalert2'
+
+import Loading from '../components/UI/Loading';
 
 function VisualizacaoIndividual() {
     const [muda, handleButtonClick] = useState('infPropostas');
     const [loading, setLoading] = useState(true);
+    const [loading2, setLoading2] = useState(true);
     const [data, setData] = useState();
     const [analytics, setAnalytics] = useState(false);
     const [allsData, setAllsData] = useState(false);
     const [scr, setScr] = useState(false);
-    // Variaveis proposal
+    // Variaveis prop2osal
     const [proposalId, setProposalId] = useState('');
     const [customerName, setCustomerName] = useState('');
     const [customerRazaoSocial, setCustomerRazaoSocial] = useState('');
@@ -95,6 +99,7 @@ function VisualizacaoIndividual() {
     // Variáveis Files
     const [files, setFiles] = useState([]);
     const [filesReceived, setFilesReceived] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const Mudapagina = (value) => {
         handleButtonClick(value);
@@ -218,18 +223,28 @@ function VisualizacaoIndividual() {
             observacao_cliente: observacaoCliente,
             observacao_analista: observacaoAnalista
         };
-
         try {
+            setIsLoading(true);
             const responseUpdateInfos = await axios.post(urlUpdateInfos, proposalUpdateDTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json'
                 }
             });
-            console.log('Dados enviados com sucesso:', responseUpdateInfos.data);
-            alert("Dados atualizados com sucesso")
+            console.log('Dados enviados com sucesso:', responseUpdateInfos.data)
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Dados enviados com sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            
         } catch (erro) {
-            console.error('Erro ao enviar os dados:', erro);
+            console.error('Erro ao enviar os dados:', erro)
+        }
+        finally {
+            setIsLoading(false); // Defina isLoading como false aqui
         }
     }
 
@@ -260,6 +275,7 @@ function VisualizacaoIndividual() {
         };
 
         try {
+            setIsLoading(true);
             const responseUpdateAnalytics = await axios.post(urlUpdateAnalytics, analyticsUpdateDTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -267,11 +283,19 @@ function VisualizacaoIndividual() {
                 }
             });
             console.log('Dados enviados com sucesso:', responseUpdateAnalytics.data);
-            alert("Dados atualizados com sucesso")
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Dados atualizados com sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            })
         } catch (erro) {
             console.error('Erro ao enviar os dados:', erro);
         }
-
+        finally {
+            setIsLoading(false); // Defina isLoading como false aqui
+        }
     }
 
     async function sendBacen() {
@@ -310,6 +334,7 @@ function VisualizacaoIndividual() {
         };
 
         try {
+            setIsLoading(true);
             const responseUpdateScr = await axios.post(urlUpdateScr, ScrUpdateDTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -317,9 +342,18 @@ function VisualizacaoIndividual() {
                 }
             });
             console.log('Dados enviados com sucesso:', responseUpdateScr.data);
-            alert("Dados atualizados com sucesso")
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Dados atualizados com sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            })
         } catch (erro) {
             console.error('Erro ao enviar os dados:', erro);
+        }
+        finally {
+            setIsLoading(false); // Defina isLoading como false aqui
         }
 
     }
@@ -379,6 +413,7 @@ function VisualizacaoIndividual() {
         };
 
         try {
+            setIsLoading(true);
             const responseUpdateAllsData = await axios.post(urlUpdateAllsData, AllsDataUpdateDTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -386,9 +421,18 @@ function VisualizacaoIndividual() {
                 }
             });
             console.log('Dados enviados com sucesso:', responseUpdateAllsData.data);
-            alert("Dados atualizados com sucesso")
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Dados atualizados com sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            })
         } catch (erro) {
             console.error('Erro ao enviar os dados:', erro);
+        }
+        finally {
+            setIsLoading(false); // Defina isLoading como false aqui
         }
     }
 
@@ -489,7 +533,7 @@ function VisualizacaoIndividual() {
         };
 
         return (
-            <div>
+            <div className='infopropostas'>
                 <form className='formularios'>
                     <br />
                     <div className='fields'>
@@ -695,6 +739,7 @@ function VisualizacaoIndividual() {
                         <span className='stringEnviarDados'> Salvar </span>
                     </button>
                 </div>
+            {isLoading && <Loading/>}
             </div>
         );
     }
@@ -753,9 +798,6 @@ function VisualizacaoIndividual() {
         const handleCheckboxChange = () => {
             setIsChecked(!isChecked); // Inverte o estado da checkbox
         };
-
-
-
 
 
         return (
@@ -945,6 +987,7 @@ function VisualizacaoIndividual() {
                         <span className='stringEnviarDados'> Salvar </span>
                     </button>
                 </div>
+                {isLoading && <Loading/>}
             </div>
         );
     }
@@ -1412,6 +1455,7 @@ function VisualizacaoIndividual() {
                     </button>
                 </div>
                 <br />
+                {isLoading && <Loading/>}
             </div>
         );
     }
@@ -1567,6 +1611,7 @@ function VisualizacaoIndividual() {
                         <span className='stringEnviarDados'> Salvar </span>
                     </button>
                 </div>
+                {isLoading && <Loading/>}
             </div>
         );
     }

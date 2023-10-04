@@ -1,4 +1,6 @@
-
+    .containerPrincipal{
+        position: relative;
+    }
 
     .stringObservacoes{
         display: flex;
