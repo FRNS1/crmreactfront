@@ -57,7 +57,7 @@ function RegistroPagamentos() {
         // Filtrar a lista de empréstimos com base no valor de pesquisa e na opção de 'Business'.
         const newFilteredLoans = listLoans.filter((loan) => {
             const businessCondition = selectedBusiness === 'TODOS' || loan.business === selectedBusiness;
-            const nameCondition = selectedBusiness === 'TODOS' || (
+            const nameCondition = selectedBusiness === '' || (
                 loan.isCnpj === false ? loan.nomeCliente.toLowerCase().includes(searchValue.toLowerCase()) : loan.razaoSocial.toLowerCase().includes(searchValue.toLowerCase())
             );
             return businessCondition && nameCondition;
@@ -68,7 +68,7 @@ function RegistroPagamentos() {
     const handleSearchButtonClick = () => {
         // Quando o botão de pesquisa for clicado, você pode executar a mesma lógica de filtragem
         const newFilteredLoans = listLoans.filter((loan) => {
-            const businessCondition = selectedBusiness === 'TODOS' || loan.business === selectedBusiness;
+            const businessCondition = selectedBusiness === '' || loan.business === selectedBusiness;
             const nameCondition = selectedBusiness === 'TODOS' || (
                 loan.isCnpj === false ? loan.nomeCliente.toLowerCase().includes(searchValue.toLowerCase()) : loan.razaoSocial.toLowerCase().includes(searchValue.toLowerCase())
             );
