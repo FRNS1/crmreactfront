@@ -6,12 +6,15 @@ import Cookies from 'js-cookie';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import '../css/pesquisar.css';
-import { SearchBar } from '../js/pesquisar';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function RegistroPagamentos() {
     const navigate = useNavigate();
     const [listLoans, setListLoans] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
+    const [filteredLoans, setFilteredLoans] = useState([]);
+    const [selectedBusiness, setSelectedBusiness] = useState('TODOS'); // Estado para armazenar a opção de 'Business'
+    const [loading, setLoading] = useState(true);
 
     async function fetchLoans() {
         const token = Cookies.get('token');
@@ -32,6 +35,7 @@ function RegistroPagamentos() {
             }
             const result = await response.json();
             setListLoans(result);
+            setLoading(false);
         } catch (error) {
             console.error('error', error);
         }
@@ -44,13 +48,43 @@ function RegistroPagamentos() {
 
     useEffect(() => {
         fetchLoans();
-    }, []);
+        if (!loading) {
+            handleSearchButtonClick();
+        }
+    }, [loading]);
 
-    const [searchResults, setSearchResults] = useState([]);
+    useEffect(() => {
+        // Filtrar a lista de empréstimos com base no valor de pesquisa e na opção de 'Business'.
+        const newFilteredLoans = listLoans.filter((loan) => {
+            const businessCondition = selectedBusiness === 'TODOS' || loan.business === selectedBusiness;
+            const nameCondition = selectedBusiness === 'TODOS' || (
+                loan.isCnpj === false ? loan.nomeCliente.toLowerCase().includes(searchValue.toLowerCase()) : loan.razaoSocial.toLowerCase().includes(searchValue.toLowerCase())
+            );
+            return businessCondition && nameCondition;
+        });
+        setFilteredLoans(newFilteredLoans);
+    }, [listLoans, selectedBusiness, searchValue]); // Atualiza os resultados do filtro sempre que listLoans, selectedBusiness ou searchValue mudar
 
-    const handleSearch = (searchTerm) => {
-        // Aqui você pode realizar a lógica de pesquisa, como fazer uma solicitação de API.
-        // Neste exemplo, apenas atualizamos o estado com os resultados fictícios.
+    const handleSearchButtonClick = () => {
+        // Quando o botão de pesquisa for clicado, você pode executar a mesma lógica de filtragem
+        const newFilteredLoans = listLoans.filter((loan) => {
+            const businessCondition = selectedBusiness === 'TODOS' || loan.business === selectedBusiness;
+            const nameCondition = selectedBusiness === 'TODOS' || (
+                loan.isCnpj === false ? loan.nomeCliente.toLowerCase().includes(searchValue.toLowerCase()) : loan.razaoSocial.toLowerCase().includes(searchValue.toLowerCase())
+            );
+            return businessCondition && nameCondition;
+        });
+        setFilteredLoans(newFilteredLoans);
+    };
+
+    const handleSearchInputChange = (event) => {
+        setSearchValue(event.target.value);
+    };
+
+    const handleBusinessSelectChange = (event) => {
+        setSelectedBusiness(event.target.value);
+        // Ao selecionar uma opção de 'Business', chame a função de pesquisa para atualizar imediatamente os resultados.
+        handleSearchButtonClick();
     };
 
     return (
@@ -62,15 +96,41 @@ function RegistroPagamentos() {
                 <NavSuperior />
             </div>
             <div className='containerGeral'>
-                <div className='caixaPesquisaNomeClienteRegistroPagamentos'>
-                    <div className='filtroNomeClienteRegistroPagamentos'>
-                        <label className='labelFiltros'> Nome Cliente </label>
-                        <input className="inputPesquisa" placeholder="Pesquisar" />
+                <div className='filtros'>
+                    <div className='divfiltroSelectRegistroPagamentos'>
+                        <label className='labelFiltros'> Business </label>
+                        <select className='filtroSelect' onChange={handleBusinessSelectChange} value={selectedBusiness}>
+                            <option value='TODOS' className='optionsFiltroSelect'>TODOS</option>
+                            <option value='MASTER' className='optionsFiltroSelect'>MASTER</option>
+                            <option value='RISK' className='optionsFiltroSelect'>RISK</option>
+                            <option value='CHARGES' className='optionsFiltroSelect'>CHARGES</option>
+                            <option value='BDI DIGITAL' className='optionsFiltroSelect'>BDI DIGITAL</option>
+                            <option value='BDI DIGITAL MASTER' className='optionsFiltroSelect'>BDI DIGITAL MASTER</option>
+                            <option value='KEEPER MASTER' className='optionsFiltroSelect'>KEEPER MASTER</option>
+                            <option value='KEEPER' className='optionsFiltroSelect'>KEEPER</option>
+                            <option value='INDICADOR' className='optionsFiltroSelect'>INDICADOR</option>
+                        </select>
                     </div>
-                    <div className='divbotaoPesquisaNomeClienteRegistroPagamentos'>
-                        <button className='botaoPesquisaNomeClienteRegistroPagamentos'>
-                            <span> <FontAwesomeIcon icon={faMagnifyingGlass} /> </span>
-                        </button>
+                    <div className='caixaPesquisaNomeClienteRegistroPagamentos'>
+                        <div className='filtroNomeClienteRegistroPagamentos'>
+                            <label className='labelFiltros'> Nome Cliente </label>
+                            <input
+                                className="inputPesquisa"
+                                placeholder="Pesquisar"
+                                value={searchValue}
+                                onChange={handleSearchInputChange}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                        handleSearchButtonClick();
+                                    }
+                                }}
+                            />
+                        </div>
+                        <div className='divbotaoPesquisaNomeClienteRegistroPagamentos'>
+                            <button className='botaoPesquisaNomeClienteRegistroPagamentos' onClick={handleSearchButtonClick}>
+                                <span> <FontAwesomeIcon icon={faMagnifyingGlass} /> </span>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <br />
@@ -96,7 +156,7 @@ function RegistroPagamentos() {
                         </tr>
                     </thead>
                     <tbody>
-                        {listLoans.map((loan) => (
+                        {filteredLoans.map((loan) => (
                             <tr className='trTabelaClientes' key={loan.proposalId}>
                                 <td>{loan.business}</td>
                                 <td>{loan.idCliente}</td>

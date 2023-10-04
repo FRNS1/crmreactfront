@@ -18,7 +18,7 @@ function VisualizacaoPropostas() {
     const [searchResults, setSearchResults] = useState([]);
     const [searchStatusResult, setSearchStatusResult] = useState([]);
     const [selectedFilter, setSelectedFilter] = useState('');
-    const [selectedFilterBusiness, setselectedFilterBusiness] = useState('GRUPOS');
+    const [selectedFilterBusiness, setselectedFilterBusiness] = useState('');
     const [loading, setLoading] = useState(true);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
@@ -237,6 +237,7 @@ function VisualizacaoPropostas() {
                                     handleSearch();
                                 }
                             }}
+                            disabled={selectedFilter !== ''}
                         />
                     </div>
                     <div className='divbotaoPesquisaNome'>
@@ -246,7 +247,7 @@ function VisualizacaoPropostas() {
                     </div>
                     <div className='divfiltroSelect'>
                         <label className='labelFiltros'> Business </label>
-                        <select className='filtroSelect' value={selectedFilterBusiness} onChange={handleFilterBusinessChange}>
+                        <select className='filtroSelect' value={selectedFilterBusiness} onChange={handleFilterBusinessChange} disabled={selectedFilter !== '' || searchTerm.trim() !== ''}>
                             <option value='GRUPOS' className='optionsFiltroSelect'>TODOS</option>
                             <option value='MASTER' className='optionsFiltroSelect'>MASTER</option>
                             <option value='RISK' className='optionsFiltroSelect'>RISK</option>

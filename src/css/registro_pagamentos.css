@@ -56,3 +56,9 @@
     background-color: #081535;
     color: white;
 }
+
+.divfiltroSelectRegistroPagamentos{
+    display: flex;
+    flex-direction: column;
+    margin-top: 0vh;
+}
