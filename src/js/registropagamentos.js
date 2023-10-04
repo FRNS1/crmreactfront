@@ -62,13 +62,16 @@ function RegistroPagamentos() {
                 <NavSuperior />
             </div>
             <div className='containerGeral'>
-                <div className="caixaPesquisar">
-                    <SearchBar onSearch={handleSearch} />
-                    <ul>
-                        {searchResults.map((result, index) => (
-                            <li key={index}>{result}</li>
-                        ))}
-                    </ul>
+                <div className='caixaPesquisaNomeClienteRegistroPagamentos'>
+                    <div className='filtroNomeClienteRegistroPagamentos'>
+                        <label className='labelFiltros'> Nome Cliente </label>
+                        <input className="inputPesquisa" placeholder="Pesquisar" />
+                    </div>
+                    <div className='divbotaoPesquisaNomeClienteRegistroPagamentos'>
+                        <button className='botaoPesquisaNomeClienteRegistroPagamentos'>
+                            <span> <FontAwesomeIcon icon={faMagnifyingGlass} /> </span>
+                        </button>
+                    </div>
                 </div>
                 <br />
                 <hr />

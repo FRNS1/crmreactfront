@@ -80,36 +80,36 @@ function RegistroPagamentoIndividual() {
     async function sendData(id, valorParcela, pago, dataPagamento) {
         let dataPagamentoUs;
         try {
-          const dataPagamentoSplit = dataPagamento.split("/");
-          dataPagamentoUs = `${dataPagamentoSplit[2]}-${dataPagamentoSplit[1]}-${dataPagamentoSplit[0]}`;
+            const dataPagamentoSplit = dataPagamento.split("/");
+            dataPagamentoUs = `${dataPagamentoSplit[2]}-${dataPagamentoSplit[1]}-${dataPagamentoSplit[0]}`;
         } catch {
-          console.log("Não mudou a data");
+            console.log("Não mudou a data");
         }
-      
+
         const data = {
-          parcela: id,
-          valor_parcela: valorParcela.toString().replace("R$ ", ""),
-          pago: pago,
-          data_pagamento: dataPagamentoUs,
+            parcela: id,
+            valor_parcela: valorParcela.toString().replace("R$ ", ""),
+            pago: pago,
+            data_pagamento: dataPagamentoUs,
         };
-      
+
         const urlPost = `http://35.175.231.117:8080/api/v1/payments/update`;
-      
+
         try {
-          const response = await axios.post(urlPost, data, {
-            headers: {
-              Authorization: `Bearer ${Cookies.get('token')}`,
-              'Content-Type': 'application/json',
-            },
-          });
-      
-          if (response.status === 200) {
-            alert("Dados atualizados");
-          }
+            const response = await axios.post(urlPost, data, {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('token')}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.status === 200) {
+                alert("Dados atualizados");
+            }
         } catch (error) {
-          console.error("Erro ao enviar os dados:", error);
+            console.error("Erro ao enviar os dados:", error);
         }
-      }
+    }
 
     useEffect(() => {
         fetchLoanDetails();
@@ -249,7 +249,7 @@ function RegistroPagamentoIndividual() {
                                 <td> {`R$ ${payment.saldo_devedor}`} </td>
                                 <td> {payment.amortizacao} </td>
                                 <td> {`R$ ${payment.juros}`} </td>
-                                <td> 
+                                <td>
                                     <CurrencyInput
                                         prefix='R$ '
                                         name="valorParcela"

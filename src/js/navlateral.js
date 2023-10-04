@@ -52,7 +52,7 @@ function NavLateral() {
             </li>
             <hr className='line'></hr>
             <li className="sidebar-item">
-              <FontAwesomeIcon icon={faMobile} />
+              <FontAwesomeIcon className="icone" icon={faMobile} />
               <text className='item-text'>DeltaHub Back Office</text>
             </li>
           </>

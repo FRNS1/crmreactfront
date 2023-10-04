@@ -28,19 +28,31 @@
     width: 30vh;
     border-radius:1vh;
     padding-left: 1vh;
-    font-size: 2vh;
+    font-size: 1.5vh;
 }
 
-.botaoPesquisa{
-    margin-left: 1vh;
-    height: 4.25vh;
-    width: 5vh;
-    border-radius: 1vh;
-    cursor: pointer;
-    background-color: #AC7B39;
-    color: white;
-}
-
-.caixaPesquisa{
+.caixaPesquisaNomeClienteRegistroPagamentos{
     display: flex;
+    flex-direction: row;
+}
+
+.filtroNomeClienteRegistroPagamentos{
+    display: flex;
+    flex-direction: column;
+}
+
+.divbotaoPesquisaNomeClienteRegistroPagamentos{
+    display: flex;
+    align-items: start;
+    margin-left: 1vh;
+    margin-top: 2vh;
+}
+
+.botaoPesquisaNomeClienteRegistroPagamentos{
+    width: 4vh;
+    height: 3.5vh;
+    border-radius: 0.5vh;
+    cursor: pointer;
+    background-color: #081535;
+    color: white;
 }
