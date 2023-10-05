@@ -54,6 +54,7 @@
 }
 
 .tabelaClientes{
+  font-size: 1.5vh;
   width: 100%;
   border-collapse: collapse;
 }
@@ -66,13 +67,13 @@
 }
 
 .textodados {
-  font-size: 2vh;
+  font-size: 1.5vh;
   color: black;
   text-align: left;
 }
 
 .textoClasses {
-  font-size: 2vh;
+  font-size: 1.5vh;
   font-weight: bold;
 }
 

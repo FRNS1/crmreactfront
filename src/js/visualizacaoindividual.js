@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
 import '../css/visualizacao_individual.css';
-import { NavSuperior } from '../js/navsuperior';
-import { NavLateral } from '../js/navlateral';
+import { NavSuperior } from './navsuperior';
+import { NavLateral } from './navlateral';
 import { format } from 'date-fns';
 import InputMask from 'react-input-mask';
 import CurrencyInput from 'react-currency-input-field';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import Swal from 'sweetalert2'
-
 import Loading from '../components/UI/Loading';
+import Upload from '../components/UI/Upload';
 
 function VisualizacaoIndividual() {
     const [muda, handleButtonClick] = useState('infPropostas');
@@ -200,6 +200,7 @@ function VisualizacaoIndividual() {
             setLoading(false);
         }
     }
+
 
     async function sendInfos() {
         const token = Cookies.get('token');
@@ -1616,12 +1617,14 @@ function VisualizacaoIndividual() {
         );
     }
 
+    
     const handleFilesChange = (value) => {
-        setFiles(value);
-    }
+        console.log(value);
+        setFilesReceived(files); // Update the state with the new files
+      };
 
 
-    function Upload() {
+    /*function Upload() {
         return (
             <div className='divUploadFiles'>
                 <div className='stringUpload'>
@@ -1632,8 +1635,10 @@ function VisualizacaoIndividual() {
                 </div>
                 <div className='divlistaFiles'>
                     <ul className='listaFiles'>
-                        {filesReceived.map((file) =>
-                            <li className='liFiles'> <a href={file.url_arquivo}>{file.url_arquivo}</a> </li>
+                        {filesReceived.map((file, index) =>
+                            <li key={index} className='liFiles'> <a href={file.url_arquivo}>{file.url_arquivo}</a> 
+                                {file.name}
+                            </li>
                         )}
                     </ul>
                 </div>
@@ -1644,8 +1649,10 @@ function VisualizacaoIndividual() {
                 </div>
             </div>
         );
-    }
+    }*/
 
+        
+    <Upload onUpload={handleFilesChange}/>
 
     return (
         <div>
