@@ -43,9 +43,9 @@ function Checklist() {
 
             var raw = JSON.stringify({
                 "nome": `${nome}`,
-                "cpf": `${cpf}`,
+                "cpf": `${cpf.replace(".", "").replace("-", "").replace(".", "")}`,
                 "email": `${email}`,
-                "telefone": `${telefone}`,
+                "telefone": `${telefone.replace("(", "").replace(")", "").replace(" ", "").replace("-", "")}`,
                 "profissao": `${profissao}`,
                 "rendaMedia": rendaMedia,
                 "valorDesejado": valorDesejado,

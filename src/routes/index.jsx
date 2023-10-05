@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from "react-router-dom";
 
 import { ButtonPage } from '../js/login'
-import { Checklist } from '../pages/checklist/PF'
+import { Checklist } from '../pages/checklist/PF/index'
 import { PedroRiccoPf } from '../js/links-indicador/pf/pedroricco'
 import { Telapessoas } from '../js/pessoas';
 import { Cadastrocli } from '../js/cadastrocli';

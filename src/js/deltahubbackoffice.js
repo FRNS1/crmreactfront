@@ -15,12 +15,7 @@ function DeltaHubBackOffice() {
   const [listProducts, setListProducts] = useState([]);
   const [loginComplete, setLoginComplete] = useState(false);
   // Registro Categoria
-  const [nomeCategoriaReg, setNomeCategoriaReg] = useState('');
-
-  const handleCategoriaChange = (event) => {
-    setNomeCategoriaReg(event.target.value);
-  } 
-
+  const [nomeCategoriaReg, setNomeCategoriaReg] = useState(''); 
   // Registro de Parceiro
   const [nomeParcReg, setNomeParcReg] = useState('');
   const [cnpjParcReg, setCnpjParcReg] = useState('');
@@ -32,6 +27,8 @@ function DeltaHubBackOffice() {
   const [descricaoReg, setDescricaoReg] = useState('');
   const [partnerIdReg, setPartnerIdReg] = useState('');
   const [typeReg, setTypeReg] = useState('');
+  const [categoriaReg, setCategoriaReg] = useState('');
+  const [fileArteReg, setFileArteReg] = useState('');
   // Atualiza Parceiro
   const [nomeParceiroUp, setParceiroUp] = useState('');
   const [cnpjParceiroUp, setCnpjParceiroUp] = useState('');
@@ -66,16 +63,22 @@ function DeltaHubBackOffice() {
     }
   }
 
-  async function registerCategory(){
+  async function registerCategory() {
     try {
-      const response = await axios.post("https://api-deltahub-df3c67cdaa69.herokuapp.com/api/v1/category/register", {
-        headers: {
-          Authorization: `Bearer ${tokenHub}`
+      console.log(tokenHub);
+      const response = await axios.post(
+        "https://api-deltahub-df3c67cdaa69.herokuapp.com/api/v1/category/register",
+        {
+          nomeCategoria: nomeCategoriaReg
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${tokenHub}`
+          }
         }
-      }, {
-        nomeCategoria: nomeCategoriaReg
-      });
-      if (response.status == 200) {
+      );
+  
+      if (response.status === 200) {
         alert("Categoria cadastrada com sucesso!");
       }
     } catch (error) {
@@ -86,14 +89,15 @@ function DeltaHubBackOffice() {
   async function registerParceiro(){
     try {
       const response = await axios.post("https://api-deltahub-df3c67cdaa69.herokuapp.com/api/v1/partner/register", {
-        headers: {
-          Authorization: `Bearer ${tokenHub}`
-        }
-      }, {
         title: nomeParcReg,
         taxId: cnpjParcReg,
         phone: phoneParcReg
-      });
+      }, {
+        headers: {
+          Authorization: `Bearer ${tokenHub}`
+        }
+      } 
+      );
       if (response.status == 200) {
         alert("Parceiro cadastrado com sucesso!");
       }
@@ -105,12 +109,13 @@ function DeltaHubBackOffice() {
   async function registerProduto(){
     try {
       const responseUpload = await axios.post("https://api-deltahub-df3c67cdaa69.herokuapp.com/api/v1/product/fileupload", {
+        file: fileReg,
+      }, {
         headers: {
           Authorization: `Bearer ${tokenHub}`
         }
-      }, {
-        file: fileReg,
-      });
+      }
+      );
       if (responseUpload.status == 200) {
         try {
           const responseProduct = await axios.post("https://api-deltahub-df3c67cdaa69.herokuapp.com/api/v1/product/register", {
@@ -139,15 +144,17 @@ function DeltaHubBackOffice() {
   async function updateParceiro(id) {
     try {
       const responseUpdateParceiro = await axios.post("https://api-deltahub-df3c67cdaa69.herokuapp.com/api/v1/partner/update", {
-        headers: {
-          Authorization: `Bearer ${tokenHub}`
-        }
-      }, {
         id: id,
         title: nomeParceiroUp,
         taxId: cnpjParceiroUp,
         phone: phoneUp
-      });
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${tokenHub}`
+        }
+      } 
+      );
       if (responseUpdateParceiro == 200){
         alert("Parceiro atualizado com sucesso!");
       }
@@ -160,10 +167,6 @@ function DeltaHubBackOffice() {
     if (arteProdUp == ''){
       try {
         const responseUpdateProduto = await axios.post("https://api-deltahub-df3c67cdaa69.herokuapp.com/api/v1/product/update", {
-          headers: {
-            Authorization: `Bearer ${tokenHub}`
-          }
-        }, {
           id: id,
           categoria: categoriaProdUp,
           parceiro: parceiroProdUp,
@@ -173,7 +176,12 @@ function DeltaHubBackOffice() {
           nome: nomeProdUp,
           tipo: tipoProdUp,
           ativo: ativoProdUp
-        });
+        }, {
+          headers: {
+            Authorization: `Bearer ${tokenHub}`
+          }
+        }
+        );
         if (responseUpdateProduto.status == 200){
           alert("Produto atualizado com sucesso!");
         }
@@ -182,18 +190,15 @@ function DeltaHubBackOffice() {
       }
     } else {
       const responseUpload = await axios.post("https://api-deltahub-df3c67cdaa69.herokuapp.com/api/v1/product/fileupload", {
+        file: arteProdUp,
+      }, {
         headers: {
           Authorization: `Bearer ${tokenHub}`
         }
-      }, {
-        file: arteProdUp,
-      });
+      }
+      );
       if (responseUpload.status == 200){
         const responseUpdateProduto = await axios.post("https://api-deltahub-df3c67cdaa69.herokuapp.com/api/v1/product/update", {
-          headers: {
-            Authorization: `Bearer ${tokenHub}`
-          }
-        }, {
           id: id,
           categoria: categoriaProdUp,
           parceiro: parceiroProdUp,
@@ -203,7 +208,12 @@ function DeltaHubBackOffice() {
           nome: nomeProdUp,
           tipo: tipoProdUp,
           ativo: ativoProdUp
-        });
+        }, {
+          headers: {
+            Authorization: `Bearer ${tokenHub}`
+          }
+        }
+        );
         if (responseUpdateProduto.status == 200){
           alert("Produto atualizado com sucesso!");
         }
@@ -356,7 +366,7 @@ function DeltaHubBackOffice() {
                        </input>
                      </div>
                      <div className='fieldBODH'>
-                       <button className='buttonsaveBODH' onClick={() => alert(nomeCategoriaReg)}>Salvar</button>
+                       <div className='buttonsaveBODH' onClick={() => registerCategory()}>Salvar</div>
                      </div>
                    </form>
                  </div>
@@ -385,18 +395,18 @@ function DeltaHubBackOffice() {
                 <form>
                   <div className='fieldBODH'>
                     <label className='labelBODH'>Nome Parceiro</label>
-                    <input className='inputBODH' placeholder={partner.name}></input>
+                    <input className='inputBODH' placeholder={partner.name} onChange={(e) => setParceiroUp(e.target.value)}></input>
                   </div>
                   <div className='fieldBODH'>
                     <label className='labelBODH'>CNPJ</label>
-                    <input className='inputBODH' placeholder={partner.taxId}></input>
+                    <input className='inputBODH' placeholder={partner.taxId} onChange={(e) => setCnpjParceiroUp(e.target.value)}></input>
                   </div>
                   <div className='fieldBODH'>
                     <label className='labelBODH'>Telefone</label>
-                    <input className='inputBODH' placeholder={partner.phone}></input>
+                    <input className='inputBODH' placeholder={partner.phone} onChange={(e) => setPhoneUp(e.target.value)}></input>
                   </div>
                   <div className='fieldBODH'>
-                    <button className='buttonsaveBODH'>Salvar</button>
+                    <button className='buttonsaveBODH' onClick={() => updateParceiro()}>Salvar</button>
                   </div>
                 </form>
               </div>
@@ -410,18 +420,18 @@ function DeltaHubBackOffice() {
                       <form>
                         <div className='fieldBODH'>
                           <label className='labelBODH'>Nome Parceiro</label>
-                          <input className='inputBODH'></input>
+                          <input className='inputBODH' onChange={(e) => setNomeParcReg(e.target.value)}></input>
                         </div>
                         <div className='fieldBODH'>
                           <label className='labelBODH'>CNPJ</label>
-                          <input className='inputBODH'></input>
+                          <input className='inputBODH' onChange={(e) => setCnpjParcReg(e.target.value)}></input>
                         </div>
                         <div className='fieldBODH'>
                           <label className='labelBODH'>Telefone</label>
-                          <input className='inputBODH'></input>
+                          <input className='inputBODH' onChange={(e) => setPhoneParcReg(e.target.value)}></input>
                         </div>
                         <div className='fieldBODH'>
-                          <button className='buttonsaveBODH'>Salvar</button>
+                          <button className='buttonsaveBODH' onClick={() => registerParceiro()}>Salvar</button>
                         </div>
                       </form>
                     </div>
@@ -450,34 +460,34 @@ function DeltaHubBackOffice() {
                         <form>
                           <div className='fieldBODH'>
                             <label className='labelBODH'>Categoria</label>
-                            <input className='inputBODH'></input>
+                            <input className='inputBODH' onChange={(e) => setCategoriaReg(e.target.value)}></input>
                           </div>
                           <div className='fieldBODH'>
                             <label className='labelBODH'>Parceiro</label>
-                            <input className='inputBODH'></input>
+                            <input className='inputBODH' onChange={(e) => setPartnerIdReg(e.target.value)}></input>
                           </div>
                           <div className='fieldBODH'>
                             <label className='labelBODH'>Link</label>
-                            <input className='inputBODH'></input>
+                            <input className='inputBODH' onChange={(e) => setLinkReg(e.target.value)}></input>
                           </div>
                           <div className='fieldBODH'>
                             <label className='labelBODH'>Descrição</label>
-                            <input className='inputBODH'></input>
+                            <input className='inputBODH' onChange={(e) => setDescricaoReg(e.target.value)}></input>
                           </div>
                           <div className='fieldBODH'>
                             <label className='labelBODH'>Arte</label>
-                            <input className='inputBODH'></input>
+                            <input className='inputBODH' type='file' onChange={(e) => setFileArteReg(e.target.value)}></input>
                           </div>
                           <div className='fieldBODH'>
                             <label className='labelBODH'>Nome</label>
-                            <input className='inputBODH'></input>
+                            <input className='inputBODH' onChange={(e) => setProductNameReg(e.target.value)}></input>
                           </div>
                           <div className='fieldBODH'>
                             <label className='labelBODH'>Tipo</label>
-                            <input className='inputBODH'></input>
+                            <input className='inputBODH' onChange={(e) => setTypeReg(e.target.value)}></input>
                           </div>
                           <div className='fieldBODH'>
-                            <button className='buttonsaveBODH'>Salvar</button>
+                            <button className='buttonsaveBODH' onClick={() => registerProduto()}>Salvar</button>
                           </div>
                         </form>
                       </div>
@@ -491,7 +501,7 @@ function DeltaHubBackOffice() {
                   <form>
                     <div className='fieldBODH'>
                       <label className='labelBODH'>Categoria</label>
-                      <select value={product.category.categoryId}>
+                      <select value={product.category.categoryId} onChange={(e) => setCategoriaProdUp(e.target.value)}>
                         <option value={product.category.categoryId}>{product.category.nomeCategoria}</option>
                         {listCategories.map((category) => 
                         <option value={category.categoryId}>{category.nomeCategoria}</option>
@@ -500,7 +510,7 @@ function DeltaHubBackOffice() {
                     </div>
                     <div className='fieldBODH'>
                       <label className='labelBODH'>Parceiro</label>
-                      <select value={product.partnerId.partnerId}>
+                      <select value={product.partnerId.partnerId} onChange={(e) => setParceiroUp(e.target.value)}>
                         <option value={product.partnerId.partnerId}>{product.partnerId.name}</option>
                         {listPartner.map((partner) => 
                         <option value={partner.partnerId}>{partner.name}</option>
@@ -509,36 +519,36 @@ function DeltaHubBackOffice() {
                     </div>
                     <div className='fieldBODH'>
                       <label className='labelBODH'>Link</label>
-                      <input className='inputBODH' placeholder={product.linkTrackeado}></input>
+                      <input className='inputBODH' onChange={(e) => setLinkProdUp(e.target.value)} placeholder={product.linkTrackeado}></input>
                     </div>
                     <div className='fieldBODH'>
                       <label className='labelBODH'>Descrição</label>
-                      <input className='inputBODH' placeholder={product.descricao}></input>
+                      <input className='inputBODH' onChange={(e) => setDescProdUp(e.target.value)} placeholder={product.descricao}></input>
                     </div>
                     <div className='fieldBODH'>
                       <label className='labelBODH'>Arte</label>
-                      <input className='inputBODH' type='file'></input>
+                      <input className='inputBODH' onChange={(e) => setArteProdUp(e.target.value)} type='file'></input>
                     </div>
                     <div className='fieldBODH'>
                       <label className='labelBODH'>Nome</label>
-                      <input className='inputBODH' placeholder={product.productName}></input>
+                      <input className='inputBODH' onChange={(e) => setNomeProdUp(e.target.value)} placeholder={product.productName}></input>
                     </div>
                     <div className='fieldBODH'>
                       <label className='labelBODH'>Tipo</label>
-                      <select defaultValue={product.type}>
+                      <select defaultValue={product.type} onChange={(e) => setTipoProdUp(e.target.value)}>
                       <option value='produtoCat'>Produto de categoria</option>
                         <option value='banner'>banner</option>
                       </select>
                     </div>
                     <div className='fieldBODH'>
                       <label className='labelBODH'>Ativo</label>
-                      <select defaultValue={product.ativo}>
+                      <select defaultValue={product.ativo} onChange={(e) => setAtivoProdUp(e.target.value)}>
                         <option value={true}>Verdadeiro</option>
                         <option value={false}>False</option>
                       </select>
                     </div>
                     <div className='fieldBODH'>
-                      <button className='buttonsaveBODH'>Salvar</button>
+                      <button className='buttonsaveBODH' onClick={() => updateProduto()}>Salvar</button>
                     </div>
                   </form>
                 </div>
