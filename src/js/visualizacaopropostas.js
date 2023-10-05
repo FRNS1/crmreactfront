@@ -139,6 +139,12 @@ function VisualizacaoPropostas() {
                     results.push(listProposal[i]);
                 }
             }
+        } else if (selectedOption === 'FALTA DOCUMENTACAO') {
+            for (let i = 0; i < listProposal.length; i++) {
+                if (listProposal[i].status === 'FALTA DOCUMENTACAO') {
+                    results.push(listProposal[i]);
+                }
+            }
         } else if (selectedOption === 'EMPRESTIMO CONCEDIDO') {
             for (let i = 0; i < listProposal.length; i++) {
                 if (listProposal[i].status === 'EMPRESTIMO CONCEDIDO') {
@@ -223,6 +229,7 @@ function VisualizacaoPropostas() {
                             <option value='APROVADO' className='optionsFiltroSelect'>Aprovado</option>
                             <option value='REPROVADO' className='optionsFiltroSelect'>Reprovado</option>
                             <option value='EMPRESTIMO CONCEDIDO' className='optionsFiltroSelect'>Empréstimo concedido</option>
+                            <option value='FALTA DOCUMENTACAO' className='optionsFiltroSelect'>Falta documentação</option>
                         </select>
                     </div>
                     <div className='caixaPesquisa'>

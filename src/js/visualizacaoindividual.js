@@ -579,7 +579,8 @@ function VisualizacaoIndividual() {
                                     <option className='inputCad' value='EM ANALISE'> EM ANALISE </option>
                                     <option className='inputCad' value='APROVADO'> APROVADO </option>
                                     <option className='inputCad' value='REPROVADO'> REPROVADO </option>
-                                    <option className='inputCad' value='EMPRESTIMO CONCEDIDO'> EMPRESTIMO CONCEDIDO </option>   
+                                    <option className='inputCad' value='EMPRESTIMO CONCEDIDO'> EMPRESTIMO CONCEDIDO </option>
+                                    <option className='inputCad' value='FALTA DOCUMENTACAO21'> FALTA DOCUMENTACAO </option>   
                                 </select>
                             </div>
                             <div className='divfield'>
