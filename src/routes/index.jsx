@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from "react-router-dom";
 
 import { ButtonPage } from '../js/login'
-import { Checklist } from '../components/pages/checklist/PF/index'
+import { Checklist } from '../pages/checklist/PF/index'
 import { PedroRiccoPf } from '../js/links-indicador/pf/pedroricco'
 import { Telapessoas } from '../js/pessoas';
 import { Cadastrocli } from '../js/cadastrocli';
@@ -12,7 +12,7 @@ import { CadastroPropostas } from '../js/cadastropropostas';
 import { VisualizacaoIndividual } from '../js/visualizacaoindividual';
 import { RegistroPagamentos } from '../js/registropagamentos';
 import { RegistroPagamentoIndividual } from '../js/registropagamentoindividual';
-import { ChecklistPj } from '../components/pages/checklist/PJ';
+import { ChecklistPj } from '../pages/checklist/PJ';
 import { PedroRiccoPj } from '../js/links-indicador/pj/pedroriccopj';
 import { MarceloPorfirioPf } from '../js/links-indicador/pf/marceloporfirio';
 import { MarceloPorfirioPj } from '../js/links-indicador/pj/marceloporfiriopj';

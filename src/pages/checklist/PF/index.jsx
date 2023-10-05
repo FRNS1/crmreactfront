@@ -5,10 +5,9 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import InputMask from 'react-input-mask';
 import Swal from 'sweetalert2'
-// import '../css/checklist.css';
 import '../style.css'
-import Loading from '../../../UI/Loading'
-import NewModal from "../../../UI/NewModal"
+import Loading from '../../../components/UI/Loading'
+import NewModal from "../../../components/UI/NewModal"
 
 function Checklist() {
     const navigate = useNavigate();
