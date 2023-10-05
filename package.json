@@ -29,6 +29,7 @@
     "react-number-format": "^5.3.1",
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
+    "react-select": "^5.7.7",
     "react-sweetalert2": "^0.6.0",
     "sweetalert2": "^11.7.31",
     "web-vitals": "^2.1.4"
