@@ -6,23 +6,19 @@ import axios from 'axios';
 import InputMask from 'react-input-mask';
 import Swal from 'sweetalert2'
 import '../style.css'
-import Loading from '../../../UI/Loading'
-import NewModal from "../../../UI/NewModal"
+import Loading from '../../../components/UI/Loading'
+import NewModal from "../../../components/UI/NewModal"
 
-function ChecklistPj() {
+function Checklist() {
     const navigate = useNavigate();
-    const [cnpj, setCnpj] = useState('');
-    const [razaoSocial, setRazaoSocial] = useState('');
-    const [nomeFantasia, setNomeFantasia] = useState('');
-    const [segmento, setSegmento] = useState('');
-    const [nomeSocio, setNomeSocio] = useState('');
-    const [cpfSocio, setCpfSocio] = useState('');
+    const [nome, setNome] = useState('');
+    const [cpf, setCpf] = useState('');
     const [email, setEmail] = useState('');
+    const [profissao, setProfissao] = useState('');
     const [rendaMedia, setRendaMedia] = useState('');
     const [valorDesejado, setValorDesejado] = useState('');
     const [prazo, setPrazo] = useState('');
     const [telefone, setTelefone] = useState('');
-    const [dataAbertura, setDataAbertura] = useState('');
     const [aceite, setAceite] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isOpenModalTerms, setIsOpenModalTerms] = useState(false)
@@ -31,34 +27,30 @@ function ChecklistPj() {
     const toggleModalTerms = () => {
         setIsOpenModalTerms(!isOpenModalTerms)
     }
-    
+
     const toggleModalTermsScr = () => {
         setIsOpenModalTermsScr(!isOpenModalTermsScr)
     }
 
     function sendData() {
         setIsLoading(true);
-        if (aceite == false) {
-            alert("Você deve concordar com os termos e condições!")
+        if (!aceite) {
+            alert("Você deve concordar com os termos e condições.");
             setIsLoading(false);
         } else {
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
 
             var raw = JSON.stringify({
-                "cnpj": `${cnpj}`,
-                "razaoSocial": `${razaoSocial}`,
-                "nomeFantasia": `${nomeFantasia}`,
-                "segmento": `${segmento}`,
-                "nomeSocio": `${nomeSocio}`,
-                "cpfSocio": `${cpfSocio}`,
+                "nome": `${nome}`,
+                "cpf": `${cpf}`,
                 "email": `${email}`,
                 "telefone": `${telefone}`,
-                "receitaMedia": rendaMedia,
+                "profissao": `${profissao}`,
+                "rendaMedia": rendaMedia,
                 "valorDesejado": valorDesejado,
                 "prazo": prazo,
-                "data_abertura": `${dataAbertura}`,
-                "codigo_indicador": Cookies.get('codigoIndicador')
+                "codigo_indicador": `${Cookies.get('codigoIndicador')}`
             });
 
             var requestOptions = {
@@ -68,7 +60,7 @@ function ChecklistPj() {
                 redirect: 'follow'
             };
 
-            fetch("http://35.175.231.117:8080/api/v1/business/formwebindicacaopj", requestOptions)
+            fetch("http://35.175.231.117:8080/api/v1/business/formwebindicacaopf", requestOptions)
                 .then(response => {
                     if (response.status === 200) {
                         // Exibe o modal Swal.fire com timer embutido
@@ -84,11 +76,10 @@ function ChecklistPj() {
                         });
                     }
                 })
-                .then(result => console.log(result))
                 .catch(error => console.log('error', error))
                 .finally(() => {
                     setIsLoading(false);
-                })
+                });
         }
     }
 
@@ -130,14 +121,15 @@ function ChecklistPj() {
                 <h1>Termo de Autorização para Consulta SCR</h1><br></br><br></br>
                 <h2>COMUNICADO DE INCLUSÃO E AUTORIZAÇÃO
                     PARA CONSULTA AO SISTEMA DE INFORMAÇÕES DE
-                    CRÉDITO DO BANCO CENTRAL DO BRASIL – SCR</h2><br></br><br></br>
+                    CRÉDITO DO BANCO CENTRAL DO BRASIL – SCR
+                </h2><br></br><br></br>
                 Autorizo a UY3 Sociedade de Crédito Direto S.A. (“SCD”) em conjunto com BDI SERVICOS
                 FINANCEIROS
                 LTDA e seus parceiros de análise de credito a compartilhar e consultar os débitos e
                 responsabilidades
                 decorrentes de operações com característica de crédito e as informações e os
                 registros de medidas
-                judiciais que constem ou venham a constar em nome da {nomeSocio} e {cpfSocio} do
+                judiciais que constem ou venham a constar em nome da {nome} e {cpf} do
                 Sistema
                 de Informações de Crédito (SCR), gerido pelo Banco Central do Brasil - Bacen, ou dos
                 sistemas que venham
@@ -179,128 +171,95 @@ function ChecklistPj() {
             <div className="containerchecklist">
                 <div className='contentchecklist'>
                     <img className="deltalogoazulchecklist" src='https://docsbora.s3.amazonaws.com/uploads/deltalogoazul.png' alt="Logo" />
-                    <h2 className='h2checklist'>Informações básicas PJ</h2>
+                    <h2 className='h2checklist'>Informações básicas PF</h2>
                     <form>
                         <div className="form-groupchecklist">
-                            <label className='classNamechecklist'>CNPJ</label>
-                            <InputMask
-                                mask="99.999.999/9999-99"
-                                className='inputchecklist'
-                                type="text"
-                                value={cnpj}
-                                onChange={(e) => setCnpj(e.target.value)}
-                                placeholder="Digite o CNPJ da empresa"
-                                required
-                            />
-                        </div>
-                        <div className="form-groupchecklist">
-                            <label className='classNamechecklist'>Razão Social</label>
+                            <label className='classNamechecklist' htmlFor="nome">Nome Completo</label>
                             <input
                                 className='inputchecklist'
                                 type="text"
-                                value={razaoSocial}
-                                onChange={(e) => setRazaoSocial(e.target.value)}
-                                placeholder="Digite a razão social da empresa"
+                                id="nome"
+                                name="nome"
+                                value={nome}
+                                onChange={(e) => setNome(e.target.value)}
+                                placeholder="Digite seu nome completo"
                                 required
                             />
                         </div>
                         <div className="form-groupchecklist">
-                            <label className='classNamechecklist'>Nome Fantasia</label>
-                            <input
-                                className='inputchecklist'
-                                type="text"
-                                value={nomeFantasia}
-                                onChange={(e) => setNomeFantasia(e.target.value)}
-                                placeholder="Digite o nome fantasia da empresa"
-                                required
-                            />
-                        </div>
-                        <div className="form-groupchecklist">
-                            <label className='classNamechecklist'>Segmento</label>
-                            <input
-                                className='inputchecklist'
-                                type="text"
-                                value={segmento}
-                                onChange={(e) => setSegmento(e.target.value)}
-                                placeholder="Digite o segmento da empresa"
-                                required
-                            />
-                        </div>
-                        <div className="form-groupchecklist">
-                            <label className='classNamechecklist'>Data Abertura</label>
-                            <input
-                                className='inputchecklist'
-                                type='date'
-                                value={dataAbertura}
-                                onChange={(e) => setDataAbertura(e.target.value)}
-                                placeholder="Digite a data de abertura da empresa"
-                                required
-                            />
-                        </div>
-                        <div className="form-groupchecklist">
-                            <label className='classNamechecklist' htmlFor="email">Nome do sócio</label>
-                            <input
-                                className='inputchecklist'
-                                type="text"
-                                value={nomeSocio}
-                                onChange={(e) => setNomeSocio(e.target.value)}
-                                placeholder="Digite o nome do principal sócio da empresa"
-                                required
-                            />
-                        </div>
-                        <div className="form-groupchecklist">
-                            <label className='classNamechecklist'>CPF do sócio</label>
+                            <label className='classNamechecklist' htmlFor="cpf">CPF</label>
                             <InputMask
                                 mask="999.999.999-99"
                                 className='inputchecklist'
                                 type="text"
-                                value={cpfSocio}
-                                onChange={(e) => setCpfSocio(e.target.value)}
-                                placeholder="Digite o CPF do principal sócio da empresa"
+                                id="cpf"
+                                name="cpf"
+                                value={cpf}
+                                onChange={(e) => setCpf(e.target.value)}
+                                placeholder="Digite seu CPF"
                                 required
                             />
                         </div>
                         <div className="form-groupchecklist">
-                            <label className='classNamechecklist'>Email</label>
+                            <label className='classNamechecklist' htmlFor="email">Email</label>
                             <input
                                 className='inputchecklist'
-                                type="text"
+                                type="email"
+                                id="email"
+                                name="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                placeholder="Digite um email de contato"
+                                placeholder="Digite seu email"
                                 required
                             />
                         </div>
                         <div className="form-groupchecklist">
-                            <label className='classNamechecklist'>Telefone</label>
+                            <label className='classNamechecklist' htmlFor="email">Telefone</label>
                             <InputMask
                                 mask="(99) 99999-9999"
                                 className='inputchecklist'
                                 type="text"
+                                id="email"
+                                name="email"
                                 value={telefone}
                                 onChange={(e) => setTelefone(e.target.value)}
-                                placeholder="Digite um telefone de contato"
+                                placeholder="Digite seu telefone"
                                 required
                             />
                         </div>
                         <div className="form-groupchecklist">
-                            <label className='classNamechecklist'>Receita Média Mensal</label>
+                            <label className='classNamechecklist' htmlFor="profissao">Profissão</label>
+                            <input
+                                className='inputchecklist'
+                                type="text"
+                                id="profissao"
+                                name="profissao"
+                                value={profissao}
+                                onChange={(e) => setProfissao(e.target.value)}
+                                placeholder="Digite sua profissão"
+                                required
+                            />
+                        </div>
+                        <div className="form-groupchecklist">
+                            <label className='classNamechecklist' htmlFor="rendaMedia">Renda Média</label>
                             <CurrencyInput
                                 name="valorDesejado"
+                                id="rendaMedia"
                                 value={rendaMedia}
                                 onValueChange={handleRendaMediaChange}
                                 decimalSeparator=","
                                 groupSeparator="."
                                 prefix="R$ "
-                                placeholder="Digite a receita mensal da empresa"
+                                placeholder="Digite sua renda média"
                                 required
                                 className="inputchecklist"
                             />
                         </div>
                         <div className="form-groupchecklist">
-                            <label className='classNamechecklist'>Valor Desejado</label>
+                            <label className='classNamechecklist' htmlFor="valorDesejado">Valor Desejado</label>
                             <CurrencyInput
                                 name="valorDesejado"
+                                id="valorDesejado"
                                 value={valorDesejado}
                                 onValueChange={handlevalorDesejadoChange}
                                 decimalSeparator=","
@@ -312,10 +271,12 @@ function ChecklistPj() {
                             />
                         </div>
                         <div className="form-groupchecklist">
-                            <label className='classNamechecklist'>Prazo</label>
+                            <label className='classNamechecklist' htmlFor="valorDesejado">Prazo</label>
                             <input
                                 className='inputchecklist'
                                 type="number"
+                                id="prazo"
+                                name="prazo"
                                 value={prazo}
                                 onChange={(e) => setPrazo(e.target.value)}
                                 placeholder="Digite em quantas vezes você quer pagar"
@@ -335,4 +296,4 @@ function ChecklistPj() {
     )
 }
 
-export { ChecklistPj };
+export { Checklist };
