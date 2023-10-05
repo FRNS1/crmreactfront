@@ -46,14 +46,14 @@ function ChecklistPj() {
             myHeaders.append("Content-Type", "application/json");
 
             var raw = JSON.stringify({
-                "cnpj": `${cnpj}`,
+                "cnpj": `${cnpj.replace(".", "").replace("-", "").replace("/", "").replace(".", "")}`,
                 "razaoSocial": `${razaoSocial}`,
                 "nomeFantasia": `${nomeFantasia}`,
                 "segmento": `${segmento}`,
                 "nomeSocio": `${nomeSocio}`,
-                "cpfSocio": `${cpfSocio}`,
+                "cpfSocio": `${cpfSocio.replace(".", "").replace("-", "").replace(".", "")}`,
                 "email": `${email}`,
-                "telefone": `${telefone}`,
+                "telefone": `${telefone.replace("(", "").replace(")", "").replace(" ", "").replace("-", "")}`,
                 "receitaMedia": rendaMedia,
                 "valorDesejado": valorDesejado,
                 "prazo": prazo,
