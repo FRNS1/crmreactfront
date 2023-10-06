@@ -20,6 +20,12 @@ function DeltaHubBackOffice() {
   const [nomeParcReg, setNomeParcReg] = useState('');
   const [cnpjParcReg, setCnpjParcReg] = useState('');
   const [phoneParcReg, setPhoneParcReg] = useState('');
+
+  const nomeParcRegChange = (value) => {
+    setNomeParcReg(value);
+    console.log(nomeParcReg);
+  }
+
   // Registro Produto
   const [fileReg, setFileReg] = useState('');
   const [linkReg, setLinkReg] = useState('');
@@ -28,7 +34,7 @@ function DeltaHubBackOffice() {
   const [partnerIdReg, setPartnerIdReg] = useState('');
   const [typeReg, setTypeReg] = useState('');
   const [categoriaReg, setCategoriaReg] = useState('');
-  const [fileArteReg, setFileArteReg] = useState('');
+  const [fileArteReg, setFileArteReg] = useState([]);
   // Atualiza Parceiro
   const [nomeParceiroUp, setParceiroUp] = useState('');
   const [cnpjParceiroUp, setCnpjParceiroUp] = useState('');
@@ -108,29 +114,36 @@ function DeltaHubBackOffice() {
 
   async function registerProduto(){
     try {
-      const responseUpload = await axios.post("https://api-deltahub-df3c67cdaa69.herokuapp.com/api/v1/product/fileupload", {
-        file: fileReg,
-      }, {
+      console.log("Enviando");
+      const formData = new FormData();
+      formData.append("file", fileArteReg[0]);
+
+      const responseUpload = await axios.post("https://api-deltahub-df3c67cdaa69.herokuapp.com/api/v1/product/fileupload", formData, {
         headers: {
-          Authorization: `Bearer ${tokenHub}`
+          Authorization: `Bearer ${tokenHub}`,
+          "Content-Type": "multipart/form-data",
         }
       }
       );
-      if (responseUpload.status == 200) {
+      if (responseUpload.status == 201) {
         try {
+          console.log("Cadastrando produto")
           const responseProduct = await axios.post("https://api-deltahub-df3c67cdaa69.herokuapp.com/api/v1/product/register", {
-            headers: {
-              Authorization: `Bearer ${tokenHub}`
-            }
-          }, {
             linkTrackeado: linkReg,
             productName: productNameReg,
             descricao: descricaoReg,
             partnerId: partnerIdReg,
+            category: categoriaReg,
             type: typeReg
-          });
-          if (responseProduct.status == 200) {
+          }, {
+            headers: {
+              Authorization: `Bearer ${tokenHub}`
+            }
+          } 
+          );
+          if (responseProduct.status == 201) {
             alert("Produto cadastrado com sucesso!")
+            setShow('');
           }
         } catch (error) {
           console.log(error);
@@ -143,6 +156,7 @@ function DeltaHubBackOffice() {
 
   async function updateParceiro(id) {
     try {
+      alert(id);
       const responseUpdateParceiro = await axios.post("https://api-deltahub-df3c67cdaa69.herokuapp.com/api/v1/partner/update", {
         id: id,
         title: nomeParceiroUp,
@@ -406,7 +420,7 @@ function DeltaHubBackOffice() {
                     <input className='inputBODH' placeholder={partner.phone} onChange={(e) => setPhoneUp(e.target.value)}></input>
                   </div>
                   <div className='fieldBODH'>
-                    <button className='buttonsaveBODH' onClick={() => updateParceiro()}>Salvar</button>
+                    <div className='buttonsaveBODH' onClick={() => updateParceiro(partner.partnerId)}>Salvar</div>
                   </div>
                 </form>
               </div>
@@ -420,18 +434,18 @@ function DeltaHubBackOffice() {
                       <form>
                         <div className='fieldBODH'>
                           <label className='labelBODH'>Nome Parceiro</label>
-                          <input className='inputBODH' onChange={(e) => setNomeParcReg(e.target.value)}></input>
+                          <input className='inputBODH' value={nomeParcReg} onChange={(e) => nomeParcRegChange(e.target.value)}></input>
                         </div>
                         <div className='fieldBODH'>
                           <label className='labelBODH'>CNPJ</label>
-                          <input className='inputBODH' onChange={(e) => setCnpjParcReg(e.target.value)}></input>
+                          <input className='inputBODH' value={cnpjParcReg} onChange={(e) => setCnpjParcReg(e.target.value)}></input>
                         </div>
                         <div className='fieldBODH'>
                           <label className='labelBODH'>Telefone</label>
-                          <input className='inputBODH' onChange={(e) => setPhoneParcReg(e.target.value)}></input>
+                          <input className='inputBODH' value={phoneParcReg} onChange={(e) => setPhoneParcReg(e.target.value)}></input>
                         </div>
                         <div className='fieldBODH'>
-                          <button className='buttonsaveBODH' onClick={() => registerParceiro()}>Salvar</button>
+                          <div className='buttonsaveBODH' onClick={() => registerParceiro()}>Salvar</div>
                         </div>
                       </form>
                     </div>
@@ -456,38 +470,46 @@ function DeltaHubBackOffice() {
                       <div className='formModalBODH'>
                       <AiFillCloseCircle className='iconFormBODH' onClick={() => setShow('')} />
                       <div className='fieldsetModalBODH'>
-                        <h1 className='titleModalBODH'>Atualizar Produto</h1>
+                        <h1 className='titleModalBODH'>Cadastrar Produto</h1>
                         <form>
                           <div className='fieldBODH'>
                             <label className='labelBODH'>Categoria</label>
-                            <input className='inputBODH' onChange={(e) => setCategoriaReg(e.target.value)}></input>
+                            <select className='inputBODH' value={categoriaReg} onChange={(e) => setCategoriaReg(e.target.value)}>
+                              {listCategories.map((category) => 
+                                <option value={category.categoryId}>{category.nomeCategoria}</option>
+                              )}
+                            </select>
                           </div>
                           <div className='fieldBODH'>
                             <label className='labelBODH'>Parceiro</label>
-                            <input className='inputBODH' onChange={(e) => setPartnerIdReg(e.target.value)}></input>
+                            <select className='inputBODH' value={partnerIdReg} onChange={(e) => setPartnerIdReg(e.target.value)}>
+                              {listPartner.map((partner) => 
+                                <option value={partner.partnerId}>{partner.name}</option>
+                              )}
+                            </select>
                           </div>
                           <div className='fieldBODH'>
                             <label className='labelBODH'>Link</label>
-                            <input className='inputBODH' onChange={(e) => setLinkReg(e.target.value)}></input>
+                            <input className='inputBODH' value={linkReg} onChange={(e) => setLinkReg(e.target.value)}></input>
                           </div>
                           <div className='fieldBODH'>
                             <label className='labelBODH'>Descrição</label>
-                            <input className='inputBODH' onChange={(e) => setDescricaoReg(e.target.value)}></input>
+                            <input className='inputBODH' value={descricaoReg} onChange={(e) => setDescricaoReg(e.target.value)}></input>
                           </div>
                           <div className='fieldBODH'>
                             <label className='labelBODH'>Arte</label>
-                            <input className='inputBODH' type='file' onChange={(e) => setFileArteReg(e.target.value)}></input>
+                            <input className='inputBODH' type='file' onChange={(e) => setFileArteReg(e.target.files)}></input>
                           </div>
                           <div className='fieldBODH'>
                             <label className='labelBODH'>Nome</label>
-                            <input className='inputBODH' onChange={(e) => setProductNameReg(e.target.value)}></input>
+                            <input className='inputBODH' value={productNameReg} onChange={(e) => setProductNameReg(e.target.value)}></input>
                           </div>
                           <div className='fieldBODH'>
                             <label className='labelBODH'>Tipo</label>
-                            <input className='inputBODH' onChange={(e) => setTypeReg(e.target.value)}></input>
+                            <input className='inputBODH' value={typeReg} onChange={(e) => setTypeReg(e.target.value)}></input>
                           </div>
                           <div className='fieldBODH'>
-                            <button className='buttonsaveBODH' onClick={() => registerProduto()}>Salvar</button>
+                            <div className='buttonsaveBODH' onClick={() => registerProduto()}>Salvar</div>
                           </div>
                         </form>
                       </div>
@@ -558,7 +580,7 @@ function DeltaHubBackOffice() {
                 <div className='cardContainer'>
                   {listProducts.map((product) => 
                     <div className='cardBODH'>
-                      <img className='imgcardBODH' src={product.linkImagemProdutoCard}></img>
+                      <img className='imgcardBODH' src={product.linkImagemProdutoDesc}></img>
                       <div className='descProdutosBODH' onClick={async() => {console.log(listCategories); await getProdutoById(product.productId); setShow('updateProdutos')}}>
                         <span className='textProdutoNomeBODH'>{product.productName}</span>
                         <span className='textProdutoBODH'>{product.category.nomeCategoria}</span>

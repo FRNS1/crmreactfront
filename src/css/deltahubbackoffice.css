@@ -1,7 +1,7 @@
 .contentContainerBODH {
-    position: absolute;
-    top: 10vh;
-    left: 30vh;
+    position: relative;
+        top: 10vh;
+        left: 30vh;
     width: 80%;
     height: 100%;
     overflow: visible;
