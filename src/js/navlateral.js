@@ -51,7 +51,7 @@ function NavLateral() {
               <text className='item-text'>Pagamentos</text>
             </li>
             <hr className='line'></hr>
-            <li className="sidebar-item">
+            <li className="sidebar-item" onClick={() => handleButtonClickDeltaHub}>
               <FontAwesomeIcon className="icone" icon={faMobile} />
               <text className='item-text'>DeltaHub Back Office</text>
             </li>
