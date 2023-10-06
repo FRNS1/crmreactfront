@@ -127,6 +127,9 @@
     background-color: #081535;
     color: white;
     border-radius: 10px;
+    justify-content: center;
+        align-items: center;
+        cursor: pointer;
 }
 
 .relativeContainer {

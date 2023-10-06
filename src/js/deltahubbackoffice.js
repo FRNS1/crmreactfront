@@ -178,7 +178,6 @@ function DeltaHubBackOffice() {
   }
 
   async function updateProduto(id) {
-    if (arteProdUp == ''){
       try {
         const responseUpdateProduto = await axios.post("https://api-deltahub-df3c67cdaa69.herokuapp.com/api/v1/product/update", {
           id: id,
@@ -186,7 +185,6 @@ function DeltaHubBackOffice() {
           parceiro: parceiroProdUp,
           link: linkProdUp,
           descricao: descProdUp,
-          arte: arteProdUp,
           nome: nomeProdUp,
           tipo: tipoProdUp,
           ativo: ativoProdUp
@@ -202,37 +200,6 @@ function DeltaHubBackOffice() {
       } catch(error) {
         console.log(error);
       }
-    } else {
-      const responseUpload = await axios.post("https://api-deltahub-df3c67cdaa69.herokuapp.com/api/v1/product/fileupload", {
-        file: arteProdUp,
-      }, {
-        headers: {
-          Authorization: `Bearer ${tokenHub}`
-        }
-      }
-      );
-      if (responseUpload.status == 200){
-        const responseUpdateProduto = await axios.post("https://api-deltahub-df3c67cdaa69.herokuapp.com/api/v1/product/update", {
-          id: id,
-          categoria: categoriaProdUp,
-          parceiro: parceiroProdUp,
-          link: linkProdUp,
-          descricao: descProdUp,
-          arte: '',
-          nome: nomeProdUp,
-          tipo: tipoProdUp,
-          ativo: ativoProdUp
-        }, {
-          headers: {
-            Authorization: `Bearer ${tokenHub}`
-          }
-        }
-        );
-        if (responseUpdateProduto.status == 200){
-          alert("Produto atualizado com sucesso!");
-        }
-      }
-    }
   }
 
   async function getParceiroById(id){
@@ -548,10 +515,6 @@ function DeltaHubBackOffice() {
                       <input className='inputBODH' onChange={(e) => setDescProdUp(e.target.value)} placeholder={product.descricao}></input>
                     </div>
                     <div className='fieldBODH'>
-                      <label className='labelBODH'>Arte</label>
-                      <input className='inputBODH' onChange={(e) => setArteProdUp(e.target.value)} type='file'></input>
-                    </div>
-                    <div className='fieldBODH'>
                       <label className='labelBODH'>Nome</label>
                       <input className='inputBODH' onChange={(e) => setNomeProdUp(e.target.value)} placeholder={product.productName}></input>
                     </div>
@@ -570,7 +533,7 @@ function DeltaHubBackOffice() {
                       </select>
                     </div>
                     <div className='fieldBODH'>
-                      <button className='buttonsaveBODH' onClick={() => updateProduto()}>Salvar</button>
+                      <div className='buttonsaveBODH' onClick={() => updateProduto(product.productId)}>Salvar</div>
                     </div>
                   </form>
                 </div>

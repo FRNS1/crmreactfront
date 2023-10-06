@@ -401,8 +401,9 @@ function RegistroPagamentoIndividual() {
                                             <select className='selectPago' onChange={(e) => sendPago(payment.parcela_id, e.target.value)}>
                                                 <option className='optionselectPago' value={payment.pago}> {payment.pago} </option>
                                                 <option className='optionselectPago' value="VIGENTE"> VIGENTE </option>
-                                                <option className='optionselectPago' value="EM ATRASO"> EM ATRASO </option>
+                                                <option  className='optionselectPago' value="EM ATRASO"> EM ATRASO </option>
                                                 <option className='optionselectPago' value="PAGO"> PAGO </option>
+                                                <option className='optionselectPago' value="RETORNO PDD"> RETORNO PDD </option>
                                             </select>
                                         </td>
                                         <td> <InputMask mask="99/99/9999" type="text" onChange={(e) => sendDataPagamento(payment.parcela_id, e.target.value)} className="inputDataPagamentos" placeholder={payment.data_pagamento ? format(new Date(payment.data_pagamento), 'dd/MM/yyyy') : ''} /> </td>
