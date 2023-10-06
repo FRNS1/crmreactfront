@@ -139,9 +139,9 @@ function VisualizacaoPropostas() {
                     results.push(listProposal[i]);
                 }
             }
-        } else if (selectedOption === 'FALTA DOCUMENTACAO') {
+        } else if (selectedOption === 'PENDENCIA DE DOCUMENTACAO') {
             for (let i = 0; i < listProposal.length; i++) {
-                if (listProposal[i].status === 'FALTA DOCUMENTACAO') {
+                if (listProposal[i].status === 'PENDENCIA DE DOCUMENTACAO') {
                     results.push(listProposal[i]);
                 }
             }
@@ -229,7 +229,7 @@ function VisualizacaoPropostas() {
                             <option value='APROVADO' className='optionsFiltroSelect'>Aprovado</option>
                             <option value='REPROVADO' className='optionsFiltroSelect'>Reprovado</option>
                             <option value='EMPRESTIMO CONCEDIDO' className='optionsFiltroSelect'>Empréstimo concedido</option>
-                            <option value='FALTA DOCUMENTACAO' className='optionsFiltroSelect'>Falta documentação</option>
+                            <option value='PENDENCIA DE DOCUMENTACAO' className='optionsFiltroSelect'>Pendência de documentação</option>
                         </select>
                     </div>
                     <div className='caixaPesquisa'>
