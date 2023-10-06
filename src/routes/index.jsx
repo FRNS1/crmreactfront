@@ -26,11 +26,13 @@ import { NilsonBentoPf } from '../js/links-indicador/pf/nilsonbento';
 import { NilsonBentoPj } from '../js/links-indicador/pj/nilsonbentopj';
 import { DeltaHubBackOffice } from '../js/deltahubbackoffice';
 import { RedefinicaoSenha } from '../js/redefinicao_senha';
+import Dashboard  from '../pages/Dashboard'
 
 function MainRouter() {
   return(
     <Routes>
         <Route path="/" element={<ButtonPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/pessoas" element={<Telapessoas />} />
         <Route path="/cadastrocli" element={<Cadastrocli />} />
         <Route path="/visucli" element={<Visucli />} />

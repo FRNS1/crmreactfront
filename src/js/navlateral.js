@@ -11,6 +11,9 @@ import Cookies from 'js-cookie';
 
 function NavLateral() {
   const navigate = useNavigate();
+  const navegaParaDashboard = () => {
+    navigate('/dashboard');
+  };
   const navegaParaClientes = () => {
     navigate('/pessoas');
   };
@@ -29,7 +32,7 @@ function NavLateral() {
     <div className="sidebar">
       <img className="deltalogoazul" src={require('../imgs/deltalogoazul.png')} alt="Logo" />
       <ul className="sidebar-menu">
-        <li className="sidebar-item">
+        <li className="sidebar-item" onClick={navegaParaDashboard}>
           <FontAwesomeIcon className="icone" icon={faChartLine} />
           <text className='item-text'>Dashboard</text>
         </li>
