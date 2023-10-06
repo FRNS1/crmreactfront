@@ -8,8 +8,11 @@ import CurrencyInput from 'react-currency-input-field';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import { filesize } from 'filesize';
+
 import Loading from '../components/UI/Loading';
-import Upload from '../components/UI/Upload';
+import UploadContainer from '../components/UploadContainer';
+import InfPessoais from '../components/informacoespessoais'
 
 function VisualizacaoIndividual() {
     const [muda, handleButtonClick] = useState('infPropostas');
@@ -97,7 +100,6 @@ function VisualizacaoIndividual() {
     const [numRestricoesAlls, setNumRestricoesAlls] = useState('');
     const [valorRestricoesAlls, setValorRestricoesAlls] = useState('');
     // Variáveis Files
-    const [files, setFiles] = useState([]);
     const [filesReceived, setFilesReceived] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -437,66 +439,13 @@ function VisualizacaoIndividual() {
         }
     }
 
-    async function sendFiles() {
-        console.log("Enviando");
-        console.log(files);
-
-        for (let i = 0; i < files.length; i++) {
-            var myHeaders = new Headers();
-            myHeaders.append("Authorization", `Bearer ${Cookies.get('token')}`);
-
-            var formdata = new FormData();
-            formdata.append("file", files[i]);
-
-            var requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: formdata,
-                redirect: 'follow'
-            };
-
-            // Upload do arquivo
-            await fetch("http://35.175.231.117:8080/api/v1/files/upload", requestOptions)
-                .then(response => response.text())
-                .then(result => {
-                    console.log("Arquivo enviado:", result)
-                })
-                .catch(error => console.log('error', error));
-
-            // Construir o link S3
-            var myHeaders2 = new Headers();
-            myHeaders2.append("Authorization", `Bearer ${Cookies.get('token')}`);
-            myHeaders2.append("Content-Type", "application/json");
-
-            let fileName = files[i].name.replace(/\s/g, "+");
-            let link = `https://docsbora.s3.amazonaws.com/${fileName}`;
-
-            var data = {
-                fileName: fileName,
-                user_id: Cookies.get('userid'),
-                tipoArquivo: "Documentos do cliente",
-                proposal: Cookies.get('propostaSelecionada'),
-                url: link
-            };
-
-            var requestOptionsData = {
-                method: 'POST',
-                headers: myHeaders2,
-                body: JSON.stringify(data),
-                redirect: 'follow'
-            };
-
-            // Enviar informações sobre o arquivo
-            await fetch("http://35.175.231.117:8080/api/v1/files/filesdata", requestOptionsData)
-                .then(response => response.text())
-                .then(result => { alert("Informações e arquivo enviados"); setFiles([]); getDataProposal(); })
-                .catch(error => console.log('error', error));
-        }
-    }
+    
 
     useEffect(() => {
         getDataProposal();
     }, []);
+
+    <InfPessoais/>
 
     function InfPropostas() {
         const handleTotalJurosChange = (value) => {
@@ -579,7 +528,8 @@ function VisualizacaoIndividual() {
                                     <option className='inputCad' value='EM ANALISE'> EM ANALISE </option>
                                     <option className='inputCad' value='APROVADO'> APROVADO </option>
                                     <option className='inputCad' value='REPROVADO'> REPROVADO </option>
-                                    <option className='inputCad' value='EMPRESTIMO CONCEDIDO'> EMPRESTIMO CONCEDIDO </option>   
+                                    <option className='inputCad' value='EMPRESTIMO CONCEDIDO'> EMPRESTIMO CONCEDIDO </option>
+                                    <option className='inputCad' value='PENDENCIA DE DOCUMENTACAO'> PENDENCIA DE DOCUMENTACAO </option>   
                                 </select>
                             </div>
                             <div className='divfield'>
@@ -1617,13 +1567,6 @@ function VisualizacaoIndividual() {
         );
     }
 
-    
-    const handleFilesChange = (value) => {
-        console.log(value);
-        setFilesReceived(files); // Update the state with the new files
-      };
-
-
     /*function Upload() {
         return (
             <div className='divUploadFiles'>
@@ -1652,7 +1595,7 @@ function VisualizacaoIndividual() {
     }*/
 
         
-    <Upload onUpload={handleFilesChange}/>
+    <UploadContainer />
 
     return (
         <div>
@@ -1672,6 +1615,9 @@ function VisualizacaoIndividual() {
                         <div className='rowbotoes'>
                             <button className={`botoes ${muda === 'infPropostas' ? 'botaoAtivo' : ''}`} onClick={() => Mudapagina("infPropostas")}>
                                 <span className='stringDados'> Informações </span>
+                            </button>
+                            <button className={`botoes ${muda === 'InfPessoais' ? 'botaoAtivo' : ''}`} onClick={() => Mudapagina("InfPessoais")}>
+                                <span className='stringDados'> Informações Pessoais </span>
                             </button>
                             <button className={`botoes ${muda === 'bureaus' ? 'botaoAtivo' : ''}`} onClick={() => Mudapagina("bureaus")}>
                                 <span className='stringDados'> Bureaus Crédito </span>
@@ -1693,6 +1639,9 @@ function VisualizacaoIndividual() {
                             {muda === 'infPropostas' && (
                                 <InfPropostas />
                             )}
+                            {muda === 'InfPessoais' && (
+                                <InfPessoais />
+                            )}
                             {muda === 'bureaus' && (
                                 <BearusCredito />
                             )}
@@ -1703,7 +1652,7 @@ function VisualizacaoIndividual() {
                                 <AllsData />
                             )}
                             {muda === 'upload' && (
-                                <Upload />
+                                <UploadContainer />
                             )}
                         </div>
                     </div>
