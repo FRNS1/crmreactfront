@@ -377,7 +377,6 @@ function RegistroPagamentoIndividual() {
                                     <th> Valor Parcela </th>
                                     <th> Pago? </th>
                                     <th> Data Pagamento </th>
-                                    <th> Editar? </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -407,11 +406,6 @@ function RegistroPagamentoIndividual() {
                                             </select>
                                         </td>
                                         <td> <InputMask mask="99/99/9999" type="text" onChange={(e) => sendDataPagamento(payment.parcela_id, e.target.value)} className="inputDataPagamentos" placeholder={payment.data_pagamento ? format(new Date(payment.data_pagamento), 'dd/MM/yyyy') : ''} /> </td>
-                                        <td>
-                                            <button className="botaoTDVer" style={{ backgroundColor: '#081535' }}>
-                                                <span className='stringVer' style={{ color: 'white' }}>salvar</span>
-                                            </button>
-                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
