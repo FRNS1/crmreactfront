@@ -5,7 +5,6 @@ import { Form, Input, Select } from "@rocketseat/unform";
 import {
   ResetContent,
   ResetContainer,
-  Formulary,
   FormContainer,
   FormContent,
   FormRight,
@@ -14,11 +13,10 @@ import {
   FlexGroup,
 } from "./style";
 
-function Register() {
+function InfoPessoais() {
   return (
     <ResetContainer>
       <ResetContent>
-        <Formulary>
           <FormContainer>
             <FormRight>
               <FormContent>
@@ -177,10 +175,9 @@ function Register() {
               </Form>
             </FormContent>
           </FormContainer>
-        </Formulary>
       </ResetContent>
     </ResetContainer>
   );
 }
 
-export default Register;
+export default InfoPessoais;

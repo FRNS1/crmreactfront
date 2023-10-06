@@ -12,7 +12,7 @@ import { filesize } from 'filesize';
 
 import Loading from '../components/UI/Loading';
 import UploadContainer from '../components/UploadContainer';
-import InfPessoais from '../components/informacoespessoais'
+import InfPessoais from '../components/pages/informacoespessoais'
 
 function VisualizacaoIndividual() {
     const [muda, handleButtonClick] = useState('infPropostas');
