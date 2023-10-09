@@ -56,7 +56,6 @@ export const FormContainer = styled.div`
 
   form {
     width: 100%;
-    padding: 20px 0;
 
     p {
       font-size: 18px;
@@ -77,14 +76,6 @@ export const FormContainer = styled.div`
         border-radius: 4px;
         margin-top: 5px;
       }
-
-      /* select {
-        width: 100%;
-        padding: 10px;
-        border: none;
-        border-radius: 4px;
-        background: #cac7c7;
-      } */
     }
 
     button {
@@ -121,8 +112,11 @@ export const FormContainer = styled.div`
 
 export const FormContent = styled.div`
   width: 100%;
-  margin-top: 20px;
+  margin-top: 30px;
+
   h2{
+    font-size: 28px;
+    margin-bottom: 16px;
     text-align: center;
   }
 `
