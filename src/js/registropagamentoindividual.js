@@ -149,8 +149,7 @@ function RegistroPagamentoIndividual() {
         try{
             const dataPagamentoSplit = dataPagamento.split("/");
             let dataPagamentoUs = `${dataPagamentoSplit[2]}-${dataPagamentoSplit[1]}-${dataPagamentoSplit[0]}`;
-            const urlPost = `http://35.175.231.117:8080/api/v1/payments/update/datapagamento`;
-            const response = await axios.post(urlPost, {
+            const response = await axios.post("http://35.175.231.117:8080/api/v1/payments/update/datapagamento", {
                 parcela: id,
                 data_pagamento: dataPagamentoUs
             }, {

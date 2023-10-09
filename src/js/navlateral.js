@@ -32,7 +32,7 @@ function NavLateral() {
     <div className="sidebar">
       <img className="deltalogoazul" src={require('../imgs/deltalogoazul.png')} alt="Logo" />
       <ul className="sidebar-menu">
-        <li className="sidebar-item" onClick={navegaParaDashboard}>
+        <li className="sidebar-item">
           <FontAwesomeIcon className="icone" icon={faChartLine} />
           <text className='item-text'>Dashboard</text>
         </li>
