@@ -22,6 +22,7 @@ function VisualizacaoIndividual() {
     const [analytics, setAnalytics] = useState(false);
     const [allsData, setAllsData] = useState(false);
     const [scr, setScr] = useState(false);
+    const [files, setFiles] = useState([]);
     // Variaveis prop2osal
     const [proposalId, setProposalId] = useState('');
     const [customerName, setCustomerName] = useState('');
@@ -436,6 +437,72 @@ function VisualizacaoIndividual() {
         }
         finally {
             setIsLoading(false); // Defina isLoading como false aqui
+        }
+    }
+
+    async function sendFiles() {
+        console.log("Enviando");
+        console.log(files);
+    
+
+        for (let i = 0; i < files.length; i++) {
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", `Bearer ${Cookies.get('token')}`);
+    
+
+            var formdata = new FormData();
+            formdata.append("file", files[i]);
+    
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: formdata,
+                redirect: 'follow'
+            };
+    
+
+            // Upload do arquivo
+            await fetch("http://35.175.231.117:8080/api/v1/files/upload", requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                    console.log("Arquivo enviado:", result)
+                })
+                .catch(error => console.log('error', error));
+    
+
+            // Construir o link S3
+            var myHeaders2 = new Headers();
+            myHeaders2.append("Authorization", `Bearer ${Cookies.get('token')}`);
+            myHeaders2.append("Content-Type", "application/json");
+    
+
+            let fileName = files[i].name.replace(/\s/g, "+");
+            let link = `https://docsbora.s3.amazonaws.com/${fileName}`;
+
+            var data = {
+                user_id: Cookies.get('userid'),
+                fileName: fileName,
+                tipoArquivo: "Documentos do cliente",
+                proposal: Cookies.get('propostaSelecionada'),
+                url: link
+            };
+    
+
+            var requestOptionsData = {
+                method: 'POST',
+                headers: myHeaders2,
+                body: JSON.stringify(data),
+                redirect: 'follow'
+            };
+    
+
+            // Enviar informações sobre o arquivo
+            await fetch("http://35.175.231.117:8080/api/v1/files/filesdata", requestOptionsData)
+                .then(response => response.text())
+                .then(result => {alert("Informações e arquivo enviados"); setFiles([]); getDataProposal();})
+                .then(result => { alert("Informações e arquivo enviados"); setFiles([]); getDataProposal(); })
+                .catch(error => console.log('error', error));
         }
     }
 
@@ -1567,14 +1634,14 @@ function VisualizacaoIndividual() {
         );
     }
 
-    /*function Upload() {
+    function Upload() {
         return (
             <div className='divUploadFiles'>
                 <div className='stringUpload'>
                     <text> Faça o upload dos seus documentos </text>
                 </div>
                 <div className='divinputFiles'>
-                    <input className='inputFiles' name='file' type="file" onChange={(event) => handleFilesChange(event.target.files)} multiple />
+                    <input className='inputFiles' name='file' type="file" onChange={(event) => setFiles(event.target.files)} multiple />
                 </div>
                 <div className='divlistaFiles'>
                     <ul className='listaFiles'>
@@ -1585,17 +1652,17 @@ function VisualizacaoIndividual() {
                         )}
                     </ul>
                 </div>
-                <div className='divbotaoEnviarArquivos' onClick={sendFiles}>
+                <div className='divbotaoEnviarArquivos' onClick={() => sendFiles()}>
                     <button className='botaoEnviarArquivos'>
                         <span className='stringEnviarDados'> Enviar Arquivos </span>
                     </button>
                 </div>
             </div>
         );
-    }*/
+    }
 
         
-    <UploadContainer />
+    // <UploadContainer />
 
     return (
         <div>
@@ -1652,7 +1719,7 @@ function VisualizacaoIndividual() {
                                 <AllsData />
                             )}
                             {muda === 'upload' && (
-                                <UploadContainer />
+                                <Upload />
                             )}
                         </div>
                     </div>

@@ -234,7 +234,7 @@ const handleBusinessSelectChange = (event) => {
           </div>
           <div className='botaoCadastrar'>
             <button className="textoCadastrar">
-              <span className='stringCadastrar'> Cadastrar Cliente </span>
+              <span className='stringCadastrar' onClick={handleButtonClick}> Cadastrar Cliente </span>
             </button>
           </div>
         </div>
