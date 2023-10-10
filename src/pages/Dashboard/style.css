@@ -4,3 +4,62 @@
   max-width: 250px;
   width: '100%'
 }
+
+.dashboardHeader{
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.cardHeader{
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #f0f0f0;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0.75rem 6rem rgba(56,65,74,.03);
+}
+.chartcontent{
+
+}
+
+.cardNumbercontainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.cardnumber{
+  display: flex;
+  font-size: 24px;
+  margin-bottom: 8px;
+  justify-content: flex-end;
+}
+
+.status{
+  display: flex;
+  justify-content: flex-end;
+}
+.cardContent{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.dashboardChart{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 30px;
+}
+.chartContainer{
+  padding: 24px;
+  background: #f0f0f0;
+  width: 100%;
+}

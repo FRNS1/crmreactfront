@@ -8,5 +8,11 @@ export const NavSuperiorContainer = styled.div`
 
   ul{
     list-style: none;
+
+    li{
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
   }
 `

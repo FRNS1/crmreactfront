@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Layout, Button, theme } from 'antd'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
+import { FcApproval } from 'react-icons/fc'
 
 import NavSuperior from '../../components/Navsuperior'
 import Logo from '../../components/Logo'
@@ -64,7 +65,72 @@ export default function Dashboard() {
             minHeight: 280,
             background: colorBgContainer,
           }}
-        >Content</Content>
+        >
+          <div className="dashboardHeader">
+            <div className="cardHeader">
+              <h2>Aprovações:</h2>
+              <div className="cardContent">
+                <div className="chartcontent">
+                  <h2>Chart</h2>
+                </div>
+                <div className="cardNumbercontainer">
+                  <h2 className="cardnumber">21323</h2>
+                  <p className="status">
+                    <FcApproval size={24}/>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="cardHeader">
+              <h2>Recusados</h2>
+              <div className="cardContent">
+                <div className="chartcontent">
+                  <h2>Chart</h2>
+                </div>
+                <div className="cardNumbercontainer">
+                  <h2 className="cardnumber">21323</h2>
+                  <p className="status">
+                    <FcApproval size={24}/>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="cardHeader">
+              <h2>Empréstimos</h2>
+              <div className="cardContent">
+                <div className="chartcontent">
+                  <h2>Chart</h2>
+                </div>
+                <div className="cardNumbercontainer">
+                  <h2 className="cardnumber">21323</h2>
+                  <p className="status">
+                    <FcApproval size={24}/>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="cardHeader">
+              <h2>Em Análise</h2>
+              <div className="cardContent">
+                <div className="chartcontent">
+                  <h2>Chart</h2>
+                </div>
+                <div className="cardNumbercontainer">
+                  <h2 className="cardnumber">21323</h2>
+                  <p className="status">
+                    <FcApproval size={24}/>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="dashboardChart">
+            <div className="chartContainer">sdfs</div>
+            <div className="chartContainer">fsfd</div>
+            <div className="chartContainer">fsfd</div>
+          </div>
+          <div>gdsgfsdfg</div>
+        </Content>
       </Layout>
     </Layout>
   )

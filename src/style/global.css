@@ -85,3 +85,9 @@ h1, h2, h3, h4, h5, h6 {
 .ant-layout {
   background: #fff;
 }
+
+.css-dmmspl-MuiFormGroup-root{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
