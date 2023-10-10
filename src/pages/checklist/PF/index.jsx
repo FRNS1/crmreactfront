@@ -5,9 +5,10 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import InputMask from 'react-input-mask';
 import Swal from 'sweetalert2'
-import '../style.css'
+// import '../style.css'
 import Loading from '../../../components/UI/Loading'
 import NewModal from "../../../components/UI/NewModal"
+import { Container, Content, Logo, GroupCheckelist, GroupCheckbox, CheckListBtn } from '../style'
 
 function Checklist() {
     const navigate = useNavigate();
@@ -168,15 +169,16 @@ function Checklist() {
                 </div>
             </NewModal>
 
-            <div className="containerchecklist">
-                <div className='contentchecklist'>
-                    <img className="deltalogoazulchecklist" src='https://docsbora.s3.amazonaws.com/uploads/deltalogoazul.png' alt="Logo" />
+            <Container>
+                <Content>
+                    <Logo>
+                        <img src='https://docsbora.s3.amazonaws.com/uploads/deltalogoazul.png' alt="Logo" />
+                    </Logo>
                     <h2 className='h2checklist'>Informações básicas PF</h2>
                     <form>
-                        <div className="form-groupchecklist">
-                            <label className='classNamechecklist' htmlFor="nome">Nome Completo</label>
+                        <GroupCheckelist>
+                            <label htmlFor="nome">Nome Completo</label>
                             <input
-                                className='inputchecklist'
                                 type="text"
                                 id="nome"
                                 name="nome"
@@ -185,12 +187,11 @@ function Checklist() {
                                 placeholder="Digite seu nome completo"
                                 required
                             />
-                        </div>
-                        <div className="form-groupchecklist">
-                            <label className='classNamechecklist' htmlFor="cpf">CPF</label>
+                        </GroupCheckelist>
+                        <GroupCheckelist>
+                            <label htmlFor="cpf">CPF</label>
                             <InputMask
                                 mask="999.999.999-99"
-                                className='inputchecklist'
                                 type="text"
                                 id="cpf"
                                 name="cpf"
@@ -199,11 +200,10 @@ function Checklist() {
                                 placeholder="Digite seu CPF"
                                 required
                             />
-                        </div>
-                        <div className="form-groupchecklist">
-                            <label className='classNamechecklist' htmlFor="email">Email</label>
+                        </GroupCheckelist>
+                        <GroupCheckelist>
+                            <label htmlFor="email">Email</label>
                             <input
-                                className='inputchecklist'
                                 type="email"
                                 id="email"
                                 name="email"
@@ -212,12 +212,11 @@ function Checklist() {
                                 placeholder="Digite seu email"
                                 required
                             />
-                        </div>
-                        <div className="form-groupchecklist">
-                            <label className='classNamechecklist' htmlFor="email">Telefone</label>
+                        </GroupCheckelist>
+                        <GroupCheckelist>
+                            <label htmlFor="email">Telefone</label>
                             <InputMask
                                 mask="(99) 99999-9999"
-                                className='inputchecklist'
                                 type="text"
                                 id="email"
                                 name="email"
@@ -226,11 +225,10 @@ function Checklist() {
                                 placeholder="Digite seu telefone"
                                 required
                             />
-                        </div>
-                        <div className="form-groupchecklist">
-                            <label className='classNamechecklist' htmlFor="profissao">Profissão</label>
+                        </GroupCheckelist>
+                        <GroupCheckelist>
+                            <label htmlFor="profissao">Profissão</label>
                             <input
-                                className='inputchecklist'
                                 type="text"
                                 id="profissao"
                                 name="profissao"
@@ -239,8 +237,8 @@ function Checklist() {
                                 placeholder="Digite sua profissão"
                                 required
                             />
-                        </div>
-                        <div className="form-groupchecklist">
+                        </GroupCheckelist>
+                        <GroupCheckelist className="form-groupchecklist">
                             <label className='classNamechecklist' htmlFor="rendaMedia">Renda Média</label>
                             <CurrencyInput
                                 name="valorDesejado"
@@ -252,10 +250,9 @@ function Checklist() {
                                 prefix="R$ "
                                 placeholder="Digite sua renda média"
                                 required
-                                className="inputchecklist"
                             />
-                        </div>
-                        <div className="form-groupchecklist">
+                        </GroupCheckelist>
+                        <GroupCheckelist>
                             <label className='classNamechecklist' htmlFor="valorDesejado">Valor Desejado</label>
                             <CurrencyInput
                                 name="valorDesejado"
@@ -267,13 +264,11 @@ function Checklist() {
                                 prefix="R$ "
                                 placeholder="Digite o valor desejado"
                                 required
-                                className="inputchecklist"
                             />
-                        </div>
-                        <div className="form-groupchecklist">
-                            <label className='classNamechecklist' htmlFor="valorDesejado">Prazo</label>
+                        </GroupCheckelist>
+                        <GroupCheckelist>
+                            <label htmlFor="valorDesejado">Prazo</label>
                             <input
-                                className='inputchecklist'
                                 type="number"
                                 id="prazo"
                                 name="prazo"
@@ -282,16 +277,16 @@ function Checklist() {
                                 placeholder="Digite em quantas vezes você quer pagar"
                                 required
                             />
-                        </div>
-                        <div className='form-groupchecklist-checkbox'>
+                        </GroupCheckelist>
+                        <GroupCheckbox>
                             <input type="checkbox" onChange={(e) => setAceite(e.target.value)} />
-                            <text>Estou de acordo com os <a className='termos-checklist' onClick={toggleModalTerms}>termos e condições </a>e com o <a className='termos-checklist' onClick={toggleModalTermsScr}>termo de autorização de consulta ao SCR.</a></text>
-                        </div>
-                        <div className='buttonchecklist' onClick={() => sendData()}>Enviar</div>
+                            <p>Estou de acordo com os <a className='termos-checklist' onClick={toggleModalTerms}>termos e condições </a>e com o <a className='termos-checklist' onClick={toggleModalTermsScr}>termo de autorização de consulta ao SCR.</a></p>
+                        </GroupCheckbox>
+                        <CheckListBtn onClick={() => sendData()}>Enviar</CheckListBtn>
                     </form>
-                </div>
+                </Content>
                 {isLoading && <Loading/>}
-            </div>
+            </Container>
         </>
     )
 }
