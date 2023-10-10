@@ -86,8 +86,12 @@ h1, h2, h3, h4, h5, h6 {
   background: #fff;
 }
 
-.css-dmmspl-MuiFormGroup-root{
+/* .css-dmmspl-MuiFormGroup-root{
   width: 100%;
   display: flex;
   justify-content: space-between;
+} */
+
+.css-46bh2p-MuiCardContent-root{
+  padding: 0;
 }
