@@ -6,7 +6,6 @@ import './css/tela_login.css';
 import './style/global.css'
 import Cookies from 'js-cookie';
 
-
 const App = () => {
   return (
     <Router>

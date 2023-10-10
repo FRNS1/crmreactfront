@@ -1,22 +1,30 @@
-import styled from "styled-components";
+.sidebarContainer{
+  background: #fff;
+  /* background: '#fff', */
+  box-shadow: 2vh 0vh 2vh rgba(122, 58, 206, 0.2);
+  max-width: 250px;
+  width: '100%'
+}
+
+/* import styled from "styled-components";
 
 export const DashboardContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  background: red;
   height: 100vh;
 `
 export const DashboardContent = styled.div`
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  background: red;
-  margin-top: 72px;
 `
 export const Content = styled.div`
-  height: 100vh;
+  height: 100%;
   width: 100%;
   padding: 24px;
+  background: green;
 `
+*/
