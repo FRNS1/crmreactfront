@@ -151,6 +151,12 @@ function VisualizacaoPropostas() {
                     results.push(listProposal[i]);
                 }
             }
+        } else if (selectedOption === 'PRE APROVADO') {
+            for (let i = 0; i < listProposal.length; i++) {
+                if (listProposal[i].status === 'PRE APROVADO') {
+                    results.push(listProposal[i]);
+                }
+            }
         }
         setSearchStatusResult(results);
     }
@@ -227,6 +233,7 @@ function VisualizacaoPropostas() {
                             <option value='' className='optionsFiltroSelect'>Todos</option>
                             <option value='EM ANALISE' className='optionsFiltroSelect'>Em análise</option>
                             <option value='APROVADO' className='optionsFiltroSelect'>Aprovado</option>
+                            <option value='PRE APROVADO' className='optionsFiltroSelect'>Pré Aprovado</option>
                             <option value='REPROVADO' className='optionsFiltroSelect'>Reprovado</option>
                             <option value='EMPRESTIMO CONCEDIDO' className='optionsFiltroSelect'>Empréstimo concedido</option>
                             <option value='PENDENCIA DE DOCUMENTACAO' className='optionsFiltroSelect'>Pendência de documentação</option>

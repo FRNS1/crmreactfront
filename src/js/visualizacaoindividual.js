@@ -18,7 +18,7 @@ import {
     Divider,
     LinksContainer,
     FlexGroup,
-  } from "../components/pages/informacoespessoais/style";
+} from "../components/pages/informacoespessoais/style";
 import { Form, Input, Select } from "@rocketseat/unform";
 import Loading from '../components/UI/Loading';
 import UploadContainer from '../components/UploadContainer';
@@ -257,7 +257,7 @@ function VisualizacaoIndividual() {
                 showConfirmButton: false,
                 timer: 1500
             })
-            
+
         } catch (erro) {
             console.error('Erro ao enviar os dados:', erro)
         }
@@ -457,16 +457,16 @@ function VisualizacaoIndividual() {
     async function sendFiles() {
         console.log("Enviando");
         console.log(files);
-    
+
 
         for (let i = 0; i < files.length; i++) {
             var myHeaders = new Headers();
             myHeaders.append("Authorization", `Bearer ${Cookies.get('token')}`);
-    
+
 
             var formdata = new FormData();
             formdata.append("file", files[i]);
-    
+
 
             var requestOptions = {
                 method: 'POST',
@@ -474,7 +474,7 @@ function VisualizacaoIndividual() {
                 body: formdata,
                 redirect: 'follow'
             };
-    
+
 
             // Upload do arquivo
             await fetch("http://35.175.231.117:8080/api/v1/files/upload", requestOptions)
@@ -483,13 +483,13 @@ function VisualizacaoIndividual() {
                     console.log("Arquivo enviado:", result)
                 })
                 .catch(error => console.log('error', error));
-    
+
 
             // Construir o link S3
             var myHeaders2 = new Headers();
             myHeaders2.append("Authorization", `Bearer ${Cookies.get('token')}`);
             myHeaders2.append("Content-Type", "application/json");
-    
+
 
             let fileName = files[i].name.replace(/\s/g, "+");
             let link = `https://docsbora.s3.amazonaws.com/${fileName}`;
@@ -501,7 +501,7 @@ function VisualizacaoIndividual() {
                 proposal: Cookies.get('propostaSelecionada'),
                 url: link
             };
-    
+
 
             var requestOptionsData = {
                 method: 'POST',
@@ -509,12 +509,12 @@ function VisualizacaoIndividual() {
                 body: JSON.stringify(data),
                 redirect: 'follow'
             };
-    
+
 
             // Enviar informações sobre o arquivo
             await fetch("http://35.175.231.117:8080/api/v1/files/filesdata", requestOptionsData)
                 .then(response => response.text())
-                .then(result => {alert("Informações e arquivo enviados"); setFiles([]); getDataProposal();})
+                .then(result => { alert("Informações e arquivo enviados"); setFiles([]); getDataProposal(); })
                 .then(result => { alert("Informações e arquivo enviados"); setFiles([]); getDataProposal(); })
                 .catch(error => console.log('error', error));
         }
@@ -719,7 +719,7 @@ function VisualizacaoIndividual() {
         setNumRestricoesAlls(value);
     }
 
-    
+
 
     useEffect(() => {
         getDataProposal();
@@ -737,7 +737,7 @@ function VisualizacaoIndividual() {
                 <div className='divlistaFiles'>
                     <ul className='listaFiles'>
                         {filesReceived.map((file, index) =>
-                            <li key={index} className='liFiles'> <a href={file.url_arquivo}>{file.url_arquivo}</a> 
+                            <li key={index} className='liFiles'> <a href={file.url_arquivo}>{file.url_arquivo}</a>
                                 {file.name}
                             </li>
                         )}
@@ -752,7 +752,7 @@ function VisualizacaoIndividual() {
         );
     }
 
-        
+
     // <UploadContainer />
 
     return (
@@ -796,1042 +796,1050 @@ function VisualizacaoIndividual() {
                         <div>
                             {muda === 'infPropostas' && (
                                 <div className='infopropostas'>
-                                <form className='formularios'>
-                                    <br />
-                                    <div className='fields'>
-                                        <div className='divrow'>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Valor Desejado </label>
-                                                <CurrencyInput
-                                                    name="totalValorDesejado"
-                                                    value={valorDesejado}
-                                                    allowNegativeValue={false}
-                                                    decimalSeparator=","
-                                                    groupSeparator="."
-                                                    prefix="R$ "
-                                                    placeholder="R$ 0,00"
-                                                    className="inputCad"
-                                                    disabled
-                                                />
+                                    <form className='formularios'>
+                                        <br />
+                                        <div className='fields'>
+                                            <div className='divrow'>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Valor Desejado </label>
+                                                    <CurrencyInput
+                                                        name="totalValorDesejado"
+                                                        value={valorDesejado}
+                                                        allowNegativeValue={false}
+                                                        decimalSeparator=","
+                                                        groupSeparator="."
+                                                        prefix="R$ "
+                                                        placeholder="R$ 0,00"
+                                                        className="inputCad"
+                                                        disabled
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Taxa </label>
+                                                    <input
+                                                        name="taxa"
+                                                        defaultValue={taxa}
+                                                        onChange={(event) => handleTaxaChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Corban </label>
+                                                    <input
+                                                        name="taxa"
+                                                        defaultValue={`R$ ${corban}`}
+                                                        onChange={(event) => handleCorbanChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
                                             </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Taxa </label>
-                                                <input
-                                                    name="taxa"
-                                                    defaultValue={taxa}
-                                                    onChange={(event) => handleTaxaChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
+                                            <div className='divrow'>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Status </label>
+                                                    <select className='inputCad' value={status} onChange={handleStatusChange}>
+                                                        <option className='inputCad' value={status}> {status} </option>
+                                                        <option className='inputCad' value='EM ANALISE'> EM ANALISE </option>
+                                                        {Cookies.get('userid') == 3 ? (
+                                                            <>
+                                                                <option className='inputCad' value='APROVADO'> APROVADO </option>
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                <option className='inputCad' value='PRE APROVADO'> PRE APROVADO </option>
+                                                            </>
+                                                        )}
+                                                        <option className='inputCad' value='REPROVADO'> REPROVADO </option>
+                                                        <option className='inputCad' value='EMPRESTIMO CONCEDIDO'> EMPRESTIMO CONCEDIDO </option>
+                                                        <option className='inputCad' value='PENDENCIA DE DOCUMENTACAO'> PENDENCIA DE DOCUMENTACAO </option>
+                                                    </select>
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Montante </label>
+                                                    <input
+                                                        name="montante"
+                                                        defaultValue={`R$ ${montante}`}
+                                                        onChange={(event) => handleMontanteChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Valor Liberado </label>
+                                                    <input
+                                                        name="valorliberado"
+                                                        defaultValue={`R$ ${valorLiberado}`}
+                                                        onChange={(event) => handleValorLiberadoChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
                                             </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Corban </label>
-                                                <input
-                                                    name="taxa"
-                                                    defaultValue={`R$ ${corban}`}
-                                                    onChange={(event) => handleCorbanChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
+                                            <div className='divrow'>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Prazo </label>
+                                                    <input
+                                                        name="prazo"
+                                                        defaultValue={prazo}
+                                                        onChange={(event) => handlePrazoChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Data de Abertura </label>
+                                                    <InputMask
+                                                        mask="99/99/9999"
+                                                        placeholder="DD/MM/AAAA"
+                                                        type="text"
+                                                        className="inputCad"
+                                                        value={dataAbertura ? format(new Date(dataAbertura), 'dd/MM/yyyy') : ''}
+                                                        disabled
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Data da Primeira Parcela </label>
+                                                    <InputMask
+                                                        mask="99/99/9999"
+                                                        placeholder="DD/MM/AAAA"
+                                                        type="text"
+                                                        className="inputCad"
+                                                        value={dataPrimeiraParcela ? format(new Date(dataPrimeiraParcela), 'dd/MM/yyyy') : ''}
+                                                        disabled
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className='divrow'>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Total de Juros </label>
+                                                    <input
+                                                        name="totalJuros"
+                                                        defaultValue={`R$ ${totalJuros}`}
+                                                        onChange={(event) => handleTotalJurosChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Status do Contrato </label>
+                                                    <select className='inputCad' value={statusContrato} onChange={HandleStatusContratoChange}>
+                                                        <option className='inputCad' value={statusContrato}> {statusContrato} </option>
+                                                        <option className='inputCad' value='Aberto'> Aberto </option>
+                                                        <option className='inputCad' value='Quitado'> Quitado </option>
+                                                    </select>
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Motivo da reprovação </label>
+                                                    <select className='inputCad' value={motivoReprovacao} onChange={HandleMotivoReprovacaoChange}>
+                                                        <option className='inputCad' value={motivoReprovacao} > {motivoReprovacao}  </option>
+                                                        <option className='inputCad' value='Selecione um motivo'> Restrição de bureaus de crédito  </option>
+                                                        <option className='inputCad' value='Restrição por divida ativa'> Restrição por divida ativa </option>
+                                                        <option className='inputCad' value='Restrição de cadin'> Restrição de cadin </option>
+                                                        <option className='inputCad' value='Restrição por ausência de documento'> Restrição por ausência de documento </option>
+                                                        <option className='inputCad' value='Restrição por renda insuficiente'> Restrição por renda insuficiente </option>
+                                                        <option className='inputCad' value='Restrição por score fora da política'> Restrição por score fora da política </option>
+                                                        <option className='inputCad' value='Restrição por processo criminal ou civil'> Restrição por processo criminal ou civil </option>
+                                                        <option className='inputCad' value='Empresas ligadas com restrição'> Empresas ligadas com restrição </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className='divrow'>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Renda Média </label>
+                                                    <input
+                                                        name="valorliberado"
+                                                        defaultValue={`R$ ${rendaMedia}`}
+                                                        onChange={(event) => setRendaMedia(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className='divrow'>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Observação do Cliente </label>
+                                                    <textarea
+                                                        name="observacaoCliente"
+                                                        defaultValue={observacaoCliente}
+                                                        onChange={(event) => handleObservacaoClienteChange(event.target.value)}
+                                                        className="textAreaObsCliente"
+                                                        type="text"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Observação do Analista </label>
+                                                    <textarea
+                                                        name="observacaoAnalista"
+                                                        defaultValue={observacaoAnalista}
+                                                        onChange={(event) => handleObservacaoAnalistaChange(event.target.value)}
+                                                        className="textAreaObsAnalista"
+                                                        type="text"
+                                                    />
+                                                </div>
+                                                <div className='divfield' style={{ opacity: 0 }} id="none">
+                                                    <label className="stringDados"> Disabled </label>
+                                                    <input className="inputCad" type="text" disabled />
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className='divrow'>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Status </label>
-                                                <select className='inputCad' value={status} onChange={handleStatusChange}>
-                                                    <option className='inputCad' value={status}> {status} </option>
-                                                    <option className='inputCad' value='EM ANALISE'> EM ANALISE </option>
-                                                    <option className='inputCad' value='APROVADO'> APROVADO </option>
-                                                    <option className='inputCad' value='REPROVADO'> REPROVADO </option>
-                                                    <option className='inputCad' value='EMPRESTIMO CONCEDIDO'> EMPRESTIMO CONCEDIDO </option>
-                                                    <option className='inputCad' value='PENDENCIA DE DOCUMENTACAO'> PENDENCIA DE DOCUMENTACAO </option>   
-                                                </select>
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Montante </label>
-                                                <input
-                                                    name="montante"
-                                                    defaultValue={`R$ ${montante}`}
-                                                    onChange={(event) => handleMontanteChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Valor Liberado </label>
-                                                <input
-                                                    name="valorliberado"
-                                                    defaultValue={`R$ ${valorLiberado}`}
-                                                    onChange={(event) => handleValorLiberadoChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className='divrow'>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Prazo </label>
-                                                <input
-                                                    name="prazo"
-                                                    defaultValue={prazo}
-                                                    onChange={(event) => handlePrazoChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Data de Abertura </label>
-                                                <InputMask
-                                                    mask="99/99/9999"
-                                                    placeholder="DD/MM/AAAA"
-                                                    type="text"
-                                                    className="inputCad"
-                                                    value={dataAbertura ? format(new Date(dataAbertura), 'dd/MM/yyyy') : ''}
-                                                    disabled
-                                                />
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Data da Primeira Parcela </label>
-                                                <InputMask
-                                                    mask="99/99/9999"
-                                                    placeholder="DD/MM/AAAA"
-                                                    type="text"
-                                                    className="inputCad"
-                                                    value={dataPrimeiraParcela ? format(new Date(dataPrimeiraParcela), 'dd/MM/yyyy') : ''}
-                                                    disabled
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className='divrow'>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Total de Juros </label>
-                                                <input
-                                                    name="totalJuros"
-                                                    defaultValue={`R$ ${totalJuros}`}
-                                                    onChange={(event) => handleTotalJurosChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Status do Contrato </label>
-                                                <select className='inputCad' value={statusContrato} onChange={HandleStatusContratoChange}>
-                                                    <option className='inputCad' value={statusContrato}> {statusContrato} </option>
-                                                    <option className='inputCad' value='Aberto'> Aberto </option>
-                                                    <option className='inputCad' value='Quitado'> Quitado </option>
-                                                </select>
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Motivo da reprovação </label>
-                                                <select className='inputCad' value={motivoReprovacao} onChange={HandleMotivoReprovacaoChange}>
-                                                    <option className='inputCad' value={motivoReprovacao} > {motivoReprovacao}  </option>
-                                                    <option className='inputCad' value='Selecione um motivo'> Restrição de bureaus de crédito  </option>
-                                                    <option className='inputCad' value='Restrição por divida ativa'> Restrição por divida ativa </option>
-                                                    <option className='inputCad' value='Restrição de cadin'> Restrição de cadin </option>
-                                                    <option className='inputCad' value='Restrição por ausência de documento'> Restrição por ausência de documento </option>
-                                                    <option className='inputCad' value='Restrição por renda insuficiente'> Restrição por renda insuficiente </option>
-                                                    <option className='inputCad' value='Restrição por score fora da política'> Restrição por score fora da política </option>
-                                                    <option className='inputCad' value='Restrição por processo criminal ou civil'> Restrição por processo criminal ou civil </option>
-                                                    <option className='inputCad' value='Empresas ligadas com restrição'> Empresas ligadas com restrição </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div className='divrow'>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Renda Média </label>
-                                                <input
-                                                    name="valorliberado"
-                                                    defaultValue={`R$ ${rendaMedia}`}
-                                                    onChange={(event) => setRendaMedia(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className='divrow'>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Observação do Cliente </label>
-                                                <textarea
-                                                    name="observacaoCliente"
-                                                    defaultValue={observacaoCliente}
-                                                    onChange={(event) => handleObservacaoClienteChange(event.target.value)}
-                                                    className="textAreaObsCliente"
-                                                    type="text"
-                                                />
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Observação do Analista </label>
-                                                <textarea
-                                                    name="observacaoAnalista"
-                                                    defaultValue={observacaoAnalista}
-                                                    onChange={(event) => handleObservacaoAnalistaChange(event.target.value)}
-                                                    className="textAreaObsAnalista"
-                                                    type="text"
-                                                />
-                                            </div>
-                                            <div className='divfield' style={{ opacity: 0 }} id="none">
-                                                <label className="stringDados"> Disabled </label>
-                                                <input className="inputCad" type="text" disabled />
-                                            </div>
-                                        </div>
+                                    </form>
+                                    <div className='divbotaoEnviarObservacoes' onClick={sendInfos}>
+                                        <button className='botaoEnviarObservacoes'>
+                                            <span className='stringEnviarDados'> Salvar </span>
+                                        </button>
                                     </div>
-                                </form>
-                                <div className='divbotaoEnviarObservacoes' onClick={sendInfos}>
-                                    <button className='botaoEnviarObservacoes'>
-                                        <span className='stringEnviarDados'> Salvar </span>
-                                    </button>
+                                    {isLoading && <Loading />}
                                 </div>
-                            {isLoading && <Loading/>}
-                            </div>
                             )}
                             {muda === 'InfPessoais' && (
                                 <ResetContainer>
-                                <ResetContent>
-                                    <FormContainer>
-                                      <FormRight>
-                                        <FormContent>
-                                          <h2>Cliente</h2>
-                                          <Form>
-                                            <FlexGroup>
-                                              <label htmlFor="name">
-                                                Nome *:
-                                                <Input
-                                                  type="text"
-                                                  name="name"
-                                                  id="name"
-                                                  placeholder="Digite seu nome"
-                                                />
-                                              </label>
-                                              <label htmlFor="email">
-                                                Email *:
-                                                <Input
-                                                  style={{ userSelect: "none" }}
-                                                  type="email"
-                                                  name="email"
-                                                  id="email"
-                                                  placeholder="Digite seu email"
-                                                />
-                                              </label>
-                                            </FlexGroup>
-                                            <FlexGroup>
-                                              <label htmlFor="cpf">
-                                                CPF *:
-                                                <Input
-                                                  type="text"
-                                                  name="cpf"
-                                                  id="cpf"
-                                                  placeholder="Digite seu cpf"
-                                                />
-                                              </label>
-                                              <label htmlFor="phoneNumber">
-                                                Telefone
-                                                <Input
-                                                  type="text"
-                                                  name="phoneNumber"
-                                                  id="phoneNumber"
-                                                  placeholder="Digite seu número de telefone"
-                                                />
-                                              </label>
-                                            </FlexGroup>
-                                            <LinksContainer>
-                                              <button type="submit">
-                                                Salvar
-                                              </button>
-                                            </LinksContainer>
-                                          </Form>
-                                        </FormContent>
-                                        <Divider/>
-                                        <FormContent>
-                                          <h2>Referência</h2>
-                                          <Form>
-                                            <FlexGroup>
-                                              <label htmlFor="name">
-                                                Nome completo
-                                                <Input
-                                                  type="text"
-                                                  name="name"
-                                                  id="name"
-                                                  placeholder="Digite seu nome"
-                                                />
-                                              </label>
-                                              <label htmlFor="email">
-                                                Email
-                                                <Input
-                                                  style={{ userSelect: "none" }}
-                                                  type="email"
-                                                  name="email"
-                                                  id="email"
-                                                  placeholder="Digite seu email"
-                                                />
-                                              </label>
-                                            </FlexGroup>
-                                            <FlexGroup>
-                                              <label htmlFor="cpf">
-                                                CPF
-                                                <Input
-                                                  type="text"
-                                                  name="cpf"
-                                                  id="cpf"
-                                                  placeholder="Digite seu cpf"
-                                                />
-                                              </label>
-                                              <label htmlFor="phoneNumber">
-                                                Telefone
-                                                <Input
-                                                  type="text"
-                                                  name="phoneNumber"
-                                                  id="phoneNumber"
-                                                  placeholder="Digite seu número de telefone"
-                                                />
-                                              </label>
-                                            </FlexGroup>
-                                            <LinksContainer>
-                                              <button type="submit">
-                                                Salvar
-                                              </button>
-                                            </LinksContainer>
-                                          </Form>
-                                        </FormContent>
-                                      </FormRight>
-                                      <FormContent>
-                                        <h2>Sócio</h2>
-                                        <Form>
-                                          <FlexGroup>
-                                            <label htmlFor="name">
-                                              Nome
-                                              <Input
-                                                type="text"
-                                                name="name"
-                                                id="name"
-                                                placeholder="Digite seu nome"
-                                              />
-                                            </label>
-                                            <label htmlFor="email">
-                                              Email
-                                              <Input
-                                                style={{ userSelect: "none" }}
-                                                type="email"
-                                                name="email"
-                                                id="email"
-                                                placeholder="Digite seu email"
-                                              />
-                                            </label>
-                                          </FlexGroup>
-                                          <FlexGroup>
-                                            <label htmlFor="cpf">
-                                              CPF
-                                              <Input
-                                                type="text"
-                                                name="cpf"
-                                                id="cpf"
-                                                placeholder="Digite seu cpf"
-                                              />
-                                            </label>
-                                            <label htmlFor="phoneNumber">
-                                              Telefone
-                                              <Input
-                                                type="text"
-                                                name="phoneNumber"
-                                                id="phoneNumber"
-                                                placeholder="Digite seu número de telefone"
-                                              />
-                                            </label>
-                                          </FlexGroup>
-                                          <LinksContainer>
-                                            <button type="submit">
-                                              Salvar
-                                            </button>
-                                          </LinksContainer>
-                                        </Form>
-                                      </FormContent>
-                                    </FormContainer>
-                                </ResetContent>
-                              </ResetContainer>
+                                    <ResetContent>
+                                        <FormContainer>
+                                            <FormRight>
+                                                <FormContent>
+                                                    <h2>Cliente</h2>
+                                                    <Form>
+                                                        <FlexGroup>
+                                                            <label htmlFor="name">
+                                                                Nome *:
+                                                                <Input
+                                                                    type="text"
+                                                                    name="name"
+                                                                    id="name"
+                                                                    placeholder="Digite seu nome"
+                                                                />
+                                                            </label>
+                                                            <label htmlFor="email">
+                                                                Email *:
+                                                                <Input
+                                                                    style={{ userSelect: "none" }}
+                                                                    type="email"
+                                                                    name="email"
+                                                                    id="email"
+                                                                    placeholder="Digite seu email"
+                                                                />
+                                                            </label>
+                                                        </FlexGroup>
+                                                        <FlexGroup>
+                                                            <label htmlFor="cpf">
+                                                                CPF *:
+                                                                <Input
+                                                                    type="text"
+                                                                    name="cpf"
+                                                                    id="cpf"
+                                                                    placeholder="Digite seu cpf"
+                                                                />
+                                                            </label>
+                                                            <label htmlFor="phoneNumber">
+                                                                Telefone
+                                                                <Input
+                                                                    type="text"
+                                                                    name="phoneNumber"
+                                                                    id="phoneNumber"
+                                                                    placeholder="Digite seu número de telefone"
+                                                                />
+                                                            </label>
+                                                        </FlexGroup>
+                                                        <LinksContainer>
+                                                            <button type="submit">
+                                                                Salvar
+                                                            </button>
+                                                        </LinksContainer>
+                                                    </Form>
+                                                </FormContent>
+                                                <Divider />
+                                                <FormContent>
+                                                    <h2>Referência</h2>
+                                                    <Form>
+                                                        <FlexGroup>
+                                                            <label htmlFor="name">
+                                                                Nome completo
+                                                                <Input
+                                                                    type="text"
+                                                                    name="name"
+                                                                    id="name"
+                                                                    placeholder="Digite seu nome"
+                                                                />
+                                                            </label>
+                                                            <label htmlFor="email">
+                                                                Email
+                                                                <Input
+                                                                    style={{ userSelect: "none" }}
+                                                                    type="email"
+                                                                    name="email"
+                                                                    id="email"
+                                                                    placeholder="Digite seu email"
+                                                                />
+                                                            </label>
+                                                        </FlexGroup>
+                                                        <FlexGroup>
+                                                            <label htmlFor="cpf">
+                                                                CPF
+                                                                <Input
+                                                                    type="text"
+                                                                    name="cpf"
+                                                                    id="cpf"
+                                                                    placeholder="Digite seu cpf"
+                                                                />
+                                                            </label>
+                                                            <label htmlFor="phoneNumber">
+                                                                Telefone
+                                                                <Input
+                                                                    type="text"
+                                                                    name="phoneNumber"
+                                                                    id="phoneNumber"
+                                                                    placeholder="Digite seu número de telefone"
+                                                                />
+                                                            </label>
+                                                        </FlexGroup>
+                                                        <LinksContainer>
+                                                            <button type="submit">
+                                                                Salvar
+                                                            </button>
+                                                        </LinksContainer>
+                                                    </Form>
+                                                </FormContent>
+                                            </FormRight>
+                                            <FormContent>
+                                                <h2>Sócio</h2>
+                                                <Form>
+                                                    <FlexGroup>
+                                                        <label htmlFor="name">
+                                                            Nome
+                                                            <Input
+                                                                type="text"
+                                                                name="name"
+                                                                id="name"
+                                                                placeholder="Digite seu nome"
+                                                            />
+                                                        </label>
+                                                        <label htmlFor="email">
+                                                            Email
+                                                            <Input
+                                                                style={{ userSelect: "none" }}
+                                                                type="email"
+                                                                name="email"
+                                                                id="email"
+                                                                placeholder="Digite seu email"
+                                                            />
+                                                        </label>
+                                                    </FlexGroup>
+                                                    <FlexGroup>
+                                                        <label htmlFor="cpf">
+                                                            CPF
+                                                            <Input
+                                                                type="text"
+                                                                name="cpf"
+                                                                id="cpf"
+                                                                placeholder="Digite seu cpf"
+                                                            />
+                                                        </label>
+                                                        <label htmlFor="phoneNumber">
+                                                            Telefone
+                                                            <Input
+                                                                type="text"
+                                                                name="phoneNumber"
+                                                                id="phoneNumber"
+                                                                placeholder="Digite seu número de telefone"
+                                                            />
+                                                        </label>
+                                                    </FlexGroup>
+                                                    <LinksContainer>
+                                                        <button type="submit">
+                                                            Salvar
+                                                        </button>
+                                                    </LinksContainer>
+                                                </Form>
+                                            </FormContent>
+                                        </FormContainer>
+                                    </ResetContent>
+                                </ResetContainer>
                             )}
                             {muda === 'bureaus' && (
                                 <div>
-                                <form className='formularios'>
-                                    <br />
-                                    <div className='fields'>
-                                        <div className='divrow'>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Score </label>
-                                                <input
-                                                    name="score"
-                                                    defaultValue={score}
-                                                    onChange={(event) => handleScoreChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Risco </label>
-                                                <input
-                                                    name="risco"
-                                                    defaultValue={risco}
-                                                    onChange={(event) => handleRiscoChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Quantidade de titulos protestados </label>
-                                                <input
-                                                    name="numTitulosProtestados"
-                                                    defaultValue={numTitulosProtestados}
-                                                    onChange={(event) => handleQuantidadeTituloProtestadosChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className='divrow'>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Valor dos titulos protestados </label>
-                                                <input
-                                                    name="valortitulosprotestados"
-                                                    defaultValue={`R$ ${valorTitulosProtestados}`}
-                                                    onChange={(event) => handleValorTitulosProtestadosChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Refins </label>
-                                                <input
-                                                    name="numRefins"
-                                                    defaultValue={numRefins}
-                                                    onChange={(event) => handleRefinsChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Cadins </label>
-                                                <input
-                                                    name="valorCadins"
-                                                    defaultValue={`R$ ${valorCadins}`}
-                                                    onChange={(event) => handleValorCadinsChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className='divrow'>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Quantidade de cheques devolvidos </label>
-                                                <input
-                                                    name="numChequesDevolvidos"
-                                                    defaultValue={numChequesDevolvidos}
-                                                    onChange={(event) => handleQuantidadeChequesDevolvidosChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Valor dos cheques devolvidos </label>
-                                                <input
-                                                    name="valorCadins"
-                                                    defaultValue={`R$ ${valorChequesDevolvidos}`}
-                                                    onChange={(event) => handleValorChequesDevolvidosChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Quantidade de Pefin </label>
-                                                <input
-                                                    name="numPefins"
-                                                    defaultValue={numPefins}
-                                                    onChange={(event) => handleQuantidadePefinsChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className='divrow'>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Valor de Pefin </label>
-                                                <input
-                                                    name="valorPefins"
-                                                    defaultValue={`R$ ${valorPefins}`}
-                                                    onChange={(event) => handleValorPefinsChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Empresas não Informadas </label>
-                                                <input
-                                                    name="empresasNaoInformadas"
-                                                    defaultValue={empresasNaoInformadas}
-                                                    onChange={(event) => handleEmpresasNaoInformadasChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                            <div className='divfield' style={{ opacity: 0 }} id="none">
-                                                <label className="stringDados"> Disabled </label>
-                                                <input className="inputCad" type="text" disabled />
-                                            </div>
-                                        </div>
+                                    <form className='formularios'>
                                         <br />
-                                        <br />
-                                        <text className='textJuridico'> Jurídico </text>
-                                        <div className='divrow'>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Quantidade de processos </label>
-                                                <input
-                                                    name="numProcessos"
-                                                    defaultValue={numProcessos}
-                                                    onChange={(event) => handleQuantidadeProcessosChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Valor dos processos </label>
-                                                <input
-                                                    name="valorProcessos"
-                                                    defaultValue={`R$ ${valorProcessos}`}
-                                                    onChange={(event) => handleValorProcessosChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> UF Processos </label>
-                                                <input
-                                                    name="numUfProcessos"
-                                                    defaultValue={numUfProcessos}
-                                                    onChange={(event) => handleNumUfProcessosChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className='divrow'>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Divida Ativa </label>
-                                                <input
-                                                    name="dividaAtiva"
-                                                    defaultValue={`R$ ${dividaAtiva}`}
-                                                    onChange={(event) => handleDividaAtivaChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> PEP </label>
-                                                <div className='checkBox'>
-                                                    <label className='labelCheckBox'>
-                                                        <input
-                                                            type="checkbox"
-                                                            checked={isChecked}
-                                                            onChange={handleCheckboxChange}
-                                                        />
-                                                    </label>
+                                        <div className='fields'>
+                                            <div className='divrow'>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Score </label>
+                                                    <input
+                                                        name="score"
+                                                        defaultValue={score}
+                                                        onChange={(event) => handleScoreChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Risco </label>
+                                                    <input
+                                                        name="risco"
+                                                        defaultValue={risco}
+                                                        onChange={(event) => handleRiscoChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Quantidade de titulos protestados </label>
+                                                    <input
+                                                        name="numTitulosProtestados"
+                                                        defaultValue={numTitulosProtestados}
+                                                        onChange={(event) => handleQuantidadeTituloProtestadosChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
                                                 </div>
                                             </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> ISS </label>
-                                                <input
-                                                    name="valorIss"
-                                                    defaultValue={`R$ ${valorIss}`}
-                                                    onChange={(event) => handleValorISSChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
+                                            <div className='divrow'>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Valor dos titulos protestados </label>
+                                                    <input
+                                                        name="valortitulosprotestados"
+                                                        defaultValue={`R$ ${valorTitulosProtestados}`}
+                                                        onChange={(event) => handleValorTitulosProtestadosChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Refins </label>
+                                                    <input
+                                                        name="numRefins"
+                                                        defaultValue={numRefins}
+                                                        onChange={(event) => handleRefinsChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Cadins </label>
+                                                    <input
+                                                        name="valorCadins"
+                                                        defaultValue={`R$ ${valorCadins}`}
+                                                        onChange={(event) => handleValorCadinsChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className='divrow'>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Quantidade de cheques devolvidos </label>
+                                                    <input
+                                                        name="numChequesDevolvidos"
+                                                        defaultValue={numChequesDevolvidos}
+                                                        onChange={(event) => handleQuantidadeChequesDevolvidosChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Valor dos cheques devolvidos </label>
+                                                    <input
+                                                        name="valorCadins"
+                                                        defaultValue={`R$ ${valorChequesDevolvidos}`}
+                                                        onChange={(event) => handleValorChequesDevolvidosChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Quantidade de Pefin </label>
+                                                    <input
+                                                        name="numPefins"
+                                                        defaultValue={numPefins}
+                                                        onChange={(event) => handleQuantidadePefinsChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className='divrow'>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Valor de Pefin </label>
+                                                    <input
+                                                        name="valorPefins"
+                                                        defaultValue={`R$ ${valorPefins}`}
+                                                        onChange={(event) => handleValorPefinsChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Empresas não Informadas </label>
+                                                    <input
+                                                        name="empresasNaoInformadas"
+                                                        defaultValue={empresasNaoInformadas}
+                                                        onChange={(event) => handleEmpresasNaoInformadasChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield' style={{ opacity: 0 }} id="none">
+                                                    <label className="stringDados"> Disabled </label>
+                                                    <input className="inputCad" type="text" disabled />
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <br />
+                                            <text className='textJuridico'> Jurídico </text>
+                                            <div className='divrow'>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Quantidade de processos </label>
+                                                    <input
+                                                        name="numProcessos"
+                                                        defaultValue={numProcessos}
+                                                        onChange={(event) => handleQuantidadeProcessosChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Valor dos processos </label>
+                                                    <input
+                                                        name="valorProcessos"
+                                                        defaultValue={`R$ ${valorProcessos}`}
+                                                        onChange={(event) => handleValorProcessosChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> UF Processos </label>
+                                                    <input
+                                                        name="numUfProcessos"
+                                                        defaultValue={numUfProcessos}
+                                                        onChange={(event) => handleNumUfProcessosChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className='divrow'>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Divida Ativa </label>
+                                                    <input
+                                                        name="dividaAtiva"
+                                                        defaultValue={`R$ ${dividaAtiva}`}
+                                                        onChange={(event) => handleDividaAtivaChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> PEP </label>
+                                                    <div className='checkBox'>
+                                                        <label className='labelCheckBox'>
+                                                            <input
+                                                                type="checkbox"
+                                                                checked={isChecked}
+                                                                onChange={handleCheckboxChange}
+                                                            />
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> ISS </label>
+                                                    <input
+                                                        name="valorIss"
+                                                        defaultValue={`R$ ${valorIss}`}
+                                                        onChange={(event) => handleValorISSChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
+                                    </form>
+                                    <div className='divbotaoEnviarObservacoes' onClick={sendBureausCredito}>
+                                        <button className='botaoEnviarObservacoes'>
+                                            <span className='stringEnviarDados'> Salvar </span>
+                                        </button>
                                     </div>
-                                </form>
-                                <div className='divbotaoEnviarObservacoes' onClick={sendBureausCredito}>
-                                    <button className='botaoEnviarObservacoes'>
-                                        <span className='stringEnviarDados'> Salvar </span>
-                                    </button>
+                                    {isLoading && <Loading />}
                                 </div>
-                                {isLoading && <Loading/>}
-                            </div>
                             )}
                             {muda === 'bacen' && (
                                 <div>
-                                <div className='divtextodataBase'>
-                                    <text className='textodataBase'> Vencer - Total </text>
-                                </div>
-                                <div className='caixaTabelaPropostas'>
+                                    <div className='divtextodataBase'>
+                                        <text className='textodataBase'> Vencer - Total </text>
+                                    </div>
+                                    <div className='caixaTabelaPropostas'>
+                                        <br />
+                                        <table className='tabelaPropostasBacen'>
+                                            <thead>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <th className='colunasTabelaPropostasBacen'> Total </th>
+                                                    <th className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="vencerValorTotal"
+                                                            defaultValue={`R$ ${vencerValorTotal}`}
+                                                            onChange={(event) => handleVencerValorTotalChange(event.target.value)}
+                                                            className="thinputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> Até 30 dias e vencidos até 14 dias</td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="vencerAte30DiasvencidosAte14Dias"
+                                                            defaultValue={`R$ ${vencerAte30DiasvencidosAte14Dias}`}
+                                                            onChange={(event) => handleVencerAte30DiasvencidosAte14DiasTotalChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> 31 a 60 dias</td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="vencer3160Dias"
+                                                            defaultValue={`R$ ${vencer3160Dias}`}
+                                                            onChange={(event) => handleVencer3160DiasChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> 61 a 90 dias</td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="vencer6190Dias"
+                                                            defaultValue={`R$ ${vencer6190Dias}`}
+                                                            onChange={(event) => handleVencer6190DiasChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> 91 a 180 dias</td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="limitesCreditoVencimentoAte360Dias"
+                                                            defaultValue={`R$ ${vencer91180Dias}`}
+                                                            onChange={(event) => handleVencer91180DiasChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> 181 a 360 dias</td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="limitesCreditoVencimentoAte360Dias"
+                                                            defaultValue={`R$ ${vencer181360Dias}`}
+                                                            onChange={(event) => handleVencer181360DiasChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> Acima de 360 dias </td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="limitesCreditoVencimentoAte360Dias"
+                                                            defaultValue={`R$ ${vencerAcima360Dias}`}
+                                                            onChange={(event) => handleVencerAcima360DiasChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> Indeterminado </td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="vencerIndeterminado"
+                                                            defaultValue={`R$ ${vencerIndeterminado}`}
+                                                            onChange={(event) => handleVencerIndeterminadoChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div className='divtextodataBase'>
+                                        <text className='textodataBase'> Vencido - Total </text>
+                                    </div>
+                                    <div className='caixaTabelaPropostas'>
+                                        <br />
+                                        <table className='tabelaPropostasBacen'>
+                                            <thead>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <th className='colunasTabelaPropostasBacen'> Total  </th>
+                                                    <th className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="limitesCreditoValorTotal"
+                                                            defaultValue={`R$ ${vencidoTotal}`}
+                                                            onChange={(event) => handleVencidoTotalChange(event.target.value)}
+                                                            className="thinputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> 15 a 30 dias </td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="vencido1530Dias"
+                                                            defaultValue={`R$ ${vencido1530Dias}`}
+                                                            onChange={(event) => handleVencido1530DiasChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> 31 a 60 dias</td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="vencido3160Dias"
+                                                            defaultValue={`R$ ${vencido3160Dias}`}
+                                                            onChange={(event) => handleVencido3160DiasChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> 61 a 90 dias</td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="vencido6190Dias"
+                                                            defaultValue={`R$ ${vencido6190Dias}`}
+                                                            onChange={(event) => handleVencido6190DiasChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> 91 a 180 dias</td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="vencido91180Dias"
+                                                            defaultValue={`R$ ${vencido91180Dias}`}
+                                                            onChange={(event) => handleVencido91180DiasChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> 181 a 360 dias</td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="vencido181360Dias"
+                                                            defaultValue={`R$ ${vencido181360Dias}`}
+                                                            onChange={(event) => handleVencido181360DiasChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> Acima de 360 dias </td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="vencidoAcima360Dias"
+                                                            defaultValue={`R$ ${vencidoAcima360Dias}`}
+                                                            onChange={(event) => handleVencidoAcima360DiasChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div className='divtextodataBase'>
+                                        <text className='textodataBase'> Prejuízo - Total </text>
+                                    </div>
+                                    <div className='caixaTabelaPropostas'>
+                                        <br />
+                                        <table className='tabelaPropostasBacen'>
+                                            <thead>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <th className='colunasTabelaPropostasBacen'> Total </th>
+                                                    <th className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="prejuizoTotal"
+                                                            defaultValue={`R$ ${prejuizoTotal}`}
+                                                            onChange={(event) => handlePrejuizoTotalChange(event.target.value)}
+                                                            className="thinputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> Até 12 meses </td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="prejuizoAte12Meses"
+                                                            defaultValue={`R$ ${prejuizoAte12Meses}`}
+                                                            onChange={(event) => handlePrejuizoAte12MesesChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> Acima de 12 meses </td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="prejuizoAcima12Meses"
+                                                            defaultValue={`R$ ${prejuizoAcima12Meses}`}
+                                                            onChange={(event) => handlePrejuizoAcima12MesesChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div className='divtextodataBase'>
+                                        <text className='textodataBase'> Coobrigação - Total </text>
+                                    </div>
+                                    <div className='caixaTabelaPropostas'>
+                                        <br />
+                                        <table className='tabelaPropostasBacen'>
+                                            <thead>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <th className='colunasTabelaPropostasBacen'> Total </th>
+                                                    <th className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="prejuizoTcoobrigacaoTotalotal"
+                                                            defaultValue={`R$ ${coobrigacaoTotal}`}
+                                                            onChange={(event) => handleCoobrigacaoTotalChange(event.target.value)}
+                                                            className="thinputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> Coobrigação Assumida </td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="coobrigacaoAssumida"
+                                                            defaultValue={`R$ ${coobrigacaoAssumida}`}
+                                                            onChange={(event) => handleCoobrigacaoAssumidaChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> Coobrigação Prestadas </td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="coobrigacaoPrestadas"
+                                                            defaultValue={`R$ ${coobrigacaoPrestadas}`}
+                                                            onChange={(event) => handleCoobrigacaoPrestadasChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div className='divtextodataBase'>
+                                        <text className='textodataBase'> Créditos a Liberar - Total </text>
+                                    </div>
+                                    <div className='caixaTabelaPropostas'>
+                                        <br />
+                                        <table className='tabelaPropostasBacen'>
+                                            <thead>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <th className='colunasTabelaPropostasBacen'> Total </th>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="creditosLiberarTotal"
+                                                            defaultValue={`R$ ${creditosLiberarTotal}`}
+                                                            onChange={(event) => handleCreditosLiberarTotalChange(event.target.value)}
+                                                            className="thinputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> Créditos a Liberar até 360 dias </td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="creditosLiberarAte360Dias"
+                                                            defaultValue={`R$ ${creditosLiberarAte360Dias}`}
+                                                            onChange={(event) => handleCreditosLiberarAte360DiasChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> Créditos a Liberar acima de 360 dias </td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="creditosLiberarAcima360Dias"
+                                                            defaultValue={`R$ ${creditosLiberarAcima360Dias}`}
+                                                            onChange={(event) => handleCreditosLiberarAcima360DiasChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div className='divtextodataBase'>
+                                        <text className='textodataBase'> Limites de Crédito - Total </text>
+                                    </div>
+                                    <div className='caixaTabelaPropostas'>
+                                        <br />
+                                        <table className='tabelaPropostasBacen'>
+                                            <thead>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <th className='colunasTabelaPropostasBacen'> Total </th>
+                                                    <th className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="limitesCreditoValorTotal"
+                                                            defaultValue={`R$ ${limitesCreditoValorTotal}`}
+                                                            onChange={(event) => handleLimitesCreditoValorTotalChange(event.target.value)}
+                                                            className="thinputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> Limite de Crédito com vencimento até 360 dias </td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        {/* Formate o valor usando CurrencyInput */}
+                                                        <input
+                                                            name="limitesCreditoVencimentoAte360Dias"
+                                                            placeholder={`R$ ${limitesCreditoVencimentoAte360Dias}`}
+                                                            onChange={(event) => handleLimitesCreditoVencimentoAte360DiasChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                                <tr className='linhasTabelaPropostasBacen'>
+                                                    <td className='colunasTabelaPropostasBacen'> Limites de Crédito com vencimento acima de 360 dias </td>
+                                                    <td className='colunasTabelaPropostasBacen'>
+                                                        <input
+                                                            name="limitesCreditoVencimentoAcima360Dias"
+                                                            defaultValue={`R$ ${limitesCreditoVencimentoAcima360Dias}`}
+                                                            onChange={(event) => handleLimitesCreditoVencimentoAcima360DiasChange(event.target.value)}
+                                                            className="inputColunasTabelaPropostasBacen"
+                                                        />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div className='divbotaoEnviarObservacoes' onClick={sendBacen}>
+                                        <button className='botaoEnviarObservacoes'>
+                                            <span className='stringEnviarDados'> Salvar </span>
+                                        </button>
+                                    </div>
                                     <br />
-                                    <table className='tabelaPropostasBacen'>
-                                        <thead>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <th className='colunasTabelaPropostasBacen'> Total </th>
-                                                <th className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="vencerValorTotal"
-                                                        defaultValue={`R$ ${vencerValorTotal}`}
-                                                        onChange={(event) => handleVencerValorTotalChange(event.target.value)}
-                                                        className="thinputColunasTabelaPropostasBacen"
-                                                    />
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> Até 30 dias e vencidos até 14 dias</td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="vencerAte30DiasvencidosAte14Dias"
-                                                        defaultValue={`R$ ${vencerAte30DiasvencidosAte14Dias}`}
-                                                        onChange={(event) => handleVencerAte30DiasvencidosAte14DiasTotalChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> 31 a 60 dias</td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="vencer3160Dias"
-                                                        defaultValue={`R$ ${vencer3160Dias}`}
-                                                        onChange={(event) => handleVencer3160DiasChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> 61 a 90 dias</td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="vencer6190Dias"
-                                                        defaultValue={`R$ ${vencer6190Dias}`}
-                                                        onChange={(event) => handleVencer6190DiasChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> 91 a 180 dias</td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="limitesCreditoVencimentoAte360Dias"
-                                                        defaultValue={`R$ ${vencer91180Dias}`}
-                                                        onChange={(event) => handleVencer91180DiasChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> 181 a 360 dias</td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="limitesCreditoVencimentoAte360Dias"
-                                                        defaultValue={`R$ ${vencer181360Dias}`}
-                                                        onChange={(event) => handleVencer181360DiasChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> Acima de 360 dias </td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="limitesCreditoVencimentoAte360Dias"
-                                                        defaultValue={`R$ ${vencerAcima360Dias}`}
-                                                        onChange={(event) => handleVencerAcima360DiasChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> Indeterminado </td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="vencerIndeterminado"
-                                                        defaultValue={`R$ ${vencerIndeterminado}`}
-                                                        onChange={(event) => handleVencerIndeterminadoChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    {isLoading && <Loading />}
                                 </div>
-                                <div className='divtextodataBase'>
-                                    <text className='textodataBase'> Vencido - Total </text>
-                                </div>
-                                <div className='caixaTabelaPropostas'>
-                                    <br />
-                                    <table className='tabelaPropostasBacen'>
-                                        <thead>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <th className='colunasTabelaPropostasBacen'> Total  </th>
-                                                <th className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="limitesCreditoValorTotal"
-                                                        defaultValue={`R$ ${vencidoTotal}`}
-                                                        onChange={(event) => handleVencidoTotalChange(event.target.value)}
-                                                        className="thinputColunasTabelaPropostasBacen"
-                                                    />
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> 15 a 30 dias </td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="vencido1530Dias"
-                                                        defaultValue={`R$ ${vencido1530Dias}`}
-                                                        onChange={(event) => handleVencido1530DiasChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> 31 a 60 dias</td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="vencido3160Dias"
-                                                        defaultValue={`R$ ${vencido3160Dias}`}
-                                                        onChange={(event) => handleVencido3160DiasChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> 61 a 90 dias</td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="vencido6190Dias"
-                                                        defaultValue={`R$ ${vencido6190Dias}`}
-                                                        onChange={(event) => handleVencido6190DiasChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> 91 a 180 dias</td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="vencido91180Dias"
-                                                        defaultValue={`R$ ${vencido91180Dias}`}
-                                                        onChange={(event) => handleVencido91180DiasChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> 181 a 360 dias</td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="vencido181360Dias"
-                                                        defaultValue={`R$ ${vencido181360Dias}`}
-                                                        onChange={(event) => handleVencido181360DiasChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> Acima de 360 dias </td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="vencidoAcima360Dias"
-                                                        defaultValue={`R$ ${vencidoAcima360Dias}`}
-                                                        onChange={(event) => handleVencidoAcima360DiasChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className='divtextodataBase'>
-                                    <text className='textodataBase'> Prejuízo - Total </text>
-                                </div>
-                                <div className='caixaTabelaPropostas'>
-                                    <br />
-                                    <table className='tabelaPropostasBacen'>
-                                        <thead>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <th className='colunasTabelaPropostasBacen'> Total </th>
-                                                <th className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="prejuizoTotal"
-                                                        defaultValue={`R$ ${prejuizoTotal}`}
-                                                        onChange={(event) => handlePrejuizoTotalChange(event.target.value)}
-                                                        className="thinputColunasTabelaPropostasBacen"
-                                                    />
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> Até 12 meses </td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="prejuizoAte12Meses"
-                                                        defaultValue={`R$ ${prejuizoAte12Meses}`}
-                                                        onChange={(event) => handlePrejuizoAte12MesesChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> Acima de 12 meses </td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="prejuizoAcima12Meses"
-                                                        defaultValue={`R$ ${prejuizoAcima12Meses}`}
-                                                        onChange={(event) => handlePrejuizoAcima12MesesChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className='divtextodataBase'>
-                                    <text className='textodataBase'> Coobrigação - Total </text>
-                                </div>
-                                <div className='caixaTabelaPropostas'>
-                                    <br />
-                                    <table className='tabelaPropostasBacen'>
-                                        <thead>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <th className='colunasTabelaPropostasBacen'> Total </th>
-                                                <th className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="prejuizoTcoobrigacaoTotalotal"
-                                                        defaultValue={`R$ ${coobrigacaoTotal}`}
-                                                        onChange={(event) => handleCoobrigacaoTotalChange(event.target.value)}
-                                                        className="thinputColunasTabelaPropostasBacen"
-                                                    />
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> Coobrigação Assumida </td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="coobrigacaoAssumida"
-                                                        defaultValue={`R$ ${coobrigacaoAssumida}`}
-                                                        onChange={(event) => handleCoobrigacaoAssumidaChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> Coobrigação Prestadas </td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="coobrigacaoPrestadas"
-                                                        defaultValue={`R$ ${coobrigacaoPrestadas}`}
-                                                        onChange={(event) => handleCoobrigacaoPrestadasChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className='divtextodataBase'>
-                                    <text className='textodataBase'> Créditos a Liberar - Total </text>
-                                </div>
-                                <div className='caixaTabelaPropostas'>
-                                    <br />
-                                    <table className='tabelaPropostasBacen'>
-                                        <thead>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <th className='colunasTabelaPropostasBacen'> Total </th>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="creditosLiberarTotal"
-                                                        defaultValue={`R$ ${creditosLiberarTotal}`}
-                                                        onChange={(event) => handleCreditosLiberarTotalChange(event.target.value)}
-                                                        className="thinputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> Créditos a Liberar até 360 dias </td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="creditosLiberarAte360Dias"
-                                                        defaultValue={`R$ ${creditosLiberarAte360Dias}`}
-                                                        onChange={(event) => handleCreditosLiberarAte360DiasChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> Créditos a Liberar acima de 360 dias </td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="creditosLiberarAcima360Dias"
-                                                        defaultValue={`R$ ${creditosLiberarAcima360Dias}`}
-                                                        onChange={(event) => handleCreditosLiberarAcima360DiasChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className='divtextodataBase'>
-                                    <text className='textodataBase'> Limites de Crédito - Total </text>
-                                </div>
-                                <div className='caixaTabelaPropostas'>
-                                    <br />
-                                    <table className='tabelaPropostasBacen'>
-                                        <thead>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <th className='colunasTabelaPropostasBacen'> Total </th>
-                                                <th className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="limitesCreditoValorTotal"
-                                                        defaultValue={`R$ ${limitesCreditoValorTotal}`}
-                                                        onChange={(event) => handleLimitesCreditoValorTotalChange(event.target.value)}
-                                                        className="thinputColunasTabelaPropostasBacen"
-                                                    />
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> Limite de Crédito com vencimento até 360 dias </td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    {/* Formate o valor usando CurrencyInput */}
-                                                    <input
-                                                        name="limitesCreditoVencimentoAte360Dias"
-                                                        placeholder={`R$ ${limitesCreditoVencimentoAte360Dias}`}
-                                                        onChange={(event) => handleLimitesCreditoVencimentoAte360DiasChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr className='linhasTabelaPropostasBacen'>
-                                                <td className='colunasTabelaPropostasBacen'> Limites de Crédito com vencimento acima de 360 dias </td>
-                                                <td className='colunasTabelaPropostasBacen'>
-                                                    <input
-                                                        name="limitesCreditoVencimentoAcima360Dias"
-                                                        defaultValue={`R$ ${limitesCreditoVencimentoAcima360Dias}`}
-                                                        onChange={(event) => handleLimitesCreditoVencimentoAcima360DiasChange(event.target.value)}
-                                                        className="inputColunasTabelaPropostasBacen"
-                                                    />
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className='divbotaoEnviarObservacoes' onClick={sendBacen}>
-                                    <button className='botaoEnviarObservacoes'>
-                                        <span className='stringEnviarDados'> Salvar </span>
-                                    </button>
-                                </div>
-                                <br />
-                                {isLoading && <Loading/>}
-                            </div>
                             )}
                             {muda === 'allsdata' && (
                                 <div>
-                                <form className='formularios'>
-                                    <br />
-                                    <div className='fields'>
-                                        <div className='divrow'>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Quantidade de pendências financeiras </label>
-                                                <input
-                                                    name="NumPendenciasFinanceirasAlls"
-                                                    defaultValue={numPendenciasFinanceirasAlls}
-                                                    onChange={(event) => handleNumPendenciasFinanceirasAllsChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
+                                    <form className='formularios'>
+                                        <br />
+                                        <div className='fields'>
+                                            <div className='divrow'>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Quantidade de pendências financeiras </label>
+                                                    <input
+                                                        name="NumPendenciasFinanceirasAlls"
+                                                        defaultValue={numPendenciasFinanceirasAlls}
+                                                        onChange={(event) => handleNumPendenciasFinanceirasAllsChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Valor das pendências financeiras </label>
+                                                    <input
+                                                        name="ValorPendenciasFinanceirasAlls"
+                                                        defaultValue={`R$ ${valorPendenciasFinanceirasAlls}`}
+                                                        onChange={(event) => handleValorPendenciasFinanceirasAllsChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Quantidade de recuperação </label>
+                                                    <input
+                                                        name="NumRecuperacoesAlls"
+                                                        defaultValue={numRecuperacoesAlls}
+                                                        onChange={(event) => handleNumRecuperacoesAllsChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
                                             </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Valor das pendências financeiras </label>
-                                                <input
-                                                    name="ValorPendenciasFinanceirasAlls"
-                                                    defaultValue={`R$ ${valorPendenciasFinanceirasAlls}`}
-                                                    onChange={(event) => handleValorPendenciasFinanceirasAllsChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
+                                            <div className='divrow'>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Valor da Recuperação </label>
+                                                    <input
+                                                        name="valorRecuperacoesAlls"
+                                                        defaultValue={`R$ ${valorRecuperacoesAlls}`}
+                                                        onChange={(event) => handleValorRecuperacoesAllsChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Quantidade de cheque sem fundo </label>
+                                                    <input
+                                                        name="NumChequeSemFundoAlls"
+                                                        defaultValue={numChequeSemFundoAlls}
+                                                        onChange={(event) => handleNumChequeSemFundoAllsChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Quantidade de protestos </label>
+                                                    <input
+                                                        name="NumProtestosAlls"
+                                                        defaultValue={numProtestosAlls}
+                                                        onChange={(event) => handleNumProtestosAllsChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
                                             </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Quantidade de recuperação </label>
-                                                <input
-                                                    name="NumRecuperacoesAlls"
-                                                    defaultValue={numRecuperacoesAlls}
-                                                    onChange={(event) => handleNumRecuperacoesAllsChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
+                                            <div className='divrow'>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Valor dos protestos </label>
+                                                    <input
+                                                        name="valorProtestosAlls"
+                                                        defaultValue={`R$ ${valorProtestosAlls}`}
+                                                        onChange={(event) => handleValorProtestosAllsChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Limite Sugerido </label>
+                                                    <input
+                                                        name="limiteSugeridoAlls"
+                                                        defaultValue={`R$ ${limiteSugeridoAlls}`}
+                                                        onChange={(event) => handleLimiteSugeridoAllsChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Quantidade de restrições </label>
+                                                    <input
+                                                        name="NumRestricoesAlls"
+                                                        defaultValue={numRestricoesAlls}
+                                                        onChange={(event) => handleNumRestricoesAllsChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className='divrow'>
+                                                <div className='divfield'>
+                                                    <label className="stringDados"> Valor das restrições </label>
+                                                    <input
+                                                        name="valorRestricoesAlls"
+                                                        defaultValue={`R$ ${valorRestricoesAlls}`}
+                                                        onChange={(event) => handleValorRestricoesAllsChange(event.target.value)}
+                                                        className="inputCad"
+                                                    />
+                                                </div>
+                                                <div className='divfield' style={{ opacity: 0 }} id="none">
+                                                    <label className="stringDados"> Disabled </label>
+                                                    <input className="inputCad" type="text" disabled />
+                                                </div>
+                                                <div className='divfield' style={{ opacity: 0 }} id="none">
+                                                    <label className="stringDados"> Disabled </label>
+                                                    <input className="inputCad" type="number" disabled />
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className='divrow'>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Valor da Recuperação </label>
-                                                <input
-                                                    name="valorRecuperacoesAlls"
-                                                    defaultValue={`R$ ${valorRecuperacoesAlls}`}
-                                                    onChange={(event) => handleValorRecuperacoesAllsChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Quantidade de cheque sem fundo </label>
-                                                <input
-                                                    name="NumChequeSemFundoAlls"
-                                                    defaultValue={numChequeSemFundoAlls}
-                                                    onChange={(event) => handleNumChequeSemFundoAllsChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Quantidade de protestos </label>
-                                                <input
-                                                    name="NumProtestosAlls"
-                                                    defaultValue={numProtestosAlls}
-                                                    onChange={(event) => handleNumProtestosAllsChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className='divrow'>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Valor dos protestos </label>
-                                                <input
-                                                    name="valorProtestosAlls"
-                                                    defaultValue={`R$ ${valorProtestosAlls}`}
-                                                    onChange={(event) => handleValorProtestosAllsChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Limite Sugerido </label>
-                                                <input
-                                                    name="limiteSugeridoAlls"
-                                                    defaultValue={`R$ ${limiteSugeridoAlls}`}
-                                                    onChange={(event) => handleLimiteSugeridoAllsChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Quantidade de restrições </label>
-                                                <input
-                                                    name="NumRestricoesAlls"
-                                                    defaultValue={numRestricoesAlls}
-                                                    onChange={(event) => handleNumRestricoesAllsChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className='divrow'>
-                                            <div className='divfield'>
-                                                <label className="stringDados"> Valor das restrições </label>
-                                                <input
-                                                    name="valorRestricoesAlls"
-                                                    defaultValue={`R$ ${valorRestricoesAlls}`}
-                                                    onChange={(event) => handleValorRestricoesAllsChange(event.target.value)}
-                                                    className="inputCad"
-                                                />
-                                            </div>
-                                            <div className='divfield' style={{ opacity: 0 }} id="none">
-                                                <label className="stringDados"> Disabled </label>
-                                                <input className="inputCad" type="text" disabled />
-                                            </div>
-                                            <div className='divfield' style={{ opacity: 0 }} id="none">
-                                                <label className="stringDados"> Disabled </label>
-                                                <input className="inputCad" type="number" disabled />
-                                            </div>
-                                        </div>
+                                    </form>
+                                    <div className='divbotaoEnviarObservacoes' onClick={sendAllsData}>
+                                        <button className='botaoEnviarObservacoes'>
+                                            <span className='stringEnviarDados'> Salvar </span>
+                                        </button>
                                     </div>
-                                </form>
-                                <div className='divbotaoEnviarObservacoes' onClick={sendAllsData}>
-                                    <button className='botaoEnviarObservacoes'>
-                                        <span className='stringEnviarDados'> Salvar </span>
-                                    </button>
+                                    {isLoading && <Loading />}
                                 </div>
-                                {isLoading && <Loading/>}
-                            </div>
                             )}
                             {muda === 'upload' && (
                                 <Upload />
