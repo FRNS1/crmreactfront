@@ -72,12 +72,12 @@ function Checklist() {
                             showConfirmButton: false,
                             timer: 1500
                         }).then(() => {
-                            // Redireciona para uma página externa após o modal
-                            window.location.href = "https://www.instagram.com/bdidigital/";
+                        // Redireciona para uma página externa após o modal
+                            window.location.href = "http://hubdelta.com.br/";
                         });
                     }
                 })
-                .catch(error => console.log('error', error))
+                .catch(error => alert('error', error))
                 .finally(() => {
                     setIsLoading(false);
                 });

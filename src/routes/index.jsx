@@ -27,7 +27,7 @@ import { NilsonBentoPj } from '../js/links-indicador/pj/nilsonbentopj';
 import { DeltaHubBackOffice } from '../js/deltahubbackoffice';
 import { RedefinicaoSenha } from '../js/redefinicao_senha';
 import Dashboard  from '../pages/Dashboard'
-import Cadastrodeltainvestor  from '../pages/Cadastrodeltainvestor'
+import Cadastrodeltainvestor from '../pages/Cadastrodeltainvestor'
 
 function MainRouter() {
   return(

@@ -90,7 +90,7 @@ export const GroupCheckbox = styled.div`
     cursor: pointer;
   }
 `
-export const CheckListBtn = styled.button`
+export const CheckListBtn = styled.div`
    background-color: #081535;
    color: #fff;
    padding: 10px 20px;
@@ -98,7 +98,8 @@ export const CheckListBtn = styled.button`
    border: none;
    border-radius: 5px;
    cursor: pointer;
-   display: block;
    margin: 0 auto;
    width: 100%;
+   dislpay: flex;
+   text-align: center;
 `
