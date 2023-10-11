@@ -837,6 +837,7 @@ function VisualizacaoIndividual() {
                                             <div className='divfield'>
                                                 <label className="stringDados"> Status </label>
                                                 <select className='inputCad' value={status} onChange={handleStatusChange}>
+                                                    <option className='inputCad' value={status}> {status} </option>
                                                     <option className='inputCad' value='EM ANALISE'> EM ANALISE </option>
                                                     <option className='inputCad' value='APROVADO'> APROVADO </option>
                                                     <option className='inputCad' value='REPROVADO'> REPROVADO </option>
@@ -909,22 +910,23 @@ function VisualizacaoIndividual() {
                                             <div className='divfield'>
                                                 <label className="stringDados"> Status do Contrato </label>
                                                 <select className='inputCad' value={statusContrato} onChange={HandleStatusContratoChange}>
-                                                    <option className='inputCad'> Aberto </option>
-                                                    <option className='inputCad'> Quitado </option>
+                                                    <option className='inputCad' value={statusContrato}> {statusContrato} </option>
+                                                    <option className='inputCad' value='Aberto'> Aberto </option>
+                                                    <option className='inputCad' value='Quitado'> Quitado </option>
                                                 </select>
                                             </div>
                                             <div className='divfield'>
                                                 <label className="stringDados"> Motivo da reprovação </label>
                                                 <select className='inputCad' value={motivoReprovacao} onChange={HandleMotivoReprovacaoChange}>
-                                                    <option className='inputCad'> Selecione um motivo  </option>
-                                                    <option className='inputCad'> Restrição de bureaus de crédito  </option>
-                                                    <option className='inputCad'> Restrição por divida ativa </option>
-                                                    <option className='inputCad'> Restrição de cadin </option>
-                                                    <option className='inputCad'> Restrição por ausência de documento </option>
-                                                    <option className='inputCad'> Restrição por renda insuficiente </option>
-                                                    <option className='inputCad'> Restrição por score fora da política </option>
-                                                    <option className='inputCad'> Restrição por processo criminal ou civil </option>
-                                                    <option className='inputCad'> Empresas ligadas com restrição </option>
+                                                    <option className='inputCad' value={motivoReprovacao} > {motivoReprovacao}  </option>
+                                                    <option className='inputCad' value='Selecione um motivo'> Restrição de bureaus de crédito  </option>
+                                                    <option className='inputCad' value='Restrição por divida ativa'> Restrição por divida ativa </option>
+                                                    <option className='inputCad' value='Restrição de cadin'> Restrição de cadin </option>
+                                                    <option className='inputCad' value='Restrição por ausência de documento'> Restrição por ausência de documento </option>
+                                                    <option className='inputCad' value='Restrição por renda insuficiente'> Restrição por renda insuficiente </option>
+                                                    <option className='inputCad' value='Restrição por score fora da política'> Restrição por score fora da política </option>
+                                                    <option className='inputCad' value='Restrição por processo criminal ou civil'> Restrição por processo criminal ou civil </option>
+                                                    <option className='inputCad' value='Empresas ligadas com restrição'> Empresas ligadas com restrição </option>
                                                 </select>
                                             </div>
                                         </div>
