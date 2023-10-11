@@ -818,16 +818,16 @@ function VisualizacaoIndividual() {
                                                 <label className="stringDados"> Taxa </label>
                                                 <input
                                                     name="taxa"
-                                                    placeholder={taxa}
+                                                    defaultValue={taxa}
                                                     onChange={(event) => handleTaxaChange(event.target.value)}
                                                     className="inputCad"
                                                 />
                                             </div>
                                             <div className='divfield'>
                                                 <label className="stringDados"> Corban </label>
-                                                <CurrencyInput
+                                                <input
                                                     name="taxa"
-                                                    placeholder={`R$ ${corban}`}
+                                                    defaultValue={`R$ ${corban}`}
                                                     onChange={(event) => handleCorbanChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -846,18 +846,18 @@ function VisualizacaoIndividual() {
                                             </div>
                                             <div className='divfield'>
                                                 <label className="stringDados"> Montante </label>
-                                                <CurrencyInput
+                                                <input
                                                     name="montante"
-                                                    placeholder={`R$ ${montante}`}
+                                                    defaultValue={`R$ ${montante}`}
                                                     onChange={(event) => handleMontanteChange(event.target.value)}
                                                     className="inputCad"
                                                 />
                                             </div>
                                             <div className='divfield'>
                                                 <label className="stringDados"> Valor Liberado </label>
-                                                <CurrencyInput
+                                                <input
                                                     name="valorliberado"
-                                                    placeholder={`R$ ${valorLiberado}`}
+                                                    defaultValue={`R$ ${valorLiberado}`}
                                                     onChange={(event) => handleValorLiberadoChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -868,7 +868,7 @@ function VisualizacaoIndividual() {
                                                 <label className="stringDados"> Prazo </label>
                                                 <input
                                                     name="prazo"
-                                                    placeholder={prazo}
+                                                    defaultValue={prazo}
                                                     onChange={(event) => handlePrazoChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -899,9 +899,9 @@ function VisualizacaoIndividual() {
                                         <div className='divrow'>
                                             <div className='divfield'>
                                                 <label className="stringDados"> Total de Juros </label>
-                                                <CurrencyInput
+                                                <input
                                                     name="totalJuros"
-                                                    placeholder={`R$ ${totalJuros}`}
+                                                    defaultValue={`R$ ${totalJuros}`}
                                                     onChange={(event) => handleTotalJurosChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -931,9 +931,9 @@ function VisualizacaoIndividual() {
                                         <div className='divrow'>
                                             <div className='divfield'>
                                                 <label className="stringDados"> Renda Média </label>
-                                                <CurrencyInput
+                                                <input
                                                     name="valorliberado"
-                                                    placeholder={`R$ ${rendaMedia}`}
+                                                    defaultValue={`R$ ${rendaMedia}`}
                                                     onChange={(event) => setRendaMedia(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -944,7 +944,7 @@ function VisualizacaoIndividual() {
                                                 <label className="stringDados"> Observação do Cliente </label>
                                                 <textarea
                                                     name="observacaoCliente"
-                                                    placeholder={observacaoCliente}
+                                                    defaultValue={observacaoCliente}
                                                     onChange={(event) => handleObservacaoClienteChange(event.target.value)}
                                                     className="textAreaObsCliente"
                                                     type="text"
@@ -954,7 +954,7 @@ function VisualizacaoIndividual() {
                                                 <label className="stringDados"> Observação do Analista </label>
                                                 <textarea
                                                     name="observacaoAnalista"
-                                                    placeholder={observacaoAnalista}
+                                                    defaultValue={observacaoAnalista}
                                                     onChange={(event) => handleObservacaoAnalistaChange(event.target.value)}
                                                     className="textAreaObsAnalista"
                                                     type="text"
@@ -1149,7 +1149,7 @@ function VisualizacaoIndividual() {
                                                 <label className="stringDados"> Score </label>
                                                 <input
                                                     name="score"
-                                                    placeholder={score}
+                                                    defaultValue={score}
                                                     onChange={(event) => handleScoreChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1158,7 +1158,7 @@ function VisualizacaoIndividual() {
                                                 <label className="stringDados"> Risco </label>
                                                 <input
                                                     name="risco"
-                                                    placeholder={risco}
+                                                    defaultValue={risco}
                                                     onChange={(event) => handleRiscoChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1167,7 +1167,7 @@ function VisualizacaoIndividual() {
                                                 <label className="stringDados"> Quantidade de titulos protestados </label>
                                                 <input
                                                     name="numTitulosProtestados"
-                                                    placeholder={numTitulosProtestados}
+                                                    defaultValue={numTitulosProtestados}
                                                     onChange={(event) => handleQuantidadeTituloProtestadosChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1176,9 +1176,9 @@ function VisualizacaoIndividual() {
                                         <div className='divrow'>
                                             <div className='divfield'>
                                                 <label className="stringDados"> Valor dos titulos protestados </label>
-                                                <CurrencyInput
+                                                <input
                                                     name="valortitulosprotestados"
-                                                    placeholder={`R$ ${valorTitulosProtestados}`}
+                                                    defaultValue={`R$ ${valorTitulosProtestados}`}
                                                     onChange={(event) => handleValorTitulosProtestadosChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1187,16 +1187,16 @@ function VisualizacaoIndividual() {
                                                 <label className="stringDados"> Refins </label>
                                                 <input
                                                     name="numRefins"
-                                                    placeholder={numRefins}
+                                                    defaultValue={numRefins}
                                                     onChange={(event) => handleRefinsChange(event.target.value)}
                                                     className="inputCad"
                                                 />
                                             </div>
                                             <div className='divfield'>
                                                 <label className="stringDados"> Cadins </label>
-                                                <CurrencyInput
+                                                <input
                                                     name="valorCadins"
-                                                    placeholder={`R$ ${valorCadins}`}
+                                                    defaultValue={`R$ ${valorCadins}`}
                                                     onChange={(event) => handleValorCadinsChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1207,16 +1207,16 @@ function VisualizacaoIndividual() {
                                                 <label className="stringDados"> Quantidade de cheques devolvidos </label>
                                                 <input
                                                     name="numChequesDevolvidos"
-                                                    placeholder={numChequesDevolvidos}
+                                                    defaultValue={numChequesDevolvidos}
                                                     onChange={(event) => handleQuantidadeChequesDevolvidosChange(event.target.value)}
                                                     className="inputCad"
                                                 />
                                             </div>
                                             <div className='divfield'>
                                                 <label className="stringDados"> Valor dos cheques devolvidos </label>
-                                                <CurrencyInput
+                                                <input
                                                     name="valorCadins"
-                                                    placeholder={`R$ ${valorChequesDevolvidos}`}
+                                                    defaultValue={`R$ ${valorChequesDevolvidos}`}
                                                     onChange={(event) => handleValorChequesDevolvidosChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1225,7 +1225,7 @@ function VisualizacaoIndividual() {
                                                 <label className="stringDados"> Quantidade de Pefin </label>
                                                 <input
                                                     name="numPefins"
-                                                    placeholder={numPefins}
+                                                    defaultValue={numPefins}
                                                     onChange={(event) => handleQuantidadePefinsChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1234,9 +1234,9 @@ function VisualizacaoIndividual() {
                                         <div className='divrow'>
                                             <div className='divfield'>
                                                 <label className="stringDados"> Valor de Pefin </label>
-                                                <CurrencyInput
+                                                <input
                                                     name="valorPefins"
-                                                    placeholder={`R$ ${valorPefins}`}
+                                                    defaultValue={`R$ ${valorPefins}`}
                                                     onChange={(event) => handleValorPefinsChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1245,7 +1245,7 @@ function VisualizacaoIndividual() {
                                                 <label className="stringDados"> Empresas não Informadas </label>
                                                 <input
                                                     name="empresasNaoInformadas"
-                                                    placeholder={empresasNaoInformadas}
+                                                    defaultValue={empresasNaoInformadas}
                                                     onChange={(event) => handleEmpresasNaoInformadasChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1263,16 +1263,16 @@ function VisualizacaoIndividual() {
                                                 <label className="stringDados"> Quantidade de processos </label>
                                                 <input
                                                     name="numProcessos"
-                                                    placeholder={numProcessos}
+                                                    defaultValue={numProcessos}
                                                     onChange={(event) => handleQuantidadeProcessosChange(event.target.value)}
                                                     className="inputCad"
                                                 />
                                             </div>
                                             <div className='divfield'>
                                                 <label className="stringDados"> Valor dos processos </label>
-                                                <CurrencyInput
+                                                <input
                                                     name="valorProcessos"
-                                                    placeholder={`R$ ${valorProcessos}`}
+                                                    defaultValue={`R$ ${valorProcessos}`}
                                                     onChange={(event) => handleValorProcessosChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1281,7 +1281,7 @@ function VisualizacaoIndividual() {
                                                 <label className="stringDados"> UF Processos </label>
                                                 <input
                                                     name="numUfProcessos"
-                                                    placeholder={numUfProcessos}
+                                                    defaultValue={numUfProcessos}
                                                     onChange={(event) => handleNumUfProcessosChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1290,9 +1290,9 @@ function VisualizacaoIndividual() {
                                         <div className='divrow'>
                                             <div className='divfield'>
                                                 <label className="stringDados"> Divida Ativa </label>
-                                                <CurrencyInput
+                                                <input
                                                     name="dividaAtiva"
-                                                    placeholder={`R$ ${dividaAtiva}`}
+                                                    defaultValue={`R$ ${dividaAtiva}`}
                                                     onChange={(event) => handleDividaAtivaChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1311,9 +1311,9 @@ function VisualizacaoIndividual() {
                                             </div>
                                             <div className='divfield'>
                                                 <label className="stringDados"> ISS </label>
-                                                <CurrencyInput
+                                                <input
                                                     name="valorIss"
-                                                    placeholder={`R$ ${valorIss}`}
+                                                    defaultValue={`R$ ${valorIss}`}
                                                     onChange={(event) => handleValorISSChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1341,9 +1341,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <th className='colunasTabelaPropostasBacen'> Total </th>
                                                 <th className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="vencerValorTotal"
-                                                        placeholder={`R$ ${vencerValorTotal}`}
+                                                        defaultValue={`R$ ${vencerValorTotal}`}
                                                         onChange={(event) => handleVencerValorTotalChange(event.target.value)}
                                                         className="thinputColunasTabelaPropostasBacen"
                                                     />
@@ -1354,9 +1354,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> Até 30 dias e vencidos até 14 dias</td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="vencerAte30DiasvencidosAte14Dias"
-                                                        placeholder={`R$ ${vencerAte30DiasvencidosAte14Dias}`}
+                                                        defaultValue={`R$ ${vencerAte30DiasvencidosAte14Dias}`}
                                                         onChange={(event) => handleVencerAte30DiasvencidosAte14DiasTotalChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1365,9 +1365,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> 31 a 60 dias</td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="vencer3160Dias"
-                                                        placeholder={`R$ ${vencer3160Dias}`}
+                                                        defaultValue={`R$ ${vencer3160Dias}`}
                                                         onChange={(event) => handleVencer3160DiasChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1376,9 +1376,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> 61 a 90 dias</td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="vencer6190Dias"
-                                                        placeholder={`R$ ${vencer6190Dias}`}
+                                                        defaultValue={`R$ ${vencer6190Dias}`}
                                                         onChange={(event) => handleVencer6190DiasChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1387,9 +1387,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> 91 a 180 dias</td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="limitesCreditoVencimentoAte360Dias"
-                                                        placeholder={`R$ ${vencer91180Dias}`}
+                                                        defaultValue={`R$ ${vencer91180Dias}`}
                                                         onChange={(event) => handleVencer91180DiasChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1398,9 +1398,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> 181 a 360 dias</td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="limitesCreditoVencimentoAte360Dias"
-                                                        placeholder={`R$ ${vencer181360Dias}`}
+                                                        defaultValue={`R$ ${vencer181360Dias}`}
                                                         onChange={(event) => handleVencer181360DiasChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1409,9 +1409,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> Acima de 360 dias </td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="limitesCreditoVencimentoAte360Dias"
-                                                        placeholder={`R$ ${vencerAcima360Dias}`}
+                                                        defaultValue={`R$ ${vencerAcima360Dias}`}
                                                         onChange={(event) => handleVencerAcima360DiasChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1420,9 +1420,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> Indeterminado </td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="vencerIndeterminado"
-                                                        placeholder={`R$ ${vencerIndeterminado}`}
+                                                        defaultValue={`R$ ${vencerIndeterminado}`}
                                                         onChange={(event) => handleVencerIndeterminadoChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1441,9 +1441,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <th className='colunasTabelaPropostasBacen'> Total  </th>
                                                 <th className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="limitesCreditoValorTotal"
-                                                        placeholder={`R$ ${vencidoTotal}`}
+                                                        defaultValue={`R$ ${vencidoTotal}`}
                                                         onChange={(event) => handleVencidoTotalChange(event.target.value)}
                                                         className="thinputColunasTabelaPropostasBacen"
                                                     />
@@ -1454,9 +1454,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> 15 a 30 dias </td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="vencido1530Dias"
-                                                        placeholder={`R$ ${vencido1530Dias}`}
+                                                        defaultValue={`R$ ${vencido1530Dias}`}
                                                         onChange={(event) => handleVencido1530DiasChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1465,9 +1465,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> 31 a 60 dias</td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="vencido3160Dias"
-                                                        placeholder={`R$ ${vencido3160Dias}`}
+                                                        defaultValue={`R$ ${vencido3160Dias}`}
                                                         onChange={(event) => handleVencido3160DiasChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1476,9 +1476,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> 61 a 90 dias</td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="vencido6190Dias"
-                                                        placeholder={`R$ ${vencido6190Dias}`}
+                                                        defaultValue={`R$ ${vencido6190Dias}`}
                                                         onChange={(event) => handleVencido6190DiasChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1487,9 +1487,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> 91 a 180 dias</td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="vencido91180Dias"
-                                                        placeholder={`R$ ${vencido91180Dias}`}
+                                                        defaultValue={`R$ ${vencido91180Dias}`}
                                                         onChange={(event) => handleVencido91180DiasChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1498,9 +1498,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> 181 a 360 dias</td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="vencido181360Dias"
-                                                        placeholder={`R$ ${vencido181360Dias}`}
+                                                        defaultValue={`R$ ${vencido181360Dias}`}
                                                         onChange={(event) => handleVencido181360DiasChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1509,9 +1509,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> Acima de 360 dias </td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="vencidoAcima360Dias"
-                                                        placeholder={`R$ ${vencidoAcima360Dias}`}
+                                                        defaultValue={`R$ ${vencidoAcima360Dias}`}
                                                         onChange={(event) => handleVencidoAcima360DiasChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1530,9 +1530,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <th className='colunasTabelaPropostasBacen'> Total </th>
                                                 <th className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="prejuizoTotal"
-                                                        placeholder={`R$ ${prejuizoTotal}`}
+                                                        defaultValue={`R$ ${prejuizoTotal}`}
                                                         onChange={(event) => handlePrejuizoTotalChange(event.target.value)}
                                                         className="thinputColunasTabelaPropostasBacen"
                                                     />
@@ -1543,9 +1543,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> Até 12 meses </td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="prejuizoAte12Meses"
-                                                        placeholder={`R$ ${prejuizoAte12Meses}`}
+                                                        defaultValue={`R$ ${prejuizoAte12Meses}`}
                                                         onChange={(event) => handlePrejuizoAte12MesesChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1554,9 +1554,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> Acima de 12 meses </td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="prejuizoAcima12Meses"
-                                                        placeholder={`R$ ${prejuizoAcima12Meses}`}
+                                                        defaultValue={`R$ ${prejuizoAcima12Meses}`}
                                                         onChange={(event) => handlePrejuizoAcima12MesesChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1575,9 +1575,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <th className='colunasTabelaPropostasBacen'> Total </th>
                                                 <th className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="prejuizoTcoobrigacaoTotalotal"
-                                                        placeholder={`R$ ${coobrigacaoTotal}`}
+                                                        defaultValue={`R$ ${coobrigacaoTotal}`}
                                                         onChange={(event) => handleCoobrigacaoTotalChange(event.target.value)}
                                                         className="thinputColunasTabelaPropostasBacen"
                                                     />
@@ -1588,9 +1588,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> Coobrigação Assumida </td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="coobrigacaoAssumida"
-                                                        placeholder={`R$ ${coobrigacaoAssumida}`}
+                                                        defaultValue={`R$ ${coobrigacaoAssumida}`}
                                                         onChange={(event) => handleCoobrigacaoAssumidaChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1599,9 +1599,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> Coobrigação Prestadas </td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="coobrigacaoPrestadas"
-                                                        placeholder={`R$ ${coobrigacaoPrestadas}`}
+                                                        defaultValue={`R$ ${coobrigacaoPrestadas}`}
                                                         onChange={(event) => handleCoobrigacaoPrestadasChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1620,9 +1620,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <th className='colunasTabelaPropostasBacen'> Total </th>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="creditosLiberarTotal"
-                                                        placeholder={`R$ ${creditosLiberarTotal}`}
+                                                        defaultValue={`R$ ${creditosLiberarTotal}`}
                                                         onChange={(event) => handleCreditosLiberarTotalChange(event.target.value)}
                                                         className="thinputColunasTabelaPropostasBacen"
                                                     />
@@ -1633,9 +1633,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> Créditos a Liberar até 360 dias </td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="creditosLiberarAte360Dias"
-                                                        placeholder={`R$ ${creditosLiberarAte360Dias}`}
+                                                        defaultValue={`R$ ${creditosLiberarAte360Dias}`}
                                                         onChange={(event) => handleCreditosLiberarAte360DiasChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1644,9 +1644,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> Créditos a Liberar acima de 360 dias </td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="creditosLiberarAcima360Dias"
-                                                        placeholder={`R$ ${creditosLiberarAcima360Dias}`}
+                                                        defaultValue={`R$ ${creditosLiberarAcima360Dias}`}
                                                         onChange={(event) => handleCreditosLiberarAcima360DiasChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1665,9 +1665,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <th className='colunasTabelaPropostasBacen'> Total </th>
                                                 <th className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="limitesCreditoValorTotal"
-                                                        placeholder={`R$ ${limitesCreditoValorTotal}`}
+                                                        defaultValue={`R$ ${limitesCreditoValorTotal}`}
                                                         onChange={(event) => handleLimitesCreditoValorTotalChange(event.target.value)}
                                                         className="thinputColunasTabelaPropostasBacen"
                                                     />
@@ -1679,7 +1679,7 @@ function VisualizacaoIndividual() {
                                                 <td className='colunasTabelaPropostasBacen'> Limite de Crédito com vencimento até 360 dias </td>
                                                 <td className='colunasTabelaPropostasBacen'>
                                                     {/* Formate o valor usando CurrencyInput */}
-                                                    <CurrencyInput
+                                                    <input
                                                         name="limitesCreditoVencimentoAte360Dias"
                                                         placeholder={`R$ ${limitesCreditoVencimentoAte360Dias}`}
                                                         onChange={(event) => handleLimitesCreditoVencimentoAte360DiasChange(event.target.value)}
@@ -1690,9 +1690,9 @@ function VisualizacaoIndividual() {
                                             <tr className='linhasTabelaPropostasBacen'>
                                                 <td className='colunasTabelaPropostasBacen'> Limites de Crédito com vencimento acima de 360 dias </td>
                                                 <td className='colunasTabelaPropostasBacen'>
-                                                    <CurrencyInput
+                                                    <input
                                                         name="limitesCreditoVencimentoAcima360Dias"
-                                                        placeholder={`R$ ${limitesCreditoVencimentoAcima360Dias}`}
+                                                        defaultValue={`R$ ${limitesCreditoVencimentoAcima360Dias}`}
                                                         onChange={(event) => handleLimitesCreditoVencimentoAcima360DiasChange(event.target.value)}
                                                         className="inputColunasTabelaPropostasBacen"
                                                     />
@@ -1720,16 +1720,16 @@ function VisualizacaoIndividual() {
                                                 <label className="stringDados"> Quantidade de pendências financeiras </label>
                                                 <input
                                                     name="NumPendenciasFinanceirasAlls"
-                                                    placeholder={numPendenciasFinanceirasAlls}
+                                                    defaultValue={numPendenciasFinanceirasAlls}
                                                     onChange={(event) => handleNumPendenciasFinanceirasAllsChange(event.target.value)}
                                                     className="inputCad"
                                                 />
                                             </div>
                                             <div className='divfield'>
                                                 <label className="stringDados"> Valor das pendências financeiras </label>
-                                                <CurrencyInput
+                                                <input
                                                     name="ValorPendenciasFinanceirasAlls"
-                                                    placeholder={`R$ ${valorPendenciasFinanceirasAlls}`}
+                                                    defaultValue={`R$ ${valorPendenciasFinanceirasAlls}`}
                                                     onChange={(event) => handleValorPendenciasFinanceirasAllsChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1738,7 +1738,7 @@ function VisualizacaoIndividual() {
                                                 <label className="stringDados"> Quantidade de recuperação </label>
                                                 <input
                                                     name="NumRecuperacoesAlls"
-                                                    placeholder={numRecuperacoesAlls}
+                                                    defaultValue={numRecuperacoesAlls}
                                                     onChange={(event) => handleNumRecuperacoesAllsChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1747,9 +1747,9 @@ function VisualizacaoIndividual() {
                                         <div className='divrow'>
                                             <div className='divfield'>
                                                 <label className="stringDados"> Valor da Recuperação </label>
-                                                <CurrencyInput
+                                                <input
                                                     name="valorRecuperacoesAlls"
-                                                    placeholder={`R$ ${valorRecuperacoesAlls}`}
+                                                    defaultValue={`R$ ${valorRecuperacoesAlls}`}
                                                     onChange={(event) => handleValorRecuperacoesAllsChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1758,7 +1758,7 @@ function VisualizacaoIndividual() {
                                                 <label className="stringDados"> Quantidade de cheque sem fundo </label>
                                                 <input
                                                     name="NumChequeSemFundoAlls"
-                                                    placeholder={numChequeSemFundoAlls}
+                                                    defaultValue={numChequeSemFundoAlls}
                                                     onChange={(event) => handleNumChequeSemFundoAllsChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1767,7 +1767,7 @@ function VisualizacaoIndividual() {
                                                 <label className="stringDados"> Quantidade de protestos </label>
                                                 <input
                                                     name="NumProtestosAlls"
-                                                    placeholder={numProtestosAlls}
+                                                    defaultValue={numProtestosAlls}
                                                     onChange={(event) => handleNumProtestosAllsChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1776,18 +1776,18 @@ function VisualizacaoIndividual() {
                                         <div className='divrow'>
                                             <div className='divfield'>
                                                 <label className="stringDados"> Valor dos protestos </label>
-                                                <CurrencyInput
+                                                <input
                                                     name="valorProtestosAlls"
-                                                    placeholder={`R$ ${valorProtestosAlls}`}
+                                                    defaultValue={`R$ ${valorProtestosAlls}`}
                                                     onChange={(event) => handleValorProtestosAllsChange(event.target.value)}
                                                     className="inputCad"
                                                 />
                                             </div>
                                             <div className='divfield'>
                                                 <label className="stringDados"> Limite Sugerido </label>
-                                                <CurrencyInput
+                                                <input
                                                     name="limiteSugeridoAlls"
-                                                    placeholder={`R$ ${limiteSugeridoAlls}`}
+                                                    defaultValue={`R$ ${limiteSugeridoAlls}`}
                                                     onChange={(event) => handleLimiteSugeridoAllsChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1796,7 +1796,7 @@ function VisualizacaoIndividual() {
                                                 <label className="stringDados"> Quantidade de restrições </label>
                                                 <input
                                                     name="NumRestricoesAlls"
-                                                    placeholder={numRestricoesAlls}
+                                                    defaultValue={numRestricoesAlls}
                                                     onChange={(event) => handleNumRestricoesAllsChange(event.target.value)}
                                                     className="inputCad"
                                                 />
@@ -1805,9 +1805,9 @@ function VisualizacaoIndividual() {
                                         <div className='divrow'>
                                             <div className='divfield'>
                                                 <label className="stringDados"> Valor das restrições </label>
-                                                <CurrencyInput
+                                                <input
                                                     name="valorRestricoesAlls"
-                                                    placeholder={`R$ ${valorRestricoesAlls}`}
+                                                    defaultValue={`R$ ${valorRestricoesAlls}`}
                                                     onChange={(event) => handleValorRestricoesAllsChange(event.target.value)}
                                                     className="inputCad"
                                                 />
