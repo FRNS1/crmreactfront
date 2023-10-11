@@ -33,54 +33,45 @@ function Checklist() {
         setIsOpenModalTermsScr(!isOpenModalTermsScr)
     }
 
-    function sendData() {
+    async function sendData() {
         setIsLoading(true);
+
         if (!aceite) {
             alert("Você deve concordar com os termos e condições.");
             setIsLoading(false);
-        } else {
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
+            return;
+        }
 
-            var raw = JSON.stringify({
-                "nome": `${nome}`,
-                "cpf": `${cpf.replace(".", "").replace("-", "").replace(".", "")}`,
-                "email": `${email}`,
-                "telefone": `${telefone.replace("(", "").replace(")", "").replace(" ", "").replace("-", "")}`,
-                "profissao": `${profissao}`,
-                "rendaMedia": rendaMedia,
-                "valorDesejado": valorDesejado,
-                "prazo": prazo,
-                "codigo_indicador": `${Cookies.get('codigoIndicador')}`
+        try {
+            const response = await axios.post("http://35.175.231.117:8080/api/v1/business/formwebindicacaopf", {
+                nome: nome,
+                cpf: cpf.replace(/[-.]/g, ''),
+                email: email,
+                telefone: telefone.replace(/[\s()\-]/g, ''),
+                profissao: profissao,
+                rendaMedia: rendaMedia,
+                valorDesejado: valorDesejado,
+                prazo: prazo,
+                codigo_indicador: Cookies.get('codigoIndicador')
             });
 
-            var requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-            };
-
-            fetch("http://35.175.231.117:8080/api/v1/business/formwebindicacaopf", requestOptions)
-                .then(response => {
-                    if (response.status === 200) {
-                        // Exibe o modal Swal.fire com timer embutido
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Dados enviados com sucesso!',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            // Redireciona para uma página externa após o modal
-                            window.location.href = "https://www.instagram.com/bdidigital/";
-                        });
-                    }
-                })
-                .catch(error => console.log('error', error))
-                .finally(() => {
-                    setIsLoading(false);
+            if (response.status === 200) {
+                alert('response200');
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Dados enviados com sucesso!',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                // Redireciona para uma página externa após o modal
+                    window.location.href = "http://hubdelta.com.br/";
                 });
+            }
+        } catch (error) {
+            alert(error);
+        } finally {
+            setIsLoading(false);
         }
     }
 
