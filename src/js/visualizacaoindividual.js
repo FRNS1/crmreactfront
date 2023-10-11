@@ -593,7 +593,14 @@ function VisualizacaoIndividual() {
                                 <label className="stringDados"> Status </label>
                                 <select className='inputCad' value={status} onChange={handleStatusChange}>
                                     <option className='inputCad' value='EM ANALISE'> EM ANALISE </option>
-                                    <option className='inputCad' value='APROVADO'> APROVADO </option>
+                                    {Cookies.get('userid') == 3 ? (
+                                        <>
+                                        <option className='inputCad' value='APROVADO'> APROVADO </option>
+                                        </> ) : (
+                                        <>
+                                        <option className='inputCad' value='PRE APROVADO'> PRE APROVADO </option>
+                                        </>
+                                        )}
                                     <option className='inputCad' value='REPROVADO'> REPROVADO </option>
                                     <option className='inputCad' value='EMPRESTIMO CONCEDIDO'> EMPRESTIMO CONCEDIDO </option>
                                     <option className='inputCad' value='PENDENCIA DE DOCUMENTACAO'> PENDENCIA DE DOCUMENTACAO </option>   
