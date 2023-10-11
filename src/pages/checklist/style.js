@@ -90,7 +90,7 @@ export const GroupCheckbox = styled.div`
     cursor: pointer;
   }
 `
-export const CheckListBtn = styled.button`
+export const CheckListBtn = styled.div`
    background-color: #081535;
    color: #fff;
    padding: 10px 20px;
