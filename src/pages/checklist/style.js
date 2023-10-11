@@ -98,7 +98,8 @@ export const CheckListBtn = styled.div`
    border: none;
    border-radius: 5px;
    cursor: pointer;
-   display: block;
    margin: 0 auto;
    width: 100%;
+   dislpay: flex;
+   text-align: center;
 `
