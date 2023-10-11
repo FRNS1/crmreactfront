@@ -5,13 +5,31 @@ export const Container = styled.div`
   height: 100vh;
 `
 export const Content = styled.div`
-  width: 100%;
+  width: 90%;
   height: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  
+  margin-top: 80px;
   display: flex;
   flex-direction: column;
+  
+  >p{
+    margin-bottom: 40px;
+  }
+
+  ${md`
+    width: 100%;
+    padding: 0 24px;
+  `}
+  ${sm`
+    width: 100%;
+    padding: 0 24px;
+
+  `}
+  ${xs`
+    width: 100%;
+    padding: 0 24px;
+  `}
 `
 export const CadastroDeltaContent = styled.div`
   gap: 100px;

@@ -2,25 +2,28 @@ import { useState } from 'react'
 import { Form, Formik } from 'formik';
 import { 
   Grid,
-  CardContent, 
+  Radio,
+  Button,
+  Select,
+  MenuItem,
   TextField,
-  FormControlLabel,
-  Checkbox,
-  FormGroup,
-  Button
-} from '@mui/material';
+  FormLabel,
+  InputLabel,
+  RadioGroup,
+  CardContent, 
+  FormControl,
+  FormControlLabel
+} from '@mui/material'
 
-import Figure from '../../../imgs/first-steps.svg'
 
 import { 
-  Container, 
   Content, 
-  CadrastoRight, 
+  Container, 
   CadrastoLeft,
-  CadastroCard,
-  CadastroDeltaContent,
+  CadrastoRight, 
   CadastroAction,
   CadastroButtom,
+  CadastroDeltaContent,
   CardPercent,
   CardPercentBottom,
   CardPercentContent,
@@ -32,7 +35,7 @@ export default function Dadosresidenciais(){
   return(
     <Container>
       <Content>
-        <h2>Dados residenciais</h2>
+        <h2>Dados profissionais</h2>
         <CadastroDeltaContent>
           <CadrastoRight>
             <CardContent 
@@ -54,12 +57,43 @@ export default function Dadosresidenciais(){
               >
                 <Form autoComplete='off'>
                   <Grid container spacing={3} >
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={12}>
+                      <FormControl fullWidth style={{ padding: '0'}}>
+                        <InputLabel id="demo-multi-select-label">
+                          Ocupação Profissional
+                        </InputLabel>
+                        <Select variant="standard">
+                          <MenuItem value="">1</MenuItem>
+                          <MenuItem value="">1</MenuItem>
+                          <MenuItem value="">1</MenuItem>
+                          <MenuItem value="">1</MenuItem>
+                          <MenuItem value="">1</MenuItem>
+                          <MenuItem value="">1</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={12}>
+                      <FormControl>
+                        <FormLabel 
+                          style={{ marginBottom: '10px' }}
+                        >
+                          Você trabalha atualmente?
+                        </FormLabel>
+                        <RadioGroup
+                          row
+                          aria-labelledby="demo-row-radio-buttons-group-label"
+                          name="row-radio-buttons-group"
+                        >
+                          <FormControlLabel value="Nao" control={<Radio />} label="Não" />
+                          <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+                        </RadioGroup>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={12}>
                       <TextField
-                        required
-                        id="cep"
-                        name="cep"
-                        label="CEP"
+                        id="empresa"
+                        name="empresa"
+                        label="Nome da empresa"
                         fullWidth
                         autoComplete="given-name"
                         variant="standard"
@@ -67,65 +101,9 @@ export default function Dadosresidenciais(){
                     </Grid>
                     <Grid item xs={12} sm={12}>
                       <TextField
-                        required
-                        id="endereco"
-                        name="endereco"
-                        label="Endereço"
-                        fullWidth
-                        autoComplete="given-name"
-                        variant="standard"
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        id="bairro"
-                        name="bairro"
-                        label="Bairro"
-                        fullWidth
-                        autoComplete="given-name"
-                        variant="standard"
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        id="numero"
-                        name="numero"
-                        label="Número"
-                        fullWidth
-                        autoComplete="given-name"
-                        variant="standard"
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        id="estado"
-                        name="estado"
-                        label="Estado (selected)"
-                        fullWidth
-                        autoComplete="given-name"
-                        variant="standard"
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        id="cidade"
-                        name="cidade"
-                        label="Cidade (selected)"
-                        fullWidth
-                        autoComplete="given-name"
-                        variant="standard"
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={12}>
-                      <TextField
-                        required
-                        id="complemento"
-                        name="complemento"
-                        label="Complemento"
+                        id="cnpj"
+                        name="cnpj"
+                        label="CNPJ da empresa (opcional)"
                         fullWidth
                         autoComplete="given-name"
                         variant="standard"
@@ -135,10 +113,6 @@ export default function Dadosresidenciais(){
                 </Form>
               </Formik>
             <CadastroButtom>
-              <FormGroup>
-                <FormControlLabel control={<Checkbox defaultChecked />} label="Possuo residência fiscal, imóvel ou endereço fora do Brasil" />
-              </FormGroup>
-              <p><strong>Declaro</strong> para fins de comprovação de residência, sob as penas da Lei (art. 2° da Lei 7.115/83), que resido no endereço acima.</p>
               <CadastroAction>
                 <Button
                   variant="contained"

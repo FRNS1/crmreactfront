@@ -58,7 +58,6 @@ export default function Dadospessoais(){
                   <Grid container spacing={3} >
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
                         id="firstName"
                         name="firstName"
                         label="Nome completo (como está no RG)"
@@ -69,7 +68,6 @@ export default function Dadospessoais(){
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
                         id="email"
                         name="email"
                         label="E-mail"
@@ -80,7 +78,6 @@ export default function Dadospessoais(){
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
                         id="confirmar"
                         name="confirmar"
                         label="Confirme seu e-mail"
@@ -91,7 +88,6 @@ export default function Dadospessoais(){
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
                         id="cpf"
                         name="cpf"
                         label="CPF"
@@ -102,7 +98,6 @@ export default function Dadospessoais(){
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
                         id="firstName"
                         name="firstName"
                         label="Data de nascimento"
@@ -113,7 +108,6 @@ export default function Dadospessoais(){
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
                         id="celular"
                         name="celular"
                         label="Celular"
@@ -124,7 +118,6 @@ export default function Dadospessoais(){
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
                         id="rg"
                         name="rg"
                         label="RG"
@@ -135,7 +128,6 @@ export default function Dadospessoais(){
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
                         id="orgao"
                         name="orgao"
                         label="Orgão emissor"
@@ -146,7 +138,6 @@ export default function Dadospessoais(){
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
                         id="estado"
                         name="estado"
                         label="Estado onde foi emitido"
@@ -157,7 +148,6 @@ export default function Dadospessoais(){
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
                         id="emissao"
                         name="emissao"
                         label="Data emissão"
@@ -168,7 +158,6 @@ export default function Dadospessoais(){
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
                         id="mae"
                         name="mae"
                         label="Nome da mãe"
@@ -179,7 +168,6 @@ export default function Dadospessoais(){
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
                         id="pai"
                         name="pai"
                         label="Nome Pai (opcional)"
@@ -190,7 +178,6 @@ export default function Dadospessoais(){
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
                         id="civil"
                         name="civil"
                         label="Estado Civil"
@@ -201,7 +188,6 @@ export default function Dadospessoais(){
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
                         id="nacionalidade"
                         name="nacionalidade"
                         label="Nacionalidade"
@@ -212,7 +198,6 @@ export default function Dadospessoais(){
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
                         id="estadonasceu"
                         name="estadonasceu"
                         label="Estado onde nasceu"
@@ -223,7 +208,6 @@ export default function Dadospessoais(){
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
                         id="cidadenasceu"
                         name="cidadenasceu"
                         label="Cidade onde nasceu"
@@ -251,8 +235,8 @@ export default function Dadospessoais(){
                         <h2 style={{marginBottom: '10px'}}>Declarações</h2>
                         <FormGroup>
                           <FormControlLabel control={<Checkbox defaultChecked />} label="Sou vinculado à XP Investimentos" />
-                          <FormControlLabel required control={<Checkbox />} label="Sou Us Person" />
-                          <FormControlLabel required control={<Checkbox />} label="Sou politicamente exposto" />
+                          <FormControlLabel control={<Checkbox />} label="Sou Us Person" />
+                          <FormControlLabel control={<Checkbox />} label="Sou politicamente exposto" />
                         </FormGroup>
                       </Grid>
                   </Grid>
