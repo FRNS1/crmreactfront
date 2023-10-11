@@ -7,20 +7,21 @@ export const Container = styled.div`
   height: 100%;
   
   ${md`
-    padding: 24px;
-    max-width: 768px;
+    padding-right: 24px;
+    padding-left: 24px;
   `}
   ${sm`
-    padding: 24px;
-    max-width: 480px;
+    padding-right: 24px;
+    padding-left: 24px;
   `}
   ${xs`
-    padding: 24px;
-    max-width: 320px;
+    padding-right: 24px;
+    padding-left: 24px;
   `}
 `
 export const Content = styled.div`
   width: 100%;
+  height: 100%;
   max-width: 800px;
   margin: 24px auto;
   display: flex;
@@ -35,13 +36,31 @@ export const Content = styled.div`
     font-size: 24px;
     margin-bottom: 20px;
     text-align: center;
+
+    ${sm`
+      font-size: 18px;
+    `}
+    ${xs`
+      font-size: 16px;
+    `}
   }
 
   form{
     width: 100%;
   }
-  
-  
+
+  ${md`
+    padding: 24px;
+    max-width: 768px;
+  `}
+  ${sm`
+    padding: 24px;
+    max-width: 480px;
+  `}
+  ${xs`
+    padding: 24px;
+    max-width: 320px;
+  `}
 `
 
 export const Logo = styled.div`
@@ -55,6 +74,15 @@ export const Logo = styled.div`
     img{
       width: 125px;
       height: 125px;
+
+      ${sm`
+        width: 80px;
+        height: 80px;
+      `}
+      ${xs`
+        width: 80px;
+        height: 80px;
+      `}
     }
 `
 
@@ -68,6 +96,13 @@ export const GroupCheckelist = styled.div`
     font-size: 18px;
     margin-bottom: 5px;
     font-weight: 600;
+
+    ${sm`
+      font-size: 16px;
+    `}
+    ${xs`
+      font-size: 16px;
+    `}
   }
 
   input{
@@ -77,29 +112,82 @@ export const GroupCheckelist = styled.div`
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #E8EEEF;
+
+    ${md`
+      padding: 8px;
+      font-size: 14px;
+    `}
+    ${sm`
+      padding: 8px;
+      font-size: 14px;
+    `}
+    ${xs`
+      padding: 8px;
+      font-size: 14px;
+    `}
   }
 `
 export const GroupCheckbox = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  gap: 10px;
+  gap: 12px;
 
   a{
     font-weight: 700;
     cursor: pointer;
   }
+
+  input{
+    background: #1c1c1c;
+    width: 24px;
+    height: 24px;
+  
+    ${md`
+      width: 30px;
+      height: 30px;
+    `}
+    ${sm`
+      width: 30px;
+      height: 30px;
+    `}
+    ${xs`
+      width: 30px;
+      height: 30px;
+    `}
+  }
+
+  p{
+    font-size: 15px;
+    font-weight: normal;
+
+    ${md`
+      font-size: 12px;
+    `}
+    ${sm`
+      font-size: 10px;
+    `}
+    ${xs`
+      font-size: 10px;
+    `}
+  }
 `
 export const CheckListBtn = styled.div`
-   background-color: #081535;
+   width: 100%;
    color: #fff;
-   padding: 10px 20px;
-   font-size: 18px;
    border: none;
-   border-radius: 5px;
    cursor: pointer;
    margin: 0 auto;
-   width: 100%;
-   dislpay: flex;
+   font-size: 18px;
    text-align: center;
+   border-radius: 5px;
+   padding: 10px;
+   background-color: #081535;
+
+   ${sm`
+      font-size: 12px;
+    `}
+    ${xs`
+      font-size: 12px;
+    `}
 `
