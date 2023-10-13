@@ -1036,7 +1036,7 @@ function VisualizacaoIndividual() {
                                                         </FlexGroup>
                                                         <LinksContainer>
                                                             <button type="submit">
-                                                                Salvar
+                                                                <span>Salvar</span>
                                                             </button>
                                                         </LinksContainer>
                                                     </Form>
@@ -1088,7 +1088,7 @@ function VisualizacaoIndividual() {
                                                         </FlexGroup>
                                                         <LinksContainer>
                                                             <button type="submit">
-                                                                Salvar
+                                                                <span>Salvar</span>
                                                             </button>
                                                         </LinksContainer>
                                                     </Form>
@@ -1140,7 +1140,7 @@ function VisualizacaoIndividual() {
                                                     </FlexGroup>
                                                     <LinksContainer>
                                                         <button type="submit">
-                                                            Salvar
+                                                            <span>Salvar</span>
                                                         </button>
                                                     </LinksContainer>
                                                 </Form>
