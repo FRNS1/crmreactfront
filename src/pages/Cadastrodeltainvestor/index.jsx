@@ -1,6 +1,7 @@
 // import Dadospessoais from './Dadospessoais'
 // import Dadosresidenciais from './Dadosresidenciais'
 import Dadosfinanceiros from './Dadosfinanceiros'
+// import Dadosprofissionais from './Dadosprofissionais'
 
 import { Container, Content, Header } from './style'
 
@@ -16,6 +17,7 @@ export default function CadastroDeltaInvestor(){
         {/* <Dadosresidenciais/> */}
         {/* <Dadospessoais/> */}
         <Dadosfinanceiros/>
+        {/* <Dadosprofissionais/> */}
       </Content>
     </Container>
   )

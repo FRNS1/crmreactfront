@@ -5,33 +5,27 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 
 import { 
-  Card, 
-  CardContent, 
-  Typography, 
   Grid,
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  FormControl,
-  FormLabel,
+  Button,
   Checkbox,
+  FormLabel,
   FormGroup, 
   TextField,
-} from '@mui/material';
+  FormControl,
+  CardContent, 
+  FormControlLabel
+} from '@mui/material'
 
-import Figure from '../../../imgs/first-steps.svg'
 
 import { 
-  Container, 
   Content, 
-  CadrastoRight, 
+  Container, 
   CadrastoLeft,
-  CadastroCard,
+  OriginProduto,
+  CadrastoRight, 
+  CadastroButtom,
+  CadastroAction,
   CadastroDeltaContent,
-  CardPercent,
-  CardPercentBottom,
-  CardPercentContent,
-  Divider,
 } from './style'
 
 export default function Dadospessoais(){
@@ -67,232 +61,123 @@ export default function Dadospessoais(){
                   <Grid container spacing={3} >
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
-                        id="firstName"
-                        name="firstName"
-                        label="Nome completo (como está no RG)"
+                        id="renda"
+                        name="renda"
+                        label="Renda Mensal"
                         fullWidth
                         autoComplete="given-name"
                         variant="standard"
                       />
+                      <p>Exemplo: Salário, aposentadoria, pensão, etc.</p>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
-                        id="email"
-                        name="email"
-                        label="E-mail"
+                        id="aplicacao"
+                        name="aplicacao"
+                        label="Aplicações financeiras "
                         fullWidth
                         autoComplete="given-name"
                         variant="standard"
                       />
+                      <p>Exemplo: Valor investido em poupança, produtos financeiros em bancos ou corretoras.</p>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
-                        id="confirmar"
-                        name="confirmar"
-                        label="Confirme seu e-mail"
+                        id="imoveis"
+                        name="imoveis"
+                        label="Bens Imóveis"
                         fullWidth
                         autoComplete="given-name"
                         variant="standard"
                       />
+                      <p>Exemplo: Valor aproximado de casas, apartamentos, chácaras e outros que estejam em seu nome.</p>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
-                        id="cpf"
-                        name="cpf"
-                        label="CPF"
+                        id="moveis"
+                        name="moveis"
+                        label="Bens Móveis"
                         fullWidth
                         autoComplete="given-name"
                         variant="standard"
                       />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <DatePicker 
-                        // disableToolbar
-                        variant="inline"
-                        format="dd/MM/yyyy"
-                        // margin="normal"
-                        id="date-picker-dialog"
-                        label="Data de nascimento"
-                        onChange={handleDateChange}
-                        renderInput={(params) => <TextField {...params} />}
-                      />
+                      <p>Exemplo: Valor de carros, motos, barcos, e outros que estejam em seu nome.</p>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        required
-                        id="celular"
-                        name="celular"
-                        label="Celular"
+                        id="redimento"
+                        name="rendimento"
+                        label="Outros Rendimentos"
                         fullWidth
                         autoComplete="given-name"
                         variant="standard"
                       />
+                      <p>Exemplo: Fontes de renda como: aluguel, proventos de algum negócio, rendimento de aplicações, etc.</p>
                     </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        id="rg"
-                        name="rg"
-                        label="RG"
-                        fullWidth
-                        autoComplete="given-name"
-                        variant="standard"
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        id="orgao"
-                        name="orgao"
-                        label="Orgão emissor"
-                        fullWidth
-                        autoComplete="given-name"
-                        variant="standard"
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        id="estado"
-                        name="estado"
-                        label="Estado onde foi emitido"
-                        fullWidth
-                        autoComplete="given-name"
-                        variant="standard"
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        id="emissao"
-                        name="emissao"
-                        label="Data emissão"
-                        fullWidth
-                        autoComplete="given-name"
-                        variant="standard"
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        id="mae"
-                        name="mae"
-                        label="Nome da mãe"
-                        fullWidth
-                        autoComplete="given-name"
-                        variant="standard"
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        id="pai"
-                        name="pai"
-                        label="Nome Pai (opcional)"
-                        fullWidth
-                        autoComplete="given-name"
-                        variant="standard"
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        id="civil"
-                        name="civil"
-                        label="Estado Civil"
-                        fullWidth
-                        autoComplete="given-name"
-                        variant="standard"
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        id="nacionalidade"
-                        name="nacionalidade"
-                        label="Nacionalidade"
-                        fullWidth
-                        autoComplete="given-name"
-                        variant="standard"
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        id="estadonasceu"
-                        name="estadonasceu"
-                        label="Estado onde nasceu"
-                        fullWidth
-                        autoComplete="given-name"
-                        variant="standard"
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        id="cidadenasceu"
-                        name="cidadenasceu"
-                        label="Cidade onde nasceu"
-                        fullWidth
-                        autoComplete="given-name"
-                        variant="standard"
-                      />
-                    </Grid>
-                      <Grid item xs={12} sm={6} sx={{ marginTop: '40px'}}>
-                        <FormControl>
-                          <FormLabel 
-                            style={{ marginBottom: '10px' }}
-                          >Gênero</FormLabel>
-                          <RadioGroup
-                            row
-                            aria-labelledby="demo-row-radio-buttons-group-label"
-                            name="row-radio-buttons-group"
-                          >
-                            <FormControlLabel value="masculino" control={<Radio />} label="Masculino" />
-                            <FormControlLabel value="feminino" control={<Radio />} label="Feminino" />
-                          </RadioGroup>
-                        </FormControl>
-                      </Grid>
-                      <Grid item xs={12} sm={6} sx={{ marginTop: '40px'}}>
-                        <h2 style={{marginBottom: '10px'}}>Declarações</h2>
-                        <FormGroup>
-                          <FormControlLabel control={<Checkbox defaultChecked />} label="Sou vinculado à XP Investimentos" />
-                          <FormControlLabel required control={<Checkbox />} label="Sou Us Person" />
-                          <FormControlLabel required control={<Checkbox />} label="Sou politicamente exposto" />
-                        </FormGroup>
-                      </Grid>
                   </Grid>
+                  <OriginProduto>
+                    <Grid item xs={12} sm={6} sx={{ marginTop: '40px'}}>
+                      <FormControl>
+                        <FormLabel 
+                            style={{ marginBottom: '10px' }}
+                        >
+                          Qual a origem dos seus recursos?
+                        </FormLabel>
+                        <FormGroup>
+                          <FormControlLabel control={<Checkbox />} label="Ocupação profissional" />
+                          <FormControlLabel control={<Checkbox />} label="Herança" />
+                          <FormControlLabel control={<Checkbox />} label="Doação" />
+                          <FormControlLabel control={<Checkbox />} label="Partilha de Bens (Divórcio)" />
+                          <FormControlLabel control={<Checkbox />} label="Aposentadoria" />
+                          <FormControlLabel control={<Checkbox />} label="Aluguel de propriedades" />
+                          <FormControlLabel control={<Checkbox />} label="Outros" />
+                        </FormGroup>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={6} sx={{ marginTop: '40px'}}>
+                      <FormControl>
+                        <FormLabel 
+                            style={{ marginBottom: '10px' }}
+                        >
+                          Quais produtos você deseja adquirir na XP? 
+                        </FormLabel>
+                        <FormGroup>
+                          <FormControlLabel control={<Checkbox />} label="Renda fixa" />
+                          <FormControlLabel control={<Checkbox />} label="Sou Us Person" />
+                          <FormControlLabel control={<Checkbox />} label="Renda variável" />
+                          <FormControlLabel control={<Checkbox />} label="Derivativos" />
+                          <FormControlLabel control={<Checkbox />} label="Fundos de investimentos" />
+                          <FormControlLabel control={<Checkbox />} label="Remessas internacionais" />
+                          <FormControlLabel control={<Checkbox />} label="Seguros" />
+                          <FormControlLabel control={<Checkbox />} label="Previdência Privada" />
+                          <FormControlLabel control={<Checkbox />} label="Outros" />
+                        </FormGroup>
+                      </FormControl>
+                    </Grid>
+                  </OriginProduto>
+                  <CadastroButtom>
+                    <CadastroAction>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        sx={{ mt: 6, mb: 2 }}
+                      >
+                        Anterior
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        sx={{ mt: 6, mb: 2 }}
+                      >
+                        Próximo
+                      </Button>
+                    </CadastroAction>
+                  </CadastroButtom>
                 </Form>
               </Formik>
             </CardContent>
           </CadrastoRight>
-          <CadrastoLeft>
-            <CadastroCard>
-              <Card sx={{ minWidth: 335 }}>
-                <CardContent sx={{ padding: 4}}>
-                  <img src={Figure} alt="figure" />
-                  <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    Você está dando os primeiros passos para abrir uma conta na Delta Investimentos.
-                  </Typography>
-                </CardContent>
-              </Card>
-              
-              <CardPercent>
-                <Divider></Divider>
-                <CardPercentContent>
-                  <img src={Figure} alt="figure" />
-                  <CardPercentBottom>
-                    <p>cadastro</p>
-                    <strong>100% Seguro</strong>
-                  </CardPercentBottom>
-                </CardPercentContent>
-              </CardPercent>
-            </CadastroCard>
-          </CadrastoLeft>
+          <CadrastoLeft></CadrastoLeft>
         </CadastroDeltaContent>
       </Content>
     </Container>
