@@ -452,7 +452,7 @@ function DeltaHubBackOffice() {
                           <div className='fieldBODH'>
                             <label className='labelBODH'>Categoria</label>
                             <select className='inputBODH' onChange={(e) => handleCategoriaReg(e.target.value)}>
-                            <option></option>
+                            <option value=''> </option>
                               {listCategories.map((category) => 
                                 <option value={category.categoryId}>{category.nomeCategoria}</option>
                               )}
@@ -461,7 +461,7 @@ function DeltaHubBackOffice() {
                           <div className='fieldBODH'>
                             <label className='labelBODH'>Parceiro</label>
                             <select className='inputBODH' onChange={(e) => handlePartnerIdReg(e.target.value)}>
-                            <option></option>
+                            <option value=''> </option>
                               {listPartner.map((partner) => 
                                 <option value={partner.partnerId}>{partner.name}</option>
                               )}
