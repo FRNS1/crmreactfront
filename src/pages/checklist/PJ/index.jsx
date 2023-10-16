@@ -94,8 +94,14 @@ function ChecklistPj() {
     const [dataAbertura, setDataAbertura] = useState('');
     const [aceite, setAceite] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [isOpenModalTerms, setIsOpenModalTerms] = useState(false)
-    const [isOpenModalTermsScr, setIsOpenModalTermsScr] = useState(false)
+    const [isOpenModalTerms, setIsOpenModalTerms] = useState(false);
+    const [isOpenModalTermsScr, setIsOpenModalTermsScr] = useState(false);
+    //variaveis referencia
+    const [tipoReferencia, setTipoReferencia] = useState('PF')
+    const [nomeReferencia, setNomeReferencia] = useState('');
+    const [emailReferencia, setEmailReferencia] = useState('');
+    const [documentoReferencia, setDocumentoReferencia] = useState('');
+    const [telefoneReferencia, setTelefoneReferencia] = useState('');
 
     const toggleModalTerms = () => {
         setIsOpenModalTerms(!isOpenModalTerms)
@@ -127,7 +133,11 @@ function ChecklistPj() {
                 "valorDesejado": valorDesejado,
                 "prazo": prazo,
                 "data_abertura": `${dataAbertura}`,
-                "codigo_indicador": Cookies.get('codigoIndicador')
+                "codigo_indicador": Cookies.get('codigoIndicador'),
+                "nome_referencia": `${nomeReferencia}`,
+                "documento": `${documentoReferencia.replace(".", "").replace("-", "").replace(".", "").replace("/", "").replace("-", "")}`,
+                "email_referencia": `${emailReferencia}`,
+                "telefone_referencia": `${telefoneReferencia.replace("(", "").replace(")", "").replace(" ", "").replace("-", "")}`,
             });
 
             var requestOptions = {
@@ -171,6 +181,10 @@ function ChecklistPj() {
 
     const handleChange = selectedOption => {
         console.log(`Opção selecionada: ${selectedOption.label}`);
+    };
+
+    const handleChangeTipo = event => {
+        setTipoReferencia(event.target.value);
     };
 
     return (
@@ -383,6 +397,120 @@ function ChecklistPj() {
                                 required
                             />
                         </GroupCheckelist>
+                        <GroupCheckelist>
+                            <label htmlFor="email">Tipo Referência</label>
+                            <select value={tipoReferencia} onChange={handleChangeTipo} required>
+                                <option value="PF"> PF </option>
+                                <option value="PJ"> PJ </option>
+                            </select>
+                        </GroupCheckelist>
+                        {tipoReferencia == "PF" ? (
+                            <>
+                                <GroupCheckelist>
+                                    <label htmlFor="valorDesejado">Nome</label>
+                                    <input
+                                        type="text"
+                                        id="nome"
+                                        name="nome"
+                                        value={nomeReferencia}
+                                        onChange={(e) => setNomeReferencia(e.target.value)}
+                                        placeholder="Digite o nome completo da sua referência"
+                                        required
+                                    />
+                                </GroupCheckelist>
+                                <GroupCheckelist>
+                                    <label htmlFor="valorDesejado">CPF</label>
+                                    <InputMask
+                                        mask="999.999.999-99"
+                                        type="text"
+                                        id="cpf"
+                                        name="cpf"
+                                        value={documentoReferencia}
+                                        onChange={(e) => setDocumentoReferencia(e.target.value)}
+                                        placeholder="Digite o CPF da sua referência"
+                                        required
+                                    />
+                                </GroupCheckelist>
+                                <GroupCheckelist>
+                                    <label htmlFor="valorDesejado">Email</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value={emailReferencia}
+                                        onChange={(e) => setEmailReferencia(e.target.value)}
+                                        placeholder="Digite o email de sua referência"
+                                        required
+                                    />
+                                </GroupCheckelist>
+                                <GroupCheckelist>
+                                    <label htmlFor="valorDesejado">Telefone</label>
+                                    <InputMask
+                                        mask="(99) 99999-9999"
+                                        type="text"
+                                        id="email"
+                                        name="email"
+                                        value={telefoneReferencia}
+                                        onChange={(e) => setTelefoneReferencia(e.target.value)}
+                                        placeholder="Digite o telefone de sua referência"
+                                        required
+                                    />
+                                </GroupCheckelist>
+                            </>
+                        ) : (
+                            <>
+                                <GroupCheckelist>
+                                    <label htmlFor="valorDesejado">Nome</label>
+                                    <input
+                                        type="text"
+                                        id="nome"
+                                        name="nome"
+                                        value={nomeReferencia}
+                                        onChange={(e) => setNomeReferencia(e.target.value)}
+                                        placeholder="Digite o nome completo da sua referência"
+                                        required
+                                    />
+                                </GroupCheckelist>
+                                <GroupCheckelist>
+                                    <label htmlFor="valorDesejado">CNPJ</label>
+                                    <InputMask
+                                        mask="99.999.999/9999-99"
+                                        type="text"
+                                        id="cpf"
+                                        name="cpf"
+                                        value={documentoReferencia}
+                                        onChange={(e) => setDocumentoReferencia(e.target.value)}
+                                        placeholder="Digite o CNPJ da sua referência"
+                                        required
+                                    />
+                                </GroupCheckelist>
+                                <GroupCheckelist>
+                                    <label htmlFor="valorDesejado">Email</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value={emailReferencia}
+                                        onChange={(e) => setEmailReferencia(e.target.value)}
+                                        placeholder="Digite o email de sua referência"
+                                        required
+                                    />
+                                </GroupCheckelist>
+                                <GroupCheckelist>
+                                    <label htmlFor="valorDesejado">Telefone</label>
+                                    <InputMask
+                                        mask="(99) 99999-9999"
+                                        type="text"
+                                        id="email"
+                                        name="email"
+                                        value={telefoneReferencia}
+                                        onChange={(e) => setTelefoneReferencia(e.target.value)}
+                                        placeholder="Digite o telefone de sua referência"
+                                        required
+                                    />
+                                </GroupCheckelist>
+                            </>
+                        )}
                         <GroupCheckbox>
                             <input type="checkbox" onChange={(e) => setAceite(e.target.value)} />
                             <text>Estou de acordo com os <a className='termos-checklist' onClick={toggleModalTerms}>termos e condições </a>e com o <a className='termos-checklist' onClick={toggleModalTermsScr}>termo de autorização de consulta ao SCR.</a></text>

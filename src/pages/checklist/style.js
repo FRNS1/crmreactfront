@@ -91,6 +91,15 @@ export const GroupCheckelist = styled.div`
   margin-bottom: 15px;
   text-align: left;
 
+  select{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #E8EEEF;
+  }
+
   label{
     display: block;
     font-size: 18px;

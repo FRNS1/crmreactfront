@@ -24,6 +24,12 @@ function Checklist() {
     const [isLoading, setIsLoading] = useState(false);
     const [isOpenModalTerms, setIsOpenModalTerms] = useState(false)
     const [isOpenModalTermsScr, setIsOpenModalTermsScr] = useState(false)
+    //variaveis referencia
+    const [tipoReferencia, setTipoReferencia] = useState('PF')
+    const [nomeReferencia, setNomeReferencia] = useState('');
+    const [emailReferencia, setEmailReferencia] = useState('');
+    const [documentoReferencia, setDocumentoReferencia] = useState('');
+    const [telefoneReferencia, setTelefoneReferencia] = useState('');
 
     const toggleModalTerms = () => {
         setIsOpenModalTerms(!isOpenModalTerms)
@@ -51,7 +57,11 @@ function Checklist() {
                 "rendaMedia": rendaMedia,
                 "valorDesejado": valorDesejado,
                 "prazo": prazo,
-                "codigo_indicador": `${Cookies.get('codigoIndicador')}`
+                "codigo_indicador": `${Cookies.get('codigoIndicador')}`,
+                "nome_referencia": `${nomeReferencia}`,
+                "documento": `${documentoReferencia.replace(".", "").replace("-", "").replace(".", "").replace("/", "").replace("-", "")}`,
+                "email_referencia": `${emailReferencia}`,
+                "telefone_referencia": `${telefoneReferencia.replace("(", "").replace(")", "").replace(" ", "").replace("-", "")}`,
             });
 
             var requestOptions = {
@@ -72,7 +82,7 @@ function Checklist() {
                             showConfirmButton: false,
                             timer: 1500
                         }).then(() => {
-                        // Redireciona para uma página externa após o modal
+                            // Redireciona para uma página externa após o modal
                             window.location.href = "http://hubdelta.com.br/";
                         });
                     }
@@ -90,6 +100,10 @@ function Checklist() {
 
     const handlevalorDesejadoChange = (value, name) => {
         setValorDesejado(value);
+    };
+
+    const handleChange = event => {
+        setTipoReferencia(event.target.value);
     };
 
     return (
@@ -119,53 +133,53 @@ function Checklist() {
             </NewModal>
             <NewModal isOpen={isOpenModalTermsScr} onRequestClose={toggleModalTermsScr}>
                 <div className='modalcontainer'>
-                <h1>Termo de Autorização para Consulta SCR</h1><br></br><br></br>
-                <h2>COMUNICADO DE INCLUSÃO E AUTORIZAÇÃO
-                    PARA CONSULTA AO SISTEMA DE INFORMAÇÕES DE
-                    CRÉDITO DO BANCO CENTRAL DO BRASIL – SCR
-                </h2><br></br><br></br>
-                Autorizo a UY3 Sociedade de Crédito Direto S.A. (“SCD”) em conjunto com BDI SERVICOS
-                FINANCEIROS
-                LTDA e seus parceiros de análise de credito a compartilhar e consultar os débitos e
-                responsabilidades
-                decorrentes de operações com característica de crédito e as informações e os
-                registros de medidas
-                judiciais que constem ou venham a constar em nome da {nome} e {cpf} do
-                Sistema
-                de Informações de Crédito (SCR), gerido pelo Banco Central do Brasil - Bacen, ou dos
-                sistemas que venham
-                complementá-lo ou a substitui-lo.<br></br><br></br>
-                Estou ciente de que: a) o SCR tem por finalidades prover informações ao Banco
-                Central do Brasil, para
-                fins de monitoramento do crédito no sistema financeiro e para o exercício de suas
-                atividades de
-                fiscalização e propiciar o intercâmbio de informações entre instituições
-                financeiras, conforme definido
-                no § 1º do art. 1º da Lei Complementar nº 105, de 10 de janeiro de 2001, sobre o
-                montante de
-                responsabilidades de clientes em operações de crédito, com o objetivo de subsidiar
-                decisões de crédito
-                e de negócios; b) poderei ter acesso aos dados constantes em meu nome no SCR por
-                meio do sistema
-                registrado do Banco Central do Brasil – Bacen ou na Central de Atendimento ao
-                Público do Bacen; c) a
-                consulta sobre qualquer informação ao SCR depende de minha prévia autorização, que é
-                lavrada por
-                meio desse termo; d) as manifestações de discordância quanto às informações
-                constantes no SCR e os
-                pedidos de correção, exclusão e registro de medidas judiciais no SCR deverão ser
-                dirigidos a SCD, por
-                meio de requerimento escrito e fundamentado enviado pelo Cliente, acompanhado da
-                respectiva
-                decisão judicial, conforme aplicável.<br></br><br></br>
-                O Cliente declara estar de acordo com a formalização desta autorização por meio de
-                todas as formas
-                em direito admitidas, incluindo meios eletrônicos e digitais como válidos e
-                plenamente eficazes, ainda
-                que seja estabelecida assinatura e aceitação eletrônica ou certificação fora dos
-                padrões ICP – Brasil,
-                conforme disposto pelo art. 10 da Medida Provisória nº 2.200/2001 em vigor no
-                Brasil.<br></br><br></br>
+                    <h1>Termo de Autorização para Consulta SCR</h1><br></br><br></br>
+                    <h2>COMUNICADO DE INCLUSÃO E AUTORIZAÇÃO
+                        PARA CONSULTA AO SISTEMA DE INFORMAÇÕES DE
+                        CRÉDITO DO BANCO CENTRAL DO BRASIL – SCR
+                    </h2><br></br><br></br>
+                    Autorizo a UY3 Sociedade de Crédito Direto S.A. (“SCD”) em conjunto com BDI SERVICOS
+                    FINANCEIROS
+                    LTDA e seus parceiros de análise de credito a compartilhar e consultar os débitos e
+                    responsabilidades
+                    decorrentes de operações com característica de crédito e as informações e os
+                    registros de medidas
+                    judiciais que constem ou venham a constar em nome da {nome} e {cpf} do
+                    Sistema
+                    de Informações de Crédito (SCR), gerido pelo Banco Central do Brasil - Bacen, ou dos
+                    sistemas que venham
+                    complementá-lo ou a substitui-lo.<br></br><br></br>
+                    Estou ciente de que: a) o SCR tem por finalidades prover informações ao Banco
+                    Central do Brasil, para
+                    fins de monitoramento do crédito no sistema financeiro e para o exercício de suas
+                    atividades de
+                    fiscalização e propiciar o intercâmbio de informações entre instituições
+                    financeiras, conforme definido
+                    no § 1º do art. 1º da Lei Complementar nº 105, de 10 de janeiro de 2001, sobre o
+                    montante de
+                    responsabilidades de clientes em operações de crédito, com o objetivo de subsidiar
+                    decisões de crédito
+                    e de negócios; b) poderei ter acesso aos dados constantes em meu nome no SCR por
+                    meio do sistema
+                    registrado do Banco Central do Brasil – Bacen ou na Central de Atendimento ao
+                    Público do Bacen; c) a
+                    consulta sobre qualquer informação ao SCR depende de minha prévia autorização, que é
+                    lavrada por
+                    meio desse termo; d) as manifestações de discordância quanto às informações
+                    constantes no SCR e os
+                    pedidos de correção, exclusão e registro de medidas judiciais no SCR deverão ser
+                    dirigidos a SCD, por
+                    meio de requerimento escrito e fundamentado enviado pelo Cliente, acompanhado da
+                    respectiva
+                    decisão judicial, conforme aplicável.<br></br><br></br>
+                    O Cliente declara estar de acordo com a formalização desta autorização por meio de
+                    todas as formas
+                    em direito admitidas, incluindo meios eletrônicos e digitais como válidos e
+                    plenamente eficazes, ainda
+                    que seja estabelecida assinatura e aceitação eletrônica ou certificação fora dos
+                    padrões ICP – Brasil,
+                    conforme disposto pelo art. 10 da Medida Provisória nº 2.200/2001 em vigor no
+                    Brasil.<br></br><br></br>
                 </div>
             </NewModal>
 
@@ -278,6 +292,120 @@ function Checklist() {
                                 required
                             />
                         </GroupCheckelist>
+                        <GroupCheckelist>
+                            <label htmlFor="email">Tipo Referência</label>
+                            <select value={tipoReferencia} onChange={handleChange} required>
+                                <option value="PF"> PF </option>
+                                <option value="PJ"> PJ </option>
+                            </select>
+                        </GroupCheckelist>
+                        {tipoReferencia == "PF" ? (
+                            <>
+                                <GroupCheckelist>
+                                    <label htmlFor="valorDesejado">Nome</label>
+                                    <input
+                                        type="text"
+                                        id="nome"
+                                        name="nome"
+                                        value={nomeReferencia}
+                                        onChange={(e) => setNomeReferencia(e.target.value)}
+                                        placeholder="Digite o nome completo da sua referência"
+                                        required
+                                    />
+                                </GroupCheckelist>
+                                <GroupCheckelist>
+                                    <label htmlFor="valorDesejado">CPF</label>
+                                    <InputMask
+                                        mask="999.999.999-99"
+                                        type="text"
+                                        id="cpf"
+                                        name="cpf"
+                                        value={documentoReferencia}
+                                        onChange={(e) => setDocumentoReferencia(e.target.value)}
+                                        placeholder="Digite o CPF da sua referência"
+                                        required
+                                    />
+                                </GroupCheckelist>
+                                <GroupCheckelist>
+                                    <label htmlFor="valorDesejado">Email</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value={emailReferencia}
+                                        onChange={(e) => setEmailReferencia(e.target.value)}
+                                        placeholder="Digite o email de sua referência"
+                                        required
+                                    />
+                                </GroupCheckelist>
+                                <GroupCheckelist>
+                                    <label htmlFor="valorDesejado">Telefone</label>
+                                    <InputMask
+                                        mask="(99) 99999-9999"
+                                        type="text"
+                                        id="email"
+                                        name="email"
+                                        value={telefoneReferencia}
+                                        onChange={(e) => setTelefoneReferencia(e.target.value)}
+                                        placeholder="Digite o telefone de sua referência"
+                                        required
+                                    />
+                                </GroupCheckelist>
+                            </>
+                        ) : (
+                            <>
+                                <GroupCheckelist>
+                                    <label htmlFor="valorDesejado">Nome</label>
+                                    <input
+                                        type="text"
+                                        id="nome"
+                                        name="nome"
+                                        value={nomeReferencia}
+                                        onChange={(e) => setNomeReferencia(e.target.value)}
+                                        placeholder="Digite o nome completo da sua referência"
+                                        required
+                                    />
+                                </GroupCheckelist>
+                                <GroupCheckelist>
+                                    <label htmlFor="valorDesejado">CNPJ</label>
+                                    <InputMask
+                                        mask="99.999.999/9999-99"
+                                        type="text"
+                                        id="cpf"
+                                        name="cpf"
+                                        value={documentoReferencia}
+                                        onChange={(e) => setDocumentoReferencia(e.target.value)}
+                                        placeholder="Digite o CNPJ da sua referência"
+                                        required
+                                    />
+                                </GroupCheckelist>
+                                <GroupCheckelist>
+                                    <label htmlFor="valorDesejado">Email</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value={emailReferencia}
+                                        onChange={(e) => setEmailReferencia(e.target.value)}
+                                        placeholder="Digite o email de sua referência"
+                                        required
+                                    />
+                                </GroupCheckelist>
+                                <GroupCheckelist>
+                                    <label htmlFor="valorDesejado">Telefone</label>
+                                    <InputMask
+                                        mask="(99) 99999-9999"
+                                        type="text"
+                                        id="email"
+                                        name="email"
+                                        value={telefoneReferencia}
+                                        onChange={(e) => setTelefoneReferencia(e.target.value)}
+                                        placeholder="Digite o telefone de sua referência"
+                                        required
+                                    />
+                                </GroupCheckelist>
+                            </>
+                        )}
                         <GroupCheckbox>
                             <input type="checkbox" onChange={(e) => setAceite(e.target.value)} />
                             <p>Estou de acordo com os <a className='termos-checklist' onClick={toggleModalTerms}>termos e condições </a>e com o <a className='termos-checklist' onClick={toggleModalTermsScr}>termo de autorização de consulta ao SCR.</a></p>
@@ -285,7 +413,7 @@ function Checklist() {
                         <CheckListBtn onClick={() => sendData()}>Enviar</CheckListBtn>
                     </form>
                 </Content>
-                {isLoading && <Loading/>}
+                {isLoading && <Loading />}
             </Container>
         </>
     )

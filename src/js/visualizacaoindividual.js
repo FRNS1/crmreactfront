@@ -54,6 +54,15 @@ function VisualizacaoIndividual() {
     const [motivoReprovacao, setMotivoReprovacao] = useState('');
     const [observacaoCliente, setObservacaoCliente] = useState('');
     const [observacaoAnalista, setObservacaoAnalista] = useState('');
+    //Variáveis Informações pessoais
+    const [email, setEmail] = useState('');
+    const [telefone, setTelefone] = useState('');
+    const [nomeReferencia, setNomeReferencia] = useState('');
+    const [emailReferencia, setEmailReferencia] = useState('');
+    const [cpfReferencia, setCpfReferencia] = useState('');
+    const [telefoneReferencia, setTelefoneReferencia] = useState('');
+    const [nomeSocio, setNomeSocio] = useState('');
+    const [cpfSocio, setCpfSocio] = useState('');
     // Variáveis Analytics
     const [numTitulosProtestados, setNumTitulosProtestados] = useState('');
     const [score, setScore] = useState('');
@@ -935,6 +944,7 @@ function VisualizacaoIndividual() {
                                                         <option className='inputCad' value='Restrição por score fora da política'> Restrição por score fora da política </option>
                                                         <option className='inputCad' value='Restrição por processo criminal ou civil'> Restrição por processo criminal ou civil </option>
                                                         <option className='inputCad' value='Empresas ligadas com restrição'> Empresas ligadas com restrição </option>
+                                                        <option className='inputCad' value='Valores vencidos bacen'> Valores vencidos bacen </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -988,6 +998,7 @@ function VisualizacaoIndividual() {
                             {muda === 'InfPessoais' && (
                                 <ResetContainer>
                                     <ResetContent>
+                                        {data.isCnpj == true ? (
                                         <FormContainer>
                                             <FormRight>
                                                 <FormContent>
@@ -1001,6 +1012,8 @@ function VisualizacaoIndividual() {
                                                                     name="name"
                                                                     id="name"
                                                                     placeholder="Digite seu nome"
+                                                                    value={data.isCnpj == false ? customerName : customerRazaoSocial}
+                                                                    disabled
                                                                 />
                                                             </label>
                                                             <label htmlFor="email">
@@ -1016,12 +1029,15 @@ function VisualizacaoIndividual() {
                                                         </FlexGroup>
                                                         <FlexGroup>
                                                             <label htmlFor="cpf">
-                                                                CPF *:
-                                                                <Input
+                                                                CNPJ *:
+                                                                <InputMask
                                                                     type="text"
                                                                     name="cpf"
                                                                     id="cpf"
-                                                                    placeholder="Digite seu cpf"
+                                                                    placeholder="Digite seu cnpj"
+                                                                    value={cnpj}
+                                                                    mask="99.999.999/9999-99"
+                                                                    disabled
                                                                 />
                                                             </label>
                                                             <label htmlFor="phoneNumber">
@@ -1107,16 +1123,6 @@ function VisualizacaoIndividual() {
                                                                 placeholder="Digite seu nome"
                                                             />
                                                         </label>
-                                                        <label htmlFor="email">
-                                                            Email
-                                                            <Input
-                                                                style={{ userSelect: "none" }}
-                                                                type="email"
-                                                                name="email"
-                                                                id="email"
-                                                                placeholder="Digite seu email"
-                                                            />
-                                                        </label>
                                                     </FlexGroup>
                                                     <FlexGroup>
                                                         <label htmlFor="cpf">
@@ -1128,15 +1134,6 @@ function VisualizacaoIndividual() {
                                                                 placeholder="Digite seu cpf"
                                                             />
                                                         </label>
-                                                        <label htmlFor="phoneNumber">
-                                                            Telefone
-                                                            <Input
-                                                                type="text"
-                                                                name="phoneNumber"
-                                                                id="phoneNumber"
-                                                                placeholder="Digite seu número de telefone"
-                                                            />
-                                                        </label>
                                                     </FlexGroup>
                                                     <LinksContainer>
                                                         <button type="submit">
@@ -1146,6 +1143,65 @@ function VisualizacaoIndividual() {
                                                 </Form>
                                             </FormContent>
                                         </FormContainer>
+                                        ) : (
+                                            <FormContainer>
+                                            <FormRight>
+                                                <FormContent>
+                                                    <h2>Cliente</h2>
+                                                    <Form>
+                                                        <FlexGroup>
+                                                            <label htmlFor="name">
+                                                                Nome *:
+                                                                <Input
+                                                                    type="text"
+                                                                    name="name"
+                                                                    id="name"
+                                                                    placeholder="Digite seu nome"
+                                                                    value={data.isCnpj == false ? customerName : customerRazaoSocial}
+                                                                    disabled
+                                                                />
+                                                            </label>
+                                                            <label htmlFor="email">
+                                                                Email *:
+                                                                <Input
+                                                                    style={{ userSelect: "none" }}
+                                                                    type="email"
+                                                                    name="email"
+                                                                    id="email"
+                                                                    placeholder="Digite seu email"
+                                                                />
+                                                            </label>
+                                                        </FlexGroup>
+                                                        <FlexGroup>
+                                                            <label htmlFor="cpf">
+                                                                CPF *:
+                                                                <Input
+                                                                    type="text"
+                                                                    name="cpf"
+                                                                    id="cpf"
+                                                                    placeholder="Digite seu cpf"
+                                                                />
+                                                            </label>
+                                                            <label htmlFor="phoneNumber">
+                                                                Telefone
+                                                                <Input
+                                                                    type="text"
+                                                                    name="phoneNumber"
+                                                                    id="phoneNumber"
+                                                                    placeholder="Digite seu número de telefone"
+                                                                />
+                                                            </label>
+                                                        </FlexGroup>
+                                                        <LinksContainer>
+                                                            <button type="submit">
+                                                                <span>Salvar</span>
+                                                            </button>
+                                                        </LinksContainer>
+                                                    </Form>
+                                                </FormContent>
+                                            </FormRight>
+                                            </FormContainer>
+                                        ) }
                                     </ResetContent>
                                 </ResetContainer>
                             )}
