@@ -340,7 +340,7 @@ function Checklist() {
                                 </GroupCheckelist>
                                 <GroupCheckelist>
                                     <label htmlFor="valorDesejado">Telefone</label>
-                                    <input
+                                    <InputMask
                                         mask="(99) 99999-9999"
                                         type="text"
                                         id="email"
@@ -393,7 +393,7 @@ function Checklist() {
                                 </GroupCheckelist>
                                 <GroupCheckelist>
                                     <label htmlFor="valorDesejado">Telefone</label>
-                                    <input
+                                    <InputMask
                                         mask="(99) 99999-9999"
                                         type="text"
                                         id="email"
