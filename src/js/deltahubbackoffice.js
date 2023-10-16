@@ -32,8 +32,18 @@ function DeltaHubBackOffice() {
   const [productNameReg, setProductNameReg] = useState('');
   const [descricaoReg, setDescricaoReg] = useState('');
   const [partnerIdReg, setPartnerIdReg] = useState('');
+  const handlePartnerIdReg = (value) => {
+    alert('Chamei partner');
+    setPartnerIdReg(value);
+    alert(partnerIdReg);
+  }
   const [typeReg, setTypeReg] = useState('');
   const [categoriaReg, setCategoriaReg] = useState('');
+  const handleCategoriaReg = (value) => {
+    alert('Chamei categoria');
+    setCategoriaReg(value);
+    alert(categoriaReg);
+  }
   const [fileArteReg, setFileArteReg] = useState([]);
   // Atualiza Parceiro
   const [nomeParceiroUp, setParceiroUp] = useState('');
@@ -128,6 +138,7 @@ function DeltaHubBackOffice() {
       if (responseUpload.status == 201) {
         try {
           console.log("Cadastrando produto")
+          console.log(linkReg, productNameReg, descricaoReg, partnerIdReg, categoriaReg, typeReg)
           const responseProduct = await axios.post("https://api-deltahub-df3c67cdaa69.herokuapp.com/api/v1/product/register", {
             linkTrackeado: linkReg,
             productName: productNameReg,
@@ -139,8 +150,7 @@ function DeltaHubBackOffice() {
             headers: {
               Authorization: `Bearer ${tokenHub}`
             }
-          } 
-          );
+          });
           if (responseProduct.status == 201) {
             alert("Produto cadastrado com sucesso!")
             setShow('');
@@ -342,7 +352,7 @@ function DeltaHubBackOffice() {
                              type="text"
                              id="nome"
                              name="nome" 
-                             value={nomeCategoriaReg} 
+                             value={nomeCategoriaReg}
                              onChange={(e) => setNomeCategoriaReg(e.target.value)}>
                        </input>
                      </div>
@@ -441,7 +451,8 @@ function DeltaHubBackOffice() {
                         <form>
                           <div className='fieldBODH'>
                             <label className='labelBODH'>Categoria</label>
-                            <select className='inputBODH' value={categoriaReg} onChange={(e) => setCategoriaReg(e.target.value)}>
+                            <select className='inputBODH' onChange={(e) => handleCategoriaReg(e.target.value)}>
+                            <option value=''> </option>
                               {listCategories.map((category) => 
                                 <option value={category.categoryId}>{category.nomeCategoria}</option>
                               )}
@@ -449,7 +460,8 @@ function DeltaHubBackOffice() {
                           </div>
                           <div className='fieldBODH'>
                             <label className='labelBODH'>Parceiro</label>
-                            <select className='inputBODH' value={partnerIdReg} onChange={(e) => setPartnerIdReg(e.target.value)}>
+                            <select className='inputBODH' onChange={(e) => handlePartnerIdReg(e.target.value)}>
+                            <option value=''> </option>
                               {listPartner.map((partner) => 
                                 <option value={partner.partnerId}>{partner.name}</option>
                               )}
