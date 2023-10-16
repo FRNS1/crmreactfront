@@ -24,6 +24,8 @@ import { HumbertoCardosoPf } from '../js/links-indicador/pf/humbertocardoso';
 import { HumbertoCardosoPj } from '../js/links-indicador/pj/humbertocardosopj';
 import { NilsonBentoPf } from '../js/links-indicador/pf/nilsonbento';
 import { NilsonBentoPj } from '../js/links-indicador/pj/nilsonbentopj';
+import { DeltaHubPf } from '../js/links-indicador/pf/deltahub'
+import { DeltaHubPj } from '../js/links-indicador/pj/deltahubpj'
 import { DeltaHubBackOffice } from '../js/deltahubbackoffice';
 import { RedefinicaoSenha } from '../js/redefinicao_senha';
 import Dashboard  from '../pages/Dashboard'
@@ -57,6 +59,8 @@ function MainRouter() {
         <Route path='/indicadorhumbertocardosopj' element={<HumbertoCardosoPj />} />
         <Route path='/indicadornilsonbentopf' element={<NilsonBentoPf />} />
         <Route path='/indicadornilsonbentopj' element={<NilsonBentoPj />} />
+      <Route path='/indicadordeltahubpf' element={<DeltaHubPf />} />
+      <Route path='/indicadordeltahubpj' element={<DeltaHubPj />} />
         <Route path='/deltahubbackoffice' element={<DeltaHubBackOffice />} />
         <Route path='/redefinicao_senha' element={<RedefinicaoSenha />} />
     </Routes>
