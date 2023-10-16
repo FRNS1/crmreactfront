@@ -82,16 +82,19 @@
     }
 
     .divbotaoEnviarArquivos{
-        justify-content: start;
+        display: flex;
+        justify-content: center;
         align-items: center;
     }
 
     .botaoEnviarArquivos{
+        display: flex;
+        justify-content: center;
         cursor: pointer;
         margin-top: 50px;
         background-color: #081535;
         border-radius: 5px;
-        width: 100%;
+        width: 50%;
         height: 100%;
         padding: 10px;
         text-align: center;

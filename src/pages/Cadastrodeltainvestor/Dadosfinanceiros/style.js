@@ -11,14 +11,15 @@ export const Content = styled.div`
   height: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  margin-top: 40px;
+  /* margin-top: 40px; */
   display: flex;
   flex-direction: column;
 
-  p{
+  span{
     margin-top: 4px;
     font-size: 0.875rem;
     color: rgba(0, 0, 0, 0.54);
+    line-height: 1.2;
 
     ${lg`
       font-size: 0.75rem;
@@ -48,6 +49,28 @@ export const Content = styled.div`
     padding: 0 24px;
   `}
 `
+
+export const Header = styled.div`
+  margin-bottom: 30px;
+
+  h2{
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+`
+export const HeaderContent = styled.div`
+  p{
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(102, 102, 102);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  strong{
+    font-weight: 700;
+  }
+`
 export const CadastroDeltaContent = styled.div`
   gap: 100px;
   grid-template-columns: 2fr 1fr;
@@ -55,7 +78,9 @@ export const CadastroDeltaContent = styled.div`
   justify-content: space-between;
   margin-top: 40px;
 
-  
+  ${lg`
+    display: block;
+  `}
   ${md`
     display: block;
   `}

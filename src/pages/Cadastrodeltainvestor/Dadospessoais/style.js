@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { xs, sm, md } from '../../../style/responsiveStyles';
 
 export const Container = styled.div`
   width: 100%;
@@ -39,7 +40,7 @@ export const CadastroDeltaContent = styled.div`
   margin-top: 40px;
 `;
 
-export const CadrastoRight = styled.div`
+export const CadastroRight = styled.div`
   display: flex;
   flex-direction: column;
 `
@@ -73,7 +74,7 @@ export const CardPercentBottom = styled.div`
     margin-bottom: 8px;
   }
 `
-export const CadrastoLeft = styled.div`
+export const CadastroLeft = styled.div`
    display: flex;
    flex-direction: column;
 `

@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Form, Formik } from 'formik';
+import { useForm } from 'react-hook-form';
+
 import { 
   Grid,
   Radio,
@@ -14,7 +15,6 @@ import {
   FormControl,
   FormControlLabel
 } from '@mui/material'
-
 
 import { 
   Content, 
@@ -32,6 +32,22 @@ import {
 } from './style'
 
 export default function Dadosresidenciais(){
+  const { 
+    register, 
+    handleSubmit, 
+    formState: { errors }
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  const [isHidden, setIsHidden] = useState(true); // Estado para controlar a visibilidade da div
+
+  const handleRadioChange = (event) => {
+    setIsHidden(event.target.value === 'Sim');
+  };
+
   return(
     <Container>
       <Content>
@@ -41,55 +57,54 @@ export default function Dadosresidenciais(){
             <CardContent 
               style={{ padding: '0'}}
             >
-              <Formik 
-                initialValues={{
-                  nome: '',
-                  numero: '',
-                  email: '',
-                  telefone: '',
-                  profissao: '',
-                  rendaMedia: '',
-                  valorDesejado: '',
-                  prazo: '',
-                  aceite: ''
-                }}
-                onSubmit={() => {}}
-              >
-                <Form autoComplete='off'>
-                  <Grid container spacing={3} >
-                    <Grid item xs={12} sm={12}>
-                      <FormControl fullWidth style={{ padding: '0'}}>
-                        <InputLabel id="demo-multi-select-label">
-                          Ocupação Profissional
-                        </InputLabel>
-                        <Select variant="standard">
-                          <MenuItem value="">1</MenuItem>
-                          <MenuItem value="">1</MenuItem>
-                          <MenuItem value="">1</MenuItem>
-                          <MenuItem value="">1</MenuItem>
-                          <MenuItem value="">1</MenuItem>
-                          <MenuItem value="">1</MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={12}>
-                      <FormControl>
-                        <FormLabel 
-                          style={{ marginBottom: '10px' }}
-                        >
-                          Você trabalha atualmente?
-                        </FormLabel>
-                        <RadioGroup
-                          row
-                          aria-labelledby="demo-row-radio-buttons-group-label"
-                          name="row-radio-buttons-group"
-                        >
-                          <FormControlLabel value="Nao" control={<Radio />} label="Não" />
-                          <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
-                        </RadioGroup>
-                      </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={12}>
+              <form onSubmit={handleSubmit(onSubmit)} autoComplete='off'>
+                <Grid container spacing={3} >
+                  <Grid item xs={12} sm={12}>
+                    <FormControl variant="standard" fullWidth>
+                      <InputLabel id="demo-simple-select-standard-label">Ocupação Profissional</InputLabel>
+                      <Select
+                        labelId="demo-simple-select-standard-label"
+                        id="ocupacao"
+                        label="Ocupação Profissional"
+                        {...register('ocupacao', {
+                          required: 'Campo obrigatório',
+                        })}
+                      >
+                        <MenuItem value="">
+                          <em>None</em>
+                        </MenuItem>
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                      </Select>
+                    </FormControl>
+                    {errors.ocupacao && (
+                      <span style={{ color: 'red', marginTop: '8px' }}>
+                        {errors.ocupacao.message}
+                      </span>
+                    )}
+                  </Grid>
+                  <Grid item xs={12} sm={12}>
+                    <FormControl>
+                      <FormLabel 
+                        style={{ marginBottom: '10px' }}
+                      >
+                        Você trabalha atualmente?
+                      </FormLabel>
+                      <RadioGroup
+                        row
+                        aria-labelledby="demo-row-radio-buttons-group-label"
+                        name="row-radio-buttons-group"
+                        onChange={handleRadioChange}
+                      >
+                        <FormControlLabel value="Nao" control={<Radio />} label="Não" />
+                        <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
+                      </RadioGroup>
+                    </FormControl>
+                  </Grid>
+                  {isHidden && (
+                    <>
+                      <Grid item xs={12} sm={12}>
                       <TextField
                         id="empresa"
                         name="empresa"
@@ -109,10 +124,11 @@ export default function Dadosresidenciais(){
                         variant="standard"
                       />
                     </Grid>
-                  </Grid>
-                </Form>
-              </Formik>
-            <CadastroButtom>
+                    </>
+                  )}
+                </Grid>
+              </form>
+            {/* <CadastroButtom>
               <CadastroAction>
                 <Button
                   variant="contained"
@@ -129,32 +145,10 @@ export default function Dadosresidenciais(){
                   Próximo
                 </Button>
               </CadastroAction>
-            </CadastroButtom>
+            </CadastroButtom> */}
             </CardContent>
           </CadrastoRight>
-          <CadrastoLeft>
-            {/* <CadastroCard>
-              <Card sx={{ minWidth: 335 }}>
-                <CardContent sx={{ padding: 4}}>
-                  <img src={Figure} alt="figure" />
-                  <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    Você está dando os primeiros passos para abrir uma conta na Delta Investimentos.
-                  </Typography>
-                </CardContent>
-              </Card>
-              
-              <CardPercent>
-                <Divider></Divider>
-                <CardPercentContent>
-                  <img src={Figure} alt="figure" />
-                  <CardPercentBottom>
-                    <p>cadastro</p>
-                    <strong>100% Seguro</strong>
-                  </CardPercentBottom>
-                </CardPercentContent>
-              </CardPercent>
-            </CadastroCard> */}
-          </CadrastoLeft>
+          <CadrastoLeft></CadrastoLeft>
         </CadastroDeltaContent>
       </Content>
     </Container>

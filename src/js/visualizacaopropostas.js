@@ -233,7 +233,7 @@ function VisualizacaoPropostas() {
                             <option value='' className='optionsFiltroSelect'>Todos</option>
                             <option value='EM ANALISE' className='optionsFiltroSelect'>Em análise</option>
                             <option value='APROVADO' className='optionsFiltroSelect'>Aprovado</option>
-                            <option value='PRE APROVADO' className='optionsFiltroSelect'>Pré Aprovado</option>
+                            <option value='PRE APROVADO' className='optionsFiltroSelect'>Pre Aprovado</option>
                             <option value='REPROVADO' className='optionsFiltroSelect'>Reprovado</option>
                             <option value='EMPRESTIMO CONCEDIDO' className='optionsFiltroSelect'>Empréstimo concedido</option>
                             <option value='PENDENCIA DE DOCUMENTACAO' className='optionsFiltroSelect'>Pendência de documentação</option>

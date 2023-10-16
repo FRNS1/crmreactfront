@@ -11,7 +11,7 @@ export const Content = styled.div`
   height: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  margin-top: 80px;
+  /* margin-top: 80px; */
   display: flex;
   flex-direction: column;
   
@@ -20,16 +20,16 @@ export const Content = styled.div`
   }
 
   ${md`
-    width: 100%;
+    // width: 100%;
     // padding: 0 24px;
   `}
   ${sm`
-    width: 100%;
+    // width: 100%;
     // padding: 0 24px;
 
   `}
   ${xs`
-    width: 100%;
+    // width: 100%;
     padding: 0 24px;
   `}
 `
@@ -54,3 +54,34 @@ export const Header = styled.div`
     }
   }
 `
+export const Steps = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+
+  div {
+    position: relative;
+    flex: 1;
+    text-align: center;
+    color: gray;
+
+    &.active {
+      color: yellow;
+    }
+
+    span {
+      display: block;
+      width: 15px;
+      height: 15px;
+      background: gray;
+      border-radius: 50%;
+      margin: 0 auto 5px;
+    }
+
+    &.active span {
+      background: yellow;
+    }
+  }
+`
+export const FormContainer = styled.div``
+export const StepButtonContainer = styled.div``
