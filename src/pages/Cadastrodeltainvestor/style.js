@@ -14,22 +14,23 @@ export const Content = styled.div`
   /* margin-top: 80px; */
   display: flex;
   flex-direction: column;
+  /* background: red; */
   
   >p{
     margin-bottom: 40px;
   }
 
   ${md`
-    // width: 100%;
-    // padding: 0 24px;
+    width: 100%;
+    padding: 0 24px;
   `}
   ${sm`
-    // width: 100%;
-    // padding: 0 24px;
+    width: 100%;
+    padding: 0 24px;
 
   `}
   ${xs`
-    // width: 100%;
+    width: 100%;
     padding: 0 24px;
   `}
 `
@@ -54,34 +55,15 @@ export const Header = styled.div`
     }
   }
 `
-export const Steps = styled.div`
+export const FormContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-
-  div {
-    position: relative;
-    flex: 1;
-    text-align: center;
-    color: gray;
-
-    &.active {
-      color: yellow;
-    }
-
-    span {
-      display: block;
-      width: 15px;
-      height: 15px;
-      background: gray;
-      border-radius: 50%;
-      margin: 0 auto 5px;
-    }
-
-    &.active span {
-      background: yellow;
-    }
-  }
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  /* background: red; */
 `
-export const FormContainer = styled.div``
-export const StepButtonContainer = styled.div``
+export const StepButtonContainer = styled.div`
+  display: flex;
+  gap: 20px;
+`
+export const InputContainer = styled.div``
