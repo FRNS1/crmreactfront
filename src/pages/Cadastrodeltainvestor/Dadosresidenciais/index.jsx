@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { useForm } from 'react-hook-form';
+import axios from "axios";
 
 import { 
   Grid,
@@ -15,6 +16,9 @@ import {
   FormControlLabel,
 } from '@mui/material';
 
+import { cep } from '../../../utils/inputMasks'
+import states  from '../../../utils/statesList'
+
 import { 
   Container, 
   Content, 
@@ -25,22 +29,66 @@ import {
   CadastroButtom,
 } from './style'
 
-export default function Dadosresidenciais(){
-  const [mostrarGrid, setMostrarGrid] = useState(false); // Estado para controlar a visibilidade do Grid
-  
+export default function Dadosresidenciais({setFormData, formData, handleNextStep, handlePreviousStep}){
+  const [mostrarGrid, setMostrarGrid] = useState(false); 
+  const [addressZipcode, setAddressZipcode] = useState("");
+  const [addressCity, setAddressCity] = useState("");
+  const [addressStreet, setAddressStreet] = useState("");
+  const [addressDistrict, setAddressDistrict] = useState("");
+  const [addressState, setAddressState] = useState("");
+  const [addressNumber, setAddressNumber] = useState("");
+
   const { 
     register, 
     handleSubmit, 
     formState: { errors }
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    
+    const formData = {
+      cep: data.cep,
+      endereco: data.endereco,
+      bairro: data.bairro,
+      numero: data.numero,
+      cidade: data.cidade,
+      estado: data.estado,
+    };
+
+    try {
+      const response = await axios.post('http://52.87.219.145:8080/api/v1/formxp/register', formData);
+
+      if (response.status === 200) {
+        console.log('Dados do formulário enviados com sucesso.');
+        
+        handleNextStep();
+      } else {
+        
+        console.error('Erro ao enviar os dados do formulário.');
+      }
+    } catch (error) {
+      console.error('Erro na chamada à API:', error);
+    }
   };
 
 
   const handleCheckboxChange = (event) => {
     setMostrarGrid(event.target.checked);
+  };
+
+  const handleAutoCompleteData = useCallback(async () => {
+    const response = await axios.get(
+      `https://viacep.com.br/ws/${addressZipcode}/json/`
+    );
+    setAddressCity(response.data.localidade);
+    setAddressStreet(response.data.logradouro);
+    setAddressDistrict(response.data.bairro);
+    setAddressState(response.data.uf);
+  }, [addressZipcode]);
+
+  const handleKeyUp = (e) => {
+    cep(e);
+    setAddressZipcode(e.target.value);
   };
 
   return(
@@ -64,6 +112,9 @@ export default function Dadosresidenciais(){
                       {...register('cep', {
                         required: 'Campo obrigatório',
                       })}
+                      value={addressZipcode}
+                      onChange={handleKeyUp}
+                      onBlur={handleAutoCompleteData}
                     />
                     {errors.cep && (
                       <span style={{ color: 'red', marginTop: '8px' }}>
@@ -74,7 +125,6 @@ export default function Dadosresidenciais(){
                   <Grid item xs={12} sm={12}>
                     <TextField
                       id="endereco"
-                      name="endereco"
                       label="Endereço"
                       fullWidth
                       autoComplete="given-name"
@@ -82,6 +132,8 @@ export default function Dadosresidenciais(){
                       {...register('endereco', {
                         required: 'Campo obrigatório',
                       })}
+                      value={addressStreet}
+                      onChange={(e) => setAddressStreet(e.target.value)}
                     />
                     {errors.endereco && (
                       <span style={{ color: 'red', marginTop: '8px' }}>
@@ -92,7 +144,6 @@ export default function Dadosresidenciais(){
                   <Grid item xs={12} sm={6}>
                     <TextField
                       id="bairro"
-                      name="bairro"
                       label="Bairro"
                       fullWidth
                       autoComplete="given-name"
@@ -100,6 +151,8 @@ export default function Dadosresidenciais(){
                       {...register('bairro', {
                         required: 'Campo obrigatório',
                       })}
+                      value={addressDistrict}
+                      onChange={(e) => setAddressDistrict(e.target.value)}
                     />
                     {errors.bairro && (
                       <span style={{ color: 'red', marginTop: '8px' }}>
@@ -110,7 +163,6 @@ export default function Dadosresidenciais(){
                   <Grid item xs={12} sm={6}>
                     <TextField
                       id="numero"
-                      name="numero"
                       label="Número"
                       fullWidth
                       autoComplete="given-name"
@@ -118,6 +170,8 @@ export default function Dadosresidenciais(){
                       {...register('numero', {
                         required: 'Campo obrigatório',
                       })}
+                      value={addressNumber}
+                      onChange={(e) => setAddressNumber(e.target.value)}
                     />
                     {errors.numero && (
                       <span style={{ color: 'red', marginTop: '8px' }}>
@@ -135,13 +189,13 @@ export default function Dadosresidenciais(){
                         {...register('estado', {
                           required: 'Campo obrigatório',
                         })}
+                        value={addressState}
                       >
-                        <MenuItem value="">
-                          <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                        {states.map((state) => (
+                          <MenuItem key={state.value} value={state.value}>
+                            {state.name}
+                          </MenuItem>
+                        ))}
                       </Select>
                     </FormControl>
                     {errors.cidade && (
@@ -151,24 +205,18 @@ export default function Dadosresidenciais(){
                     )}
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <FormControl variant="standard" fullWidth>
-                      <InputLabel id="demo-simple-select-standard-label">Cidade</InputLabel>
-                      <Select
-                        labelId="demo-simple-select-standard-label"
-                        id="cidade"
-                        label="Cidade "
-                        {...register('cidade', {
-                          required: 'Campo obrigatório',
-                        })}
-                      >
-                        <MenuItem value="">
-                          <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                      </Select>
-                    </FormControl>
+                    <TextField
+                      id="cidade"
+                      label="Cidade "
+                      fullWidth
+                      autoComplete="given-name"
+                      variant="standard"
+                      value={addressCity}
+                      onChange={(e) => setAddressCity(e.target.value)}
+                      {...register('cidade', {
+                        required: 'Campo obrigatório',
+                      })}
+                    />
                     {errors.cidade && (
                       <span style={{ color: 'red', marginTop: '8px' }}>
                         {errors.cidade.message}
@@ -178,83 +226,83 @@ export default function Dadosresidenciais(){
                   <Grid item xs={12} sm={12}>
                     <TextField
                       id="complemento"
-                      name="complemento"
                       label="Complemento"
                       fullWidth
                       autoComplete="given-name"
                       variant="standard"
-                      {...register('cidade')}
+                      {...register('complemento')}
                     />
                   </Grid>
                 </Grid>
-              </form>
-            <CadastroButtom>
-              <FormGroup>
-                <FormControlLabel control={<Checkbox defaultChecked={false} onChange={handleCheckboxChange} />} label="Possuo residência fiscal, imóvel ou endereço fora do Brasil" />
-              </FormGroup>
-              {mostrarGrid && (
-                <>
-                  <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        id="nif"
-                        name="nif"
-                        label="NIF"
-                        fullWidth
-                        autoComplete="given-name"
-                        variant="standard"
-                        {...register('nif', {
-                          required: 'Campo obrigatório',
-                        })}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <FormControl variant="standard" fullWidth>
-                        <InputLabel id="demo-simple-select-standard-label">País</InputLabel>
-                        <Select
-                          labelId="demo-simple-select-standard-label"
-                          id="país"
-                          label="Cidade "
-                          {...register('país', {
-                            required: 'Campo obrigatório',
-                          })}
-                        >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
-                          <MenuItem value={10}>Ten</MenuItem>
-                          <MenuItem value={20}>Twenty</MenuItem>
-                          <MenuItem value={30}>Thirty</MenuItem>
-                        </Select>
-                      </FormControl>
-                      {errors.país && (
-                        <span style={{ color: 'red', marginTop: '8px' }}>
-                          {errors.país.message}
-                        </span>
-                      )}
-                    </Grid>
-                  </Grid>
-                </>
-              )}
+                <CadastroButtom>
+                  <FormGroup>
+                    <FormControlLabel control={<Checkbox defaultChecked={false} onChange={handleCheckboxChange} />} label="Possuo residência fiscal, imóvel ou endereço fora do Brasil" />
+                  </FormGroup>
+                  {mostrarGrid && (
+                    <>
+                      <Grid container spacing={3}>
+                        <Grid item xs={12} sm={6}>
+                          <TextField
+                            id="nif"
+                            label="NIF"
+                            fullWidth
+                            autoComplete="given-name"
+                            variant="standard"
+                            {...register('nif', {
+                              required: 'Campo obrigatório',
+                            })}
+                          />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                          <FormControl variant="standard" fullWidth>
+                            <InputLabel id="demo-simple-select-standard-label">País</InputLabel>
+                            <Select
+                              labelId="demo-simple-select-standard-label"
+                              id="pais"
+                              label="País"
+                              {...register('pais', {
+                                required: 'Campo obrigatório',
+                              })}
+                            >
+                              <MenuItem value="">
+                                <em>None</em>
+                              </MenuItem>
+                              <MenuItem value={10}>Ten</MenuItem>
+                              <MenuItem value={20}>Twenty</MenuItem>
+                              <MenuItem value={30}>Thirty</MenuItem>
+                            </Select>
+                          </FormControl>
+                          {errors.país && (
+                            <span style={{ color: 'red', marginTop: '8px' }}>
+                              {errors.país.message}
+                            </span>
+                          )}
+                        </Grid>
+                      </Grid>
+                    </>
+                  )}
               
-              <p><strong>Declaro</strong> para fins de comprovação de residência, sob as penas da Lei (art. 2° da Lei 7.115/83), que resido no endereço acima.</p>
-              {/* <CadastroAction>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  sx={{ mt: 6, mb: 2 }}
-                >
-                  Anterior
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  sx={{ mt: 6, mb: 2 }}
-                >
-                  Próximo
-                </Button>
-              </CadastroAction> */}
-            </CadastroButtom>
+                  <p><strong>Declaro</strong> para fins de comprovação de residência, sob as penas da Lei (art. 2° da Lei 7.115/83), que resido no endereço acima.</p>
+                  <CadastroAction>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      sx={{ mt: 6, mb: 2 }}
+                      onClick={handlePreviousStep}
+                    >
+                      Anterior
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      type='submit'
+                      sx={{ mt: 6, mb: 2 }}
+                    >
+                      Próximo
+                    </Button>
+                  </CadastroAction>
+                </CadastroButtom>
+              </form>
             </CardContent>
           </CadrastoRight>
           <CadrastoLeft></CadrastoLeft>
