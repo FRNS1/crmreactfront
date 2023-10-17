@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { RedefinicaoSenha } from '../js/redefinicao_senha';
 
 const ButtonPage = () => {
     const navigate = useNavigate();
@@ -90,6 +91,10 @@ const ButtonPage = () => {
         window.removeEventListener('keydown', handleEnterKeyPress);
       };
     }, [handleEnterKeyPress]);
+
+    const EsqueceuaSenha = () => {
+      navigate('/redefinicao_senha');
+    };
   
     return (
       <body className="body">
@@ -106,7 +111,7 @@ const ButtonPage = () => {
             <button className="botaoEntrar" onClick={handleButtonClick}> Entrar </button>
           </div>
           <text className='erro'>{erro}</text>
-          <a className="esqueceuSenha" href="RedefinicaoSenha"> Esqueceu sua senha? </a>
+          <a className="esqueceuSenha" onClick={EsqueceuaSenha}> Esqueceu sua senha? </a>
         </div>
       </body>
     );

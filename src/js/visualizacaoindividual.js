@@ -64,6 +64,7 @@ function VisualizacaoIndividual() {
     const [telefoneReferencia, setTelefoneReferencia] = useState('');
     const [nomeSocio, setNomeSocio] = useState('');
     const [cpfSocio, setCpfSocio] = useState('');
+    const [segmento, setSegmento] = useState('')
     // Variáveis Analytics
     const [numTitulosProtestados, setNumTitulosProtestados] = useState('');
     const [score, setScore] = useState('');
@@ -229,6 +230,7 @@ function VisualizacaoIndividual() {
             setTelefoneReferencia(data.telefone_referencia);
             setNomeSocio(data.nome_sociopj);
             setCpfSocio(data.cpf_socio);
+            setSegmento(data.segmento);
             console.log(data);
         } catch (error) {
             console.log('error', error);
@@ -945,7 +947,7 @@ function VisualizacaoIndividual() {
                                                     <label className="stringDados"> Motivo da reprovação </label>
                                                     <select className='inputCad' value={motivoReprovacao} onChange={HandleMotivoReprovacaoChange}>
                                                         <option className='inputCad' value={motivoReprovacao} > {motivoReprovacao}  </option>
-                                                        <option className='inputCad' value='Selecione um motivo'> Restrição de bureaus de crédito  </option>
+                                                        <option className='inputCad' value='Restrição de bureaus de crédito'> Restrição de bureaus de crédito  </option>
                                                         <option className='inputCad' value='Restrição por divida ativa'> Restrição por divida ativa </option>
                                                         <option className='inputCad' value='Restrição de cadin'> Restrição de cadin </option>
                                                         <option className='inputCad' value='Restrição por ausência de documento'> Restrição por ausência de documento </option>
@@ -1008,217 +1010,228 @@ function VisualizacaoIndividual() {
                                 <ResetContainer>
                                     <ResetContent>
                                         {data.isCnpj == true ? (
-                                        <FormContainer>
-                                            <FormRight>
+                                            <FormContainer>
+                                                <FormRight>
+                                                    <FormContent>
+                                                        <h2>Cliente</h2>
+                                                        <Form>
+                                                            <FlexGroup>
+                                                                <label htmlFor="name">
+                                                                    Nome:
+                                                                    <Input
+                                                                        type="text"
+                                                                        name="name"
+                                                                        id="name"
+                                                                        placeholder="Digite seu nome"
+                                                                        value={data.isCnpj == false ? customerName : customerRazaoSocial}
+                                                                        disabled
+                                                                    />
+                                                                </label>
+                                                                <label htmlFor="email">
+                                                                    Email:
+                                                                    <input
+                                                                        style={{ userSelect: "none" }}
+                                                                        type="email"
+                                                                        name="email"
+                                                                        id="email"
+                                                                        value={email}
+                                                                        placeholder="Digite seu email"
+                                                                        disabled
+                                                                    />
+                                                                </label>
+                                                                <label htmlFor="cpf">
+                                                                    CNPJ:
+                                                                    <InputMask
+                                                                        type="text"
+                                                                        name="cpf"
+                                                                        id="cpf"
+                                                                        placeholder="Digite seu cnpj"
+                                                                        value={cnpj}
+                                                                        mask="99.999.999/9999-99"
+                                                                        disabled
+                                                                    />
+                                                                </label>
+                                                            </FlexGroup>
+                                                            <FlexGroup>
+                                                                <label htmlFor="segmento">
+                                                                    Segmento:
+                                                                    <input
+                                                                        type="text"
+                                                                        name="name"
+                                                                        id="name"
+                                                                        value={segmento}
+                                                                        placeholder="Digite o segmento"
+                                                                        disabled
+                                                                    />
+                                                                </label>
+                                                                <label htmlFor="phoneNumber">
+                                                                    Telefone:
+                                                                    <InputMask
+                                                                        mask="(99) 99999-9999"
+                                                                        type="text"
+                                                                        name="phoneNumber"
+                                                                        id="phoneNumber"
+                                                                        value={telefone}
+                                                                        placeholder="Digite seu número de telefone"
+                                                                        disabled
+                                                                    />
+                                                                </label>
+                                                            </FlexGroup>
+                                                        </Form>
+                                                    </FormContent>
+                                                    <Divider />
+                                                    <FormContent>
+                                                        <h2>Referência</h2>
+                                                        <Form>
+                                                            <FlexGroup>
+                                                                <label htmlFor="name">
+                                                                    Nome completo:
+                                                                    <Input
+                                                                        type="text"
+                                                                        name="name"
+                                                                        id="name"
+                                                                        placeholder="Digite seu nome"
+                                                                        value={nomeReferencia}
+                                                                        disabled
+                                                                    />
+                                                                </label>
+                                                                <label htmlFor="email">
+                                                                    Email:
+                                                                    <Input
+                                                                        style={{ userSelect: "none" }}
+                                                                        type="email"
+                                                                        name="email"
+                                                                        id="email"
+                                                                        placeholder="Digite seu email"
+                                                                        value={emailReferencia}
+                                                                        disabled
+                                                                    />
+                                                                </label>
+                                                            </FlexGroup>
+                                                            <FlexGroup>
+                                                                <label htmlFor="cpf">
+                                                                    CPF:
+                                                                    <InputMask
+                                                                        mask="999.999.999-99"
+                                                                        type="text"
+                                                                        name="cpf"
+                                                                        id="cpf"
+                                                                        placeholder="Digite seu cpf"
+                                                                        value={cpfReferencia}
+                                                                        disabled
+                                                                    />
+                                                                </label>
+                                                                <label htmlFor="phoneNumber">
+                                                                    Telefone:
+                                                                    <InputMask
+                                                                        mask="(99) 99999-9999"
+                                                                        type="text"
+                                                                        name="phoneNumber"
+                                                                        id="phoneNumber"
+                                                                        placeholder="Digite seu número de telefone"
+                                                                        value={telefoneReferencia}
+                                                                        disabled
+                                                                    />
+                                                                </label>
+                                                            </FlexGroup>
+                                                        </Form>
+                                                    </FormContent>
+                                                </FormRight>
                                                 <FormContent>
-                                                    <h2>Cliente</h2>
+                                                    <h2>Sócio</h2>
                                                     <Form>
                                                         <FlexGroup>
                                                             <label htmlFor="name">
-                                                                Nome *:
-                                                                <Input
-                                                                    type="text"
-                                                                    name="name"
-                                                                    id="name"
-                                                                    placeholder="Digite seu nome"
-                                                                    value={data.isCnpj == false ? customerName : customerRazaoSocial}
-                                                                    disabled
-                                                                />
-                                                            </label>
-                                                            <label htmlFor="email">
-                                                                Email *:
+                                                                Nome:
                                                                 <input
-                                                                    style={{ userSelect: "none" }}
-                                                                    type="email"
-                                                                    name="email"
-                                                                    id="email"
-                                                                    value={email}
-                                                                    placeholder="Digite seu email"
-                                                                    disabled
-                                                                />
-                                                            </label>
-                                                        </FlexGroup>
-                                                        <FlexGroup>
-                                                            <label htmlFor="cpf">
-                                                                CNPJ *:
-                                                                <InputMask
-                                                                    type="text"
-                                                                    name="cpf"
-                                                                    id="cpf"
-                                                                    placeholder="Digite seu cnpj"
-                                                                    value={cnpj}
-                                                                    mask="99.999.999/9999-99"
-                                                                    disabled
-                                                                />
-                                                            </label>
-                                                            <label htmlFor="phoneNumber">
-                                                                Telefone
-                                                                <InputMask
-                                                                    mask="(99) 99999-9999"
-                                                                    type="text"
-                                                                    name="phoneNumber"
-                                                                    id="phoneNumber"
-                                                                    value={telefone}
-                                                                    placeholder="Digite seu número de telefone"
-                                                                    disabled
-                                                                />
-                                                            </label>
-                                                        </FlexGroup>
-                                                    </Form>
-                                                </FormContent>
-                                                <Divider />
-                                                <FormContent>
-                                                    <h2>Referência</h2>
-                                                    <Form>
-                                                        <FlexGroup>
-                                                            <label htmlFor="name">
-                                                                Nome completo
-                                                                <Input
                                                                     type="text"
                                                                     name="name"
                                                                     id="name"
                                                                     placeholder="Digite seu nome"
-                                                                    value={nomeReferencia}
-                                                                    disabled
-                                                                />
-                                                            </label>
-                                                            <label htmlFor="email">
-                                                                Email
-                                                                <Input
-                                                                    style={{ userSelect: "none" }}
-                                                                    type="email"
-                                                                    name="email"
-                                                                    id="email"
-                                                                    placeholder="Digite seu email"
-                                                                    value={emailReferencia}
+                                                                    value={nomeSocio}
                                                                     disabled
                                                                 />
                                                             </label>
                                                         </FlexGroup>
                                                         <FlexGroup>
                                                             <label htmlFor="cpf">
-                                                                CPF
+                                                                CPF:
                                                                 <InputMask
                                                                     mask="999.999.999-99"
                                                                     type="text"
                                                                     name="cpf"
                                                                     id="cpf"
                                                                     placeholder="Digite seu cpf"
-                                                                    value={cpfReferencia}
-                                                                    disabled
-                                                                />
-                                                            </label>
-                                                            <label htmlFor="phoneNumber">
-                                                                Telefone
-                                                                <InputMask
-                                                                    mask="(99) 99999-9999"
-                                                                    type="text"
-                                                                    name="phoneNumber"
-                                                                    id="phoneNumber"
-                                                                    placeholder="Digite seu número de telefone"
-                                                                    value={telefoneReferencia}
+                                                                    value={cpfSocio}
                                                                     disabled
                                                                 />
                                                             </label>
                                                         </FlexGroup>
                                                     </Form>
                                                 </FormContent>
-                                            </FormRight>
-                                            <FormContent>
-                                                <h2>Sócio</h2>
-                                                <Form>
-                                                    <FlexGroup>
-                                                        <label htmlFor="name">
-                                                            Nome
-                                                            <input
-                                                                type="text"
-                                                                name="name"
-                                                                id="name"
-                                                                placeholder="Digite seu nome"
-                                                                value={nomeSocio}
-                                                                disabled
-                                                            />
-                                                        </label>
-                                                    </FlexGroup>
-                                                    <FlexGroup>
-                                                        <label htmlFor="cpf">
-                                                            CPF
-                                                            <InputMask
-                                                                mask="999.999.999-99"
-                                                                type="text"
-                                                                name="cpf"
-                                                                id="cpf"
-                                                                placeholder="Digite seu cpf"
-                                                                value={cpfSocio}
-                                                                disabled
-                                                            />
-                                                        </label>
-                                                    </FlexGroup>
-                                                </Form>
-                                            </FormContent>
-                                        </FormContainer>
+                                            </FormContainer>
                                         ) : (
                                             <FormContainer>
-                                            <FormRight>
-                                                <FormContent>
-                                                    <h2>Cliente</h2>
-                                                    <Form>
-                                                        <FlexGroup>
-                                                            <label htmlFor="name">
-                                                                Nome *:
-                                                                <Input
-                                                                    type="text"
-                                                                    name="name"
-                                                                    id="name"
-                                                                    placeholder="Digite seu nome"
-                                                                    value={data.isCnpj == false ? customerName : customerRazaoSocial}
-                                                                    disabled
-                                                                />
-                                                            </label>
-                                                            <label htmlFor="email">
-                                                                Email *:
-                                                                <input
-                                                                    style={{ userSelect: "none" }}
-                                                                    type="email"
-                                                                    name="email"
-                                                                    id="email"
-                                                                    defaultValue={email}
-                                                                    placeholder="Digite seu email"
-                                                                    disabled
-                                                                />
-                                                            </label>
-                                                        </FlexGroup>
-                                                        <FlexGroup>
-                                                            <label htmlFor="cpf">
-                                                                CPF *:
-                                                                <InputMask
-                                                                    mask="999.999.999-99"
-                                                                    type="text"
-                                                                    name="cpf"
-                                                                    id="cpf"
-                                                                    value={cpf}
-                                                                    placeholder="Digite seu cpf"
-                                                                    disabled
-                                                                />
-                                                            </label>
-                                                            <label htmlFor="phoneNumber">
-                                                                Telefone
-                                                                <InputMask
-                                                                    mask="(99) 99999-9999"
-                                                                    type="text"
-                                                                    name="phoneNumber"
-                                                                    id="phoneNumber"
-                                                                    value={telefone}
-                                                                    placeholder="Digite seu número de telefone"
-                                                                    disabled
-                                                                />
-                                                            </label>
-                                                        </FlexGroup>
-                                                    </Form>
-                                                </FormContent>
-                                            </FormRight>
+                                                <FormRight>
+                                                    <FormContent>
+                                                        <h2>Cliente</h2>
+                                                        <Form>
+                                                            <FlexGroup>
+                                                                <label htmlFor="name">
+                                                                    Nome:
+                                                                    <Input
+                                                                        type="text"
+                                                                        name="name"
+                                                                        id="name"
+                                                                        placeholder="Digite seu nome"
+                                                                        value={data.isCnpj == false ? customerName : customerRazaoSocial}
+                                                                        disabled
+                                                                    />
+                                                                </label>
+                                                                <label htmlFor="email">
+                                                                    Email:
+                                                                    <input
+                                                                        style={{ userSelect: "none" }}
+                                                                        type="email"
+                                                                        name="email"
+                                                                        id="email"
+                                                                        defaultValue={email}
+                                                                        placeholder="Digite seu email"
+                                                                        disabled
+                                                                    />
+                                                                </label>
+                                                            </FlexGroup>
+                                                            <FlexGroup>
+                                                                <label htmlFor="cpf">
+                                                                    CPF:
+                                                                    <InputMask
+                                                                        mask="999.999.999-99"
+                                                                        type="text"
+                                                                        name="cpf"
+                                                                        id="cpf"
+                                                                        value={cpf}
+                                                                        placeholder="Digite seu cpf"
+                                                                        disabled
+                                                                    />
+                                                                </label>
+                                                                <label htmlFor="phoneNumber">
+                                                                    Telefone:
+                                                                    <InputMask
+                                                                        mask="(99) 99999-9999"
+                                                                        type="text"
+                                                                        name="phoneNumber"
+                                                                        id="phoneNumber"
+                                                                        value={telefone}
+                                                                        placeholder="Digite seu número de telefone"
+                                                                        disabled
+                                                                    />
+                                                                </label>
+                                                            </FlexGroup>
+                                                        </Form>
+                                                    </FormContent>
+                                                </FormRight>
                                             </FormContainer>
-                                        ) }
+                                        )}
                                     </ResetContent>
                                 </ResetContainer>
                             )}
