@@ -1,5 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 import {
   Card,
   CardContent,
@@ -21,6 +22,8 @@ import {
 
 import Figure from '../../../imgs/first-steps.svg';
 import { formatCellPhone, formatCPF } from '../../../utils/inputMasks'
+import orgaosEmissores  from '../../../utils/orgaoEmissor'
+import states  from '../../../utils/statesList'
 
 import {
   Container,
@@ -35,10 +38,10 @@ import {
   Divider,
 } from './style';
 
-export default function DadosPessoais() {
+export default function DadosPessoais({setFormData, formData, handleNextStep}) {
   const [taxDocumentCpf, setTaxDocumentCpf] = useState("");
   const [cellPhone, setCellPhone] = useState("");
-
+  
   const { 
     register, 
     handleSubmit, 
@@ -46,9 +49,10 @@ export default function DadosPessoais() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    setFormData({...formData, ...data})
+    handleNextStep()
   };
-
+  
   const handleKeyUpCpf = useCallback((e) => {
     formatCPF(e);
     setTaxDocumentCpf(e.target.value);
@@ -58,6 +62,15 @@ export default function DadosPessoais() {
     formatCellPhone(e);
     setCellPhone(e.target.value);
   }, []);
+
+  const estadoCivilOptions = [
+    { id: 'solteiro', name: 'Solteiro(a)' },
+    { id: 'casado', name: 'Casado(a)' },
+    { id: 'divorciado', name: 'Divorciado(a)' },
+    { id: 'viuvo', name: 'Viúvo(a)' },
+    { id: 'separado', name: 'Separado(a)' },
+    { id: 'uniao_estavel', name: 'União Estável' },
+  ];
 
   return (
     <Container>
@@ -153,6 +166,7 @@ export default function DadosPessoais() {
                       id="dataNascimento"
                       name="dataNascimento"
                       label="Data de Nascimento"
+                      type='date'
                       fullWidth
                       autoComplete="given-name"
                       variant="standard"
@@ -216,12 +230,11 @@ export default function DadosPessoais() {
                           required: 'Campo obrigatório',
                         })}
                       >
-                        <MenuItem value="">
-                          <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                        {orgaosEmissores.map((orgao) => (
+                          <MenuItem key={orgao.id} value={orgao.nome}>
+                            {orgao.nome}
+                          </MenuItem>
+                        ))}
                       </Select>
                     </FormControl>
                     {errors.orgao && (
@@ -242,12 +255,11 @@ export default function DadosPessoais() {
                           required: 'Campo obrigatório',
                         })}
                       >
-                        <MenuItem value="">
-                          <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                        {states.map((state) => (
+                          <MenuItem key={state.value} value={state.value}>
+                            {state.name}
+                          </MenuItem>
+                        ))}
                       </Select>
                     </FormControl>
                     {errors.estado && (
@@ -261,6 +273,7 @@ export default function DadosPessoais() {
                       id="emissao"
                       name="emissao"
                       label="Data emissão"
+                      type='date'
                       fullWidth
                       autoComplete="given-name"
                       variant="standard"
@@ -277,7 +290,6 @@ export default function DadosPessoais() {
                   <Grid item xs={12} sm={6}>
                     <TextField
                       id="mae"
-                      name="mae"
                       label="Nome da mãe"
                       fullWidth
                       autoComplete="given-name"
@@ -295,7 +307,6 @@ export default function DadosPessoais() {
                   <Grid item xs={12} sm={6}>
                     <TextField
                       id="pai"
-                      name="pai"
                       label="Nome do Pai (opcional)"
                       fullWidth
                       autoComplete="given-name"
@@ -308,19 +319,17 @@ export default function DadosPessoais() {
                       <InputLabel id="demo-simple-select-standard-label">Estado Civil</InputLabel>
                       <Select
                         labelId="demo-simple-select-standard-label"
-                        id="nacionalidade"
-                        name="nacionalidade"
+                        id="civil"
                         label="Estado Civil"
                         {...register('civil', {
                           required: 'Campo obrigatório',
                         })}
                       >
-                        <MenuItem value="">
-                          <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                        {estadoCivilOptions.map((option) => (
+                          <MenuItem key={option.id} value={option.id}>
+                            {option.name}
+                          </MenuItem>
+                        ))}
                       </Select>
                     </FormControl>
                     {errors.civil && (
@@ -341,12 +350,7 @@ export default function DadosPessoais() {
                           required: 'Campo obrigatório',
                         })}
                       >
-                        <MenuItem value="">
-                          <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                        <MenuItem></MenuItem>
                       </Select>
                     </FormControl>
                     {errors.nacionalidade && (
@@ -367,12 +371,11 @@ export default function DadosPessoais() {
                           required: 'Campo obrigatório',
                         })}
                       >
-                        <MenuItem value="">
-                          <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                        {states.map((state) => (
+                          <MenuItem key={state.value} value={state.value}>
+                            {state.name}
+                          </MenuItem>
+                        ))}
                       </Select>
                     </FormControl>
                     {errors.estadonasceu && (
@@ -441,9 +444,9 @@ export default function DadosPessoais() {
                     </FormGroup>
                   </Grid>
                 </Grid>
-                {/* <Button type="submit" variant="contained" color="primary">
-                  Enviar
-                </Button> */}
+                <Button type="submit" variant="contained" color="primary">
+                  Próximo
+                </Button>
               </form>
             </CardContent>
           </CadastroRight>

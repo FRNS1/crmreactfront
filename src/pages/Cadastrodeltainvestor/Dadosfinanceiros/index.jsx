@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
-
+import axios from 'axios';
 import { 
   Grid,
   Button,
@@ -26,23 +26,36 @@ import {
   CadastroDeltaContent,
 } from './style'
 
-export default function Dadospessoais(){
+export default function Dadospessoais({setFormData, formData, handleNextStep, handlePreviousStep}){
   const { 
     register, 
     handleSubmit, 
     formState: { errors }
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  // const onSubmit = (data) => {
+  //   setFormData({...formData, ...data})
+  //   handleNextStep()
+  //   // console.log(data);
+  // };
+
+  const onSubmit = async (data) => {
+    try {
+      // Realize uma chamada POST para a API com os dados do formulário
+      const response = await axios.post('http://52.87.219.145:8080/api/v1/formxp/register', data);
+
+      if (response.status === 200) {
+        console.log('Dados do formulário enviados com sucesso.');
+        setFormData(data);
+        handleNextStep();
+      } else {
+        console.error('Erro ao enviar os dados do formulário.');
+      }
+    } catch (error) {
+      console.error('Erro na chamada à API:', error);
+    }
   };
-
-  const [selectedDate, setSelectedDate] = React.useState(null);
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
+  
   return(
     <Container>
       <Content>
@@ -196,24 +209,26 @@ export default function Dadospessoais(){
                     )}
                   </Grid>
                 </OriginProduto>
-                {/* <CadastroButtom>
+                <CadastroButtom>
                   <CadastroAction>
                     <Button
                       variant="contained"
                       color="primary"
                       sx={{ mt: 6, mb: 2 }}
+                      onClick={handlePreviousStep}
                     >
                       Anterior
                     </Button>
                     <Button
                       variant="contained"
                       color="primary"
+                      type='submit'
                       sx={{ mt: 6, mb: 2 }}
                     >
                       Próximo
                     </Button>
                   </CadastroAction>
-                </CadastroButtom> */}
+                </CadastroButtom>
               </form>
             </CardContent>
           </CadrastoRight>

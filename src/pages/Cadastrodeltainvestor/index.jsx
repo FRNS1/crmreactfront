@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+/* eslint-disable no-use-before-define */
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+
 import { Button } from '@mui/material';
 
 import DadosPessoais from './Dadospessoais';
@@ -18,11 +21,44 @@ import { useFormCustom } from '../../hooks/useFormCustom';
 import Steps from '../../components/Steps';
 
 export default function CadastroDeltaInvestor() {
+  const [formData, setFormData] = useState({})
+  useEffect(()=>{
+    console.log(formData)
+  },[formData])
+
+
+  const handlePreviousStep = (e) => {
+    // Implemente aqui a lógica para voltar ao step anterior
+    changeStep(currentStep - 1, e);
+  };
+
+  const handleNextStep = (e) => {
+    // Implemente aqui a lógica para avançar para o próximo step
+    changeStep(currentStep + 1, e);
+  };
   const formComponents = [
-    DadosPessoais,
-    DadosResidenciais,
-    DadosFinanceiros,
-    DadosProfissionais
+    <DadosPessoais 
+      setFormData={setFormData} 
+      formData={formData} 
+      handleNextStep={handleNextStep}
+    />,
+    <DadosResidenciais 
+      setFormData={setFormData} 
+      formData={formData} 
+      handleNextStep={handleNextStep}
+      handlePreviousStep={handlePreviousStep}
+    />,
+    <DadosFinanceiros
+      setFormData={setFormData} 
+      formData={formData} 
+      handleNextStep={handleNextStep}
+      handlePreviousStep={handlePreviousStep}
+    />,
+    <DadosProfissionais
+      setFormData={setFormData} 
+      formData={formData} 
+      handlePreviousStep={handlePreviousStep}
+    />
   ]
 
   const { 
@@ -33,15 +69,6 @@ export default function CadastroDeltaInvestor() {
     isFirstStep
   } = useFormCustom(formComponents)
 
-  const handleNextStep = (e) => {
-    // Implemente aqui a lógica para avançar para o próximo step
-    changeStep(currentStep + 1, e);
-  };
-
-  const handlePreviousStep = (e) => {
-    // Implemente aqui a lógica para voltar ao step anterior
-    changeStep(currentStep - 1, e);
-  };
   
   return (
     <Container>
@@ -50,11 +77,11 @@ export default function CadastroDeltaInvestor() {
           <Steps currentStep={currentStep}/>
         </Header>
         <FormContainer>
-          <form>
+          <>
             <InputContainer>
               {currentComponent}
             </InputContainer>
-            <StepButtonContainer onClick={(e) => e.stopPropagation()}>
+            {/* <StepButtonContainer onClick={(e) => e.stopPropagation()}>
               {!isFirstStep && (
                 <Button 
                   variant="contained"
@@ -69,6 +96,8 @@ export default function CadastroDeltaInvestor() {
                   variant="contained"
                   color="primary" 
                   onClick={handleNextStep}
+                  type='submit'
+
                 >
                   Próximo
                 </Button>
@@ -76,13 +105,13 @@ export default function CadastroDeltaInvestor() {
                 <Button 
                   variant="contained"
                   color="primary"
-                  // onClick={handleDocumentUpload}
+                  // type='submit'
                 >
                   Enviar Documentos
                 </Button>
               )}
-            </StepButtonContainer>
-          </form>
+            </StepButtonContainer> */}
+          </>
         </FormContainer>
       </Content>
     </Container>

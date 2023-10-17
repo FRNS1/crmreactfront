@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { useForm } from 'react-hook-form';
-
+import axios from 'axios';
 import { 
   Grid,
   Radio,
@@ -16,6 +16,8 @@ import {
   FormControlLabel
 } from '@mui/material'
 
+import { cnpj }  from '../../../utils/inputMasks'
+
 import { 
   Content, 
   Container, 
@@ -24,29 +26,50 @@ import {
   CadastroAction,
   CadastroButtom,
   CadastroDeltaContent,
-  CardPercent,
-  CardPercentBottom,
-  CardPercentContent,
-  Divider,
-  Header 
 } from './style'
 
-export default function Dadosresidenciais(){
+export default function Dadosresidenciais({setFormData, formData, handlePreviousStep}){
+  const [taxDocumentNumber, setTaxDocumentNumber] = useState("");
+
   const { 
     register, 
     handleSubmit, 
     formState: { errors }
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post('http://52.87.219.145:8080/api/v1/formxp/register', data);
+
+      if (response.status === 200) {
+        setFormData({ ...formData, ...data });
+        // Continuar com a ação desejada, por exemplo, navegar para a próxima etapa
+      } else {
+        console.error('Erro ao enviar os dados');
+      }
+    } catch (error) {
+      console.error('Erro ao enviar os dados', error);
+    }
   };
 
-  const [isHidden, setIsHidden] = useState(true); // Estado para controlar a visibilidade da div
+  const [isHidden, setIsHidden] = useState(true);
 
   const handleRadioChange = (event) => {
     setIsHidden(event.target.value === 'Sim');
   };
+
+  const handleKeyUpCnpj = useCallback((e) => {
+    cnpj(e);
+    setTaxDocumentNumber(e.target.value);
+  }, []);
+
+  const ocupacaoProfissionalOptions = [
+    { id: 'estudante', name: 'Estudante' },
+    { id: 'trabalhador', name: 'Trabalhador' },
+    { id: 'empresario', name: 'Empresário' },
+    { id: 'autonomo', name: 'Autônomo' },
+    { id: 'aposentado', name: 'Aposentado' },
+  ];
 
   return(
     <Container>
@@ -66,16 +89,17 @@ export default function Dadosresidenciais(){
                         labelId="demo-simple-select-standard-label"
                         id="ocupacao"
                         label="Ocupação Profissional"
+                        value={taxDocumentNumber}
+                        onChange={handleKeyUpCnpj}
                         {...register('ocupacao', {
                           required: 'Campo obrigatório',
                         })}
                       >
-                        <MenuItem value="">
-                          <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                        {ocupacaoProfissionalOptions.map((ocupacao) => (
+                          <MenuItem key={ocupacao.id} value={ocupacao.id}>
+                            {ocupacao.name}
+                          </MenuItem>
+                        ))}
                       </Select>
                     </FormControl>
                     {errors.ocupacao && (
@@ -127,25 +151,27 @@ export default function Dadosresidenciais(){
                     </>
                   )}
                 </Grid>
+                <CadastroButtom>
+                  <CadastroAction>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      sx={{ mt: 6, mb: 2 }}
+                      onClick={handlePreviousStep}
+                    >
+                      Anterior
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      sx={{ mt: 6, mb: 2 }}
+                    >
+                      Enviar
+                    </Button>
+                  </CadastroAction>
+                </CadastroButtom>
               </form>
-            {/* <CadastroButtom>
-              <CadastroAction>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  sx={{ mt: 6, mb: 2 }}
-                >
-                  Anterior
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  sx={{ mt: 6, mb: 2 }}
-                >
-                  Próximo
-                </Button>
-              </CadastroAction>
-            </CadastroButtom> */}
+            
             </CardContent>
           </CadrastoRight>
           <CadrastoLeft></CadrastoLeft>
