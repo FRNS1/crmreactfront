@@ -221,6 +221,14 @@ function VisualizacaoIndividual() {
             setNumRestricoesAlls(data.allsData.num_restricoes_alls);
             setValorRestricoesAlls(data.allsData.valor_restricoes);
             setFilesReceived(data.files);
+            setEmail(data.email);
+            setTelefone(data.telefone);
+            setNomeReferencia(data.nome_referencia);
+            setEmailReferencia(data.email_referencia);
+            setCpfReferencia(data.cpf_referencia);
+            setTelefoneReferencia(data.telefone_referencia);
+            setNomeSocio(data.nome_sociopj);
+            setCpfSocio(data.cpf_socio);
             console.log(data);
         } catch (error) {
             console.log('error', error);
@@ -565,7 +573,6 @@ function VisualizacaoIndividual() {
     const handleObservacaoAnalistaChange = (value) => {
         setObservacaoAnalista(value);
     };
-
     const handleScoreChange = (value) => {
         setScore(value);
     };
@@ -732,10 +739,8 @@ function VisualizacaoIndividual() {
     }
 
 
-
     useEffect(() => {
         getDataProposal();
-        alert(isCnpj);
     }, []);
 
     function Upload() {
@@ -1022,12 +1027,14 @@ function VisualizacaoIndividual() {
                                                             </label>
                                                             <label htmlFor="email">
                                                                 Email *:
-                                                                <Input
+                                                                <input
                                                                     style={{ userSelect: "none" }}
                                                                     type="email"
                                                                     name="email"
                                                                     id="email"
+                                                                    value={email}
                                                                     placeholder="Digite seu email"
+                                                                    disabled
                                                                 />
                                                             </label>
                                                         </FlexGroup>
@@ -1046,19 +1053,17 @@ function VisualizacaoIndividual() {
                                                             </label>
                                                             <label htmlFor="phoneNumber">
                                                                 Telefone
-                                                                <Input
+                                                                <InputMask
+                                                                    mask="(99) 99999-9999"
                                                                     type="text"
                                                                     name="phoneNumber"
                                                                     id="phoneNumber"
+                                                                    value={telefone}
                                                                     placeholder="Digite seu número de telefone"
+                                                                    disabled
                                                                 />
                                                             </label>
                                                         </FlexGroup>
-                                                        <LinksContainer>
-                                                            <button type="submit">
-                                                                <span>Salvar</span>
-                                                            </button>
-                                                        </LinksContainer>
                                                     </Form>
                                                 </FormContent>
                                                 <Divider />
@@ -1073,6 +1078,8 @@ function VisualizacaoIndividual() {
                                                                     name="name"
                                                                     id="name"
                                                                     placeholder="Digite seu nome"
+                                                                    value={nomeReferencia}
+                                                                    disabled
                                                                 />
                                                             </label>
                                                             <label htmlFor="email">
@@ -1083,34 +1090,37 @@ function VisualizacaoIndividual() {
                                                                     name="email"
                                                                     id="email"
                                                                     placeholder="Digite seu email"
+                                                                    value={emailReferencia}
+                                                                    disabled
                                                                 />
                                                             </label>
                                                         </FlexGroup>
                                                         <FlexGroup>
                                                             <label htmlFor="cpf">
                                                                 CPF
-                                                                <Input
+                                                                <InputMask
+                                                                    mask="999.999.999-99"
                                                                     type="text"
                                                                     name="cpf"
                                                                     id="cpf"
                                                                     placeholder="Digite seu cpf"
+                                                                    value={cpfReferencia}
+                                                                    disabled
                                                                 />
                                                             </label>
                                                             <label htmlFor="phoneNumber">
                                                                 Telefone
-                                                                <Input
+                                                                <InputMask
+                                                                    mask="(99) 99999-9999"
                                                                     type="text"
                                                                     name="phoneNumber"
                                                                     id="phoneNumber"
                                                                     placeholder="Digite seu número de telefone"
+                                                                    value={telefoneReferencia}
+                                                                    disabled
                                                                 />
                                                             </label>
                                                         </FlexGroup>
-                                                        <LinksContainer>
-                                                            <button type="submit">
-                                                                <span>Salvar</span>
-                                                            </button>
-                                                        </LinksContainer>
                                                     </Form>
                                                 </FormContent>
                                             </FormRight>
@@ -1120,30 +1130,30 @@ function VisualizacaoIndividual() {
                                                     <FlexGroup>
                                                         <label htmlFor="name">
                                                             Nome
-                                                            <Input
+                                                            <input
                                                                 type="text"
                                                                 name="name"
                                                                 id="name"
                                                                 placeholder="Digite seu nome"
+                                                                value={nomeSocio}
+                                                                disabled
                                                             />
                                                         </label>
                                                     </FlexGroup>
                                                     <FlexGroup>
                                                         <label htmlFor="cpf">
                                                             CPF
-                                                            <Input
+                                                            <InputMask
+                                                                mask="999.999.999-99"
                                                                 type="text"
                                                                 name="cpf"
                                                                 id="cpf"
                                                                 placeholder="Digite seu cpf"
+                                                                value={cpfSocio}
+                                                                disabled
                                                             />
                                                         </label>
                                                     </FlexGroup>
-                                                    <LinksContainer>
-                                                        <button type="submit">
-                                                            <span>Salvar</span>
-                                                        </button>
-                                                    </LinksContainer>
                                                 </Form>
                                             </FormContent>
                                         </FormContainer>
@@ -1167,40 +1177,43 @@ function VisualizacaoIndividual() {
                                                             </label>
                                                             <label htmlFor="email">
                                                                 Email *:
-                                                                <Input
+                                                                <input
                                                                     style={{ userSelect: "none" }}
                                                                     type="email"
                                                                     name="email"
                                                                     id="email"
+                                                                    defaultValue={email}
                                                                     placeholder="Digite seu email"
+                                                                    disabled
                                                                 />
                                                             </label>
                                                         </FlexGroup>
                                                         <FlexGroup>
                                                             <label htmlFor="cpf">
                                                                 CPF *:
-                                                                <Input
+                                                                <InputMask
+                                                                    mask="999.999.999-99"
                                                                     type="text"
                                                                     name="cpf"
                                                                     id="cpf"
+                                                                    value={cpf}
                                                                     placeholder="Digite seu cpf"
+                                                                    disabled
                                                                 />
                                                             </label>
                                                             <label htmlFor="phoneNumber">
                                                                 Telefone
-                                                                <Input
+                                                                <InputMask
+                                                                    mask="(99) 99999-9999"
                                                                     type="text"
                                                                     name="phoneNumber"
                                                                     id="phoneNumber"
+                                                                    value={telefone}
                                                                     placeholder="Digite seu número de telefone"
+                                                                    disabled
                                                                 />
                                                             </label>
                                                         </FlexGroup>
-                                                        <LinksContainer>
-                                                            <button type="submit">
-                                                                <span>Salvar</span>
-                                                            </button>
-                                                        </LinksContainer>
                                                     </Form>
                                                 </FormContent>
                                             </FormRight>
