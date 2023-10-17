@@ -36,6 +36,7 @@ function VisualizacaoIndividual() {
     // Variaveis prop2osal
     const [proposalId, setProposalId] = useState('');
     const [customerName, setCustomerName] = useState('');
+    const [isCnpj, setIsCnpj] = useState('')
     const [customerRazaoSocial, setCustomerRazaoSocial] = useState('');
     const [cnpj, setCnpj] = useState('');
     const [cpf, setCpf] = useState('');
@@ -147,6 +148,7 @@ function VisualizacaoIndividual() {
             setProposalId(data.proposalId);
             setCustomerName(data.customerName);
             setCustomerRazaoSocial(data.customerRazaoSocial);
+            setIsCnpj(data.isCnpj);
             setCnpj(data.cnpj);
             setCpf(data.cpf);
             setValorDesejado(data.valorDesejado);
@@ -219,6 +221,7 @@ function VisualizacaoIndividual() {
             setNumRestricoesAlls(data.allsData.num_restricoes_alls);
             setValorRestricoesAlls(data.allsData.valor_restricoes);
             setFilesReceived(data.files);
+            console.log(data);
         } catch (error) {
             console.log('error', error);
         } finally {
@@ -732,6 +735,7 @@ function VisualizacaoIndividual() {
 
     useEffect(() => {
         getDataProposal();
+        alert(isCnpj);
     }, []);
 
     function Upload() {
