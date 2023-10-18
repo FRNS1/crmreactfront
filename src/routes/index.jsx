@@ -27,7 +27,8 @@ import { NilsonBentoPj } from '../js/links-indicador/pj/nilsonbentopj';
 import { DeltaHubPf } from '../js/links-indicador/pf/deltahub'
 import { DeltaHubPj } from '../js/links-indicador/pj/deltahubpj'
 import { DeltaHubBackOffice } from '../js/deltahubbackoffice';
-import { RedefinicaoSenha } from '../js/redefinicao_senha';
+import { EsqueceuSenha } from '../js/esqueceusenha';
+import { NovaSenha } from '../js/novasenha';
 import Dashboard  from '../pages/Dashboard'
 import Cadastrodeltainvestor from '../pages/Cadastrodeltainvestor'
 
@@ -59,10 +60,11 @@ function MainRouter() {
         <Route path='/indicadorhumbertocardosopj' element={<HumbertoCardosoPj />} />
         <Route path='/indicadornilsonbentopf' element={<NilsonBentoPf />} />
         <Route path='/indicadornilsonbentopj' element={<NilsonBentoPj />} />
-      <Route path='/indicadordeltahubpf' element={<DeltaHubPf />} />
-      <Route path='/indicadordeltahubpj' element={<DeltaHubPj />} />
+        <Route path='/indicadordeltahubpf' element={<DeltaHubPf />} />
+        <Route path='/indicadordeltahubpj' element={<DeltaHubPj />} />
         <Route path='/deltahubbackoffice' element={<DeltaHubBackOffice />} />
-        <Route path='/redefinicao_senha' element={<RedefinicaoSenha />} />
+        <Route path='/esqueceusenha' element={<EsqueceuSenha />} />
+        <Route path='/novasenha' element={<NovaSenha />} />
     </Routes>
   );
 }

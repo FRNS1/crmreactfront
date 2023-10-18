@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { RedefinicaoSenha } from '../js/redefinicao_senha';
+import { RedefinicaoSenha } from './esqueceusenha';
 
 const ButtonPage = () => {
     const navigate = useNavigate();
@@ -93,7 +93,7 @@ const ButtonPage = () => {
     }, [handleEnterKeyPress]);
 
     const EsqueceuaSenha = () => {
-      navigate('/redefinicao_senha');
+      navigate('/esqueceusenha');
     };
   
     return (

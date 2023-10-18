@@ -772,6 +772,57 @@ function VisualizacaoIndividual() {
         );
     }
 
+    function formataCnpj(cpfReferencia) {
+        try {
+            const partesCNPJ = cpfReferencia.split('')
+            if (partesCNPJ.length != 14) {
+                return `Documento inválido`
+
+            } else {
+                const parte1 = partesCNPJ[0];
+                const parte2 = partesCNPJ[1];
+                const parte3 = partesCNPJ[2];
+                const parte4 = partesCNPJ[3];
+                const parte5 = partesCNPJ[4];
+                const parte6 = partesCNPJ[5];
+                const parte7 = partesCNPJ[6];
+                const parte8 = partesCNPJ[7];
+                const parte9 = partesCNPJ[8];
+                const parte10 = partesCNPJ[9];
+                const parte11 = partesCNPJ[10];
+                const parte12 = partesCNPJ[11];
+                const parte13 = partesCNPJ[12];
+                const parte14 = partesCNPJ[13];
+                return `${parte1}${parte2}.${parte3}${parte4}${parte5}.${parte6}${parte7}${parte8}/${parte9}${parte10}${parte11}${parte12}-${parte13}${parte14}`;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    function formataCpf(cpfReferencia) {
+        try {
+            const partesCPF = cpfReferencia.split('')
+            if (partesCPF.length != 11) {
+                return `Documento inválido`
+            } else {
+                const parte1 = partesCPF[0];
+                const parte2 = partesCPF[1];
+                const parte3 = partesCPF[2];
+                const parte4 = partesCPF[3];
+                const parte5 = partesCPF[4];
+                const parte6 = partesCPF[5];
+                const parte7 = partesCPF[6];
+                const parte8 = partesCPF[7];
+                const parte9 = partesCPF[8];
+                const parte10 = partesCPF[9];
+                const parte11 = partesCPF[10];
+                return `${parte1}${parte2}${parte3}.${parte4}${parte5}${parte6}.${parte7}${parte8}${parte9}-${parte10}${parte11}`;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     // <UploadContainer />
 
@@ -1110,14 +1161,13 @@ function VisualizacaoIndividual() {
                                                             </FlexGroup>
                                                             <FlexGroup>
                                                                 <label htmlFor="cpf">
-                                                                    CPF:
-                                                                    <InputMask
-                                                                        mask="999.999.999-99"
+                                                                    Documento:
+                                                                    <input
                                                                         type="text"
                                                                         name="cpf"
                                                                         id="cpf"
-                                                                        placeholder="Digite seu cpf"
-                                                                        value={cpfReferencia}
+                                                                        placeholder="Digite o número do documento"
+                                                                        value={cpfReferencia.length == 11 ? formataCpf(cpfReferencia) : formataCnpj(cpfReferencia)}
                                                                         disabled
                                                                     />
                                                                 </label>
@@ -1230,6 +1280,61 @@ function VisualizacaoIndividual() {
                                                         </Form>
                                                     </FormContent>
                                                 </FormRight>
+                                                <FormContent>
+                                                    <h2>Referência</h2>
+                                                    <Form>
+                                                        <FlexGroup>
+                                                            <label htmlFor="name">
+                                                                Nome completo:
+                                                                <Input
+                                                                    type="text"
+                                                                    name="name"
+                                                                    id="name"
+                                                                    placeholder="Digite seu nome"
+                                                                    value={nomeReferencia}
+                                                                    disabled
+                                                                />
+                                                            </label>
+                                                            <label htmlFor="email">
+                                                                Email:
+                                                                <Input
+                                                                    style={{ userSelect: "none" }}
+                                                                    type="email"
+                                                                    name="email"
+                                                                    id="email"
+                                                                    placeholder="Digite seu email"
+                                                                    value={emailReferencia}
+                                                                    disabled
+                                                                />
+                                                            </label>
+                                                        </FlexGroup>
+                                                        <FlexGroup>
+                                                            <label htmlFor="cpf">
+                                                                Documento:
+                                                                <input
+                                                                    type="text"
+                                                                    name="cpf"
+                                                                    id="cpf"
+                                                                    placeholder="Digite o número do documento"
+                                                                    value={cpfReferencia.length == 11 ? formataCpf(cpfReferencia) : formataCnpj(cpfReferencia)}
+                                                                    disabled
+                                                                />
+                                                            </label>
+                                                            <label htmlFor="phoneNumber">
+                                                                Telefone:
+                                                                <InputMask
+                                                                    mask="(99) 99999-9999"
+                                                                    type="text"
+                                                                    name="phoneNumber"
+                                                                    id="phoneNumber"
+                                                                    placeholder="Digite seu número de telefone"
+                                                                    value={telefoneReferencia}
+                                                                    disabled
+                                                                />
+                                                            </label>
+                                                        </FlexGroup>
+                                                    </Form>
+                                                </FormContent>
                                             </FormContainer>
                                         )}
                                     </ResetContent>
