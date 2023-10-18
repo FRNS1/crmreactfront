@@ -449,8 +449,8 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
                   <Grid item xs={12} sm={6} sx={{ marginTop: '40px' }}>
                     <h2 style={{ marginBottom: '10px' }}>Declarações</h2>
                     <FormGroup 
-                      id="vinculado_xp"
-                      {...register('vinculado_xp')}
+                      id="declaracoes"
+                      {...register('declaracoes')}
                     >
                       {Object.entries(declaracao).map(item => <FormControlLabel key={item[0]} control={<Checkbox checked={item[1]} onChange={(e) => handleCheckBox(e, item[0])}/>} label={item[0]} />)}
                     </FormGroup>
