@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Menu } from 'antd'
 import Cookies from 'js-cookie';
-import {  DashboardOutlined, PayCircleOutlined  }from '@ant-design/icons'
+import {  LineChartOutlined, TeamOutlined, DollarOutlined, SwapOutlined, PhoneOutlined  }from '@ant-design/icons'
 
 import './style.css'
 
@@ -27,21 +27,21 @@ export default function NavbarDashboard({ darkTheme }){
 
   return(
     <Menu theme={darkTheme} mode='inline' className='menu-bar'>
-      <Menu.Item key='dashboard' icon={<DashboardOutlined />} onClick={navegaParaDashboard}>
+      <Menu.Item key='dashboard' icon={<LineChartOutlined />} onClick={navegaParaDashboard}>
         Dashboard
       </Menu.Item>
-      <Menu.Item key='client' icon={<DashboardOutlined />} onClick={navegaParaClientes}>
+      <Menu.Item key='client' icon={<TeamOutlined />} onClick={navegaParaClientes}>
         Clientes
       </Menu.Item>
-      <Menu.Item key='proposta' icon={<DashboardOutlined />} onClick={handleButtonClickPropostas}>
+      <Menu.Item key='proposta' icon={<SwapOutlined />} onClick={handleButtonClickPropostas}>
         Propostas
       </Menu.Item>
       {Cookies.get('usergroup') == 'MASTER' ? (
         <>
-          <Menu.Item key='pagamentos' icon={<PayCircleOutlined />} onClick={handleButtonClickPagamentos}>
+          <Menu.Item key='pagamentos' icon={<DollarOutlined />} onClick={handleButtonClickPagamentos}>
             Pagamentos
           </Menu.Item>
-          <Menu.Item key='deltahubbackoffice' icon={<DashboardOutlined />} onClick={() => handleButtonClickDeltaHub}>
+          <Menu.Item key='deltahubbackoffice' icon={<PhoneOutlined />} onClick={() => handleButtonClickDeltaHub}>
             DeltaHub Back Office
           </Menu.Item>
         </>
