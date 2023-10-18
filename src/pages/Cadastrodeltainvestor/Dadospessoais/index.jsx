@@ -43,6 +43,11 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
   const [taxDocumentCpf, setTaxDocumentCpf] = useState("");
   const [cellPhone, setCellPhone] = useState("");
   const [nationalName, setNationalName] = useState("");
+  const [declaracao, setDeclaracao] = useState({
+    "Sou vinculado à XP Investimentos": false,
+    "Sou Us Person": false,
+    "Sou politicamente exposto": false,
+  });
   
   const { 
     register, 
@@ -65,6 +70,10 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
     formatCellPhone(e);
     setCellPhone(e.target.value);
   }, []);
+
+  const handleCheckBox = (e, name) => {
+    setDeclaracao({...declaracao, [name]: e.target.checked })
+  }
 
   const estadoCivilOptions = [
     { id: 'solteiro', name: 'Solteiro(a)' },
@@ -439,13 +448,11 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
                   </Grid>
                   <Grid item xs={12} sm={6} sx={{ marginTop: '40px' }}>
                     <h2 style={{ marginBottom: '10px' }}>Declarações</h2>
-                    <FormGroup {...register('vinculado_xp')}>
-                      <FormControlLabel
-                        control={<Checkbox />}
-                        label="Sou vinculado à XP Investimentos"
-                      />
-                      <FormControlLabel control={<Checkbox />} label="Sou Us Person" />
-                      <FormControlLabel control={<Checkbox />} label="Sou politicamente exposto" />
+                    <FormGroup 
+                      id="vinculado_xp"
+                      {...register('vinculado_xp')}
+                    >
+                      {Object.entries(declaracao).map(item => <FormControlLabel key={item[0]} control={<Checkbox checked={item[1]} onChange={(e) => handleCheckBox(e, item[0])}/>} label={item[0]} />)}
                     </FormGroup>
                   </Grid>
                 </Grid>
