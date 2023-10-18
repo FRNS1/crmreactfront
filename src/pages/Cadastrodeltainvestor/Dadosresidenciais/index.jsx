@@ -1,20 +1,9 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
-import axios from "axios";
-
-import { 
-  Grid,
-  Button,
-  Select,
-  MenuItem,
-  TextField,
-  InputLabel,
-  CardContent, 
-  FormControl,
-} from '@mui/material';
-
-import { cep } from '../../../utils/inputMasks'
-import states  from '../../../utils/statesList'
+import axios from 'axios';
+import { Grid, Button, Select, MenuItem, TextField, InputLabel, CardContent, FormControl } from '@mui/material';
+import { cep } from '../../../utils/inputMasks';
+import states from '../../../utils/statesList';
 
 import { 
   Container, 
@@ -26,53 +15,50 @@ import {
   CadastroButtom,
 } from './style'
 
-export default function Dadosresidenciais({setFormData, formData, handleNextStep, handlePreviousStep}){
-  const [addressZipcode, setAddressZipcode] = useState("");
-  const [addressNumber, setAddressNumber] = useState("")
+export default function Dadosresidenciais({ setFormData, formData, handleNextStep, handlePreviousStep }) {
+  const [addressZipcode, setAddressZipcode] = useState('');
+  const [addressNumber, setAddressNumber] = useState('');
+  const [address, setAddress] = useState(null);
 
-  const [address, setAddress] = useState(null)
-
-  const { 
-    register, 
-    handleSubmit, 
+  const {
+    register,
+    handleSubmit,
     setValue,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
-    setFormData({...formData, ...data});
-    handleNextStep()
-  }
+    setFormData({ ...formData, ...data });
+    handleNextStep();
+  };
 
   const handleAutoCompleteData = useCallback(async () => {
-    const response = await axios.get(
-      `https://viacep.com.br/ws/${addressZipcode}/json/`
-    );
-    setAddress(response.data);
-    setValue("endereco", response.data.logradouro);
-    setValue("bairro", response.data.bairro);
-    setValue("cidade", response.data.localidade);
-    setValue("estado", response.data.uf);
+    try {
+      const response = await axios.get(`https://viacep.com.br/ws/${addressZipcode}/json/`);
+      setAddress(response.data);
+      setValue('endereco', response.data.logradouro);
+      setValue('bairro', response.data.bairro);
+      setValue('cidade', response.data.localidade);
+      setValue('estado', response.data.uf);
+    } catch (error) {
+      console.error('Erro ao buscar os dados do CEP:', error);
+    }
   }, [addressZipcode, setValue]);
-
-
 
   const handleKeyUp = (e) => {
     cep(e);
     setAddressZipcode(e.target.value);
   };
 
-  return(
+  return (
     <Container>
       <Content>
         <h2>Dados residenciais</h2>
         <CadastroDeltaContent>
           <CadrastoRight>
-            <CardContent 
-              style={{ padding: '0'}}
-            >
+            <CardContent style={{ padding: '0' }}>
               <form onSubmit={handleSubmit(onSubmit)}>
-                <Grid container spacing={3} >
+                <Grid container spacing={3}>
                   <Grid item xs={12} sm={6}>
                     <TextField
                       id="cep"
@@ -80,24 +66,25 @@ export default function Dadosresidenciais({setFormData, formData, handleNextStep
                       fullWidth
                       autoComplete="given-name"
                       variant="standard"
+                      // {...register('cep', {
+                      //   required: 'Campo obrigatório',
+                      // })}
                       value={addressZipcode}
                       onChange={handleKeyUp}
                       onBlur={handleAutoCompleteData}
-                      {...register('cep', {
-                        required: 'Campo obrigatório',
-                      })}
                     />
-                    {errors.cep && (
+                    {/* {errors.cep && (
                       <span style={{ color: 'red', marginTop: '8px' }}>
                         {errors.cep.message}
                       </span>
-                    )}
+                    )} */}
                   </Grid>
                   <Grid item xs={12} sm={12}>
                     <TextField
                       id="endereco"
                       fullWidth
                       variant="standard"
+                      autoComplete="given-name"
                       disabled
                       {...register('endereco')}
                       value={address?.logradouro}
@@ -108,6 +95,7 @@ export default function Dadosresidenciais({setFormData, formData, handleNextStep
                       id="bairro"
                       fullWidth
                       variant="standard"
+                      autoComplete="given-name"
                       disabled
                       {...register('bairro')}
                       value={address?.bairro}
@@ -118,6 +106,7 @@ export default function Dadosresidenciais({setFormData, formData, handleNextStep
                       id="cidade"
                       fullWidth
                       variant="standard"
+                      autoComplete="given-name"
                       disabled
                       value={address?.localidade}
                       {...register('cidade')}
@@ -136,13 +125,9 @@ export default function Dadosresidenciais({setFormData, formData, handleNextStep
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                  <FormControl variant="standard" fullWidth>
+                    <FormControl variant="standard" fullWidth>
                       <InputLabel id="demo-simple-select-standard-label">Estado</InputLabel>
-                      <Select
-                        labelId="demo-simple-select-standard-label"
-                        id="estado"
-                        {...register('estado')}
-                      >
+                      <Select labelId="demo-simple-select-standard-label" id="estado" {...register('estado')}>
                         {states.map((state) => (
                           <MenuItem key={state.value} value={state.value}>
                             {state.name}
@@ -167,7 +152,7 @@ export default function Dadosresidenciais({setFormData, formData, handleNextStep
                     <Button
                       variant="contained"
                       color="primary"
-                      sx={{ mt: 6, mb: 2, padding: '8px 40px', fontSize: '0.9375rem'}}
+                      sx={{ mt: 6, mb: 2, padding: '8px 40px', fontSize: '0.9375rem' }}
                       onClick={handlePreviousStep}
                     >
                       Anterior
@@ -176,7 +161,7 @@ export default function Dadosresidenciais({setFormData, formData, handleNextStep
                       variant="contained"
                       color="primary"
                       type='submit'
-                      sx={{ mt: 6, mb: 2, padding: '8px 40px', fontSize: '0.9375rem'}}
+                      sx={{ mt: 6, mb: 2, padding: '8px 40px', fontSize: '0.9375rem' }}
                     >
                       Próximo
                     </Button>
@@ -189,5 +174,5 @@ export default function Dadosresidenciais({setFormData, formData, handleNextStep
         </CadastroDeltaContent>
       </Content>
     </Container>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { 
@@ -16,9 +16,11 @@ import {
   FormControl,
   Checkbox,
   FormControlLabel
-} from '@mui/material'
+} from '@mui/material';
 
-import { cnpj }  from '../../../utils/inputMasks'
+import Loading from '../../../components/UI/Loading'; 
+
+import { cnpj } from '../../../utils/inputMasks';
 
 import { 
   Content, 
@@ -28,11 +30,11 @@ import {
   CadastroAction,
   CadastroButtom,
   CadastroDeltaContent,
-} from './style'
+} from './style';
 
-export default function Dadosresidenciais({formData, handlePreviousStep}){
+export default function Dadosresidenciais({ formData, handlePreviousStep }) {
   const [taxDocumentNumber, setTaxDocumentNumber] = useState("");
-  const [empregado, setEmpregado] = useState("")
+  const [isLoading, setIsLoading] = useState(false);
 
   const { 
     register, 
@@ -41,6 +43,7 @@ export default function Dadosresidenciais({formData, handlePreviousStep}){
   } = useForm();
 
   const onSubmit = async (data) => {
+    setIsLoading(true);
     try {
       const response = await axios.post('http://35.175.231.117:8080/api/v1/formxp/register', { ...formData, ...data });
   
@@ -52,6 +55,11 @@ export default function Dadosresidenciais({formData, handlePreviousStep}){
       }
     } catch (error) {
       console.error('Erro ao enviar os dados', error);
+    } 
+    finally {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 30000);
     }
   };
   
@@ -60,39 +68,21 @@ export default function Dadosresidenciais({formData, handlePreviousStep}){
     setTaxDocumentNumber(e.target.value);
   }, []);
 
-  return(
+  return (
     <Container>
       <Content>
         <h2>Dados profissionais</h2>
         <CadastroDeltaContent>
           <CadrastoRight>
-            <CardContent 
-              style={{ padding: '0'}}
-            >
+            <CardContent style={{ padding: '0' }}>
               <form onSubmit={handleSubmit(onSubmit)} autoComplete='off'>
                 <Grid container spacing={3} >
                   <Grid item xs={12} sm={12}>
                     <FormLabel style={{ marginBottom: '10px', fontSize:'36px' }}>Ocupação Profissional</FormLabel>
                       <FormGroup {...register('empregado')}>
-                        <FormControlLabel control={<Checkbox />}label="Sim" />
+                        <FormControlLabel control={<Checkbox />} label="Sim" />
                         <FormControlLabel control={<Checkbox />} label="Não" />
                       </FormGroup>
-                    {/* <FormControl>
-                      <FormLabel 
-                        style={{ marginBottom: '10px' }}
-                      >
-                        Ocupação Profissional
-                      </FormLabel>
-                      <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        id="empregado"
-                        name="row-radio-buttons-group"
-                      >
-                        <FormControlLabel value="Nao" control={<Radio />} label="Não" />
-                        <FormControlLabel value="Sim" control={<Radio />} label="Sim" />
-                      </RadioGroup>
-                    </FormControl> */}
                   </Grid>
                   <Grid item xs={12} sm={12}>
                     <TextField
@@ -138,12 +128,12 @@ export default function Dadosresidenciais({formData, handlePreviousStep}){
                   </CadastroAction>
                 </CadastroButtom>
               </form>
-            
             </CardContent>
           </CadrastoRight>
           <CadrastoLeft></CadrastoLeft>
         </CadastroDeltaContent>
       </Content>
+      {isLoading && <Loading />}
     </Container>
-  )
+  );
 }
