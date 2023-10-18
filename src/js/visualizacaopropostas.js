@@ -50,6 +50,7 @@ function VisualizacaoPropostas() {
             setLoading(false); // Removemos a chamada para handleSearch aqui
         } catch (error) {
             console.log('error', error);
+            alert('error', error);
         }
     }
 
@@ -224,7 +225,7 @@ function VisualizacaoPropostas() {
             </div>
             <div className='containerGeral'>
                 <div className='textoPropostas'>
-                    <text className='stringTitulos'> Propostas </text>
+                    <span className='stringTitulos'> Propostas </span>
                 </div>
                 <div className='filtros'>
                     <div className='divfiltroSelect'>

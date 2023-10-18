@@ -34,29 +34,29 @@ function NavLateral() {
       <ul className="sidebar-menu">
         <li className="sidebar-item">
           <FontAwesomeIcon className="icone" icon={faChartLine} />
-          <text className='item-text'>Dashboard</text>
+          <span className='item-text'>Dashboard</span>
         </li>
         <hr className='line'></hr>
         <li className="sidebar-item" onClick={navegaParaClientes}>
           <FontAwesomeIcon className="icone" icon={faIdBadge} />
-          <text className='item-text'>Clientes</text>
+          <span className='item-text'>Clientes</span>
         </li>
         <hr className='line'></hr>
         <li className="sidebar-item" onClick={handleButtonClickPropostas}>
           <FontAwesomeIcon className="icone" icon={faHandshake} />
-          <text className='item-text'>Propostas</text>
+          <span className='item-text'>Propostas</span>
         </li>
         <hr className='line'></hr>
         {Cookies.get('usergroup') == 'MASTER' ? (
           <>
             <li className="sidebar-item" onClick={handleButtonClickPagamentos}>
               <FontAwesomeIcon className="icone" icon={faDollarSign} />
-              <text className='item-text'>Pagamentos</text>
+              <span className='item-text'>Pagamentos</span>
             </li>
             <hr className='line'></hr>
             <li className="sidebar-item" onClick={() => handleButtonClickDeltaHub}>
               <FontAwesomeIcon className="icone" icon={faMobile} />
-              <text className='item-text'>DeltaHub Back Office</text>
+              <span className='item-text'>DeltaHub Back Office</span>
             </li>
           </>
         ) : null}

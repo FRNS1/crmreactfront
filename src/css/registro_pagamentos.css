@@ -1,5 +1,6 @@
 .pointer {
     cursor: pointer;
+    font-weight: bold;
 }
 
 .tabelaPagamentos{

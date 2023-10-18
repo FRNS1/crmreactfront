@@ -9,7 +9,7 @@ function NavSuperior() {
       <div className="navbar">
         <ul className="nav-links">
           <li className='username'>
-            <text className='usernameText'> {Cookies.get('nome')} </text>
+            <span className='usernameText'> {Cookies.get('nome')} </span>
             <FontAwesomeIcon icon={faRightFromBracket} />
           </li>
         </ul>
