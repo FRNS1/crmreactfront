@@ -47,20 +47,20 @@
   }
 
 .deltaimg{
-  padding-bottom: 2vh;
   width: 55vh;
   height: 25vh;
   }
 
   .divbotaoEntrar{
-    width: 18.5%;
+    display: flex;
+    justify-content: center;
+    width: 18%;
   }
 
 .botaoEntrar{
   background-color: #AC7B39;
   color: white;
   border-radius: 1vh 1vh;
-  padding: 1vh 10vh;
   width: 100%;
   padding: 5px 10px;
   text-align: center;
@@ -79,8 +79,10 @@
   height: 2.5vh;
   width: 38vh; /*define a posição na horizontal da string*/
   color: white; /*define a cor da string*/
+  margin-left: 1vh;
   font-size: 2vh;
   font-family: sans-serif;
+  cursor: pointer;
 }
 
 .erro {

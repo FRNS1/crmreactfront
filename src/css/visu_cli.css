@@ -37,7 +37,17 @@
     padding-left: 0.5vh;
     background-color: white;
     border-radius: 1vh;
-    opacity: 0.5;
+    height: 4vh;
+    width: 48vh;
+    text-align: start;
+    font-size: 2vh;
+}
+
+.inputDados:disabled{
+    padding-left: 0.5vh;
+    background-color: white;
+    color: black;
+    border-radius: 1vh;
     height: 4vh;
     width: 48vh;
     text-align: start;

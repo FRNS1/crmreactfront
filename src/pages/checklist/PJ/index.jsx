@@ -124,7 +124,7 @@ function ChecklistPj() {
                 "cnpj": `${cnpj.replace(".", "").replace("-", "").replace("/", "").replace(".", "")}`,
                 "razaoSocial": `${razaoSocial}`,
                 "nomeFantasia": `${nomeFantasia}`,
-                "segmento": `${segmento}`,
+                "segmento": `${segmento.label}`,
                 "nomeSocio": `${nomeSocio}`,
                 "cpfSocio": `${cpfSocio.replace(".", "").replace("-", "").replace(".", "")}`,
                 "email": `${email}`,
@@ -181,6 +181,7 @@ function ChecklistPj() {
 
     const handleChange = selectedOption => {
         console.log(`Opção selecionada: ${selectedOption.label}`);
+        setSegmento(selectedOption);
     };
 
     const handleChangeTipo = event => {
@@ -307,6 +308,7 @@ function ChecklistPj() {
                                 isSearchable={true}
                                 placeholder="Digite para pesquisar..."
                                 onChange={handleChange}
+                                value={segmento}
                             />
                         </GroupCheckelist>
                         <GroupCheckelist className="form-groupchecklist">
