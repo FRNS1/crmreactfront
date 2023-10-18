@@ -1,8 +1,5 @@
 /* eslint-disable no-use-before-define */
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-
-import { Button } from '@mui/material';
 
 import DadosPessoais from './Dadospessoais';
 import DadosResidenciais from './Dadosresidenciais';
@@ -14,7 +11,6 @@ import {
   Content, 
   Header, 
   InputContainer,
-  StepButtonContainer, 
   FormContainer 
 } from './style';
 import { useFormCustom } from '../../hooks/useFormCustom';
@@ -55,7 +51,6 @@ export default function CadastroDeltaInvestor() {
       handlePreviousStep={handlePreviousStep}
     />,
     <DadosProfissionais
-      setFormData={setFormData} 
       formData={formData} 
       handlePreviousStep={handlePreviousStep}
     />
@@ -73,44 +68,14 @@ export default function CadastroDeltaInvestor() {
   return (
     <Container>
       <Content>
-        <Header>
+        {/* <Header>
           <Steps currentStep={currentStep}/>
-        </Header>
+        </Header> */}
         <FormContainer>
           <>
             <InputContainer>
               {currentComponent}
             </InputContainer>
-            {/* <StepButtonContainer onClick={(e) => e.stopPropagation()}>
-              {!isFirstStep && (
-                <Button 
-                  variant="contained"
-                  color="primary"
-                  onClick={handlePreviousStep}
-                >
-                  Anterior
-                </Button>
-              )}
-              {!isLastStep ? (
-                <Button
-                  variant="contained"
-                  color="primary" 
-                  onClick={handleNextStep}
-                  type='submit'
-
-                >
-                  Próximo
-                </Button>
-              ) : (
-                <Button 
-                  variant="contained"
-                  color="primary"
-                  // type='submit'
-                >
-                  Enviar Documentos
-                </Button>
-              )}
-            </StepButtonContainer> */}
           </>
         </FormContainer>
       </Content>

@@ -9,9 +9,9 @@ export const Container = styled.div`
 export const Content = styled.div`
   width: 90%;
   height: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  /* margin-top: 40px; */
+  /* max-width: 1200px;
+  margin: 0 auto; */
+  margin-top: 80px;
   display: flex;
   flex-direction: column;
 
@@ -37,7 +37,7 @@ export const Content = styled.div`
 
   ${md`
     width: 100%;
-    // padding: 0 24px;
+    padding: 0 24px;
   `}
   ${sm`
     width: 100%;

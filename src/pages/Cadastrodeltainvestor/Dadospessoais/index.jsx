@@ -36,11 +36,13 @@ import {
   CardPercentBottom,
   CardPercentContent,
   Divider,
+  CadastroAction
 } from './style';
 
 export default function DadosPessoais({setFormData, formData, handleNextStep}) {
   const [taxDocumentCpf, setTaxDocumentCpf] = useState("");
   const [cellPhone, setCellPhone] = useState("");
+  const [nationalName, setNationalName] = useState("");
   
   const { 
     register, 
@@ -51,6 +53,7 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
   const onSubmit = (data) => {
     setFormData({...formData, ...data})
     handleNextStep()
+    console.log({...formData})
   };
   
   const handleKeyUpCpf = useCallback((e) => {
@@ -72,6 +75,11 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
     { id: 'uniao_estavel', name: 'União Estável' },
   ];
 
+  const nacionalidadeOptions = [
+    { id: 'brasileiro', name: 'Brasileiro(a)' },
+    { id: 'estrangeiro', name: 'Estrangeiro(a)' },
+  ];
+
   return (
     <Container>
       <Content>
@@ -82,19 +90,19 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
                 <Grid container spacing={3}>
                   <Grid item xs={12} sm={6}>
                     <TextField
-                      id="firstName"
-                      name="firstName"
+                      id="nome_completo"
+                      name="nome_completo"
                       label="Nome completo (como está no RG)"
                       fullWidth
                       autoComplete="given-name"
                       variant="standard"
-                      {...register('firstName', {
+                      {...register('nome_completo', {
                         required: 'Campo obrigatório',
                       })}
                     />
-                    {errors.firstName && (
+                    {errors.nome_completo && (
                       <span style={{ color: 'red', marginTop: '8px' }}>
-                        {errors.firstName.message}
+                        {errors.nome_completo.message}
                       </span>
                     )}
                   </Grid>
@@ -122,22 +130,22 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
-                      id="confirmar"
-                      name="confirmar"
+                      id="email_confirmacao"
+                      name="email_confirmacao"
                       label="Confirme seu e-mail"
                       fullWidth
                       autoComplete="given-name"
                       variant="standard"
-                      {...register('confirmar', {
+                      {...register('email_confirmacao', {
                         required: 'Campo obrigatório',
                         validate: (value) =>
                           value === getValues('email') ||
                           'Os e-mails não coincidem',
                       })}
                     />
-                    {errors.confirmar && (
+                    {errors.email_confirmacao && (
                       <span style={{ color: 'red', marginTop: '8px' }}>
-                        {errors.confirmar.message}
+                        {errors.email_confirmacao.message}
                       </span>
                     )}
                   </Grid>
@@ -163,20 +171,20 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
-                      id="dataNascimento"
-                      name="dataNascimento"
+                      id="data_nascimento"
+                      name="data_nascimento"
                       label="Data de Nascimento"
                       type='date'
                       fullWidth
                       autoComplete="given-name"
                       variant="standard"
-                      {...register('dataNascimento', {
+                      {...register('data_nascimento', {
                         required: 'Campo obrigatório',
                       })}
                     />
-                    {errors.dataNascimento && (
+                    {errors.data_nascimento && (
                       <span style={{ color: 'red', marginTop: '8px' }}>
-                        {errors.dataNascimento.message}
+                        {errors.data_nascimento.message}
                       </span>
                     )}
                   </Grid>
@@ -223,10 +231,10 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
                       <InputLabel id="demo-simple-select-standard-label">Orgão emissor</InputLabel>
                       <Select
                         labelId="demo-simple-select-standard-label"
-                        id="orgao"
-                        name="orgao"
+                        id="orgao_emissor"
+                        name="orgao_emissor"
                         label="Orgão emissor"
-                        {...register('orgao', {
+                        {...register('orgao_emissor', {
                           required: 'Campo obrigatório',
                         })}
                       >
@@ -237,9 +245,9 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
                         ))}
                       </Select>
                     </FormControl>
-                    {errors.orgao && (
+                    {errors.orgao_emissor && (
                       <span style={{ color: 'red', marginTop: '8px' }}>
-                        {errors.orgao.message}
+                        {errors.orgao_emissor.message}
                       </span>
                     )}
                   </Grid>
@@ -248,10 +256,10 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
                       <InputLabel id="demo-simple-select-standard-label">Estado onde foi emitido</InputLabel>
                       <Select
                         labelId="demo-simple-select-standard-label"
-                        id="estado"
-                        name="estado"
+                        id="estado_emissao"
+                        name="estado_emissao"
                         label="Estado onde foi emitido"
-                        {...register('estado', {
+                        {...register('estado_emissao', {
                           required: 'Campo obrigatório',
                         })}
                       >
@@ -262,56 +270,56 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
                         ))}
                       </Select>
                     </FormControl>
-                    {errors.estado && (
+                    {errors.estado_emissao && (
                       <span style={{ color: 'red', marginTop: '8px' }}>
-                        {errors.estado.message}
+                        {errors.estado_emissao.message}
                       </span>
                     )}
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
-                      id="emissao"
-                      name="emissao"
+                      id="data_emissao"
+                      name="data_emissao"
                       label="Data emissão"
                       type='date'
                       fullWidth
                       autoComplete="given-name"
                       variant="standard"
-                      {...register('emissao', {
+                      {...register('data_emissao', {
                         required: 'Campo obrigatório',
                       })}
                     />
-                    {errors.emissao && (
+                    {errors.data_emissao && (
                       <span style={{ color: 'red', marginTop: '8px' }}>
-                        {errors.emissao.message}
+                        {errors.data_emissao.message}
                       </span>
                     )}
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
-                      id="mae"
+                      id="nome_mae"
                       label="Nome da mãe"
                       fullWidth
                       autoComplete="given-name"
                       variant="standard"
-                      {...register('mae', {
+                      {...register('nome_mae', {
                         required: 'Campo obrigatório',
                       })}
                     />
-                    {errors.mae && (
+                    {errors.nome_mae && (
                       <span style={{ color: 'red', marginTop: '8px' }}>
-                        {errors.mae.message}
+                        {errors.nome_mae.message}
                       </span>
                     )}
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
-                      id="pai"
+                      id="nome_pai"
                       label="Nome do Pai (opcional)"
                       fullWidth
                       autoComplete="given-name"
                       variant="standard"
-                      {...register('pai')}
+                      {...register('nome_pai')}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -319,9 +327,9 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
                       <InputLabel id="demo-simple-select-standard-label">Estado Civil</InputLabel>
                       <Select
                         labelId="demo-simple-select-standard-label"
-                        id="civil"
+                        id="estado_civil"
                         label="Estado Civil"
-                        {...register('civil', {
+                        {...register('estado_civil', {
                           required: 'Campo obrigatório',
                         })}
                       >
@@ -332,9 +340,9 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
                         ))}
                       </Select>
                     </FormControl>
-                    {errors.civil && (
+                    {errors.estado_civil && (
                       <span style={{ color: 'red', marginTop: '8px' }}>
-                        {errors.civil.message}
+                        {errors.estado_civil.message}
                       </span>
                     )}
                   </Grid>
@@ -344,13 +352,18 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
                       <Select
                         labelId="demo-simple-select-standard-label"
                         id="nacionalidade"
-                        name="nacionalidade"
                         label="Nacionalidade"
                         {...register('nacionalidade', {
                           required: 'Campo obrigatório',
                         })}
+                        value={nationalName}
+                        onChange={(e) => setNationalName(e.target.value)}
                       >
-                        <MenuItem></MenuItem>
+                        {nacionalidadeOptions.map((nacionalidade) => (
+                          <MenuItem key={nacionalidade.id} value={nacionalidade.name}>
+                            {nacionalidade.name}
+                          </MenuItem>
+                        ))}
                       </Select>
                     </FormControl>
                     {errors.nacionalidade && (
@@ -364,10 +377,9 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
                       <InputLabel id="demo-simple-select-standard-label">Estado onde nasceu</InputLabel>
                       <Select
                         labelId="demo-simple-select-standard-label"
-                        id="estadonasceu"
-                        name="estadonasceu"
+                        id="estado_nascimento"
                         label="Estado onde nasceu"
-                        {...register('estadonasceu', {
+                        {...register('estado_nascimento', {
                           required: 'Campo obrigatório',
                         })}
                       >
@@ -378,35 +390,43 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
                         ))}
                       </Select>
                     </FormControl>
-                    {errors.estadonasceu && (
+                    {errors.estado_nascimento && (
                       <span style={{ color: 'red', marginTop: '8px' }}>
-                        {errors.estadonasceu.message}
+                        {errors.estado_nascimento.message}
                       </span>
                     )}
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <FormControl variant="standard" fullWidth>
+                    <TextField
+                        id="cidade_nascimento"
+                        label="Cidade onde nasceu"
+                        fullWidth
+                        autoComplete="given-name"
+                        variant="standard"
+                        {...register('cidade_nascimento', {
+                          required: 'Campo obrigatório',
+                        })}
+                      />
+                    {/* <FormControl variant="standard" fullWidth>
                       <InputLabel id="demo-simple-select-standard-label">Cidade onde nasceu</InputLabel>
                       <Select
                         labelId="demo-simple-select-standard-label"
-                        id="cidadenasceu"
-                        name="cidadenasceu"
+                        id="cidade_nascimento"
+                        name="cidade_nascimento"
                         label="Cidade onde nasceu"
-                        {...register('cidadenasceu', {
+                        {...register('cidade_nascimento', {
                           required: 'Campo obrigatório',
                         })}
                       >
-                        <MenuItem value="">
-                          <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                        <MenuItem value={1}>1</MenuItem>
+                        <MenuItem value={2}>2</MenuItem>
+                        <MenuItem value={3}>3</MenuItem>
+                        <MenuItem value={4}>4</MenuItem>
                       </Select>
-                    </FormControl>
-                    {errors.cidadenasceu && (
+                    </FormControl> */}
+                    {errors.cidade_nascimento && (
                       <span style={{ color: 'red', marginTop: '8px' }}>
-                        {errors.cidadenasceu.message}
+                        {errors.cidade_nascimento.message}
                       </span>
                     )}
                   </Grid>
@@ -434,9 +454,9 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
                   </Grid>
                   <Grid item xs={12} sm={6} sx={{ marginTop: '40px' }}>
                     <h2 style={{ marginBottom: '10px' }}>Declarações</h2>
-                    <FormGroup>
+                    <FormGroup {...register('vinculado_xp')}>
                       <FormControlLabel
-                        control={<Checkbox defaultChecked />}
+                        control={<Checkbox />}
                         label="Sou vinculado à XP Investimentos"
                       />
                       <FormControlLabel control={<Checkbox />} label="Sou Us Person" />
@@ -444,9 +464,11 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
                     </FormGroup>
                   </Grid>
                 </Grid>
-                <Button type="submit" variant="contained" color="primary">
-                  Próximo
-                </Button>
+                <CadastroAction>
+                  <Button type="submit" variant="contained" color="primary">
+                    Próximo
+                  </Button>
+                </CadastroAction>
               </form>
             </CardContent>
           </CadastroRight>

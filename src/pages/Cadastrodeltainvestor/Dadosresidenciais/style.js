@@ -9,8 +9,7 @@ export const Container = styled.div`
 export const Content = styled.div`
   width: 100%;
   height: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  margin-top: 80px;
   
   display: flex;
   flex-direction: column;
@@ -21,6 +20,20 @@ export const Content = styled.div`
     line-height: 1.1;
     margin-bottom: 16px;
   }
+
+  ${md`
+    width: 100%;
+    padding: 0 24px;
+  `}
+  ${sm`
+    width: 100%;
+    padding: 0 24px;
+
+  `}
+  ${xs`
+    width: 100%;
+    padding: 0 24px;
+  `}
 `
 export const CadastroDeltaContent = styled.div`
   gap: 100px;

@@ -9,6 +9,7 @@ export const Container = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 80px;
 
   h2{
     font-size: 32px;
@@ -27,6 +28,20 @@ export const Content = styled.div`
   form{
     width: 100%;
   }
+
+  ${md`
+    width: 100%;
+    padding: 0 24px;
+  `}
+  ${sm`
+    width: 100%;
+    padding: 0 24px;
+
+  `}
+  ${xs`
+    width: 100%;
+    padding: 0 24px;
+  `}
 `
 export const CadastroDeltaContent = styled.div`
   gap: 100px;

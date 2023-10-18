@@ -3,13 +3,11 @@ import { xs, sm, md } from '../../../style/responsiveStyles';
 
 export const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
 `
 export const Content = styled.div`
   width: 100%;
   height: 100%;
-  /* max-width: 1200px;
-  margin: 0 auto; */
   margin-top: 80px;
   display: flex;
   flex-direction: column;
@@ -35,6 +33,10 @@ export const Content = styled.div`
     }
   }
 
+  form{
+    width: 100%;
+  }
+  
   ${md`
     width: 100%;
     padding: 0 24px;
@@ -55,6 +57,20 @@ export const CadastroDeltaContent = styled.div`
   display: grid;
   justify-content: space-between;
   margin-top: 40px;
+
+  ${md`
+    width: 100%;
+    display: block;
+  `}
+  ${sm`
+    width: 100%;
+    display: block;
+
+  `}
+  ${xs`
+    width: 100%;
+    display: block;
+  `}
 `;
 
 export const CadastroRight = styled.div`
@@ -94,11 +110,25 @@ export const CardPercentBottom = styled.div`
 export const CadastroLeft = styled.div`
    display: flex;
    flex-direction: column;
+
+   ${md`
+    
+    display: none;
+  `}
+  ${sm`
+    display: none;
+
+  `}
+  ${xs`
+    display: none;
+  `}
 `
 export const CadastroCard = styled.div`
 
 `
-
+export const CadastroAction = styled.div`
+  margin-top: 30px;
+`
 export const Assessor = styled.div`
   display: flex;
   align-items: center;
