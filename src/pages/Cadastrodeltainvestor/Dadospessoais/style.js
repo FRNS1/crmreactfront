@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { xs, sm, md } from '../../../style/responsiveStyles';
+import { xs, sm, md, lg } from '../../../style/responsiveStyles';
 
 export const Container = styled.div`
   width: 100%;
@@ -58,6 +58,7 @@ export const CadastroDeltaContent = styled.div`
   justify-content: space-between;
   margin-top: 40px;
 
+  
   ${md`
     width: 100%;
     display: block;
@@ -74,6 +75,7 @@ export const CadastroDeltaContent = styled.div`
 `;
 
 export const CadastroRight = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
 `
@@ -108,11 +110,12 @@ export const CardPercentBottom = styled.div`
   }
 `
 export const CadastroLeft = styled.div`
-   display: flex;
-   flex-direction: column;
-
-   ${md`
-    
+  display: flex;
+  flex-direction: column;
+  ${lg`
+    display: none;
+  `}
+  ${md`
     display: none;
   `}
   ${sm`
@@ -127,7 +130,7 @@ export const CadastroCard = styled.div`
 
 `
 export const CadastroAction = styled.div`
-  margin-top: 30px;
+  margin-top: 100px;
 `
 export const Assessor = styled.div`
   display: flex;

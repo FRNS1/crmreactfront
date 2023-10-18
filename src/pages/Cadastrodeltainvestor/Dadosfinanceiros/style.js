@@ -4,13 +4,11 @@ import { xs, sm, md, lg } from '../../../style/responsiveStyles';
 
 export const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
 `
 export const Content = styled.div`
   width: 90%;
   height: 100%;
-  /* max-width: 1200px;
-  margin: 0 auto; */
   margin-top: 80px;
   display: flex;
   flex-direction: column;

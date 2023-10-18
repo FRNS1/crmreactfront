@@ -167,7 +167,7 @@ export default function Dadosresidenciais({setFormData, formData, handleNextStep
                     <Button
                       variant="contained"
                       color="primary"
-                      sx={{ mt: 6, mb: 2 }}
+                      sx={{ mt: 6, mb: 2, padding: '8px 40px', fontSize: '0.9375rem'}}
                       onClick={handlePreviousStep}
                     >
                       Anterior
@@ -176,7 +176,7 @@ export default function Dadosresidenciais({setFormData, formData, handleNextStep
                       variant="contained"
                       color="primary"
                       type='submit'
-                      sx={{ mt: 6, mb: 2 }}
+                      sx={{ mt: 6, mb: 2, padding: '8px 40px', fontSize: '0.9375rem'}}
                     >
                       Próximo
                     </Button>

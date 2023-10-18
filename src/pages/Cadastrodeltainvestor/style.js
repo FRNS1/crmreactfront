@@ -4,7 +4,7 @@ import { xs, sm, md } from '../../style/responsiveStyles';
 
 export const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
 `
 export const Content = styled.div`
   width: 90%;

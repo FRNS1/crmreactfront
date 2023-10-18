@@ -83,6 +83,8 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
   return (
     <Container>
       <Content>
+        <h2>Dados Pessoais</h2>
+        <p>Se você já iniciou seu cadastro, <a href='#'>finalize aqui</a></p>
         <CadastroDeltaContent>
           <CadastroRight>
             <CardContent style={{ padding: '0' }}>
@@ -407,23 +409,6 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
                           required: 'Campo obrigatório',
                         })}
                       />
-                    {/* <FormControl variant="standard" fullWidth>
-                      <InputLabel id="demo-simple-select-standard-label">Cidade onde nasceu</InputLabel>
-                      <Select
-                        labelId="demo-simple-select-standard-label"
-                        id="cidade_nascimento"
-                        name="cidade_nascimento"
-                        label="Cidade onde nasceu"
-                        {...register('cidade_nascimento', {
-                          required: 'Campo obrigatório',
-                        })}
-                      >
-                        <MenuItem value={1}>1</MenuItem>
-                        <MenuItem value={2}>2</MenuItem>
-                        <MenuItem value={3}>3</MenuItem>
-                        <MenuItem value={4}>4</MenuItem>
-                      </Select>
-                    </FormControl> */}
                     {errors.cidade_nascimento && (
                       <span style={{ color: 'red', marginTop: '8px' }}>
                         {errors.cidade_nascimento.message}
@@ -465,7 +450,7 @@ export default function DadosPessoais({setFormData, formData, handleNextStep}) {
                   </Grid>
                 </Grid>
                 <CadastroAction>
-                  <Button type="submit" variant="contained" color="primary">
+                  <Button type="submit" variant="contained" color="primary" sx={{ padding: '8px 40px', fontSize: '0.9375rem'}}>
                     Próximo
                   </Button>
                 </CadastroAction>

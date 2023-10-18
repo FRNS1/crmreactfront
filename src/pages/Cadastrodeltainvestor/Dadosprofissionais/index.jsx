@@ -122,7 +122,7 @@ export default function Dadosresidenciais({formData, handlePreviousStep}){
                     <Button
                       variant="contained"
                       color="primary"
-                      sx={{ mt: 6, mb: 2 }}
+                      sx={{ mt: 6, mb: 2, padding: '8px 40px', fontSize: '0.9375rem'}}
                       onClick={handlePreviousStep}
                     >
                       Anterior
@@ -130,7 +130,7 @@ export default function Dadosresidenciais({formData, handlePreviousStep}){
                     <Button
                       variant="contained"
                       color="primary"
-                      sx={{ mt: 6, mb: 2 }}
+                      sx={{ mt: 6, mb: 2, padding: '8px 40px', fontSize: '0.9375rem'}}
                       type='submit'
                     >
                       Enviar

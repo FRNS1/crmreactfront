@@ -30,6 +30,9 @@ import {
 export default function Dadospessoais({setFormData, formData, handleNextStep, handlePreviousStep}){
   const [moneyMask, setMoneyMsk] = useState("");
   const [aplicacaoMask, setAplicacaoMask] = useState("");
+  const [moveisMask, setMoveisMask] = useState("")
+  const [imoveisMask, setImoveisMask] = useState("")
+  const [outrosMask, setOutrosMask] = useState("")
   const [origemRecursos, setOrigemRecursos] = useState({
     "Ocupação profissional": false,
     "Herança": false,
@@ -72,12 +75,27 @@ export default function Dadospessoais({setFormData, formData, handleNextStep, ha
 
   const handleKeyUpMoney = useCallback((e) => {
     const value = money(e.target.value);
-    setMoneyMsk( "R$ " + value);
+    setMoneyMsk(value);
   }, []);
 
   const handleKeyUpMoney2 = useCallback((e) => {
     const value = money(e.target.value);
-    setAplicacaoMask( "R$ " + value);
+    setAplicacaoMask(value);
+  }, []);
+
+  const handleKeyUpMoney3 = useCallback((e) => {
+    const value = money(e.target.value);
+    setMoveisMask(value);
+  }, []);
+
+  const handleKeyUpMoney4 = useCallback((e) => {
+    const value = money(e.target.value);
+    setImoveisMask(value);
+  }, []);
+
+  const handleKeyUpMoney5 = useCallback((e) => {
+    const value = money(e.target.value);
+    setOutrosMask(value);
   }, []);
 
   const handleCheckBox = (e, name) => {
@@ -136,18 +154,11 @@ export default function Dadospessoais({setFormData, formData, handleNextStep, ha
                       fullWidth
                       autoComplete="given-name"
                       variant="standard"
-                      {...register('aplicacoes_financeiras', {
-                        required: 'Informação de Aplicações Financeiras não declarada',
-                      })}
+                      {...register('aplicacoes_financeiras')}
                       value={aplicacaoMask}
                       onChange={handleKeyUpMoney2}
                     />
                     <span>Exemplo: Valor investido em poupança, produtos financeiros em bancos ou corretoras.</span>
-                    {errors.aplicacoes_financeiras && (
-                      <span style={{ color: 'red', marginTop: '8px' }}>
-                        {errors.aplicacoes_financeiras.message}
-                      </span>
-                    )}
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
@@ -157,6 +168,8 @@ export default function Dadospessoais({setFormData, formData, handleNextStep, ha
                       autoComplete="given-name"
                       variant="standard"
                       {...register('bens_imoveis')}
+                      value={moveisMask}
+                      onChange={handleKeyUpMoney3}
                     />
                     <span>Exemplo: Valor aproximado de casas, apartamentos, chácaras e outros que estejam em seu nome.</span>
                   </Grid>
@@ -168,6 +181,8 @@ export default function Dadospessoais({setFormData, formData, handleNextStep, ha
                       autoComplete="given-name"
                       variant="standard"
                       {...register('bens_moveis')}
+                      value={imoveisMask}
+                      onChange={handleKeyUpMoney4}
                     />
                     <span>Exemplo: Valor de carros, motos, barcos, e outros que estejam em seu nome.</span>
                   </Grid>
@@ -179,6 +194,8 @@ export default function Dadospessoais({setFormData, formData, handleNextStep, ha
                       autoComplete="given-name"
                       variant="standard"
                       {...register('outros_rendimentos')}
+                      value={outrosMask}
+                      onChange={handleKeyUpMoney5}
                     />
                     <span>Exemplo: Fontes de renda como: aluguel, proventos de algum negócio, rendimento de aplicações, etc.</span>
                   </Grid>
@@ -220,8 +237,8 @@ export default function Dadospessoais({setFormData, formData, handleNextStep, ha
                     <Button
                       variant="contained"
                       color="primary"
-                      sx={{ mt: 6, mb: 2 }}
                       onClick={handlePreviousStep}
+                      sx={{ mt: 6, mb: 2, padding: '8px 40px', fontSize: '0.9375rem'}}
                     >
                       Anterior
                     </Button>
@@ -229,7 +246,7 @@ export default function Dadospessoais({setFormData, formData, handleNextStep, ha
                       variant="contained"
                       color="primary"
                       type='submit'
-                      sx={{ mt: 6, mb: 2 }}
+                      sx={{ mt: 6, mb: 2, padding: '8px 40px', fontSize: '0.9375rem'}}
                     >
                       Próximo
                     </Button>
