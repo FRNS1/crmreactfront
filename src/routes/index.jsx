@@ -1,6 +1,9 @@
 import React from 'react';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
+import isAuthenticated from '../utils/auth'
+
+//rotas
 import { ButtonPage } from '../js/login'
 import { Checklist } from '../pages/checklist/PF/index'
 import { PedroRiccoPf } from '../js/links-indicador/pf/pedroricco'
@@ -32,20 +35,19 @@ import { NovaSenha } from '../js/novasenha';
 import Dashboard  from '../pages/Dashboard'
 import Cadastrodeltainvestor from '../pages/Cadastrodeltainvestor'
 
+//privando rotas para o usuario 
+const PrivateRoute = ({ children }) => {
+  const isUserAuthenticated = isAuthenticated();
+  return isUserAuthenticated ? children : <Navigate to="/" />;
+};
+
 function MainRouter() {
+
   return(
     <Routes>
         <Route path="/" element={<ButtonPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/cadastrodeltainvestor" element={<Cadastrodeltainvestor />} />
-        <Route path="/pessoas" element={<Telapessoas />} />
         <Route path="/cadastrocli" element={<Cadastrocli />} />
-        <Route path="/visucli" element={<Visucli />} />
-        <Route path='/visualizacaopropostas' element={<VisualizacaoPropostas />} />
-        <Route path='/cadastropropostas' element={<CadastroPropostas />} />
-        <Route path='/visualizacaoindividual' element={<VisualizacaoIndividual />} />
-        <Route path='/registropagamentos' element={<RegistroPagamentos />} />
-        <Route path='/registropagamentoindividual' element={<RegistroPagamentoIndividual />} />
         <Route path='/checklistpf' element={<Checklist />} />
         <Route path='/checklistpj' element={<ChecklistPj />} />
         <Route path='/indicadorpedroriccopf' element={<PedroRiccoPf />} />
@@ -62,9 +64,83 @@ function MainRouter() {
         <Route path='/indicadornilsonbentopj' element={<NilsonBentoPj />} />
         <Route path='/indicadordeltahubpf' element={<DeltaHubPf />} />
         <Route path='/indicadordeltahubpj' element={<DeltaHubPj />} />
-        <Route path='/deltahubbackoffice' element={<DeltaHubBackOffice />} />
         <Route path='/esqueceusenha' element={<EsqueceuSenha />} />
         <Route path='/novasenha' element={<NovaSenha />} />
+
+        {/* rotas privadas */}
+
+        <Route 
+          path="/dashboard" 
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route 
+          path="/pessoas" 
+          element={
+            <PrivateRoute>
+              <Telapessoas />
+            </PrivateRoute>
+          } 
+        />
+        <Route 
+          path="/visucli" 
+          element={
+            <PrivateRoute>
+              <Visucli />
+            </PrivateRoute>
+          } 
+        />
+        <Route 
+          path='/visualizacaopropostas' 
+          element={
+            <PrivateRoute>
+              <VisualizacaoPropostas />
+            </PrivateRoute>
+          } 
+        />
+        <Route 
+          path='/cadastropropostas' 
+          element={
+            <PrivateRoute>
+              <CadastroPropostas />
+            </PrivateRoute>
+          } 
+        />
+        <Route 
+          path='/visualizacaoindividual' 
+          element={
+            <PrivateRoute>
+              <VisualizacaoIndividual />
+            </PrivateRoute>
+          } 
+        />
+        <Route 
+          path='/registropagamentos' 
+          element={
+            <PrivateRoute>
+              <RegistroPagamentos />
+            </PrivateRoute>
+          } 
+        />
+        <Route 
+          path='/registropagamentoindividual' 
+          element={
+            <PrivateRoute>
+              <RegistroPagamentoIndividual />
+            </PrivateRoute>
+          } 
+        />
+        <Route 
+          path='/deltahubbackoffice' 
+          element={
+            <PrivateRoute>
+              <DeltaHubBackOffice />
+            </PrivateRoute>
+          } 
+        />
     </Routes>
   );
 }
