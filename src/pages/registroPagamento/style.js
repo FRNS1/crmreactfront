@@ -109,4 +109,9 @@ export const TableContainer = styled.div`
 
     }
   }
+
+  .pointer {
+    cursor: pointer;
+    font-weight: bold;
+  }
 `
