@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Menu } from 'antd'
 import Cookies from 'js-cookie';
-import {  LineChartOutlined, TeamOutlined, DollarOutlined, SwapOutlined, PhoneOutlined  }from '@ant-design/icons'
+import {  LineChartOutlined, TeamOutlined, DollarOutlined, SwapOutlined, AndroidOutlined  }from '@ant-design/icons'
 
 import './style.css'
 
@@ -41,7 +41,7 @@ export default function NavbarDashboard({ darkTheme }){
           <Menu.Item key='pagamentos' icon={<DollarOutlined />} onClick={handleButtonClickPagamentos}>
             Pagamentos
           </Menu.Item>
-          <Menu.Item key='deltahubbackoffice' icon={<PhoneOutlined />} onClick={() => handleButtonClickDeltaHub}>
+          <Menu.Item key='deltahubbackoffice' icon={<AndroidOutlined />} onClick={() => handleButtonClickDeltaHub}>
             DeltaHub Back Office
           </Menu.Item>
         </>
