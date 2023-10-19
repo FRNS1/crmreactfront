@@ -14,7 +14,7 @@ import { VisualizacaoPropostas } from '../js/visualizacaopropostas';
 import { CadastroPropostas } from '../js/cadastropropostas';
 import { VisualizacaoIndividual } from '../js/visualizacaoindividual';
 // import RegistroPagamentos  from '../pages/registroPagamento';
-import {RegistroPagamentos}  from '../js/registroPagamento';
+import { RegistroPagamentos } from '../js/registropagamentos';
 import { RegistroPagamentoIndividual } from '../js/registropagamentoindividual';
 import { ChecklistPj } from '../pages/checklist/PJ';
 import { PedroRiccoPj } from '../js/links-indicador/pj/pedroriccopj';
