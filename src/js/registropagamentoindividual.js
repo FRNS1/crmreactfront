@@ -397,7 +397,7 @@ function RegistroPagamentoIndividual() {
                                             />
                                         </td>
                                         <td>
-                                            <select className='selectPago' onChange={(e) => sendPago(payment.parcela_id, e.target.value)}>
+                                            <select className='selectPago' disabled={payment.pago == "PAGO"} onChange={(e) => sendPago(payment.parcela_id, e.target.value)}>
                                                 <option className='optionselectPago' value={payment.pago}> {payment.pago} </option>
                                                 <option className='optionselectPago' value="VIGENTE"> VIGENTE </option>
                                                 <option  className='optionselectPago' value="EM ATRASO"> EM ATRASO </option>

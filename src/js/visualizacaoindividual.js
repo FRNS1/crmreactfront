@@ -33,6 +33,7 @@ function VisualizacaoIndividual() {
     const [allsData, setAllsData] = useState(false);
     const [scr, setScr] = useState(false);
     const [files, setFiles] = useState([]);
+    const [contratosFiles, setContratosFiles] = useState([]);
     // Variaveis prop2osal
     const [proposalId, setProposalId] = useState('');
     const [customerName, setCustomerName] = useState('');
@@ -476,6 +477,70 @@ function VisualizacaoIndividual() {
         }
     }
 
+    async function sendContratosFiles() {
+        console.log("Enviando");
+        console.log(contratosFiles);
+
+
+        for (let i = 0; i < contratosFiles.length; i++) {
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", `Bearer ${Cookies.get('token')}`);
+
+
+            var formdata = new FormData();
+            formdata.append("file", contratosFiles[i]);
+
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: formdata,
+                redirect: 'follow'
+            };
+
+
+            // Upload do arquivo
+            await fetch("http://35.175.231.117:8080/api/v1/contratosfiles/upload", requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                    console.log("Arquivo enviado:", result)
+                })
+                .catch(error => console.log('error', error));
+
+
+            // Construir o link S3
+            var myHeaders2 = new Headers();
+            myHeaders2.append("Authorization", `Bearer ${Cookies.get('token')}`);
+            myHeaders2.append("Content-Type", "application/json");
+
+
+            let fileName = contratosFiles[i].name.replace(/\s/g, "+");
+            let link = `https://docsbora.s3.amazonaws.com/${fileName}`;
+
+            var data = {
+                user_id: Cookies.get('userid'),
+                proposal: Cookies.get('propostaSelecionada'),
+                url: link
+            };
+
+
+            var requestOptionsData = {
+                method: 'POST',
+                headers: myHeaders2,
+                body: JSON.stringify(data),
+                redirect: 'follow'
+            };
+
+
+            // Enviar informações sobre o arquivo
+            await fetch("http://35.175.231.117:8080/api/v1/contratosfiles/filesdata", requestOptionsData)
+                .then(response => response.text())
+                .then(result => { alert("Informações e arquivo enviados"); setFiles([]); getDataProposal(); })
+                .then(result => { alert("Informações e arquivo enviados"); setFiles([]); getDataProposal(); })
+                .catch(error => console.log('error', error));
+        }
+    }
+
     async function sendFiles() {
         console.log("Enviando");
         console.log(files);
@@ -541,6 +606,7 @@ function VisualizacaoIndividual() {
                 .catch(error => console.log('error', error));
         }
     }
+
 
     const handleTotalJurosChange = (value) => {
         setTotalJuros(value);
@@ -837,8 +903,16 @@ function VisualizacaoIndividual() {
                         <NavSuperior />
                     </div>
                     <div className='containerGeral'>
-                        <div className='textoPropostas'>
+                        <div className='divtextoPropostas'>
                             <text className='stringTitulos'> {data.isCnpj == false ? customerName : customerRazaoSocial} </text>
+                            <div className="divEnviarContrato">
+                                <input className="enviarContrato" name='file' type='file' onChange={(event) => setContratosFiles(event.target.files)} />
+                            </div>
+                            <div className="divSalvarArquivo" onClick={() => sendContratosFiles()}>
+                                <button className="salvarArquivo">
+                                    <span> Enviar Arquivo </span>
+                                </button>
+                            </div>
                         </div>
                         <br />
                         <div className='rowbotoes'>
@@ -1136,7 +1210,7 @@ function VisualizacaoIndividual() {
                                                         <Form>
                                                             <FlexGroup>
                                                                 <label htmlFor="name">
-                                                                    Nome completo:
+                                                                    Nome:
                                                                     <Input
                                                                         type="text"
                                                                         name="name"
@@ -1285,7 +1359,7 @@ function VisualizacaoIndividual() {
                                                     <Form>
                                                         <FlexGroup>
                                                             <label htmlFor="name">
-                                                                Nome completo:
+                                                                Nome:
                                                                 <Input
                                                                     type="text"
                                                                     name="name"

@@ -309,6 +309,7 @@ function ChecklistPj() {
                                 placeholder="Digite para pesquisar..."
                                 onChange={handleChange}
                                 value={segmento}
+                                required
                             />
                         </GroupCheckelist>
                         <GroupCheckelist className="form-groupchecklist">
