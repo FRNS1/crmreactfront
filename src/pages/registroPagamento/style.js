@@ -1,5 +1,6 @@
 
 import styled from "styled-components";
+import { xs, sm, md } from '../../style/responsiveStyles';
 
 export const ContainerHeader = styled.div`
   width: 100%;
@@ -83,6 +84,8 @@ export const LabelSelect = styled.div`
   }
 `
 export const TableContainer = styled.div`
+  width: 100%;
+  overflow: hidden;
   display: flex;
   justify-content: space-between;
   margin-top: 80px;
@@ -91,6 +94,7 @@ export const TableContainer = styled.div`
     width: 100%;
     border-collapse: collapse;
     thead{
+      width: 100%;
       text-align: center;
       th{
         border: 1px solid rgba(0, 0, 0, 0.2);
@@ -102,16 +106,44 @@ export const TableContainer = styled.div`
     }
 
     td{
-      width: 300px;
+      /* width: 300px; */
       text-align: center;
       border: 1px solid rgba(0, 0, 0, 0.2);
       padding: 8px 24px;
 
     }
+
+    ${md`
+      width: 100%;
+      // padding: 0 24px;
+    `}
+    ${sm`
+      width: 100%;
+      // padding: 0 24px;
+
+    `}
+    ${xs`
+      width: 100%;
+      // padding: 0 24px;
+    `}
   }
 
   .pointer {
     cursor: pointer;
     font-weight: bold;
   }
+
+  ${md`
+    width: 100%;
+    // padding: 0 24px;
+  `}
+  ${sm`
+    width: 100%;
+    // padding: 0 24px;
+
+  `}
+  ${xs`
+    width: 100%;
+    // padding: 0 24px;
+  `}
 `
