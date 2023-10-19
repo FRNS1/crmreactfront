@@ -177,3 +177,13 @@
     .trTabelaClientes{
         font-size: 1.5vh;
     }
+
+    .input:disabled{
+        color: black;
+    }
+
+    .selectPago:disabled{
+        color: black;
+        opacity: 80%;
+        border-color: black;
+    }
