@@ -989,7 +989,6 @@ function VisualizacaoIndividual() {
                                                 <div className='divfield'>
                                                     <label className="stringDados"> Status do Contrato </label>
                                                     <select className='inputCad' value={statusContrato} onChange={HandleStatusContratoChange}>
-                                                        <option className='inputCad' value={statusContrato}> {statusContrato} </option>
                                                         <option className='inputCad' value='Aberto'> Aberto </option>
                                                         <option className='inputCad' value='Quitado'> Quitado </option>
                                                     </select>
@@ -997,7 +996,6 @@ function VisualizacaoIndividual() {
                                                 <div className='divfield'>
                                                     <label className="stringDados"> Motivo da reprovação </label>
                                                     <select className='inputCad' value={motivoReprovacao} onChange={HandleMotivoReprovacaoChange}>
-                                                        <option className='inputCad' value={motivoReprovacao} > {motivoReprovacao}  </option>
                                                         <option className='inputCad' value='Restrição de bureaus de crédito'> Restrição de bureaus de crédito  </option>
                                                         <option className='inputCad' value='Restrição por divida ativa'> Restrição por divida ativa </option>
                                                         <option className='inputCad' value='Restrição de cadin'> Restrição de cadin </option>
