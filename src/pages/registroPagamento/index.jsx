@@ -11,7 +11,6 @@ import {
   TableBody 
 } from '@mui/material'
 
-import { FcApproval } from 'react-icons/fc'
 import Cookies from 'js-cookie';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -75,7 +74,7 @@ export default function RegistroPagamentos() {
   useEffect(() => {
       fetchLoans();
       if (!loading) {
-          handleSearchButtonClick();
+        handleSearchButtonClick();
       }
   }, [loading]);
 
@@ -231,7 +230,7 @@ export default function RegistroPagamentos() {
                     <TableRow  key={loan.proposalId}>
                       <TableCell>{loan.business}</TableCell>
                       <TableCell>{loan.idCliente}</TableCell>
-                      <TableCell sx={{ color: '#081535'}} onClick={() => viewLoaninfo(loan.proposalId)}>{loan.isCnpj == false ? loan.nomeCliente : loan.razaoSocial}</TableCell>
+                      <TableCell sx={{ color: '#081535'}} onClick={() => viewLoaninfo(loan.proposalId)}>{loan.isCnpj === false ? loan.nomeCliente : loan.razaoSocial}</TableCell>
                       <TableCell>{`R$ ${loan.saldoDevedor}`}</TableCell>
                       <TableCell>{`R$ ${parseFloat(loan.receitaEsperada).toFixed(2)}`}</TableCell>
                       <TableCell>{loan.parcelas}</TableCell>
@@ -239,7 +238,7 @@ export default function RegistroPagamentos() {
                       <TableCell>{`R$ ${loan.jurosPagos}`}</TableCell>
                       <TableCell>{loan.parcelasPagas}</TableCell>
                       <TableCell>{loan.parcelasAtrasadas}</TableCell>
-                      <TableCell>{loan.atrasado == true ? 'SIM' : 'NÃO'}</TableCell>
+                      <TableCell>{loan.atrasado === true ? 'SIM' : 'NÃO'}</TableCell>
                       <TableCell>{`R$ ${parseFloat(loan.totalAtrasado).toFixed(2)}`}</TableCell>
                       <TableCell>{loan.statusContrato}</TableCell>
                     </TableRow>

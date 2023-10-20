@@ -94,7 +94,7 @@ export default function Telapessaos() {
   function formataTelefone(telefone) {
     try {
       const partesTelefone = telefone.split('')
-      if (partesTelefone.length == 11) {
+      if (partesTelefone.length === 11) {
         const parte1 = partesTelefone[0];
         const parte2 = partesTelefone[1];
         const parte3 = partesTelefone[2];
@@ -108,7 +108,7 @@ export default function Telapessaos() {
         const parte11 = partesTelefone[10];
         return `(${parte1}${parte2}) ${parte3}${parte4}${parte5}${parte6}${parte7}-${parte8}${parte9}${parte10}${parte11}`;
 
-      } else if (partesTelefone.length == 10) {
+      } else if (partesTelefone.length === 10) {
         const parte1 = partesTelefone[0];
         const parte2 = partesTelefone[1];
         const parte3 = partesTelefone[2];
@@ -132,7 +132,7 @@ export default function Telapessaos() {
   function formataCnpj(cnpj) {
     try {
       const partesCNPJ = cnpj.split('')
-      if (partesCNPJ.length != 14) {
+      if (partesCNPJ.length !== 14) {
         return `Documento inválido`
 
       } else {
@@ -160,7 +160,7 @@ export default function Telapessaos() {
   function formataCpf(cpf) {
     try {
       const partesCPF = cpf.split('')
-      if (partesCPF.length != 11) {
+      if (partesCPF.length !== 11) {
         return `Documento inválido`
       } else {
         const parte1 = partesCPF[0];
@@ -184,7 +184,7 @@ export default function Telapessaos() {
   useEffect(() => {
     // Filtrar a lista de empréstimos com base no valor de pesquisa e na opção de 'Business'.
     const newFilteredLoans = customersList.filter((customer) => {
-        const businessCondition = selectedBusiness === 'TODOS' || (customer.cpf == null ? 'PJ' : 'PF') == selectedBusiness;
+        const businessCondition = selectedBusiness === 'TODOS' || (customer.cpf == null ? 'PJ' : 'PF') === selectedBusiness;
         const nameCondition = selectedBusiness === '' || (
           customer.cpf == null ? customer.razaoSocial.toLowerCase().includes(searchValue.toLowerCase()) : customer.nome.toLowerCase().includes(searchValue.toLowerCase())
         );
@@ -196,7 +196,7 @@ export default function Telapessaos() {
   const handleSearchButtonClick = () => {
       // Quando o botão de pesquisa for clicado, você pode executar a mesma lógica de filtragem
       const newFilteredLoans = customersList.filter((customer) => {
-        const businessCondition = selectedBusiness == 'TODOS' || (customer.cpf == null ? 'PJ' : 'PF') == selectedBusiness;
+        const businessCondition = selectedBusiness === 'TODOS' || (customer.cpf == null ? 'PJ' : 'PF') === selectedBusiness;
         const nameCondition = selectedBusiness === '' || (
           customer.cpf == null ? customer.razaoSocial.toLowerCase().includes(searchValue.toLowerCase()) : customer.nome.toLowerCase().includes(searchValue.toLowerCase())
         );
@@ -327,7 +327,7 @@ export default function Telapessaos() {
                     <TableCell>{customer.email == 'nan' ? 'Sem email' : customer.email}</TableCell>
                     <TableCell>{formataTelefone(customer.telefone)}</TableCell>
                     <TableCell >
-                      <Button  onClick={() => visualizacaoCliente(customer.customerId)}style={{ backgroundColor: '#081535', color: '#fff' }}>
+                      <Button  onClick={() => visualizacaoCliente(customer.customerId)} style={{ backgroundColor: '#081535', color: '#fff'}}>
                         visualizar
                       </Button>
                     </TableCell>

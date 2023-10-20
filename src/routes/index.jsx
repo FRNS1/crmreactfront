@@ -12,6 +12,7 @@ import Telapessoas  from '../pages/pessoas';
 import { Cadastrocli } from '../js/cadastrocli';
 import { Visucli } from '../js/visucli';
 import { VisualizacaoPropostas } from '../js/visualizacaopropostas';
+// import VisualizacaoPropostas from '../pages/visualizacaopropostas';
 import { CadastroPropostas } from '../js/cadastropropostas';
 import { VisualizacaoIndividual } from '../js/visualizacaoindividual';
 import RegistroPagamentos  from '../pages/registroPagamento';
