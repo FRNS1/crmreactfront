@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { Layout, Button, theme } from 'antd'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
-import { FcApproval } from 'react-icons/fc'
+import { 
+  Paper, 
+  TableContainer, 
+  Table,
+  TableHead, 
+  TableRow,
+  TableCell, 
+  TableBody 
+} from '@mui/material'
+
 import Cookies from 'js-cookie';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -11,7 +20,6 @@ import Logo from '../../components/Logo'
 import Sidebar from '../../components/Sidebar'
 import ToggleTheme from '../../components/ToggleTheme'
 
-// import './style.css'
 import { 
   ContainerHeader,
   PesquisaContainer,
@@ -19,7 +27,6 @@ import {
   ContentHeader,
   IconPesquisa,
   LabelSelect,
-  TableContainer 
 } from './style'
 
 const { Header, Sider, Content } = Layout
@@ -67,7 +74,7 @@ export default function RegistroPagamentos() {
   useEffect(() => {
       fetchLoans();
       if (!loading) {
-          handleSearchButtonClick();
+        handleSearchButtonClick();
       }
   }, [loading]);
 
@@ -151,7 +158,7 @@ export default function RegistroPagamentos() {
         </Header>
         <Content
           style={{
-            margin: '24px 16px',
+            marginTop: '24px',
             padding: 24,
             minHeight: 280,
             background: colorBgContainer,
@@ -198,46 +205,48 @@ export default function RegistroPagamentos() {
             </ContentHeader>
           </ContainerHeader>
 
-          <TableContainer>
-              <table>
-                <thead>
-                  <tr >
-                    <th> Business </th>
-                    <th> ID Cliente </th>
-                    <th> Nome Cliente </th>
-                    <th> Saldo Devedor </th>
-                    <th> Receita Esperada </th>
-                    <th> Parcelas </th>
-                    <th> Amortização Paga </th>
-                    <th> Juros Pagos </th>
-                    <th> Parcelas Pagas </th>
-                    <th> Parcelas Atrasadas </th>
-                    <th> Atrasado? </th>
-                    <th> Total Atrasado </th>
-                    <th> Status Contrato </th>
-                  </tr>
-                </thead>
-                <tbody>
+          <Paper sx={{ width: '100%', overflow: 'hidden', marginTop: '80px'}}>
+            <TableContainer>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell> Business </TableCell>
+                    <TableCell> ID Cliente </TableCell>
+                    <TableCell> Nome Cliente </TableCell>
+                    <TableCell> Saldo Devedor </TableCell>
+                    <TableCell> Receita Esperada </TableCell>
+                    <TableCell> Parcelas </TableCell>
+                    <TableCell> Amortização Paga </TableCell>
+                    <TableCell> Juros Pagos </TableCell>
+                    <TableCell> Parcelas Pagas </TableCell>
+                    <TableCell> Parcelas Atrasadas </TableCell>
+                    <TableCell> Atrasado? </TableCell>
+                    <TableCell> Total Atrasado </TableCell>
+                    <TableCell> Status Contrato </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
                   {filteredLoans.map((loan) => (
-                    <tr  key={loan.proposalId}>
-                      <td>{loan.business}</td>
-                      <td>{loan.idCliente}</td>
-                      <td className='pointer' onClick={() => viewLoaninfo(loan.proposalId)}>{loan.isCnpj == false ? loan.nomeCliente : loan.razaoSocial}</td>
-                      <td>{`R$ ${loan.saldoDevedor}`}</td>
-                      <td>{`R$ ${parseFloat(loan.receitaEsperada).toFixed(2)}`}</td>
-                      <td>{loan.parcelas}</td>
-                      <td> {`R$ ${parseFloat(loan.amortizacaoPaga).toFixed(2)}`}</td>
-                      <td>{`R$ ${loan.jurosPagos}`}</td>
-                      <td>{loan.parcelasPagas}</td>
-                      <td>{loan.parcelasAtrasadas}</td>
-                      <td>{loan.atrasado == true ? 'SIM' : 'NÃO'}</td>
-                      <td>{`R$ ${parseFloat(loan.totalAtrasado).toFixed(2)}`}</td>
-                      <td>{loan.statusContrato}</td>
-                    </tr>
+                    <TableRow  key={loan.proposalId}>
+                      <TableCell>{loan.business}</TableCell>
+                      <TableCell>{loan.idCliente}</TableCell>
+                      <TableCell sx={{ color: '#081535'}} onClick={() => viewLoaninfo(loan.proposalId)}>{loan.isCnpj === false ? loan.nomeCliente : loan.razaoSocial}</TableCell>
+                      <TableCell>{`R$ ${loan.saldoDevedor}`}</TableCell>
+                      <TableCell>{`R$ ${parseFloat(loan.receitaEsperada).toFixed(2)}`}</TableCell>
+                      <TableCell>{loan.parcelas}</TableCell>
+                      <TableCell> {`R$ ${parseFloat(loan.amortizacaoPaga).toFixed(2)}`}</TableCell>
+                      <TableCell>{`R$ ${loan.jurosPagos}`}</TableCell>
+                      <TableCell>{loan.parcelasPagas}</TableCell>
+                      <TableCell>{loan.parcelasAtrasadas}</TableCell>
+                      <TableCell>{loan.atrasado === true ? 'SIM' : 'NÃO'}</TableCell>
+                      <TableCell>{`R$ ${parseFloat(loan.totalAtrasado).toFixed(2)}`}</TableCell>
+                      <TableCell>{loan.statusContrato}</TableCell>
+                    </TableRow>
                   ))}
-                </tbody>
-              </table>
-          </TableContainer>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Paper>
         </Content>
       </Layout>
     </Layout>

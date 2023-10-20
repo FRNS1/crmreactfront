@@ -7,14 +7,16 @@ import isAuthenticated from '../utils/auth'
 import { ButtonPage } from '../js/login'
 import { Checklist } from '../pages/checklist/PF/index'
 import { PedroRiccoPf } from '../js/links-indicador/pf/pedroricco'
-import { Telapessoas } from '../js/pessoas';
+// import { Telapessoas } from '../js/pessoas';
+import Telapessoas  from '../pages/pessoas';
 import { Cadastrocli } from '../js/cadastrocli';
 import { Visucli } from '../js/visucli';
 import { VisualizacaoPropostas } from '../js/visualizacaopropostas';
+// import VisualizacaoPropostas from '../pages/visualizacaopropostas';
 import { CadastroPropostas } from '../js/cadastropropostas';
 import { VisualizacaoIndividual } from '../js/visualizacaoindividual';
-// import RegistroPagamentos  from '../pages/registroPagamento';
-import { RegistroPagamentos } from '../js/registropagamentos';
+import RegistroPagamentos  from '../pages/registroPagamento';
+// import { RegistroPagamentos }  from '../js/registropagamentos';
 import { RegistroPagamentoIndividual } from '../js/registropagamentoindividual';
 import { ChecklistPj } from '../pages/checklist/PJ';
 import { PedroRiccoPj } from '../js/links-indicador/pj/pedroriccopj';

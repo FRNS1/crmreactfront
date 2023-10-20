@@ -188,6 +188,11 @@ export const FlexGroup = styled.div`
       width: 100%;
     }
 
+    input:disabled {
+      width: 100%;
+      color: black;
+    }
+
     select {
       padding: 10px;
       width: 100%;

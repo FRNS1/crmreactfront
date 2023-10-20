@@ -1,16 +1,13 @@
 
 import styled from "styled-components";
-import { xs, sm, md } from '../../style/responsiveStyles';
 
 export const ContainerHeader = styled.div`
   width: 100%;
-  /* background: red; */
   `
 export const ContentHeader = styled.div`
   display: flex;
   align-items: center;
-  gap: 30px;
-  justify-content: flex-start;
+  justify-content: space-between;
 `
 export const PesquisaContainer = styled.div`
   display: flex;
@@ -39,7 +36,7 @@ export const LabelinputContainer = styled.div`
   }
 `
 export const IconPesquisa = styled.div`
-  margin-top: 25px;
+  margin-top: 30px;
 
   button{
     width: 32px;
@@ -83,67 +80,18 @@ export const LabelSelect = styled.div`
     }
   }
 `
-export const TableContainer = styled.div`
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 80px;
 
-  table{
-    width: 100%;
-    border-collapse: collapse;
-    thead{
-      width: 100%;
-      text-align: center;
-      th{
-        border: 1px solid rgba(0, 0, 0, 0.2);
-      }
-    }
-    tr{
-      padding: 8px 24px;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-    }
-
-    td{
-      /* width: 300px; */
-      text-align: center;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      padding: 8px 24px;
-
-    }
-
-    ${md`
-      width: 100%;
-      // padding: 0 24px;
-    `}
-    ${sm`
-      width: 100%;
-      // padding: 0 24px;
-
-    `}
-    ${xs`
-      width: 100%;
-      // padding: 0 24px;
-    `}
-  }
-
-  .pointer {
+export const ContentAction = styled.div`
+  margin-top: 30px;
+  button{
+    padding: 8px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
     cursor: pointer;
-    font-weight: bold;
+    border-radius: 4px;
+    border: none;
+    background-color: #081535;
   }
-
-  ${md`
-    width: 100%;
-    // padding: 0 24px;
-  `}
-  ${sm`
-    width: 100%;
-    // padding: 0 24px;
-
-  `}
-  ${xs`
-    width: 100%;
-    // padding: 0 24px;
-  `}
 `

@@ -2,17 +2,19 @@ import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Cookies from 'js-cookie';
 
-import { NavSuperiorContainer } from './style'
+import { NavSuperiorContainer, NavSuperiorContent } from './style'
 
 export default function Navsuperior(){
   return(
     <NavSuperiorContainer>
-      <ul>
-        <li>
-          <h2> {Cookies.get('nome')} </h2>
-          <FontAwesomeIcon icon={faRightFromBracket} />
-        </li>
-      </ul>
+      <NavSuperiorContent>
+        <ul>
+          <li>
+            <h2> {Cookies.get('nome')} </h2>
+            <FontAwesomeIcon icon={faRightFromBracket} />
+          </li>
+        </ul>
+      </NavSuperiorContent>
     </NavSuperiorContainer>
   )
 }

@@ -60,7 +60,6 @@ export default function Dashboard() {
         </Header>
         <Content
           style={{
-            margin: '24px 16px',
             padding: 24,
             minHeight: 280,
             background: colorBgContainer,
@@ -126,7 +125,6 @@ export default function Dashboard() {
           </div>
           <div className="dashboardChart">
             <div className="chartContainer">sdfs</div>
-            <div className="chartContainer">fsfd</div>
             <div className="chartContainer">fsfd</div>
           </div>
           <div>gdsgfsdfg</div>
