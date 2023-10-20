@@ -84,7 +84,7 @@ function EsqueceuSenha() {
                         {isLoading === false ? (
                             <button className="botaoEnviarEmail" onClick={sendCodigo}> Enviar </button>
                         ) : null}
-                        <span id="reenviaCodigo" onClick={sendEmail}> Não recebeu o código? clique aqui para reenviar </span>
+                        <span className="reenviaCodigo" onClick={sendEmail}> Não recebeu o código? clique aqui para reenviar </span>
                     </div>
                 </body>
             )}
@@ -97,7 +97,14 @@ function EsqueceuSenha() {
                         <input className="input_novasenha" type="password" required value={senha} onChange={(e) => setSenha(e.target.value)} />
                         <label className="labelInput_novasenha"> Confirme sua nova senha </label>
                         <input className="input_novasenha" type="password" required value={confirmaSenha} onChange={(e) => setConfirmaSenha(e.target.value)} />
+                        {senha !== confirmaSenha ? (
+                            <>
+                                    <button className="botaoEnviarSenha" onClick={novaSenha} disabled={senha !== confirmaSenha || senha === ""} > Enviar </button>
+                                    <span className='reenviaCodigo'> As senhas devem ser iguais!</span>
+                            </>
+                        ) : (
                         <button className="botaoEnviarSenha" onClick={novaSenha} disabled={senha !== confirmaSenha || senha === ""} > Enviar </button>
+                        )}
                     </div>
                 </body>
             )}
