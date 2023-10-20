@@ -38,6 +38,11 @@ export const LabelinputContainer = styled.div`
     border-radius: 8px;
   }
 `
+export const GroupTable = styled.div`
+  input{
+    border: none;
+  }
+`
 export const IconPesquisa = styled.div`
   margin-top: 25px;
 

@@ -27,6 +27,7 @@ import {
   ContentHeader,
   IconPesquisa,
   LabelSelect,
+  GroupTable
 } from './style'
 
 const { Header, Sider, Content } = Layout
@@ -205,48 +206,50 @@ export default function RegistroPagamentos() {
             </ContentHeader>
           </ContainerHeader>
 
-          <Paper sx={{ width: '100%', overflow: 'hidden', marginTop: '80px'}}>
-            <TableContainer>
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableCell> Business </TableCell>
-                    <TableCell> ID Cliente </TableCell>
-                    <TableCell> Nome Cliente </TableCell>
-                    <TableCell> Saldo Devedor </TableCell>
-                    <TableCell> Receita Esperada </TableCell>
-                    <TableCell> Parcelas </TableCell>
-                    <TableCell> Amortização Paga </TableCell>
-                    <TableCell> Juros Pagos </TableCell>
-                    <TableCell> Parcelas Pagas </TableCell>
-                    <TableCell> Parcelas Atrasadas </TableCell>
-                    <TableCell> Atrasado? </TableCell>
-                    <TableCell> Total Atrasado </TableCell>
-                    <TableCell> Status Contrato </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {filteredLoans.map((loan) => (
-                    <TableRow  key={loan.proposalId}>
-                      <TableCell>{loan.business}</TableCell>
-                      <TableCell>{loan.idCliente}</TableCell>
-                      <TableCell sx={{ color: '#081535'}} onClick={() => viewLoaninfo(loan.proposalId)}>{loan.isCnpj === false ? loan.nomeCliente : loan.razaoSocial}</TableCell>
-                      <TableCell>{`R$ ${loan.saldoDevedor}`}</TableCell>
-                      <TableCell>{`R$ ${parseFloat(loan.receitaEsperada).toFixed(2)}`}</TableCell>
-                      <TableCell>{loan.parcelas}</TableCell>
-                      <TableCell> {`R$ ${parseFloat(loan.amortizacaoPaga).toFixed(2)}`}</TableCell>
-                      <TableCell>{`R$ ${loan.jurosPagos}`}</TableCell>
-                      <TableCell>{loan.parcelasPagas}</TableCell>
-                      <TableCell>{loan.parcelasAtrasadas}</TableCell>
-                      <TableCell>{loan.atrasado === true ? 'SIM' : 'NÃO'}</TableCell>
-                      <TableCell>{`R$ ${parseFloat(loan.totalAtrasado).toFixed(2)}`}</TableCell>
-                      <TableCell>{loan.statusContrato}</TableCell>
+          <GroupTable>
+            <Paper sx={{ width: '100%', overflow: 'hidden', marginTop: '80px'}}>
+              <TableContainer>
+                <Table sx={{borderCollapse: 'collapse'}}>
+                  <TableHead>
+                    <TableRow sx={{border: '1px solid rgba(0, 0, 0, 0.2)', color: '#081535', fontWeight: 'bold', fontSize: '16px'}}>
+                      <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)', color: '#081535', fontWeight: 'bold', fontSize: '16px'}}> Business </TableCell>
+                      <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)', color: '#081535', fontWeight: 'bold', fontSize: '16px'}}> ID Cliente </TableCell>
+                      <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)', color: '#081535', fontWeight: 'bold', fontSize: '16px'}}> Nome Cliente </TableCell>
+                      <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)', color: '#081535', fontWeight: 'bold', fontSize: '16px'}}> Saldo Devedor </TableCell>
+                      <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)', color: '#081535', fontWeight: 'bold', fontSize: '16px'}}> Receita Esperada </TableCell>
+                      <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)', color: '#081535', fontWeight: 'bold', fontSize: '16px'}}> Parcelas </TableCell>
+                      <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)', color: '#081535', fontWeight: 'bold', fontSize: '16px'}}> Amortização Paga </TableCell>
+                      <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)', color: '#081535', fontWeight: 'bold', fontSize: '16px'}}> Juros Pagos </TableCell>
+                      <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)', color: '#081535', fontWeight: 'bold', fontSize: '16px'}}> Parcelas Pagas </TableCell>
+                      <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)', color: '#081535', fontWeight: 'bold', fontSize: '16px'}}> Parcelas Atrasadas </TableCell>
+                      <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)', color: '#081535', fontWeight: 'bold', fontSize: '16px'}}> Atrasado? </TableCell>
+                      <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)', color: '#081535', fontWeight: 'bold', fontSize: '16px'}}> Total Atrasado </TableCell>
+                      <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)', color: '#081535', fontWeight: 'bold', fontSize: '16px'}}> Status Contrato </TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Paper>
+                  </TableHead>
+                  <TableBody>
+                    {filteredLoans.map((loan) => (
+                      <TableRow sx={{border: '1px solid rgba(0, 0, 0, 0.2)'}} key={loan.proposalId}>
+                        <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)'}}>{loan.business}</TableCell>
+                        <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)'}}>{loan.idCliente}</TableCell>
+                        <TableCell sx={{ fontWeight: 'bold', fontSize: '16px', color: '#081535'}} onClick={() => viewLoaninfo(loan.proposalId)}>{loan.isCnpj === false ? loan.nomeCliente : loan.razaoSocial}</TableCell>
+                        <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)'}}>{`R$ ${loan.saldoDevedor}`}</TableCell>
+                        <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)'}}>{`R$ ${parseFloat(loan.receitaEsperada).toFixed(2)}`}</TableCell>
+                        <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)'}}>{loan.parcelas}</TableCell>
+                        <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)'}}> {`R$ ${parseFloat(loan.amortizacaoPaga).toFixed(2)}`}</TableCell>
+                        <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)'}}>{`R$ ${loan.jurosPagos}`}</TableCell>
+                        <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)'}}>{loan.parcelasPagas}</TableCell>
+                        <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)'}}>{loan.parcelasAtrasadas}</TableCell>
+                        <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)'}}>{loan.atrasado === true ? 'SIM' : 'NÃO'}</TableCell>
+                        <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)'}}>{`R$ ${parseFloat(loan.totalAtrasado).toFixed(2)}`}</TableCell>
+                        <TableCell sx={{border: '1px solid rgba(0, 0, 0, 0.2)'}}>{loan.statusContrato}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Paper>
+          </GroupTable>
         </Content>
       </Layout>
     </Layout>

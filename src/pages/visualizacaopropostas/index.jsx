@@ -30,6 +30,7 @@ import {
   ContentHeader,
   IconPesquisa,
   LabelSelect,
+  GroupTable
 } from './style'
 
 const { Header, Sider, Content} = Layout
@@ -349,62 +350,64 @@ export default function VisualizacaoPropostas() {
             </ContentHeader>
           </ContainerHeader>
 
-          <Paper sx={{ width: '100%', overflow: 'hidden', marginTop: '80px'}}>
-            <TableContainer>
-              <Table className='tabelaPropostas'>
-                <TableHead>
-                  <TableRow>
-                    <TableCell> Indicador </TableCell>
-                    <TableCell> Business </TableCell>
-                    <TableCell> Data da criação </TableCell>
-                    <TableCell> Nome Cliente </TableCell>
-                    <TableCell> Documento </TableCell>
-                    <TableCell> Status da propostas </TableCell>
-                    <TableCell> </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {loading === false ? (
-                    (selectedFilter === '' ? searchResults : searchStatusResult).map((proposal) => (
-                      <TableRow key={proposal.proposalId}>
-                        <TableCell>{proposal.indicador.username}</TableCell>
-                        <TableCell>{proposal.business}</TableCell>
-                        <TableCell>
-                          <InputMask
-                            mask="99/99/9999"
-                            placeholder="DD/MM/AAAA"
-                            type="text"
-                            className="inputDadosTabela"
-                            value={proposal.dataCriacao ? format(new Date(proposal.dataCriacao), 'dd/MM/yyyy') : ''}
-                            disabled
-                          />
-                        </TableCell>
-                        <TableCell>
-                          {proposal.cpf == null
-                            ? proposal.razaoSocial
-                            : proposal.nomeCompleto}
-                        </TableCell>
-                        <TableCell>
-                          {proposal.cpf == null
-                            ? formataCnpj(proposal.cnpj)
-                            : formataCpf(proposal.cpf)}
-                        </TableCell>
-                        <TableCell>{proposal.status}</TableCell>
-                        <TableCell>
-                          <Button 
-                            onClick={() => visualizar(proposal.proposalId)}
-                            style={{ backgroundColor: '#081535', color: '#fff' }}
-                          >
-                             Ver
-                          </Button>
-                        </TableCell>
-                      </TableRow>
-                    ))
-                  ) : null}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Paper>
+          <GroupTable>
+            <Paper sx={{ width: '100%', overflow: 'hidden', marginTop: '80px'}}>
+              <TableContainer>
+                <Table className='tabelaPropostas'>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell> Indicador </TableCell>
+                      <TableCell> Business </TableCell>
+                      <TableCell> Data da criação </TableCell>
+                      <TableCell> Nome Cliente </TableCell>
+                      <TableCell> Documento </TableCell>
+                      <TableCell> Status da propostas </TableCell>
+                      <TableCell> </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {loading === false ? (
+                      (selectedFilter === '' ? searchResults : searchStatusResult).map((proposal) => (
+                        <TableRow key={proposal.proposalId}>
+                          <TableCell>{proposal.indicador.username}</TableCell>
+                          <TableCell>{proposal.business}</TableCell>
+                          <TableCell>
+                            <InputMask
+                              mask="99/99/9999"
+                              placeholder="DD/MM/AAAA"
+                              type="text"
+                              className="inputDadosTabela"
+                              value={proposal.dataCriacao ? format(new Date(proposal.dataCriacao), 'dd/MM/yyyy') : ''}
+                              disabled
+                            />
+                          </TableCell>
+                          <TableCell>
+                            {proposal.cpf == null
+                              ? proposal.razaoSocial
+                              : proposal.nomeCompleto}
+                          </TableCell>
+                          <TableCell>
+                            {proposal.cpf == null
+                              ? formataCnpj(proposal.cnpj)
+                              : formataCpf(proposal.cpf)}
+                          </TableCell>
+                          <TableCell>{proposal.status}</TableCell>
+                          <TableCell>
+                            <Button 
+                              onClick={() => visualizar(proposal.proposalId)}
+                              style={{ backgroundColor: '#081535', color: '#fff' }}
+                            >
+                              Ver
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    ) : null}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Paper>
+          </GroupTable>
         </Content>
       </Layout>
     </Layout>

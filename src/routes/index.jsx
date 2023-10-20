@@ -11,10 +11,11 @@ import { PedroRiccoPf } from '../js/links-indicador/pf/pedroricco'
 import Telapessoas  from '../pages/pessoas';
 import { Cadastrocli } from '../js/cadastrocli';
 import { Visucli } from '../js/visucli';
-import { VisualizacaoPropostas } from '../js/visualizacaopropostas';
-// import VisualizacaoPropostas from '../pages/visualizacaopropostas';
+// import { VisualizacaoPropostas } from '../js/visualizacaopropostas';
+import VisualizacaoPropostas from '../pages/visualizacaopropostas';
 import { CadastroPropostas } from '../js/cadastropropostas';
-import { VisualizacaoIndividual } from '../js/visualizacaoindividual';
+// import { VisualizacaoIndividual } from '../js/visualizacaoindividual';
+import VisualizacaoIndividual from '../pages/visualizacaoindividual';
 import RegistroPagamentos  from '../pages/registroPagamento';
 // import { RegistroPagamentos }  from '../js/registropagamentos';
 import { RegistroPagamentoIndividual } from '../js/registropagamentoindividual';

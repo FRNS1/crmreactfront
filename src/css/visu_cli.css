@@ -1,23 +1,19 @@
-
-
-.rowbotoes {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 1vh;
-    gap: 1vh;
-}
-
 .botoes {
-    width: 23.425vh;
-    height: 5vh;
-    border-radius: 1vh;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    background-color: white;
+    border: none;
+    display: flex;
+    /* width: 200px; */
+    padding: 8px 24px;
     color: black;
-    opacity: 1; /* Opacidade padrão */
-    transition: opacity 0.1s ease-in-out; /* Efeito de transição suave */
+    cursor: pointer;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    opacity: 1; 
+    transition: opacity 0.1s ease-in-out;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .botoes:hover {

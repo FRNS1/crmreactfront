@@ -51,6 +51,11 @@ export const IconPesquisa = styled.div`
     background-color: #081535;
   }
 `
+export const GroupTable = styled.div`
+  input{
+    border: none;
+  }
+`
 
 export const LabelSelect = styled.div`
   display: flex;
