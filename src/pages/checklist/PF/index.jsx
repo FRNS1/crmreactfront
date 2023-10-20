@@ -127,7 +127,7 @@ function Checklist() {
                     Os usuários têm o direito de acessar, retificar e excluir suas informações pessoais armazenadas pela Empresa. Os usuários podem exercer esses direitos por meio de solicitação enviada para o endereço de e-mail da Empresa. <br></br><br></br>
                     <h2>ATUALIZAÇÃO DA POLÍTICA DE COOKIES E PRIVACIDADE</h2>
                     A Empresa poderá atualizar esta Política de Cookies e Privacidade periodicamente, visando atender às necessidades dos usuários e às exigências legais. Os usuários serão notificados sobre as alterações por meio de comunicação no site da Empresa. <br></br><br></br>
-                    <h2>PRÁTICAS REGULAMENTADAS PELA LEI Nº 13.709, DE 14 DE AGOSTO DE 2018 – LEI GERAL DE PROTEÇÃO DE DADOS.</h2>
+                    <h2>PRÁTICAS REGULAMENTADAS PELA LEI Nº 13.709, DE 14 DE AGOSTO DE 2018 - LEI GERAL DE PROTEÇÃO DE DADOS.</h2>
                     Ao acessar e utilizar os serviços oferecidos pela Empresa, os usuários declaram estar cientes e concordar com os termos e condições desta Política de Cookies e Privacidade. <br></br><br></br>
                 </div>
             </NewModal>
@@ -136,7 +136,7 @@ function Checklist() {
                     <h1>Termo de Autorização para Consulta SCR</h1><br></br><br></br>
                     <h2>COMUNICADO DE INCLUSÃO E AUTORIZAÇÃO
                         PARA CONSULTA AO SISTEMA DE INFORMAÇÕES DE
-                        CRÉDITO DO BANCO CENTRAL DO BRASIL – SCR
+                        CRÉDITO DO BANCO CENTRAL DO BRASIL - SCR
                     </h2><br></br><br></br>
                     Autorizo a UY3 Sociedade de Crédito Direto S.A. (“SCD”) em conjunto com BDI SERVICOS
                     FINANCEIROS
@@ -314,19 +314,6 @@ function Checklist() {
                                     />
                                 </GroupCheckelist>
                                 <GroupCheckelist>
-                                    <label htmlFor="valorDesejado">CPF</label>
-                                    <InputMask
-                                        mask="999.999.999-99"
-                                        type="text"
-                                        id="cpf"
-                                        name="cpf"
-                                        value={documentoReferencia}
-                                        onChange={(e) => setDocumentoReferencia(e.target.value)}
-                                        placeholder="Digite o CPF da sua referência"
-                                        required
-                                    />
-                                </GroupCheckelist>
-                                <GroupCheckelist>
                                     <label htmlFor="valorDesejado">Email</label>
                                     <input
                                         type="email"
@@ -362,20 +349,7 @@ function Checklist() {
                                         name="nome"
                                         value={nomeReferencia}
                                         onChange={(e) => setNomeReferencia(e.target.value)}
-                                        placeholder="Digite o nome completo da sua referência"
-                                        required
-                                    />
-                                </GroupCheckelist>
-                                <GroupCheckelist>
-                                    <label htmlFor="valorDesejado">CNPJ</label>
-                                    <InputMask
-                                        mask="99.999.999/9999-99"
-                                        type="text"
-                                        id="cpf"
-                                        name="cpf"
-                                        value={documentoReferencia}
-                                        onChange={(e) => setDocumentoReferencia(e.target.value)}
-                                        placeholder="Digite o CNPJ da sua referência"
+                                        placeholder="Digite o nome da sua referência"
                                         required
                                     />
                                 </GroupCheckelist>
@@ -410,7 +384,9 @@ function Checklist() {
                             <input type="checkbox" onChange={(e) => setAceite(e.target.value)} />
                             <p>Estou de acordo com os <a className='termos-checklist' onClick={toggleModalTerms}>termos e condições </a>e com o <a className='termos-checklist' onClick={toggleModalTermsScr}>termo de autorização de consulta ao SCR.</a></p>
                         </GroupCheckbox>
-                        <CheckListBtn onClick={() => sendData()}>Enviar</CheckListBtn>
+                        {isLoading == false ? (
+                            <CheckListBtn onClick={() => sendData()}>Enviar</CheckListBtn>
+                        ): null}
                     </form>
                 </Content>
                 {isLoading && <Loading />}

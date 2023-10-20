@@ -13,8 +13,8 @@ function EsqueceuSenha() {
             <div className="container_redefinicaosenha">
                 <img className="deltaimg_redefinicaosenha" src={require('../imgs/deltalogologin.png')} alt="Logo" />
                 <br />
-                <label className="labelInput_redefinicaosenha"> Digite seu email: </label>
-                <input className="input_redefinicaosenha" type="text" value={email} />
+                <label for="email" className="labelInput_redefinicaosenha"> Digite seu email: </label>
+                <input className="input_redefinicaosenha" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 <button className="botaoEnviarEmail"> Enviar Email </button>
             </div>
         </body>

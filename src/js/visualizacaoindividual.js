@@ -1220,31 +1220,6 @@ function VisualizacaoIndividual() {
                                                                         disabled
                                                                     />
                                                                 </label>
-                                                                <label htmlFor="email">
-                                                                    Email:
-                                                                    <Input
-                                                                        style={{ userSelect: "none" }}
-                                                                        type="email"
-                                                                        name="email"
-                                                                        id="email"
-                                                                        placeholder="Digite seu email"
-                                                                        value={emailReferencia}
-                                                                        disabled
-                                                                    />
-                                                                </label>
-                                                            </FlexGroup>
-                                                            <FlexGroup>
-                                                                <label htmlFor="cpf">
-                                                                    Documento:
-                                                                    <input
-                                                                        type="text"
-                                                                        name="cpf"
-                                                                        id="cpf"
-                                                                        placeholder="Digite o número do documento"
-                                                                        value={cpfReferencia.length == 11 ? formataCpf(cpfReferencia) : formataCnpj(cpfReferencia)}
-                                                                        disabled
-                                                                    />
-                                                                </label>
                                                                 <label htmlFor="phoneNumber">
                                                                     Telefone:
                                                                     <InputMask
@@ -1254,6 +1229,20 @@ function VisualizacaoIndividual() {
                                                                         id="phoneNumber"
                                                                         placeholder="Digite seu número de telefone"
                                                                         value={telefoneReferencia}
+                                                                        disabled
+                                                                    />
+                                                                </label>
+                                                            </FlexGroup>
+                                                            <FlexGroup>
+                                                                <label htmlFor="email">
+                                                                    Email:
+                                                                    <Input
+                                                                        style={{ userSelect: "none" }}
+                                                                        type="email"
+                                                                        name="email"
+                                                                        id="email"
+                                                                        placeholder="Digite seu email"
+                                                                        value={emailReferencia}
                                                                         disabled
                                                                     />
                                                                 </label>
@@ -1369,31 +1358,6 @@ function VisualizacaoIndividual() {
                                                                     disabled
                                                                 />
                                                             </label>
-                                                            <label htmlFor="email">
-                                                                Email:
-                                                                <Input
-                                                                    style={{ userSelect: "none" }}
-                                                                    type="email"
-                                                                    name="email"
-                                                                    id="email"
-                                                                    placeholder="Digite seu email"
-                                                                    value={emailReferencia}
-                                                                    disabled
-                                                                />
-                                                            </label>
-                                                        </FlexGroup>
-                                                        <FlexGroup>
-                                                            <label htmlFor="cpf">
-                                                                Documento:
-                                                                <input
-                                                                    type="text"
-                                                                    name="cpf"
-                                                                    id="cpf"
-                                                                    placeholder="Digite o número do documento"
-                                                                    value={cpfReferencia.length == 11 ? formataCpf(cpfReferencia) : formataCnpj(cpfReferencia)}
-                                                                    disabled
-                                                                />
-                                                            </label>
                                                             <label htmlFor="phoneNumber">
                                                                 Telefone:
                                                                 <InputMask
@@ -1403,6 +1367,20 @@ function VisualizacaoIndividual() {
                                                                     id="phoneNumber"
                                                                     placeholder="Digite seu número de telefone"
                                                                     value={telefoneReferencia}
+                                                                    disabled
+                                                                />
+                                                            </label>
+                                                        </FlexGroup>
+                                                        <FlexGroup>
+                                                            <label htmlFor="email">
+                                                                Email:
+                                                                <Input
+                                                                    style={{ userSelect: "none" }}
+                                                                    type="email"
+                                                                    name="email"
+                                                                    id="email"
+                                                                    placeholder="Digite seu email"
+                                                                    value={emailReferencia}
                                                                     disabled
                                                                 />
                                                             </label>
