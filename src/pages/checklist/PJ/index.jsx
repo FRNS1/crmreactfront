@@ -422,19 +422,6 @@ function ChecklistPj() {
                                     />
                                 </GroupCheckelist>
                                 <GroupCheckelist>
-                                    <label htmlFor="valorDesejado">CPF</label>
-                                    <InputMask
-                                        mask="999.999.999-99"
-                                        type="text"
-                                        id="cpf"
-                                        name="cpf"
-                                        value={documentoReferencia}
-                                        onChange={(e) => setDocumentoReferencia(e.target.value)}
-                                        placeholder="Digite o CPF da sua referência"
-                                        required
-                                    />
-                                </GroupCheckelist>
-                                <GroupCheckelist>
                                     <label htmlFor="valorDesejado">Email</label>
                                     <input
                                         type="email"
@@ -470,20 +457,7 @@ function ChecklistPj() {
                                         name="nome"
                                         value={nomeReferencia}
                                         onChange={(e) => setNomeReferencia(e.target.value)}
-                                        placeholder="Digite o nome completo da sua referência"
-                                        required
-                                    />
-                                </GroupCheckelist>
-                                <GroupCheckelist>
-                                    <label htmlFor="valorDesejado">CNPJ</label>
-                                    <InputMask
-                                        mask="99.999.999/9999-99"
-                                        type="text"
-                                        id="cpf"
-                                        name="cpf"
-                                        value={documentoReferencia}
-                                        onChange={(e) => setDocumentoReferencia(e.target.value)}
-                                        placeholder="Digite o CNPJ da sua referência"
+                                        placeholder="Digite o nome da sua referência"
                                         required
                                     />
                                 </GroupCheckelist>
@@ -517,8 +491,10 @@ function ChecklistPj() {
                         <GroupCheckbox>
                             <input type="checkbox" onChange={(e) => setAceite(e.target.value)} />
                             <text>Estou de acordo com os <a className='termos-checklist' onClick={toggleModalTerms}>termos e condições </a>e com o <a className='termos-checklist' onClick={toggleModalTermsScr}>termo de autorização de consulta ao SCR.</a></text>
-                        </GroupCheckbox>
-                        <CheckListBtn onClick={() => sendData()}>Enviar</CheckListBtn>
+                        </GroupCheckbox> 
+                        {isLoading == false ? (
+                            <CheckListBtn onClick={() => sendData()}>Enviar</CheckListBtn>
+                        ): null}
                     </form>
                 </Content>
                 {isLoading && <Loading />}
