@@ -65,3 +65,69 @@
     font-size: 2vh;
     cursor: pointer;
 }
+
+#reenviaCodigo{
+    cursor: pointer;
+    color: white;
+    margin-top: 1vh;
+}
+
+.body_novasenha {
+    background-color: #081535;
+    height: 100vh;
+    width: 100%;
+}
+
+.container_novasenha {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.labelInput_novasenha {
+    height: 2.5vh;
+    width: 18%;
+    /*define a posição na horizontal da string*/
+    color: white;
+    /*define a cor da string*/
+    font-size: 2vh;
+    font-family: sans-serif;
+    margin-left: 1vh;
+}
+
+.input_novasenha {
+    background-color: white;
+    border-radius: 1vh 1vh;
+    /* Define o raio da borda */
+    width: 18%;
+    height: 3.5%;
+    padding-left: 10px;
+    text-align: start;
+    font-size: 2vh;
+    font-family: sans-serif;
+    margin-bottom: 1vh;
+}
+
+.deltaimg_novasenha {
+    width: 55vh;
+    height: 25vh;
+}
+
+.botaoEnviarSenha {
+    background-color: #AC7B39;
+    color: white;
+    border-radius: 1vh 1vh;
+    width: 18%;
+    height: 3.5%;
+    text-align: center;
+    font-size: 2vh;
+    cursor: pointer;
+    margin-top: 0.5vh;
+}
+
+.botaoEnviarSenha:disabled{
+    opacity: 0.7;
+}
