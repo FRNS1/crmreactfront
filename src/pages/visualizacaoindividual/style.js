@@ -236,8 +236,9 @@ export const FormContent = styled.div`
       width: 100%;
       padding: 10px;
       border: none;
+      height: 100%;
       border-radius: 4px;
-      /* background: #cac7c7; */
+      background: #cac7c7;
     }
 
     textarea{
@@ -352,6 +353,7 @@ export const FlexGroup = styled.div`
     select {
       padding: 10px;
       width: 100%;
+      height: 100%;
       border: none;
       border-radius: 4px;
       background: #cac7c7;

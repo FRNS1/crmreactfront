@@ -10,7 +10,8 @@ import { PedroRiccoPf } from '../js/links-indicador/pf/pedroricco'
 // import { Telapessoas } from '../js/pessoas';
 import Telapessoas  from '../pages/pessoas';
 import { Cadastrocli } from '../js/cadastrocli';
-import { Visucli } from '../js/visucli';
+// import { Visucli } from '../js/visucli';
+import Visucli from '../pages/visucli';
 // import { VisualizacaoPropostas } from '../js/visualizacaopropostas';
 import VisualizacaoPropostas from '../pages/visualizacaopropostas';
 import { CadastroPropostas } from '../js/cadastropropostas';

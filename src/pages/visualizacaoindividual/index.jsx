@@ -167,10 +167,10 @@ export default function VisualizacaoIndividual() {
         const response = await axios.get(
             url,
             {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                }
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+              }
             }
         );
         const data = response.data;
@@ -275,46 +275,46 @@ async function sendInfos() {
     const urlUpdateInfos = 'http://35.175.231.117:8080/api/v1/proposal/update';
 
     const proposalUpdateDTO = {
-        proposal_id: Cookies.get('propostaSelecionada'),
-        user_id: Cookies.get('userid'),
-        valor_desejado: valorDesejado,
-        taxa: taxa.toString().replace(",", "."),
-        corban: corban.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        status: status,
-        montante: montante.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        valor_liberado: valorLiberado.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        prazo: prazo,
-        data_abertura: dataAbertura,
-        data_primeira_parcela: dataPrimeiraParcela,
-        total_juros: totalJuros.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        status_contrato: statusContrato,
-        motivo_reprovacao: motivoReprovacao,
-        observacao_cliente: observacaoCliente,
-        observacao_analista: observacaoAnalista,
-        renda_media: rendaMedia.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
+      proposal_id: Cookies.get('propostaSelecionada'),
+      user_id: Cookies.get('userid'),
+      valor_desejado: valorDesejado,
+      taxa: taxa.toString().replace(",", "."),
+      corban: corban.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      status: status,
+      montante: montante.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      valor_liberado: valorLiberado.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      prazo: prazo,
+      data_abertura: dataAbertura,
+      data_primeira_parcela: dataPrimeiraParcela,
+      total_juros: totalJuros.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      status_contrato: statusContrato,
+      motivo_reprovacao: motivoReprovacao,
+      observacao_cliente: observacaoCliente,
+      observacao_analista: observacaoAnalista,
+      renda_media: rendaMedia.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
     };
     try {
         setIsLoading(true);
         const responseUpdateInfos = await axios.post(urlUpdateInfos, proposalUpdateDTO, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
         });
         console.log('Dados enviados com sucesso:', responseUpdateInfos.data)
         Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Dados enviados com sucesso!',
-            showConfirmButton: false,
-            timer: 1500
+          position: 'center',
+          icon: 'success',
+          title: 'Dados enviados com sucesso!',
+          showConfirmButton: false,
+          timer: 1500
         })
 
     } catch (erro) {
         console.error('Erro ao enviar os dados:', erro)
     }
     finally {
-        setIsLoading(false); // Defina isLoading como false aqui
+      setIsLoading(false); // Defina isLoading como false aqui
     }
 }
 
@@ -323,254 +323,254 @@ async function sendBureausCredito() {
     const urlUpdateAnalytics = 'http://35.175.231.117:8080/api/v1/analytics/update';
 
     const analyticsUpdateDTO = {
-        proposalId: Cookies.get('propostaSelecionada'),
-        user_id: Cookies.get('userid'),
-        numTitulosProtestados: numTitulosProtestados,
-        score: score,
-        numRefins: numRefins,
-        valorCadins: valorCadins.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        valorIss: valorIss.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        numProcessos: numProcessos,
-        valorProcessos: valorProcessos.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        numUfProcessos: numUfProcessos,
-        dividaAtiva: dividaAtiva.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        valorTitulosProtestados: valorTitulosProtestados.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        risco: risco,
-        pep: pep,
-        numChequesDevolvidos: numChequesDevolvidos,
-        valorChequesDevolvidos: valorChequesDevolvidos.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        valorPefins: valorPefins.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        numPefins: numPefins,
-        empresasNaoInformadas: empresasNaoInformadas
+      proposalId: Cookies.get('propostaSelecionada'),
+      user_id: Cookies.get('userid'),
+      numTitulosProtestados: numTitulosProtestados,
+      score: score,
+      numRefins: numRefins,
+      valorCadins: valorCadins.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      valorIss: valorIss.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      numProcessos: numProcessos,
+      valorProcessos: valorProcessos.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      numUfProcessos: numUfProcessos,
+      dividaAtiva: dividaAtiva.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      valorTitulosProtestados: valorTitulosProtestados.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      risco: risco,
+      pep: pep,
+      numChequesDevolvidos: numChequesDevolvidos,
+      valorChequesDevolvidos: valorChequesDevolvidos.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      valorPefins: valorPefins.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      numPefins: numPefins,
+      empresasNaoInformadas: empresasNaoInformadas
     };
 
     try {
         setIsLoading(true);
         const responseUpdateAnalytics = await axios.post(urlUpdateAnalytics, analyticsUpdateDTO, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
         });
         console.log('Dados enviados com sucesso:', responseUpdateAnalytics.data);
         Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Dados atualizados com sucesso!',
-            showConfirmButton: false,
-            timer: 1500
+          position: 'center',
+          icon: 'success',
+          title: 'Dados atualizados com sucesso!',
+          showConfirmButton: false,
+          timer: 1500
         })
     } catch (erro) {
-        console.error('Erro ao enviar os dados:', erro);
+      console.error('Erro ao enviar os dados:', erro);
     }
     finally {
-        setIsLoading(false); // Defina isLoading como false aqui
+      setIsLoading(false); // Defina isLoading como false aqui
     }
 }
 
 async function sendBacen() {
-    const token = Cookies.get('token');
-    const urlUpdateScr = 'http://35.175.231.117:8080/api/v1/scr/update';
+  const token = Cookies.get('token');
+  const urlUpdateScr = 'http://35.175.231.117:8080/api/v1/scr/update';
 
     const ScrUpdateDTO = {
-        proposal_id: Cookies.get('propostaSelecionada'),
-        vencer_valor_total: vencerValorTotal.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        vencer_ate_30_dias_vencidos_ate_14_dias: vencerAte30DiasvencidosAte14Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        vencer_31_60_dias: vencer3160Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        vencer_61_90_dias: vencer6190Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        vencer_91_180_dias: vencer91180Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        vencer_181_360_dias: vencer181360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        vencer_acima_360_dias: vencerAcima360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        vencer_indeterminado: vencerIndeterminado.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        vencido_total: vencidoTotal.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        vencido_15_30_dias: vencido1530Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        vencido_31_60_dias: vencido3160Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        vencido_61_90_dias: vencido6190Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        vencido_91_180_dias: vencido91180Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        vencido_181_360_dias: vencido181360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        vencido_acima_360_dias: vencidoAcima360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        prejuizo_total: prejuizoTotal.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        prejuizo_ate_12_meses: prejuizoAte12Meses.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        prejuizo_acima_12_meses: prejuizoAcima12Meses.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        coobrigacao_total: coobrigacaoTotal.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        coobrigacao_assumida: coobrigacaoAssumida.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        coobrigacao_prestadas: coobrigacaoPrestadas.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        creditos_liberar_total: creditosLiberarTotal.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        creditos_liberar_ate_360_dias: creditosLiberarAte360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        creditos_liberar_acima_360_dias: creditosLiberarAcima360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        limites_credito_valor_total: limitesCreditoValorTotal.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        limites_credito_vencimento_ate_360_dias: limitesCreditoVencimentoAte360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
-        limites_credito_vencimento_acima_360_dias: limitesCreditoVencimentoAcima360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
+      proposal_id: Cookies.get('propostaSelecionada'),
+      vencer_valor_total: vencerValorTotal.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      vencer_ate_30_dias_vencidos_ate_14_dias: vencerAte30DiasvencidosAte14Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      vencer_31_60_dias: vencer3160Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      vencer_61_90_dias: vencer6190Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      vencer_91_180_dias: vencer91180Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      vencer_181_360_dias: vencer181360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      vencer_acima_360_dias: vencerAcima360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      vencer_indeterminado: vencerIndeterminado.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      vencido_total: vencidoTotal.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      vencido_15_30_dias: vencido1530Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      vencido_31_60_dias: vencido3160Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      vencido_61_90_dias: vencido6190Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      vencido_91_180_dias: vencido91180Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      vencido_181_360_dias: vencido181360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      vencido_acima_360_dias: vencidoAcima360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      prejuizo_total: prejuizoTotal.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      prejuizo_ate_12_meses: prejuizoAte12Meses.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      prejuizo_acima_12_meses: prejuizoAcima12Meses.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      coobrigacao_total: coobrigacaoTotal.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      coobrigacao_assumida: coobrigacaoAssumida.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      coobrigacao_prestadas: coobrigacaoPrestadas.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      creditos_liberar_total: creditosLiberarTotal.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      creditos_liberar_ate_360_dias: creditosLiberarAte360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      creditos_liberar_acima_360_dias: creditosLiberarAcima360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      limites_credito_valor_total: limitesCreditoValorTotal.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      limites_credito_vencimento_ate_360_dias: limitesCreditoVencimentoAte360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", "."),
+      limites_credito_vencimento_acima_360_dias: limitesCreditoVencimentoAcima360Dias.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
     };
 
     try {
         setIsLoading(true);
         const responseUpdateScr = await axios.post(urlUpdateScr, ScrUpdateDTO, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
         });
         console.log('Dados enviados com sucesso:', responseUpdateScr.data);
         Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Dados atualizados com sucesso!',
-            showConfirmButton: false,
-            timer: 1500
+          position: 'center',
+          icon: 'success',
+          title: 'Dados atualizados com sucesso!',
+          showConfirmButton: false,
+          timer: 1500
         })
     } catch (erro) {
-        console.error('Erro ao enviar os dados:', erro);
+      console.error('Erro ao enviar os dados:', erro);
     }
     finally {
-        setIsLoading(false); // Defina isLoading como false aqui
+      setIsLoading(false); // Defina isLoading como false aqui
     }
 
 }
 
 async function sendAllsData() {
-    const token = Cookies.get('token');
-    const urlUpdateAllsData = 'http://35.175.231.117:8080/api/v1/allsdata/update';
+  const token = Cookies.get('token');
+  const urlUpdateAllsData = 'http://35.175.231.117:8080/api/v1/allsdata/update';
 
-    let valor_pendencias_financeiras = 0;
-    try {
-        valor_pendencias_financeiras = valorPendenciasFinanceirasAlls.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
-    } catch (erro) {
-        valor_pendencias_financeiras = valorPendenciasFinanceirasAlls
-    };
+  let valor_pendencias_financeiras = 0;
+  try {
+      valor_pendencias_financeiras = valorPendenciasFinanceirasAlls.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
+  } catch (erro) {
+      valor_pendencias_financeiras = valorPendenciasFinanceirasAlls
+  };
 
-    let valor_recuperacoes = 0;
-    try {
-        valor_recuperacoes = valorRecuperacoesAlls.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
-    } catch (erro) {
-        valor_recuperacoes = valorRecuperacoesAlls
-    };
+  let valor_recuperacoes = 0;
+  try {
+      valor_recuperacoes = valorRecuperacoesAlls.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
+  } catch (erro) {
+      valor_recuperacoes = valorRecuperacoesAlls
+  };
 
-    let valor_protestos = 0;
-    try {
-        valor_protestos = valorProtestosAlls.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
-    } catch (erro) {
-        valor_protestos = valorProtestosAlls
-    };
+  let valor_protestos = 0;
+  try {
+      valor_protestos = valorProtestosAlls.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
+  } catch (erro) {
+      valor_protestos = valorProtestosAlls
+  };
 
-    let limite_sugerido = 0;
-    try {
-        limite_sugerido = limiteSugeridoAlls.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
-    } catch (erro) {
-        limite_sugerido = limiteSugeridoAlls
-    };
+  let limite_sugerido = 0;
+  try {
+      limite_sugerido = limiteSugeridoAlls.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
+  } catch (erro) {
+      limite_sugerido = limiteSugeridoAlls
+  };
 
-    let valor_restricoes = 0;
-    try {
-        valor_restricoes = valorRestricoesAlls.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
-    } catch (erro) {
-        valor_restricoes = valorRestricoesAlls
-    };
+  let valor_restricoes = 0;
+  try {
+      valor_restricoes = valorRestricoesAlls.toString().replace("R$ ", "").replace(".", "").replace(",", ".")
+  } catch (erro) {
+      valor_restricoes = valorRestricoesAlls
+  };
 
-    const AllsDataUpdateDTO = {
-        proposal_id: Cookies.get('propostaSelecionada'),
-        user_id: Cookies.get('userid'),
-        num_pendencias_financeiras: numPendenciasFinanceirasAlls,
-        valor_pendencias_financeiras: valor_pendencias_financeiras,
-        num_recuperacoes: numRecuperacoesAlls,
-        valor_recuperacoes: valor_recuperacoes,
-        num_cheque_sem_fundo: numChequeSemFundoAlls,
-        num_protestos: numProtestosAlls,
-        valor_protestos: valor_protestos,
-        limite_sugerido: limite_sugerido,
-        num_restricoes: numRestricoesAlls,
-        valor_restricoes: valor_restricoes,
-    };
+  const AllsDataUpdateDTO = {
+    proposal_id: Cookies.get('propostaSelecionada'),
+    user_id: Cookies.get('userid'),
+    num_pendencias_financeiras: numPendenciasFinanceirasAlls,
+    valor_pendencias_financeiras: valor_pendencias_financeiras,
+    num_recuperacoes: numRecuperacoesAlls,
+    valor_recuperacoes: valor_recuperacoes,
+    num_cheque_sem_fundo: numChequeSemFundoAlls,
+    num_protestos: numProtestosAlls,
+    valor_protestos: valor_protestos,
+    limite_sugerido: limite_sugerido,
+    num_restricoes: numRestricoesAlls,
+    valor_restricoes: valor_restricoes,
+  };
 
-    try {
-        setIsLoading(true);
-        const responseUpdateAllsData = await axios.post(urlUpdateAllsData, AllsDataUpdateDTO, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
-        });
-        console.log('Dados enviados com sucesso:', responseUpdateAllsData.data);
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Dados atualizados com sucesso!',
-            showConfirmButton: false,
-            timer: 1500
-        })
-    } catch (erro) {
-        console.error('Erro ao enviar os dados:', erro);
-    }
-    finally {
-        setIsLoading(false); // Defina isLoading como false aqui
-    }
+  try {
+      setIsLoading(true);
+      const responseUpdateAllsData = await axios.post(urlUpdateAllsData, AllsDataUpdateDTO, {
+          headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json'
+          }
+      });
+      console.log('Dados enviados com sucesso:', responseUpdateAllsData.data);
+      Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Dados atualizados com sucesso!',
+          showConfirmButton: false,
+          timer: 1500
+      })
+  } catch (erro) {
+      console.error('Erro ao enviar os dados:', erro);
+  }
+  finally {
+      setIsLoading(false); // Defina isLoading como false aqui
+  }
 }
 
 async function sendContratosFiles() {
-    console.log("Enviando");
-    console.log(contratosFiles);
+  console.log("Enviando");
+  console.log(contratosFiles);
 
 
-    for (let i = 0; i < contratosFiles.length; i++) {
-        var myHeaders = new Headers();
-        myHeaders.append("Authorization", `Bearer ${Cookies.get('token')}`);
+  for (let i = 0; i < contratosFiles.length; i++) {
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${Cookies.get('token')}`);
 
 
-        var formdata = new FormData();
-        formdata.append("file", contratosFiles[i]);
+    var formdata = new FormData();
+    formdata.append("file", contratosFiles[i]);
 
 
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: formdata,
-            redirect: 'follow'
-        };
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: formdata,
+        redirect: 'follow'
+    };
 
 
-        // Upload do arquivo
-        await fetch("http://35.175.231.117:8080/api/v1/contratosfiles/upload", requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log("Arquivo enviado:", result)
-            })
-            .catch(error => console.log('error', error));
+    // Upload do arquivo
+    await fetch("http://35.175.231.117:8080/api/v1/contratosfiles/upload", requestOptions)
+      .then(response => response.text())
+      .then(result => {
+          console.log("Arquivo enviado:", result)
+      })
+      .catch(error => console.log('error', error));
 
 
-        // Construir o link S3
-        var myHeaders2 = new Headers();
-        myHeaders2.append("Authorization", `Bearer ${Cookies.get('token')}`);
-        myHeaders2.append("Content-Type", "application/json");
+    // Construir o link S3
+    var myHeaders2 = new Headers();
+    myHeaders2.append("Authorization", `Bearer ${Cookies.get('token')}`);
+    myHeaders2.append("Content-Type", "application/json");
 
 
-        let fileName = contratosFiles[i].name.replace(/\s/g, "+");
-        let link = `https://docsbora.s3.amazonaws.com/${fileName}`;
+    let fileName = contratosFiles[i].name.replace(/\s/g, "+");
+    let link = `https://docsbora.s3.amazonaws.com/${fileName}`;
 
-        var data = {
-            user_id: Cookies.get('userid'),
-            proposal: Cookies.get('propostaSelecionada'),
-            url: link
-        };
-
-
-        var requestOptionsData = {
-            method: 'POST',
-            headers: myHeaders2,
-            body: JSON.stringify(data),
-            redirect: 'follow'
-        };
+    var data = {
+        user_id: Cookies.get('userid'),
+        proposal: Cookies.get('propostaSelecionada'),
+        url: link
+    };
 
 
-        // Enviar informações sobre o arquivo
-        await fetch("http://35.175.231.117:8080/api/v1/contratosfiles/filesdata", requestOptionsData)
-            .then(response => response.text())
-            .then(result => { alert("Informações e arquivo enviados"); setFiles([]); getDataProposal(); })
-            .then(result => { alert("Informações e arquivo enviados"); setFiles([]); getDataProposal(); })
-            .catch(error => console.log('error', error));
-    }
+    var requestOptionsData = {
+      method: 'POST',
+      headers: myHeaders2,
+      body: JSON.stringify(data),
+      redirect: 'follow'
+    };
+
+
+      // Enviar informações sobre o arquivo
+    await fetch("http://35.175.231.117:8080/api/v1/contratosfiles/filesdata", requestOptionsData)
+      .then(response => response.text())
+      .then(result => { alert("Informações e arquivo enviados"); setFiles([]); getDataProposal(); })
+      .then(result => { alert("Informações e arquivo enviados"); setFiles([]); getDataProposal(); })
+      .catch(error => console.log('error', error));
+  }
 }
 
-async function sendFiles() {
+  async function sendFiles() {
     console.log("Enviando");
     console.log(files);
 
@@ -627,291 +627,291 @@ async function sendFiles() {
         };
 
 
-        // Enviar informações sobre o arquivo
-        await fetch("http://35.175.231.117:8080/api/v1/files/filesdata", requestOptionsData)
-            .then(response => response.text())
-            .then(result => { alert("Informações e arquivo enviados"); setFiles([]); getDataProposal(); })
-            .then(result => { alert("Informações e arquivo enviados"); setFiles([]); getDataProposal(); })
-            .catch(error => console.log('error', error));
+      // Enviar informações sobre o arquivo
+      await fetch("http://35.175.231.117:8080/api/v1/files/filesdata", requestOptionsData)
+        .then(response => response.text())
+        .then(result => { alert("Informações e arquivo enviados"); setFiles([]); getDataProposal(); })
+        .then(result => { alert("Informações e arquivo enviados"); setFiles([]); getDataProposal(); })
+        .catch(error => console.log('error', error));
     }
-}
+  }
 
 
-const handleTotalJurosChange = (value) => {
+  const handleTotalJurosChange = (value) => {
     setTotalJuros(value);
-};
-const handleMontanteChange = (value) => {
+  };
+  const handleMontanteChange = (value) => {
     setMontante(value);
-};
-const handleValorLiberadoChange = (value) => {
+  };
+  const handleValorLiberadoChange = (value) => {
     setValorLiberado(value);
-};
-const handleStatusChange = (event) => {
+  };
+  const handleStatusChange = (event) => {
     setStatus(event.target.value);
-};
-const HandleStatusContratoChange = (event) => {
+  };
+  const HandleStatusContratoChange = (event) => {
     setStatusContrato(event.target.value);
-};
-const HandleMotivoReprovacaoChange = (event) => {
+  };
+  const HandleMotivoReprovacaoChange = (event) => {
     setMotivoReprovacao(event.target.value);
-};
-const handleTaxaChange = (value) => {
+  };
+  const handleTaxaChange = (value) => {
     setTaxa(value);
-};
-const handleCorbanChange = (value) => {
+  };
+  const handleCorbanChange = (value) => {
     setCorban(value);
-};
-const handlePrazoChange = (value) => {
+  };
+  const handlePrazoChange = (value) => {
     setPrazo(value);
-};
-const handleObservacaoClienteChange = (value) => {
+  };
+  const handleObservacaoClienteChange = (value) => {
     setObservacaoCliente(value);
-};
-const handleObservacaoAnalistaChange = (value) => {
+  };
+  const handleObservacaoAnalistaChange = (value) => {
     setObservacaoAnalista(value);
-};
-const handleScoreChange = (value) => {
+  };
+  const handleScoreChange = (value) => {
     setScore(value);
-};
-const handleRiscoChange = (value) => {
+  };
+  const handleRiscoChange = (value) => {
     setRisco(value);
-};
-const handleQuantidadeTituloProtestadosChange = (value) => {
+  };
+  const handleQuantidadeTituloProtestadosChange = (value) => {
     setNumTitulosProtestados(value);
-};
-const handleValorCadinsChange = (value) => {
+  };
+  const handleValorCadinsChange = (value) => {
     setValorCadins(value);
-};
-const handleValorTitulosProtestadosChange = (value) => {
+  };
+  const handleValorTitulosProtestadosChange = (value) => {
     setValorTitulosProtestados(value);
-};
-const handleQuantidadePefinsChange = (value) => {
+  };
+  const handleQuantidadePefinsChange = (value) => {
     setNumPefins(value);
-};
-const handleValorPefinsChange = (value) => {
+  };
+  const handleValorPefinsChange = (value) => {
     setValorPefins(value);
-};
-const handleQuantidadeChequesDevolvidosChange = (value) => {
+  };
+  const handleQuantidadeChequesDevolvidosChange = (value) => {
     setNumChequesDevolvidos(value);
-};
-const handleValorChequesDevolvidosChange = (value) => {
+  };
+  const handleValorChequesDevolvidosChange = (value) => {
     setValorChequesDevolvidos(value);
-};
-const handleValorProcessosChange = (value) => {
+  };
+  const handleValorProcessosChange = (value) => {
     setValorProcessos(value);
-};
-const handleDividaAtivaChange = (value) => {
+  };
+  const handleDividaAtivaChange = (value) => {
     setDividaAtiva(value);
-};
-const handleValorISSChange = (value) => {
+  };
+  const handleValorISSChange = (value) => {
     setValorIss(value);
-};
-const handleRefinsChange = (value) => {
+  };
+  const handleRefinsChange = (value) => {
     setNumRefins(value);
-};
-const handleEmpresasNaoInformadasChange = (value) => {
+  };
+  const handleEmpresasNaoInformadasChange = (value) => {
     setEmpresasNaoInformadas(value);
-};
-const handleQuantidadeProcessosChange = (value) => {
+  };
+  const handleQuantidadeProcessosChange = (value) => {
     setNumProcessos(value);
-}
-const handleNumUfProcessosChange = (value) => {
+  }
+  const handleNumUfProcessosChange = (value) => {
     setNumUfProcessos(value);
-}
-const [isChecked, setIsChecked] = useState(false);
-const handleCheckboxChange = () => {
+  }
+  const [isChecked, setIsChecked] = useState(false);
+  const handleCheckboxChange = () => {
     setIsChecked(!isChecked); // Inverte o estado da checkbox
-};
+  };
 
-const handleVencerValorTotalChange = (value) => {
+  const handleVencerValorTotalChange = (value) => {
     setVencerValorTotal(value);
-};
-const handleVencerAte30DiasvencidosAte14DiasTotalChange = (value) => {
+  };
+  const handleVencerAte30DiasvencidosAte14DiasTotalChange = (value) => {
     setVencerAte30DiasVencidosAte14Dias(value);
-};
-const handleVencer3160DiasChange = (value) => {
+  };
+  const handleVencer3160DiasChange = (value) => {
     setVencer3160Dias(value);
-};
-const handleVencer6190DiasChange = (value) => {
+  };
+  const handleVencer6190DiasChange = (value) => {
     setVencer6190Dias(value);
-};
-const handleVencer91180DiasChange = (value) => {
+  };
+  const handleVencer91180DiasChange = (value) => {
     setVencer91180Dias(value);
-};
-const handleVencer181360DiasChange = (value) => {
+  };
+  const handleVencer181360DiasChange = (value) => {
     setVencer181360Dias(value);
-};
-const handleVencerAcima360DiasChange = (value) => {
+  };
+  const handleVencerAcima360DiasChange = (value) => {
     setVencerAcima360Dias(value);
-};
-const handleVencerIndeterminadoChange = (value) => {
+  };
+  const handleVencerIndeterminadoChange = (value) => {
     setVencerIndeterminado(value);
-};
-const handleVencidoTotalChange = (value) => {
+  };
+  const handleVencidoTotalChange = (value) => {
     setVencidoTotal(value);
-};
-const handleVencido1530DiasChange = (value) => {
+  };
+  const handleVencido1530DiasChange = (value) => {
     setVencido1530Dias(value);
-};
-const handleVencido3160DiasChange = (value) => {
+  };
+  const handleVencido3160DiasChange = (value) => {
     setVencido3160Dias(value);
-};
-const handleVencido6190DiasChange = (value) => {
+  };
+  const handleVencido6190DiasChange = (value) => {
     setVencido6190Dias(value);
-};
-const handleVencido91180DiasChange = (value) => {
+  };
+  const handleVencido91180DiasChange = (value) => {
     setVencido91180Dias(value);
-};
-const handleVencido181360DiasChange = (value) => {
+  };
+  const handleVencido181360DiasChange = (value) => {
     setVencido181360Dias(value);
-};
-const handleVencidoAcima360DiasChange = (value) => {
+  };
+  const handleVencidoAcima360DiasChange = (value) => {
     setVencidoAcima360Dias(value);
-};
-const handlePrejuizoTotalChange = (value) => {
+  };
+  const handlePrejuizoTotalChange = (value) => {
     setPrejuizoTotal(value);
-};
-const handlePrejuizoAte12MesesChange = (value) => {
+  };
+  const handlePrejuizoAte12MesesChange = (value) => {
     setPrejuizoAte12Meses(value);
-};
-const handlePrejuizoAcima12MesesChange = (value) => {
+  };
+  const handlePrejuizoAcima12MesesChange = (value) => {
     setPrejuizoAcima12Meses(value);
-};
-const handleCoobrigacaoTotalChange = (value) => {
+  };
+  const handleCoobrigacaoTotalChange = (value) => {
     setCoobrigacaoTotal(value);
-};
-const handleCoobrigacaoAssumidaChange = (value) => {
+  };
+  const handleCoobrigacaoAssumidaChange = (value) => {
     setCoobrigacaoAssumida(value);
-};
-const handleCoobrigacaoPrestadasChange = (value) => {
+  };
+  const handleCoobrigacaoPrestadasChange = (value) => {
     setCoobrigacaoPrestadas(value);
-};
-const handleCreditosLiberarTotalChange = (value) => {
+  };
+  const handleCreditosLiberarTotalChange = (value) => {
     setCreditosLiberarTotal(value);
-};
-const handleCreditosLiberarAte360DiasChange = (value) => {
+  };
+  const handleCreditosLiberarAte360DiasChange = (value) => {
     setCreditosLiberarAte360Dias(value);
-};
-const handleCreditosLiberarAcima360DiasChange = (value) => {
+  };
+  const handleCreditosLiberarAcima360DiasChange = (value) => {
     setCreditosLiberarAcima360Dias(value);
-};
-const handleLimitesCreditoValorTotalChange = (value) => {
+  };
+  const handleLimitesCreditoValorTotalChange = (value) => {
     setLimitesCreditoValorTotal(value);
-};
-const handleLimitesCreditoVencimentoAte360DiasChange = (value) => {
+  };
+  const handleLimitesCreditoVencimentoAte360DiasChange = (value) => {
     setLimitesCreditosVencimentoAte360Dias(value);
-};
-const handleLimitesCreditoVencimentoAcima360DiasChange = (value) => {
+  };
+  const handleLimitesCreditoVencimentoAcima360DiasChange = (value) => {
     setLimitesCreditosVencimentoAcima360Dias(value);
-};
-const handleValorPendenciasFinanceirasAllsChange = (value) => {
+  };
+  const handleValorPendenciasFinanceirasAllsChange = (value) => {
     setValorPendenciasFinanceirasAlls(value);
-};
-const handleValorRecuperacoesAllsChange = (value) => {
+  };
+  const handleValorRecuperacoesAllsChange = (value) => {
     setValorRecuperacoesAlls(value);
-};
-const handleValorProtestosAllsChange = (value) => {
+  };
+  const handleValorProtestosAllsChange = (value) => {
     setValorProtestosAlls(value);
-};
-const handleLimiteSugeridoAllsChange = (value) => {
+  };
+  const handleLimiteSugeridoAllsChange = (value) => {
     setLimiteSugeridoAlls(value);
-};
-const handleValorRestricoesAllsChange = (value) => {
+  };
+  const handleValorRestricoesAllsChange = (value) => {
     setValorRestricoesAlls(value);
-};
-const handleNumPendenciasFinanceirasAllsChange = (value) => {
+  };
+  const handleNumPendenciasFinanceirasAllsChange = (value) => {
     setNumPendenciasFinanceirasAlls(value);
-};
-const handleNumRecuperacoesAllsChange = (value) => {
+  };
+  const handleNumRecuperacoesAllsChange = (value) => {
     setNumRecuperacoesAlls(value);
-}
+  }
   const handleNumChequeSemFundoAllsChange = (value) => {
-      setNumChequeSemFundoAlls(value);
+    setNumChequeSemFundoAlls(value);
   }
   const handleNumProtestosAllsChange = (value) => {
-      setNumProtestosAlls(value);
+    setNumProtestosAlls(value);
   }
   const handleNumRestricoesAllsChange = (value) => {
-      setNumRestricoesAlls(value);
+    setNumRestricoesAlls(value);
   }
 
   useEffect(() => {
-      getDataProposal();
+    getDataProposal();
   }, []);
 
   function Upload() {
-      return (
-          <UploadContent className='divUploadFiles'>
-            <h2> Faça o upload dos seus documentos </h2>
-            <InputFiles>
-              <input className='inputFiles' name='file' type="file" onChange={(event) => setFiles(event.target.files)} multiple />
-              <ul className='listaFiles'>
-                {filesReceived.map((file, index) =>
-                  <li key={index} className='liFiles'> <a href={file.url_arquivo}>{file.url_arquivo}</a>
-                    {file.name}
-                  </li>
-                )}
-              </ul>
-            </InputFiles>
-            <div className='actionUpload' onClick={() => sendFiles()}>
-              <button className='botaoEnviarArquivos'>
-                <span className='stringEnviarDados'> Enviar Arquivos </span>
-              </button>
-            </div>
-          </UploadContent>
-      );
+  return (
+    <UploadContent className='divUploadFiles'>
+      <h2> Faça o upload dos seus documentos </h2>
+      <InputFiles>
+        <input className='inputFiles' name='file' type="file" onChange={(event) => setFiles(event.target.files)} multiple />
+        <ul className='listaFiles'>
+          {filesReceived.map((file, index) =>
+            <li key={index} className='liFiles'> <a href={file.url_arquivo}>{file.url_arquivo}</a>
+              {file.name}
+            </li>
+          )}
+        </ul>
+      </InputFiles>
+      <div className='actionUpload' onClick={() => sendFiles()}>
+        <button className='botaoEnviarArquivos'>
+          <span className='stringEnviarDados'> Enviar Arquivos </span>
+        </button>
+      </div>
+    </UploadContent>
+    );
   }
 
-  function formataCnpj(cpfReferencia) {
-      try {
-          const partesCNPJ = cpfReferencia.split('')
-          if (partesCNPJ.length !== 14) {
-              return `Documento inválido`
+function formataCnpj(cpfReferencia) {
+  try {
+    const partesCNPJ = cpfReferencia.split('')
+    if (partesCNPJ.length !== 14) {
+      return `Documento inválido`
 
-          } else {
-              const parte1 = partesCNPJ[0];
-              const parte2 = partesCNPJ[1];
-              const parte3 = partesCNPJ[2];
-              const parte4 = partesCNPJ[3];
-              const parte5 = partesCNPJ[4];
-              const parte6 = partesCNPJ[5];
-              const parte7 = partesCNPJ[6];
-              const parte8 = partesCNPJ[7];
-              const parte9 = partesCNPJ[8];
-              const parte10 = partesCNPJ[9];
-              const parte11 = partesCNPJ[10];
-              const parte12 = partesCNPJ[11];
-              const parte13 = partesCNPJ[12];
-              const parte14 = partesCNPJ[13];
-              return `${parte1}${parte2}.${parte3}${parte4}${parte5}.${parte6}${parte7}${parte8}/${parte9}${parte10}${parte11}${parte12}-${parte13}${parte14}`;
-          }
-      } catch (error) {
-          console.log(error);
+    } else {
+        const parte1 = partesCNPJ[0];
+        const parte2 = partesCNPJ[1];
+        const parte3 = partesCNPJ[2];
+        const parte4 = partesCNPJ[3];
+        const parte5 = partesCNPJ[4];
+        const parte6 = partesCNPJ[5];
+        const parte7 = partesCNPJ[6];
+        const parte8 = partesCNPJ[7];
+        const parte9 = partesCNPJ[8];
+        const parte10 = partesCNPJ[9];
+        const parte11 = partesCNPJ[10];
+        const parte12 = partesCNPJ[11];
+        const parte13 = partesCNPJ[12];
+        const parte14 = partesCNPJ[13];
+        return `${parte1}${parte2}.${parte3}${parte4}${parte5}.${parte6}${parte7}${parte8}/${parte9}${parte10}${parte11}${parte12}-${parte13}${parte14}`;
       }
+  } catch (error) {
+    console.log(error);
   }
+}
 
   function formataCpf(cpfReferencia) {
-      try {
-          const partesCPF = cpfReferencia.split('')
-          if (partesCPF.length !== 11) {
-              return `Documento inválido`
-          } else {
-              const parte1 = partesCPF[0];
-              const parte2 = partesCPF[1];
-              const parte3 = partesCPF[2];
-              const parte4 = partesCPF[3];
-              const parte5 = partesCPF[4];
-              const parte6 = partesCPF[5];
-              const parte7 = partesCPF[6];
-              const parte8 = partesCPF[7];
-              const parte9 = partesCPF[8];
-              const parte10 = partesCPF[9];
-              const parte11 = partesCPF[10];
-              return `${parte1}${parte2}${parte3}.${parte4}${parte5}${parte6}.${parte7}${parte8}${parte9}-${parte10}${parte11}`;
-          }
-      } catch (error) {
-          console.log(error);
+    try {
+      const partesCPF = cpfReferencia.split('')
+      if (partesCPF.length !== 11) {
+        return `Documento inválido`
+      } else {
+        const parte1 = partesCPF[0];
+        const parte2 = partesCPF[1];
+        const parte3 = partesCPF[2];
+        const parte4 = partesCPF[3];
+        const parte5 = partesCPF[4];
+        const parte6 = partesCPF[5];
+        const parte7 = partesCPF[6];
+        const parte8 = partesCPF[7];
+        const parte9 = partesCPF[8];
+        const parte10 = partesCPF[9];
+        const parte11 = partesCPF[10];
+        return `${parte1}${parte2}${parte3}.${parte4}${parte5}${parte6}.${parte7}${parte8}${parte9}-${parte10}${parte11}`;
       }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 {/* <UploadContainer /> */}
@@ -995,14 +995,14 @@ const handleNumRecuperacoesAllsChange = (value) => {
               </ContentHeader>
               <DividerHeader></DividerHeader>
               <div className='divtextoPropostas'>
-                  {/* <div className="divEnviarContrato">
-                      <input className="enviarContrato" name='file' type='file' onChange={(event) => setContratosFiles(event.target.files)} />
-                  </div>
-                  <div className="divSalvarArquivo" onClick={() => sendContratosFiles()}>
-                      <button className="salvarArquivo">
-                          <span> Enviar Arquivo </span>
-                      </button>
-                  </div> */}
+                {/* <div className="divEnviarContrato">
+                  <input className="enviarContrato" name='file' type='file' onChange={(event) => setContratosFiles(event.target.files)} />
+                </div>
+                <div className="divSalvarArquivo" onClick={() => sendContratosFiles()}>
+                  <button className="salvarArquivo">
+                    <span> Enviar Arquivo </span>
+                  </button>
+                </div> */}
               </div>
               
               <div>
@@ -1194,7 +1194,7 @@ const handleNumRecuperacoesAllsChange = (value) => {
                 {muda === 'InfPessoais' && (
                   <ResetContainer>
                       <ResetContent>
-                          {data.isCnpj == true ? (
+                          {data.isCnpj === true ? (
                             <FormContainer>
                               <FormRight>
                                   <FormContent>
